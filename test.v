@@ -1,9 +1,13 @@
 import gtk3
 
-fn btn_clicked(w &C.GtkWidget, btn gtk3.Button) {
+fn btn_clicked(w &C.GtkWidget, btn &gtk3.Button) {
 	// The GtkWidget object should be ignored
 	println("Button clicked!")
-	btn.set_label("GTK3-V is awesome! (except V is messy with pointers and this will fail)")
+	if (btn.get_label() == "GTK3-V is ..") {
+		btn.set_label("GTK3-V is awesome!")
+	} else {
+		btn.set_label("GTK3-V is ..")
+	}
 }
 
 fn win_destroy(w &C.GtkWidget, win gtk3.Window) {
@@ -14,7 +18,7 @@ fn main() {
 	window := gtk3.new_window()
 	vbox := gtk3.new_vbox(false, 20)
 	align := gtk3.new_alignment(0.5, 0.5, 0, 0)
-	btn := gtk3.new_button("GTK 3 for V !")
+	btn := gtk3.new_button("GTK3-V is ..")
 	btn2 := gtk3.new_button("Download Alpha now!")
 
 	btn.set_size(200, 100)
