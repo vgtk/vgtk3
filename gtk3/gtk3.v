@@ -29,6 +29,10 @@ pub fn new_window() Window {
 	return win
 }
 
+pub fn quit() {
+	C.gtk_main_quit()
+}
+
 pub fn new_button(label string) Button {
 	btn := Button{
 		gtk_widget: C.gtk_button_new_with_label(label.str)
@@ -60,6 +64,10 @@ pub fn (w Window) center() {
 
 pub fn (w Window) set_title(title string) {
 	C.gtk_window_set_title(w.gtk_widget, title.str)
+}
+
+pub fn (w &Window) set_on_destroy(handler fn(&C.GtkWidget,Window)) {
+	C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
 }
 
 fn (w Window) get_gtk_widget() &C.GtkWidget {

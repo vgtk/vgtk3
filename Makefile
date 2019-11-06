@@ -5,4 +5,4 @@ build: clean
 clean:
 	rm -rf test gtk3.o
 test: build
-	$(VC) run test.v
+	$(VC) -g run test.v

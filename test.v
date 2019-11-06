@@ -6,6 +6,10 @@ fn btn_clicked(w &C.GtkWidget, btn gtk3.Button) {
 	btn.set_label("GTK3-V is awesome!")
 }
 
+fn win_destroy(w &C.GtkWidget, win gtk3.Window) {
+	gtk3.quit() // necessary as GTK3 won't exit itself when window is destroyed.
+}
+
 fn main() {
 	window := gtk3.new_window()
 	btn := gtk3.new_button("GTK3-V is ..")
@@ -17,6 +21,7 @@ fn main() {
 	window.center()
 	window.set_title("I'm made with V")
 	window.add(btn)
+	window.set_on_destroy(win_destroy)
 	window.show()
 	gtk3.run()
 }
