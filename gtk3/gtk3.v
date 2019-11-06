@@ -10,6 +10,14 @@ interface Container {
 	add(Widgeter)
 }
 
+pub struct Alignment {
+	gtk_widget &C.GtkWidget
+}
+
+pub struct VBox {
+	gtk_widget &C.GtkWidget
+}
+
 pub struct Window {
 	gtk_widget &C.GtkWidget
 }
@@ -23,21 +31,31 @@ fn init() {
 }
 
 pub fn new_window() Window {
-	win := Window{
+	win := &Window{
 		gtk_widget: C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL) // TODO: configurable flags
 	}
 	return win
 }
 
-pub fn quit() {
-	C.gtk_main_quit()
-}
-
 pub fn new_button(label string) Button {
-	btn := Button{
+	btn := &Button{
 		gtk_widget: C.gtk_button_new_with_label(label.str)
 	}
 	return btn
+}
+
+pub fn new_alignment(xalign f32, yalign f32, xscale f32, yscale f32) Alignment {
+	align := &Alignment{
+		gtk_widget: C.gtk_alignment_new(xalign, yalign, xscale, yscale)
+	}
+	return align
+}
+
+pub fn new_vbox(homogeneous bool, spacing int) VBox {
+	vbox := &VBox{
+		gtk_widget: C.gtk_vbox_new(homogeneous, spacing)
+	}
+	return vbox
 }
 
 // This function is blocking!
@@ -45,8 +63,20 @@ pub fn run() {
 	C.gtk_main()
 }
 
+pub fn quit() {
+	C.gtk_main_quit()
+}
+
 // Window struct
 pub fn (w Window) add(widget Button) { // Need to do for every function due to a V bug.
+	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
+}
+
+pub fn (w Window) adda(widget Alignment) { // Need to do for every function due to a V bug.
+	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
+}
+
+pub fn (w Window) addv(widget VBox) { // Need to do for every function due to a V bug.
 	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
 }
 
@@ -66,8 +96,8 @@ pub fn (w Window) set_title(title string) {
 	C.gtk_window_set_title(w.gtk_widget, title.str)
 }
 
-pub fn (w &Window) set_on_destroy(handler fn(&C.GtkWidget,Window)) {
-	C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
+pub fn (w &Window) add_on_destroy(handler fn(&C.GtkWidget,Window)) int {
+	return C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
 }
 
 fn (w Window) get_gtk_widget() &C.GtkWidget {
@@ -83,10 +113,38 @@ pub fn (b Button) set_size(width int, height int) {
 	C.gtk_widget_set_size_request(b.gtk_widget, width, height)
 }
 
-pub fn (b &Button) set_on_clicked(handler fn(&C.GtkWidget,Button)) {
-	C.g_signal_connect(b.gtk_widget, "clicked", handler, b)
+pub fn (b &Button) add_on_clicked(handler fn(&C.GtkWidget,Button)) int {
+	return C.g_signal_connect(b.gtk_widget, "clicked", handler, b)
 }
 
 pub fn (b Button) set_label(label string) {
 	C.gtk_button_set_label(b.gtk_widget, label.str)
+}
+
+// Alignment struct
+
+pub fn (h Alignment) get_gtk_widget() &C.GtkWidget {
+	return h.gtk_widget
+}
+
+pub fn (h Alignment) add(widget Button) { // Need to do for every function due to a V bug.
+	C.gtk_container_add(h.gtk_widget, widget.get_gtk_widget())
+}
+
+pub fn (h Alignment) addv(widget VBox) { // Need to do for every function due to a V bug.
+	C.gtk_container_add(h.gtk_widget, widget.get_gtk_widget())
+}
+
+// VBox struct
+
+pub fn (v VBox) get_gtk_widget() &C.GtkWidget {
+	return v.gtk_widget
+}
+
+pub fn (v VBox) add(widget Button) { // Need to do for every function due to a V bug.
+	C.gtk_container_add(v.gtk_widget, widget.get_gtk_widget())
+}
+
+pub fn (v VBox) adda(widget Alignment) { // Need to do for every function due to a V bug.
+	C.gtk_container_add(v.gtk_widget, widget.get_gtk_widget())
 }
