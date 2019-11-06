@@ -5,7 +5,7 @@ struct C.GtkWidget {
 }
 
 interface Widgeter {
-	set_size(int,int)
+	get_gtk_widget() &C.GtkWidget
 }
 
 interface Container {
@@ -18,8 +18,6 @@ struct Window {
 
 struct Button {
 	gtk_widget &C.GtkWidget
-	pub mut:
-		parent ?Container
 }
 
 fn init() {
@@ -33,9 +31,21 @@ pub fn new_window() Window {
 	return win
 }
 
+pub fn new_button(label string) Button {
+	btn := Button{
+		gtk_widget: C.gtk_button_new_with_label(label.str)
+	}
+	return btn
+}
+
 // This function is blocking!
 pub fn run() {
 	C.gtk_main()
+}
+
+// Window struct
+pub fn (w Window) add(widget Widgeter) {
+	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
 }
 
 pub fn (w Window) show() {
@@ -52,4 +62,13 @@ pub fn (w Window) center() {
 
 pub fn (w Window) set_title(title string) {
 	C.gtk_window_set_title(w.gtk_widget, title.str)
+}
+
+pub fn (w Window) get_gtk_widget() &C.GtkWidget {
+	return w.gtk_widget
+}
+
+// Button struct
+pub fn (b Button) get_gtk_widget() &C.GtkWidget {
+	return b.gtk_widget
 }
