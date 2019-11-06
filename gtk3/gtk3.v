@@ -1,8 +1,6 @@
 module gtk3 
 
-struct C.GtkWidget {
-	
-}
+struct C.GtkWidget {}
 
 interface Widgeter {
 	get_gtk_widget() &C.GtkWidget
@@ -21,12 +19,12 @@ struct Button {
 }
 
 fn init() {
-	C.gtk_init(0, [""].data)
+	C.gtk_init(0, [""].data) // TODO: use os library for arguments
 }
 
 pub fn new_window() Window {
 	win := Window{
-		gtk_widget: C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)
+		gtk_widget: C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL) // TODO: configurable flags
 	}
 	return win
 }
@@ -44,7 +42,7 @@ pub fn run() {
 }
 
 // Window struct
-pub fn (w Window) add(widget Widgeter) {
+pub fn (w Window) add(widget Button) { // Need to do for every function due to a V bug.
 	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
 }
 
@@ -64,11 +62,15 @@ pub fn (w Window) set_title(title string) {
 	C.gtk_window_set_title(w.gtk_widget, title.str)
 }
 
-pub fn (w Window) get_gtk_widget() &C.GtkWidget {
+fn (w Window) get_gtk_widget() &C.GtkWidget {
 	return w.gtk_widget
 }
 
 // Button struct
 pub fn (b Button) get_gtk_widget() &C.GtkWidget {
 	return b.gtk_widget
+}
+
+pub fn (b Button) set_size(width int, height int) {
+	C.gtk_widget_set_size_request(b.gtk_widget, width, height)
 }
