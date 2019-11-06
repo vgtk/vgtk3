@@ -2,7 +2,6 @@ import gtk3
 
 fn btn_clicked(w &C.GtkWidget, btn &gtk3.Button) {
 	// The GtkWidget object should be ignored
-	println("Button clicked!")
 	if (btn.get_label() == "GTK3-V is ..") {
 		btn.set_label("GTK3-V is awesome!")
 	} else {
@@ -26,12 +25,12 @@ fn main() {
 	btn.add_on_clicked(btn_clicked)
 	vbox.add(btn)
 	vbox.add(btn2)
-	align.addv(vbox)
+	align.add(vbox)
 
 	window.set_size(640, 480)
 	window.center()
 	window.set_title("I'm made with V")
-	window.adda(align)
+	window.add(align)
 	window.add_on_destroy(win_destroy)
 	window.show()
 	gtk3.run()

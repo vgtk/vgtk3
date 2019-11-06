@@ -2,11 +2,11 @@ module gtk3
 
 struct C.GtkWidget {}
 
-interface Widgeter {
+pub interface Widgeter {
 	get_gtk_widget() &C.GtkWidget
 }
 
-interface Container {
+pub interface Container {
 	add(Widgeter)
 }
 
@@ -67,16 +67,9 @@ pub fn quit() {
 	C.gtk_main_quit()
 }
 
+
 // Window struct
-pub fn (w Window) add(widget Button) { // Need to do for every function due to a V bug.
-	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
-}
-
-pub fn (w Window) adda(widget Alignment) { // Need to do for every function due to a V bug.
-	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
-}
-
-pub fn (w Window) addv(widget VBox) { // Need to do for every function due to a V bug.
+pub fn (w Window) add(widget Widgeter) {
 	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
 }
 
@@ -100,12 +93,12 @@ pub fn (w &Window) add_on_destroy(handler fn(&C.GtkWidget,Window)) int {
 	return C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
 }
 
-fn (w Window) get_gtk_widget() &C.GtkWidget {
+fn (w &Window) get_gtk_widget() &C.GtkWidget {
 	return w.gtk_widget
 }
 
 // Button struct
-pub fn (b Button) get_gtk_widget() &C.GtkWidget {
+pub fn (b &Button) get_gtk_widget() &C.GtkWidget {
 	return b.gtk_widget
 }
 
@@ -127,28 +120,20 @@ pub fn (b Button) get_label() string {
 
 // Alignment struct
 
-pub fn (h Alignment) get_gtk_widget() &C.GtkWidget {
+pub fn (h &Alignment) get_gtk_widget() &C.GtkWidget {
 	return h.gtk_widget
 }
 
-pub fn (h Alignment) add(widget Button) { // Need to do for every function due to a V bug.
-	C.gtk_container_add(h.gtk_widget, widget.get_gtk_widget())
-}
-
-pub fn (h Alignment) addv(widget VBox) { // Need to do for every function due to a V bug.
+pub fn (h Alignment) add(widget Widgeter) {
 	C.gtk_container_add(h.gtk_widget, widget.get_gtk_widget())
 }
 
 // VBox struct
 
-pub fn (v VBox) get_gtk_widget() &C.GtkWidget {
+pub fn (v &VBox) get_gtk_widget() &C.GtkWidget {
 	return v.gtk_widget
 }
 
-pub fn (v VBox) add(widget Button) { // Need to do for every function due to a V bug.
-	C.gtk_container_add(v.gtk_widget, widget.get_gtk_widget())
-}
-
-pub fn (v VBox) adda(widget Alignment) { // Need to do for every function due to a V bug.
+pub fn (v VBox) add(widget Widgeter) {
 	C.gtk_container_add(v.gtk_widget, widget.get_gtk_widget())
 }
