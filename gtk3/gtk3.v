@@ -10,11 +10,11 @@ interface Container {
 	add(Widgeter)
 }
 
-struct Window {
+pub struct Window {
 	gtk_widget &C.GtkWidget
 }
 
-struct Button {
+pub struct Button {
 	gtk_widget &C.GtkWidget
 }
 
@@ -73,4 +73,12 @@ pub fn (b Button) get_gtk_widget() &C.GtkWidget {
 
 pub fn (b Button) set_size(width int, height int) {
 	C.gtk_widget_set_size_request(b.gtk_widget, width, height)
+}
+
+pub fn (b &Button) set_on_clicked(handler fn(&C.GtkWidget,Button)) {
+	C.g_signal_connect(b.gtk_widget, "clicked", handler, b)
+}
+
+pub fn (b Button) set_label(label string) {
+	C.gtk_button_set_label(b.gtk_widget, label.str)
 }
