@@ -124,6 +124,10 @@ pub fn main_quit() {
 	C.gtk_main_quit()
 }
 
+pub fn add_custom_signal(widget Widgeter, name string, handler fn(&C.GtkWidget,Widgeter)) int {
+	return C.g_signal_connect(widget.get_gtk_widget(), name.str, w, widget)
+}
+
 // Window struct
 pub fn (w Window) add(widget Widgeter) {
 	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
