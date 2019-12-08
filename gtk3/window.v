@@ -5,7 +5,8 @@ fn C.gtk_window_set_position(&C.GtkWidget, int)
 fn C.gtk_window_set_title(&C.GtkWidget, voidptr)
 
 pub fn (w Window) add(widget Widgeter) {
-	C.gtk_container_add(w.gtk_widget, widget.get_gtk_widget())
+	wi := widget.get_gtk_widget()
+	C.gtk_container_add(w.gtk_widget, wi)
 }
 
 pub fn (w Window) show() {
@@ -28,6 +29,6 @@ pub fn (w &Window) add_on_destroy(handler fn(&C.GtkWidget,Window)) int {
 	return C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
 }
 
-fn (w &Window) get_gtk_widget() &C.GtkWidget {
+fn (w &Window) get_gtk_widget() &Widget {
 	return w.gtk_widget
 } 

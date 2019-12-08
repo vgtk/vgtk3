@@ -1,4 +1,6 @@
 import gtk3
+import os
+import time
 
 fn btn_clicked(w &C.GtkWidget, btn &gtk3.Button) {
 	//btn := data[0]

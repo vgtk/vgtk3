@@ -3,7 +3,7 @@ module gtk3
 fn C.gtk_button_set_label(&C.GtkWidget, voidptr)
 fn C.gtk_button_get_label(&C.GtkWidget) voidptr
 
-pub fn (b &Button) get_gtk_widget() &C.GtkWidget {
+pub fn (b &Button) get_gtk_widget() &Widget {
 	return b.gtk_widget
 }
 

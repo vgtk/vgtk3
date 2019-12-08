@@ -5,7 +5,7 @@ fn C.gtk_entry_set_text(&C.GtkWidget, string)
 fn C.gtk_entry_set_visibility(&C.GtkWidget, bool)
 fn C.gtk_entry_set_invisible_char(&C.GtkWidget, rune)
 
-pub fn (e &Entry) get_gtk_widget() &C.GtkWidget {
+pub fn (e &Entry) get_gtk_widget() &Widget {
 	return e.gtk_widget
 }
 
