@@ -13,6 +13,10 @@ fn btn_clicked(w &C.GtkWidget, btn &gtk3.Button) {
 	}
 }
 
+fn menu_exit(w &C.GtkWidget, mi &gtk3.MenuItem) {
+	exit(0)
+}
+
 fn alert_clicked(w &C.GtkWidget, btn &gtk3.Button) {
 	btn.set_label("All Fine!")
 }
@@ -47,6 +51,12 @@ fn main() {
 	//entry.set_visibility(false)
 	//entry.set_invisible_char('*')
 	btn.add_on_clicked(btn_clicked)
+
+	gtk3.accel_map_add_entry("GTK-Test/File/Quit", 65, 0)
+	quit.set_accel_path("GTKTest/File/Quit")
+	quit.set_use_underline(true)
+	quit.add_on_activate(menu_exit)
+
 	alert.add_on_clicked(alert_clicked)
 
 	hbox.add(entry)

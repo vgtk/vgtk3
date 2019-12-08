@@ -13,7 +13,7 @@ pub fn (w Window) show() {
 	C.gtk_widget_show_all(w.gtk_widget)
 }
 
-pub fn (w Window) set_size(width int, height int) {
+pub fn (w Window) set_default_size(width int, height int) {
 	C.gtk_window_set_default_size(w.gtk_widget, width, height)
 }
 

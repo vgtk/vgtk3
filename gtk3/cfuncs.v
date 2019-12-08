@@ -12,8 +12,11 @@ fn C.gtk_hbox_new(bool, int) &C.GtkWidget
 fn C.gtk_menu_bar_new() &C.GtkWidget
 fn C.gtk_menu_new() &C.GtkWidget
 fn C.gtk_menu_item_new_with_label(voidptr) &C.GtkWidget
+fn C.gtk_menu_item_new() &C.GtkWidget
 
 fn C.g_signal_connect(&C.GtkWidget, voidptr, voidptr, voidptr) int
 fn C.gtk_container_add(&C.GtkWidget, &C.GtkWidget)
 fn C.gtk_widget_show_all(&C.GtkWidget)
 fn C.gtk_widget_set_size_request(&C.GtkWidget, int, int)
+
+fn C.g_intern_static_string(voidptr) voidptr

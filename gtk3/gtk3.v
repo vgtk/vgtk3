@@ -2,6 +2,7 @@ module gtk3
 #include <gtk/gtk.h>
 
 struct C.GtkWidget {}
+
 type gtk3__Widget C.GtkWidget
 // Due to some current bug in V, the type must be named gtk3__Widget
 
@@ -118,6 +119,13 @@ pub fn new_menu_item_with_label(label string) MenuItem {
 	return item
 }
 
+pub fn new_menu_item() MenuItem {
+	item := MenuItem{
+		gtk_widget: &Widget(C.gtk_menu_item_new())
+	}
+	return item
+}
+
 // This function is blocking!
 pub fn main() {
 	C.gtk_main()
@@ -127,9 +135,9 @@ pub fn main_quit() {
 	C.gtk_main_quit()
 }
 
-pub fn add_custom_signal(widget Widgeter, name string, handler fn(&C.GtkWidget,Widgeter)) {
+pub fn add_custom_signal(widget Widgeter, name string, handler fn(&C.GtkWidget,Widgeter)) int {
 	w := widget.get_gtk_widget() // must be stored in a variable to avoid some weird C compilation bugs
-	C.g_signal_connect(w, name.str, handler, voidptr(&widget))
+	return C.g_signal_connect(w, name.str, handler, voidptr(&widget))
 }
 
 // Alignment struct
