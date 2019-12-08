@@ -3,3 +3,5 @@ test
 test.exe
 
 # Temporary files
+gtk3.tmp.c
+fns.txt
