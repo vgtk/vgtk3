@@ -24,7 +24,7 @@ fn win_destroy(w &C.GtkWidget, win gtk3.Window) {
 fn main() {
 	window := gtk3.new_window()
 	vbox := gtk3.new_vbox(false, 20)
-	align := gtk3.new_alignment(0.5, 0.5, 0, 0)
+	align := gtk3.new_alignment(0, 0, 1, 1)
 	btn := gtk3.new_button("GTK3-V is ..")
 	btn2 := gtk3.new_button("I'm useless!")
 	alert := gtk3.new_button("Alert!")
@@ -58,7 +58,7 @@ fn main() {
 	vbox.add(hbox)
 	align.add(vbox)
 
-	window.set_size(640, 480)
+	//window.set_size(640, 480)
 	window.center()
 	window.set_title("I'm made with V")
 	window.add(align)
