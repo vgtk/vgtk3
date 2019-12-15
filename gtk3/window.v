@@ -36,8 +36,8 @@ pub fn (w Window) set_title(title string) {
 	C.gtk_window_set_title(w.gtk_widget, title.str)
 }
 
-pub fn (w &Window) add_on_destroy(handler fn(&C.GtkWidget,Window)) int {
-	return C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
+pub fn (w &Window) on(event_name string, handler fn(&C.GtkWidget,Window)) int {
+	return C.g_signal_connect(w.gtk_widget, event_name.str, handler, w)
 }
 
 pub fn (w &Window) get_gtk_widget() &Widget {
