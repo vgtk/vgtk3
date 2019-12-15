@@ -19,7 +19,6 @@ jobs:
     - run: make && ./v -cc gcc -o v v.v
     - name: Symlink V
     - run: sudo ./v symlink
-    - name: Checkout
     - uses: actions/checkout@v1
     - name: Run test
     - run: v run ./test.v
