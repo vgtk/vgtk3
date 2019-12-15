@@ -1,15 +1,29 @@
 module gtk3
 
-fn C.gtk_window_set_default_size(&Widget, int, int)
-fn C.gtk_window_set_position(&Widget, int)
-fn C.gtk_window_set_title(&Widget, charptr)
+enum WindowType {
+	toplevel
+	popup
+}
+
+enum WindowPosition {
+	@none
+	center
+	mouse
+	center_always
+	center_on_parent
+}
 
 pub struct Window {
 	gtk_widget &Widget
 }
 
 pub fn new_window() Window {
-	win := Window{C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)}
+	win := Window{C.gtk_window_new(WindowType.toplevel)}
+	return win
+}
+
+pub fn new_window_type(@type WindowType) Window {
+	win := Window{C.gtk_window_new(@type)}
 	return win
 }
 
@@ -26,8 +40,12 @@ pub fn (w Window) set_default_size(width int, height int) {
 	C.gtk_window_set_default_size(w.gtk_widget, width, height)
 }
 
+pub fn (w Window) set_position(position WindowPosition) {
+	C.gtk_window_set_position(w.gtk_widget, position)
+}
+
 pub fn (w Window) center() {
-	C.gtk_window_set_position(w.gtk_widget, C.GTK_WIN_POS_CENTER)
+	C.gtk_window_set_position(w.gtk_widget, WindowPosition.center)
 }
 
 pub fn (w Window) set_title(title string) {
