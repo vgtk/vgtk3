@@ -1,9 +1,15 @@
 module gtk3 
 
+/////////////// MAIN ///////////////
 fn C.gtk_init(int, voidptr)
 fn C.gtk_main()
 fn C.gtk_main_quit()
+/////////////// WINDOW ///////////////
+fn C.gtk_window_set_default_size(&Widget, int, int)
+fn C.gtk_window_set_position(&Widget, int)
+fn C.gtk_window_set_title(&Widget, charptr)
 fn C.gtk_window_new(int) &Widget
+/////////////// BUTTON ///////////////
 fn C.gtk_button_new_with_label(voidptr) &Widget
 fn C.gtk_entry_new() &Widget
 fn C.gtk_alignment_new(int, int, int, int) &Widget
