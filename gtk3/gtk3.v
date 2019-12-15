@@ -1,4 +1,4 @@
-module gtk3 
+module gtk3
 #include <gtk/gtk.h>
 
 struct C.GtkWidget {}
@@ -27,54 +27,9 @@ pub struct HBox {
 	gtk_widget &Widget
 }
 
-pub struct Window {
-	gtk_widget &Widget
-}
-
-pub struct Button {
-	gtk_widget &Widget
-}
-
-pub struct Entry {
-	gtk_widget &Widget
-}
-
-pub struct MenuBar {
-	gtk_widget &Widget
-}
-
-pub struct Menu {
-	gtk_widget &Widget
-}
-
-pub struct MenuItem {
-	gtk_widget &Widget
-}
-
 // Actual code
 fn init() {
 	C.gtk_init(0, [""].data) // TODO: use os library for arguments
-}
-
-pub fn new_window() Window {
-	win := Window{
-		gtk_widget: &Widget(C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)) // TODO: configurable flags
-	}
-	return win
-}
-
-pub fn new_button(label string) Button {
-	btn := Button{
-		gtk_widget: &Widget(C.gtk_button_new_with_label(label.str))
-	}
-	return btn
-}
-
-pub fn new_entry() Entry {
-	btn := Entry{
-		gtk_widget: &Widget(C.gtk_entry_new())
-	}
-	return btn
 }
 
 pub fn new_alignment(xalign f32, yalign f32, xscale f32, yscale f32) Alignment {
@@ -96,34 +51,6 @@ pub fn new_hbox(homogeneous bool, spacing int) HBox {
 		gtk_widget: &Widget(C.gtk_hbox_new(homogeneous, spacing))
 	}
 	return hbox
-}
-
-pub fn new_menu_bar() MenuBar {
-	bar := MenuBar{
-		gtk_widget: &Widget(C.gtk_menu_bar_new())
-	}
-	return bar
-}
-
-pub fn new_menu() Menu {
-	menu := Menu{
-		gtk_widget: &Widget(C.gtk_menu_new())
-	}
-	return menu
-}
-
-pub fn new_menu_item_with_label(label string) MenuItem {
-	item := MenuItem{
-		gtk_widget: &Widget(C.gtk_menu_item_new_with_label(label.str))
-	}
-	return item
-}
-
-pub fn new_menu_item() MenuItem {
-	item := MenuItem{
-		gtk_widget: &Widget(C.gtk_menu_item_new())
-	}
-	return item
 }
 
 // This function is blocking!

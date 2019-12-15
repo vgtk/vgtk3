@@ -5,6 +5,17 @@ fn C.gtk_entry_set_text(&C.GtkWidget, string)
 fn C.gtk_entry_set_visibility(&C.GtkWidget, bool)
 fn C.gtk_entry_set_invisible_char(&C.GtkWidget, rune)
 
+pub struct Entry {
+	gtk_widget &Widget
+}
+
+pub fn new_entry() Entry {
+	btn := Entry{
+		gtk_widget: &Widget(C.gtk_entry_new())
+	}
+	return btn
+}
+
 pub fn (e &Entry) get_gtk_widget() &Widget {
 	return e.gtk_widget
 }

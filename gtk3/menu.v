@@ -9,6 +9,48 @@ fn C.gtk_menu_item_set_use_underline(&C.GtkWidget, bool)
 fn C.gtk_menu_item_set_accel_path(&C.GtkWidget, voidptr)
 fn C.gtk_menu_item_get_accel_path(&C.GtkWidget) voidptr
 
+pub struct MenuBar {
+	gtk_widget &Widget
+}
+
+pub struct Menu {
+	gtk_widget &Widget
+}
+
+pub struct MenuItem {
+	gtk_widget &Widget
+}
+
+/// CONSTRUCTORS
+pub fn new_menu_bar() MenuBar {
+	bar := MenuBar{
+		gtk_widget: &Widget(C.gtk_menu_bar_new())
+	}
+	return bar
+}
+
+pub fn new_menu() Menu {
+	menu := Menu{
+		gtk_widget: &Widget(C.gtk_menu_new())
+	}
+	return menu
+}
+
+pub fn new_menu_item_with_label(label string) MenuItem {
+	item := MenuItem{
+		gtk_widget: &Widget(C.gtk_menu_item_new_with_label(label.str))
+	}
+	return item
+}
+
+pub fn new_menu_item() MenuItem {
+	item := MenuItem{
+		gtk_widget: &Widget(C.gtk_menu_item_new())
+	}
+	return item
+}
+
+// MENUBAR
 pub fn (mb &MenuBar) get_gtk_widget() &Widget {
 	return mb.gtk_widget
 }
@@ -17,6 +59,7 @@ pub fn (mb MenuBar) append(item MenuItem) {
 	C.gtk_menu_shell_append(mb.gtk_widget, item.gtk_widget)
 }
 
+// MENU
 pub fn (m &Menu) get_gtk_widget() &Widget {
 	return m.gtk_widget
 }
@@ -25,7 +68,7 @@ pub fn (m Menu) append(item MenuItem) {
 	C.gtk_menu_shell_append(m.gtk_widget, item.gtk_widget)
 }
 
-// MenuItem
+// MENUITEM
 pub fn (mi MenuItem) set_submenu(menu Menu) {
 	C.gtk_menu_item_set_submenu(mi.gtk_widget, menu.gtk_widget)
 }

@@ -4,6 +4,17 @@ fn C.gtk_window_set_default_size(&C.GtkWidget, int, int)
 fn C.gtk_window_set_position(&C.GtkWidget, int)
 fn C.gtk_window_set_title(&C.GtkWidget, voidptr)
 
+pub struct Window {
+	gtk_widget &Widget
+}
+
+pub fn new_window() Window {
+	win := Window{
+		gtk_widget: &Widget(C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)) // TODO: configurable flags
+	}
+	return win
+}
+
 pub fn (w Window) add(widget Widgeter) {
 	wi := widget.get_gtk_widget()
 	C.gtk_container_add(w.gtk_widget, wi)

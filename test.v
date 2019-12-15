@@ -14,7 +14,7 @@ fn btn_clicked(w &C.GtkWidget, btn &gtk3.Button) {
 }
 
 fn menu_exit(w &C.GtkWidget, mi &gtk3.MenuItem) {
-	exit(0)
+	gtk3.main_quit()
 }
 
 fn alert_clicked(w &C.GtkWidget, btn &gtk3.Button) {
