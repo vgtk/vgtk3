@@ -5,6 +5,14 @@ enum WindowType {
 	popup
 }
 
+enum WindowPosition {
+	@none
+	center
+	mouse
+	center_always
+	center_on_parent
+}
+
 pub struct Window {
 	gtk_widget &Widget
 }
@@ -33,7 +41,7 @@ pub fn (w Window) set_default_size(width int, height int) {
 }
 
 pub fn (w Window) center() {
-	C.gtk_window_set_position(w.gtk_widget, C.GTK_WIN_POS_CENTER)
+	C.gtk_window_set_position(w.gtk_widget, WindowPosition.center)
 }
 
 pub fn (w Window) set_title(title string) {
