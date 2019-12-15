@@ -10,7 +10,7 @@ pub struct Window {
 
 pub fn new_window() Window {
 	win := Window{
-		gtk_widget: &Widget(C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)) // TODO: configurable flags
+		&Widget(C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)) // TODO: configurable flags
 	}
 	return win
 }
