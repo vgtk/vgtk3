@@ -73,8 +73,8 @@ pub fn (mi MenuItem) set_submenu(menu Menu) {
 	C.gtk_menu_item_set_submenu(mi.gtk_widget, menu.gtk_widget)
 }
 
-pub fn (mi &MenuItem) add_on_activate(handler fn(&C.GtkWidget,&gtk3.MenuItem)) int {
-	return C.g_signal_connect(mi.gtk_widget, "activate", handler, mi)
+pub fn (mi &MenuItem) on(event_name string, handler fn(&C.GtkWidget,&gtk3.MenuItem)) int {
+	return C.g_signal_connect(mi.gtk_widget, event_name.str, handler, mi)
 }
 
 pub fn (mi MenuItem) set_label(label string) {
