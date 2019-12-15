@@ -1,7 +1,7 @@
 module gtk3
 #include <gtk/gtk.h>
 
-struct C.GtkWidget {}
+struct C.GtkWidget
 
 type gtk3__Widget C.GtkWidget
 // Due to some current bug in V, the type must be named gtk3__Widget
