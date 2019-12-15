@@ -69,7 +69,7 @@ fn main() {
 	align.add(vbox)
 
 	//window.set_size(640, 480)
-	window.center()
+	window.set_position(.center)
 	window.set_title("I'm made with V")
 	window.add(align)
 	window.on("destroy", win_destroy)

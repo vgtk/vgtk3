@@ -40,6 +40,10 @@ pub fn (w Window) set_default_size(width int, height int) {
 	C.gtk_window_set_default_size(w.gtk_widget, width, height)
 }
 
+pub fn (w Window) set_position(position WindowPosition) {
+	C.gtk_window_set_position(w.gtk_widget, position)
+}
+
 pub fn (w Window) center() {
 	C.gtk_window_set_position(w.gtk_widget, WindowPosition.center)
 }
