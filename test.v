@@ -2,7 +2,7 @@ import gtk3
 import os
 import time
 
-fn btn_clicked(w &C.GtkWidget, btn &gtk3.Button) {
+fn btn_clicked(w &gtk3.Widget, btn &gtk3.Button) {
 	//btn := data[0]
 
 	// The GtkWidget object should be ignored
@@ -13,15 +13,15 @@ fn btn_clicked(w &C.GtkWidget, btn &gtk3.Button) {
 	}
 }
 
-fn menu_exit(w &C.GtkWidget, mi &gtk3.MenuItem) {
+fn menu_exit(w &gtk3.Widget, mi &gtk3.MenuItem) {
 	gtk3.main_quit()
 }
 
-fn alert_clicked(w &C.GtkWidget, btn &gtk3.Button) {
+fn alert_clicked(w &gtk3.Widget, btn &gtk3.Button) {
 	btn.set_label("All Fine!")
 }
 
-fn win_destroy(w &C.GtkWidget, win gtk3.Window) {
+fn win_destroy(w &gtk3.Widget, win &gtk3.Window) {
 	gtk3.main_quit() // necessary as GTK3 won't exit itself when window is destroyed.
 }
 
@@ -50,14 +50,14 @@ fn main() {
 	entry.set_text("Good Night!")
 	//entry.set_visibility(false)
 	//entry.set_invisible_char('*')
-	btn.add_on_clicked(btn_clicked)
+	btn.on("clicked", btn_clicked)
 
 	gtk3.accel_map_add_entry("GTK-Test/File/Quit", 65, 0)
 	quit.set_accel_path("GTKTest/File/Quit")
 	quit.set_use_underline(true)
-	quit.add_on_activate(menu_exit)
+	quit.on("activate", menu_exit)
 
-	alert.add_on_clicked(alert_clicked)
+	alert.on("clicked", btn_clicked)
 
 	hbox.add(entry)
 	hbox.add(alert)
@@ -72,7 +72,7 @@ fn main() {
 	window.center()
 	window.set_title("I'm made with V")
 	window.add(align)
-	window.add_on_destroy(win_destroy)
+	window.on("destroy", win_destroy)
 	window.show()
 	gtk3.main()
 }
