@@ -40,6 +40,6 @@ pub fn (w &Window) add_on_destroy(handler fn(&C.GtkWidget,Window)) int {
 	return C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
 }
 
-fn (w &Window) get_gtk_widget() &Widget {
+pub fn (w &Window) get_gtk_widget() &Widget {
 	return w.gtk_widget
 } 
