@@ -42,4 +42,4 @@ pub fn (w &Window) add_on_destroy(handler fn(&C.GtkWidget,Window)) int {
 
 pub fn (w &Window) get_gtk_widget() &Widget {
 	return w.gtk_widget
-} 
+}
