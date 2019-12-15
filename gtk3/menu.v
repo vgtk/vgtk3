@@ -73,7 +73,7 @@ pub fn (mi MenuItem) set_submenu(menu Menu) {
 	C.gtk_menu_item_set_submenu(mi.gtk_widget, menu.gtk_widget)
 }
 
-pub fn (mi &MenuItem) on(event_name string, handler fn(&C.GtkWidget,MenuItem)) int {
+pub fn (mi &MenuItem) on(event_name string, handler fn(&Widget,MenuItem)) int {
 	return C.g_signal_connect(mi.gtk_widget, event_name.str, handler, mi)
 }
 
