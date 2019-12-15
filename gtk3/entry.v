@@ -1,18 +1,16 @@
 module gtk3
 
-fn C.gtk_entry_get_text(&C.GtkWidget) voidptr
-fn C.gtk_entry_set_text(&C.GtkWidget, string)
-fn C.gtk_entry_set_visibility(&C.GtkWidget, bool)
-fn C.gtk_entry_set_invisible_char(&C.GtkWidget, rune)
+fn C.gtk_entry_get_text(&Widget) voidptr
+fn C.gtk_entry_set_text(&Widget, string)
+fn C.gtk_entry_set_visibility(&Widget, bool)
+fn C.gtk_entry_set_invisible_char(&Widget, rune)
 
 pub struct Entry {
 	gtk_widget &Widget
 }
 
 pub fn new_entry() Entry {
-	btn := Entry{
-		gtk_widget: &Widget(C.gtk_entry_new())
-	}
+	btn := Entry{C.gtk_entry_new()}
 	return btn
 }
 

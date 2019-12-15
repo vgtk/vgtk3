@@ -1,13 +1,13 @@
 module gtk3
 
-fn C.gtk_menu_item_set_submenu(&C.GtkWidget, &C.GtkWidget)
-fn C.gtk_menu_shell_append(&C.GtkWidge, &C.GtkWidget)
-fn C.gtk_menu_item_set_label(&C.GtkWidget, voidptr)
-fn C.gtk_menu_item_get_label(&C.GtkWidget) voidptr
-fn C.gtk_menu_item_get_use_underline(&C.GtkWidget) bool
-fn C.gtk_menu_item_set_use_underline(&C.GtkWidget, bool)
-fn C.gtk_menu_item_set_accel_path(&C.GtkWidget, voidptr)
-fn C.gtk_menu_item_get_accel_path(&C.GtkWidget) voidptr
+fn C.gtk_menu_item_set_submenu(&Widget, &Widget)
+fn C.gtk_menu_shell_append(&C.GtkWidge, &Widget)
+fn C.gtk_menu_item_set_label(&Widget, voidptr)
+fn C.gtk_menu_item_get_label(&Widget) voidptr
+fn C.gtk_menu_item_get_use_underline(&Widget) bool
+fn C.gtk_menu_item_set_use_underline(&Widget, bool)
+fn C.gtk_menu_item_set_accel_path(&Widget, voidptr)
+fn C.gtk_menu_item_get_accel_path(&Widget) voidptr
 
 pub struct MenuBar {
 	gtk_widget &Widget
@@ -23,30 +23,22 @@ pub struct MenuItem {
 
 /// CONSTRUCTORS
 pub fn new_menu_bar() MenuBar {
-	bar := MenuBar{
-		gtk_widget: &Widget(C.gtk_menu_bar_new())
-	}
+	bar := MenuBar{C.gtk_menu_bar_new()}
 	return bar
 }
 
 pub fn new_menu() Menu {
-	menu := Menu{
-		gtk_widget: &Widget(C.gtk_menu_new())
-	}
+	menu := Menu{C.gtk_menu_new()}
 	return menu
 }
 
 pub fn new_menu_item_with_label(label string) MenuItem {
-	item := MenuItem{
-		gtk_widget: &Widget(C.gtk_menu_item_new_with_label(label.str))
-	}
+	item := MenuItem{C.gtk_menu_item_new_with_label(label.str)}
 	return item
 }
 
 pub fn new_menu_item() MenuItem {
-	item := MenuItem{
-		gtk_widget: &Widget(C.gtk_menu_item_new())
-	}
+	item := MenuItem{C.gtk_menu_item_new()}
 	return item
 }
 

@@ -33,23 +33,17 @@ fn init() {
 }
 
 pub fn new_alignment(xalign f32, yalign f32, xscale f32, yscale f32) Alignment {
-	align := Alignment{
-		gtk_widget: &Widget(C.gtk_alignment_new(xalign, yalign, xscale, yscale))
-	}
+	align := Alignment{C.gtk_alignment_new(xalign, yalign, xscale, yscale)}
 	return align
 }
 
 pub fn new_vbox(homogeneous bool, spacing int) VBox {
-	vbox := VBox{
-		gtk_widget: &Widget(C.gtk_vbox_new(homogeneous, spacing))
-	}
+	vbox := VBox{C.gtk_vbox_new(homogeneous, spacing)}
 	return vbox
 }
 
 pub fn new_hbox(homogeneous bool, spacing int) HBox {
-	hbox := HBox{
-		gtk_widget: &Widget(C.gtk_hbox_new(homogeneous, spacing))
-	}
+	hbox := HBox{C.gtk_hbox_new(homogeneous, spacing)}
 	return hbox
 }
 
@@ -62,7 +56,7 @@ pub fn main_quit() {
 	C.gtk_main_quit()
 }
 
-pub fn add_custom_signal(widget Widgeter, name string, handler fn(&C.GtkWidget,Widgeter)) int {
+pub fn add_custom_signal(widget Widgeter, name string, handler fn(&Widget,Widgeter)) int {
 	w := widget.get_gtk_widget() // must be stored in a variable to avoid some weird C compilation bugs
 	return C.g_signal_connect(w, name.str, handler, voidptr(&widget))
 }

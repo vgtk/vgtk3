@@ -1,17 +1,15 @@
 module gtk3
 
-fn C.gtk_window_set_default_size(&C.GtkWidget, int, int)
-fn C.gtk_window_set_position(&C.GtkWidget, int)
-fn C.gtk_window_set_title(&C.GtkWidget, charptr)
+fn C.gtk_window_set_default_size(&Widget, int, int)
+fn C.gtk_window_set_position(&Widget, int)
+fn C.gtk_window_set_title(&Widget, charptr)
 
 pub struct Window {
 	gtk_widget &Widget
 }
 
 pub fn new_window() Window {
-	win := Window{
-		&Widget(C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)) // TODO: configurable flags
-	}
+	win := Window{C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)}
 	return win
 }
 
