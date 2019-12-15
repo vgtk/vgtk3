@@ -2,7 +2,7 @@ module gtk3
 
 fn C.gtk_window_set_default_size(&C.GtkWidget, int, int)
 fn C.gtk_window_set_position(&C.GtkWidget, int)
-fn C.gtk_window_set_title(&C.GtkWidget, voidptr)
+fn C.gtk_window_set_title(&C.GtkWidget, charptr)
 
 pub struct Window {
 	gtk_widget &Widget
