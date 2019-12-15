@@ -2,7 +2,7 @@ module gtk3
 
 fn C.gtk_window_set_default_size(&C.GtkWidget, int, int)
 fn C.gtk_window_set_position(&C.GtkWidget, int)
-fn C.gtk_window_set_title(&C.GtkWidget, voidptr)
+fn C.gtk_window_set_title(&C.GtkWidget, charptr)
 
 pub struct Window {
 	gtk_widget &Widget
@@ -10,7 +10,7 @@ pub struct Window {
 
 pub fn new_window() Window {
 	win := Window{
-		gtk_widget: &Widget(C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)) // TODO: configurable flags
+		&Widget(C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)) // TODO: configurable flags
 	}
 	return win
 }
@@ -36,10 +36,10 @@ pub fn (w Window) set_title(title string) {
 	C.gtk_window_set_title(w.gtk_widget, title.str)
 }
 
-pub fn (w &Window) add_on_destroy(handler fn(&C.GtkWidget,Window)) int {
-	return C.g_signal_connect(w.gtk_widget, "destroy", handler, w)
+pub fn (w &Window) on(event_name string, handler fn(&Widget,Window)) int {
+	return C.g_signal_connect(w.gtk_widget, event_name.str, handler, w)
 }
 
-fn (w &Window) get_gtk_widget() &Widget {
+pub fn (w &Window) get_gtk_widget() &Widget {
 	return w.gtk_widget
-} 
+}

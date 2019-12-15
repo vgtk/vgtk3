@@ -28,8 +28,8 @@ pub fn (b &Button) add_on_clicked(handler fn(&C.GtkWidget,[]voidptr), data voidp
 	return C.g_signal_connect(b.gtk_widget, "clicked", handler, &arr)
 }
 */
-pub fn (b &Button) add_on_clicked(handler fn(&C.GtkWidget,&gtk3.Button)) int {
-	return C.g_signal_connect(b.gtk_widget, "clicked", handler, b)
+pub fn (b &Button) on(event_name string, handler fn(&Widget,Button)) int {
+	return C.g_signal_connect(b.gtk_widget, event_name.str, handler, b)
 }
 
 pub fn (b Button) set_label(label string) {
