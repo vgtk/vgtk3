@@ -1,11 +1,21 @@
 module gtk3
 
+enum WindowType {
+	toplevel
+	popup
+}
+
 pub struct Window {
 	gtk_widget &Widget
 }
 
 pub fn new_window() Window {
-	win := Window{C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)}
+	win := Window{C.gtk_window_new(WindowType.toplevel)}
+	return win
+}
+
+pub fn new_window_type(@type WindowType) Window {
+	win := Window{C.gtk_window_new(@type)}
 	return win
 }
 
