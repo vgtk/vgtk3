@@ -62,7 +62,7 @@ pub fn main_quit() {
 	C.gtk_main_quit()
 }
 
-pub fn add_custom_signal(widget Widgeter, name string, handler fn(&C.GtkWidget,Widgeter)) int {
+pub fn add_custom_signal(widget Widgeter, name string, handler fn(&Widget,Widgeter)) int {
 	w := widget.get_gtk_widget() // must be stored in a variable to avoid some weird C compilation bugs
 	return C.g_signal_connect(w, name.str, handler, voidptr(&widget))
 }
