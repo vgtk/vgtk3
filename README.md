@@ -1,6 +1,7 @@
-# GTK3 V
+# VGTK3
+
 Last stable version: **0.2.0**
 
-This is a wrapper for gtk3 in V.  
-The advantage compared to using `C.<function>` is that gtk3-v uses V structs and does its best to have a good V style when "translating" GTK3-V.
-This is mostly why the functions aren't auto-generated, as this doesn't creates any helpful structures nor does it splits the files, because it doesn't know what a container is, this wrapper knows it and offers a `Container` interface ready for use.
+This is a wrapper for `gtk3` in V.
+The advantage compared to using `C.<function>` directly is that vgtk3 uses V structs and does it best to have a good V style when "translating" `gtk3` to V.
+This is mostly why the functions aren't auto-generated, as this doesn't create any helpful structures nor does it splits the files, because it doesn't know what a container is, this wrapper knows it and offers a `Container` interface ready for use.
