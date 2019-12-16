@@ -11,4 +11,8 @@ jobs:
     - name: Installing GTK3 package
       run: sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list; sudo apt-get update; sudo apt-get install libgtk-3-dev
     - name: Installing V
-      run: cd ~; git clone https://github.com/vlang/v.git; cd v; make CC=clang
+      run: cd ~; git clone https://github.com/vlang/v.git; cd v; make CC=clang; ./v symlink
+    - uses: actions/checkout@v1
+    - name: Test get PWD
+      run: echo $PWD
+      
