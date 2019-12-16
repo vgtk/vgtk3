@@ -1,5 +1,5 @@
 # GTK3 V
-Last stable version: **0.1.0**
+Last stable version: **0.2.0**
 
 This is a wrapper for gtk3 in V.  
 The advantage compared to using `C.<function>` is that gtk3-v uses V structs and does its best to have a good V style when "translating" GTK3-V.

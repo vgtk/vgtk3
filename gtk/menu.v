@@ -1,4 +1,4 @@
-module gtk3
+module gtk
 
 fn C.gtk_menu_item_set_submenu(&Widget, &Widget)
 fn C.gtk_menu_shell_append(&C.GtkWidge, &Widget)

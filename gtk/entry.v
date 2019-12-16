@@ -1,4 +1,4 @@
-module gtk3
+module gtk
 
 fn C.gtk_entry_get_text(&Widget) voidptr
 fn C.gtk_entry_set_text(&Widget, string)

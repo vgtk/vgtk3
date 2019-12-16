@@ -1,4 +1,4 @@
-module gtk3
+module gtk
 
 fn C.gtk_button_set_label(&Widget, voidptr)
 fn C.gtk_button_get_label(&Widget) voidptr

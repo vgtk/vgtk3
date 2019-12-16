@@ -1,4 +1,4 @@
-module gtk3
+module gtk
 
 fn C.gtk_accel_map_add_entry(voidptr, int, int)
 

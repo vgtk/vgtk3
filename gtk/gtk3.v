@@ -1,9 +1,9 @@
-module gtk3
+module gtk
 #include <gtk/gtk.h>
 
 struct C.GtkWidget
 
-pub type gtk3__Widget C.GtkWidget
+pub type gtk__Widget C.GtkWidget
 // Due to some current bug in V, the type must be named gtk3__Widget
 
 pub interface Widgeter {
