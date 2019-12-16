@@ -15,4 +15,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: Test get PWD
       run: echo $PWD
-      
+    - name: Test V symlink
+      run: which v
