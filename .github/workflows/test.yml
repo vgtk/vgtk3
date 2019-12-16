@@ -13,6 +13,7 @@ jobs:
     - name: Installing V
       run: cd ~; git clone https://github.com/vlang/v.git; cd v; make CC=clang; sudo ./v symlink
     - name: Setting Up XORG
+      run: xhost +SI:localuser:gitlab-runner
     - uses: actions/checkout@v1
     - name: Enabling X Display
       run: v run ./test.v
