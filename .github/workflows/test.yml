@@ -13,7 +13,5 @@ jobs:
     - name: Installing V
       run: cd ~; git clone https://github.com/vlang/v.git; cd v; make CC=clang; ./v symlink
     - uses: actions/checkout@v1
-    - name: Test get PWD
-      run: echo $PWD
-    - name: Test V symlink
-      run: which v
+    - name: Running Test
+      run: v run ./test.v
