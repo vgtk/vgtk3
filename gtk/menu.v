@@ -1,14 +1,5 @@
 module gtk
 
-fn C.gtk_menu_item_set_submenu(&Widget, &Widget)
-fn C.gtk_menu_shell_append(&C.GtkWidge, &Widget)
-fn C.gtk_menu_item_set_label(&Widget, voidptr)
-fn C.gtk_menu_item_get_label(&Widget) voidptr
-fn C.gtk_menu_item_get_use_underline(&Widget) bool
-fn C.gtk_menu_item_set_use_underline(&Widget, bool)
-fn C.gtk_menu_item_set_accel_path(&Widget, voidptr)
-fn C.gtk_menu_item_get_accel_path(&Widget) voidptr
-
 pub struct MenuBar {
 	gtk_widget &Widget
 }

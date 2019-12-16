@@ -1,8 +1,5 @@
 module gtk
 
-fn C.gtk_button_set_label(&Widget, voidptr)
-fn C.gtk_button_get_label(&Widget) voidptr
-
 pub struct Button {
 	gtk_widget &Widget
 }
