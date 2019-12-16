@@ -1,4 +1,4 @@
-module gtk3 
+module gtk
 
 /////////////// MAIN ///////////////
 fn C.gtk_init(int, voidptr)

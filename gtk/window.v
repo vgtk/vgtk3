@@ -1,4 +1,4 @@
-module gtk3
+module gtk
 
 enum WindowType {
 	toplevel

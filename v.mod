@@ -1,5 +1,5 @@
 Module {
-	name: 'gtk3-v'
-	version: '0.1.0'
+	name: 'vgtk3'
+	version: '0.2.0'
 	deps: []
 }
