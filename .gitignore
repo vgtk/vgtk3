@@ -1,7 +1,8 @@
 # Executables files
-test
-test.exe
+demo
+demo.exe
 
 # Temporary files
-gtk3.tmp.c
+gtk.tmp.c
 fns.txt
+gtk.vh
