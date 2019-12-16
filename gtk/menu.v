@@ -65,7 +65,7 @@ pub fn (mi MenuItem) set_label(label string) {
 }
 
 pub fn (mi MenuItem) get_label() string {
-	return cstring_to_vstring(C.gtk_menu_item_get_label(mi.gtk_widget))
+	return tos3(C.gtk_menu_item_get_label(mi.gtk_widget))
 }
 
 pub fn (mi MenuItem) get_use_underline() bool {
@@ -81,7 +81,7 @@ pub fn (mi MenuItem) set_accel_path(label string) {
 }
 
 pub fn (mi MenuItem) get_accel_path() string {
-	return cstring_to_vstring(C.gtk_menu_item_get_accel_path(mi.gtk_widget))
+	return tos3(C.gtk_menu_item_get_accel_path(mi.gtk_widget))
 }
 
 pub fn (mi &MenuItem) get_gtk_widget() &Widget {

@@ -32,5 +32,5 @@ pub fn (b Button) set_label(label string) {
 }
 
 pub fn (b Button) get_label() string {
-	return cstring_to_vstring(C.gtk_button_get_label(b.gtk_widget))
+	return tos3(C.gtk_button_get_label(b.gtk_widget))
 }
