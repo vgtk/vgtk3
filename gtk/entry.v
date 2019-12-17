@@ -1,10 +1,5 @@
 module gtk
 
-fn C.gtk_entry_get_text(&Widget) voidptr
-fn C.gtk_entry_set_text(&Widget, string)
-fn C.gtk_entry_set_visibility(&Widget, bool)
-fn C.gtk_entry_set_invisible_char(&Widget, rune)
-
 pub struct Entry {
 	gtk_widget &Widget
 }
