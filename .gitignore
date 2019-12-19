@@ -6,3 +6,7 @@ demo.exe
 gtk.tmp.c
 fns.txt
 gtk.vh
+
+# Tests
+tests/gtk
+tests/*_test
