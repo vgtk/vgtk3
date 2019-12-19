@@ -48,6 +48,10 @@ pub fn (w Window) center() {
 	gtk_window_set_position(w.gtk_widget, WindowPosition.center)
 }
 
+pub fn (w Window) get_title() string {
+	return tos3(gtk_window_get_title(w.gtk_widget))
+}
+
 pub fn (w Window) set_title(title string) {
 	gtk_window_set_title(w.gtk_widget, title.str)
 }
