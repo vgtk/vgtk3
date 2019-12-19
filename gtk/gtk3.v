@@ -3,7 +3,7 @@ module gtk
 
 struct C.GtkWidget
 
-pub type gtk__Widget C.GtkWidget
+pub type gtk__Widget GtkWidget
 // Due to some current bug in V, the type must be named gtk3__Widget
 
 pub interface Widgeter {
@@ -33,17 +33,17 @@ fn init() {
 }
 
 pub fn new_alignment(xalign f32, yalign f32, xscale f32, yscale f32) Alignment {
-	align := Alignment{C.gtk_alignment_new(xalign, yalign, xscale, yscale)}
+	align := Alignment{gtk_alignment_new(xalign, yalign, xscale, yscale)}
 	return align
 }
 
 pub fn new_vbox(homogeneous bool, spacing int) VBox {
-	vbox := VBox{C.gtk_vbox_new(homogeneous, spacing)}
+	vbox := VBox{gtk_vbox_new(homogeneous, spacing)}
 	return vbox
 }
 
 pub fn new_hbox(homogeneous bool, spacing int) HBox {
-	hbox := HBox{C.gtk_hbox_new(homogeneous, spacing)}
+	hbox := HBox{gtk_hbox_new(homogeneous, spacing)}
 	return hbox
 }
 
@@ -58,7 +58,7 @@ pub fn main_quit() {
 
 pub fn add_custom_signal(widget Widgeter, name string, handler fn(&Widget,Widgeter)) int {
 	w := widget.get_gtk_widget() // must be stored in a variable to avoid some weird C compilation bugs
-	return C.g_signal_connect(w, name.str, handler, voidptr(&widget))
+	return g_signal_connect(w, name.str, handler, voidptr(&widget))
 }
 
 // Alignment struct
@@ -69,7 +69,7 @@ pub fn (h &Alignment) get_gtk_widget() &Widget {
 
 pub fn (h Alignment) add(widget Widgeter) {
 	w := widget.get_gtk_widget()
-	C.gtk_container_add(h.gtk_widget, w)
+	gtk_container_add(h.gtk_widget, w)
 }
 
 // VBox struct
@@ -80,7 +80,7 @@ pub fn (v &VBox) get_gtk_widget() &Widget {
 
 pub fn (v VBox) add(widget Widgeter) {
 	w := widget.get_gtk_widget()
-	C.gtk_container_add(v.gtk_widget, w)
+	gtk_container_add(v.gtk_widget, w)
 }
 
 // HBox struct
@@ -91,5 +91,5 @@ pub fn (h &HBox) get_gtk_widget() &Widget {
 
 pub fn (h HBox) add(widget Widgeter) {
 	w := widget.get_gtk_widget()
-	C.gtk_container_add(h.gtk_widget, w)
+	gtk_container_add(h.gtk_widget, w)
 }
