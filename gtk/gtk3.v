@@ -29,7 +29,7 @@ pub struct HBox {
 
 // Actual code
 fn init() {
-	C.gtk_init(0, [""].data) // TODO: use os library for arguments
+	gtk_init(0, [""].data) // TODO: use os library for arguments
 }
 
 pub fn new_alignment(xalign f32, yalign f32, xscale f32, yscale f32) Alignment {
@@ -49,11 +49,11 @@ pub fn new_hbox(homogeneous bool, spacing int) HBox {
 
 // This function is blocking!
 pub fn main() {
-	C.gtk_main()
+	gtk_main()
 }
 
 pub fn main_quit() {
-	C.gtk_main_quit()
+	gtk_main_quit()
 }
 
 pub fn add_custom_signal(widget Widgeter, name string, handler fn(&Widget,Widgeter)) int {
