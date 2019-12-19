@@ -40,6 +40,13 @@ pub fn (w Window) set_default_size(width int, height int) {
 	gtk_window_set_default_size(w.gtk_widget, width, height)
 }
 
+pub fn (w Window) get_default_size() (int, int) {
+	width := 0
+	height := 0
+	gtk_window_get_default_size(w.gtk_widget, &width, &height)
+	return width, height
+}
+
 pub fn (w Window) set_position(position WindowPosition) {
 	gtk_window_set_position(w.gtk_widget, position)
 }

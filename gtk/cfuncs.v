@@ -6,6 +6,7 @@ fn C.gtk_main_quit()
 fn C.gtk_main()
 /* WINDOW */
 fn C.gtk_window_new(int) &Widget
+fn C.gtk_window_get_default_size(&int, &int)
 fn C.gtk_window_set_default_size(&Widget, int, int)
 fn C.gtk_window_set_position(&Widget, int)
 fn C.gtk_window_get_title(&Widget) charptr
