@@ -8,6 +8,7 @@ fn C.gtk_main()
 fn C.gtk_window_new(int) &Widget
 fn C.gtk_window_set_default_size(&Widget, int, int)
 fn C.gtk_window_set_position(&Widget, int)
+fn C.gtk_window_get_title(&Widget) charptr
 fn C.gtk_window_set_title(&Widget, charptr)
 /* BUTTON */
 fn C.gtk_button_new_with_label(charptr) &Widget
