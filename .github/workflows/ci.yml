@@ -1,7 +1,7 @@
 name: CI
 on: [push, pull_request]
 jobs:
-    ubuntu(latest):
+    ubuntu-latest:
         runs-on: ubuntu-latest
         steps:
             - name: Installing Dependencies
