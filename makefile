@@ -1,7 +1,4 @@
 VC=v
 
-clean:
-	rm -rf tests/gtk
-test: clean
-	cp -r gtk tests/gtk
+test:
 	v test tests
