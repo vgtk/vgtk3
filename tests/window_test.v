@@ -2,8 +2,6 @@ import gtk
 
 fn test_window_title() {
 	window := gtk.new_window()
-	btn := gtk.new_button('test')
-	window.add(btn)
 	window.set_title('gtk window')
 	assert window.get_title() == 'gtk window'
 	window.show()
@@ -12,8 +10,6 @@ fn test_window_title() {
 
 fn test_window_size() {
 	window := gtk.new_window()
-	btn := gtk.new_button('test')
-	window.add(btn)
 	window.set_default_size(500, 250)
 	w, h := window.get_default_size()
 	assert w == 500
