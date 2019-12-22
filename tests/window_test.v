@@ -17,8 +17,3 @@ fn test_window_size() {
 	window.show()
 	gtk.main_quit()
 }
-
-
-// fn main_and_quit() {
-// 	main_and_quit()
-// }
