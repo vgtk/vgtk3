@@ -14,23 +14,19 @@ pub struct MenuItem {
 
 /// CONSTRUCTORS
 pub fn new_menu_bar() MenuBar {
-	bar := MenuBar{gtk_menu_bar_new()}
-	return bar
+	return MenuBar{gtk_menu_bar_new()}
 }
 
 pub fn new_menu() Menu {
-	menu := Menu{gtk_menu_new()}
-	return menu
+	return Menu{gtk_menu_new()}
 }
 
 pub fn new_menu_item_with_label(label string) MenuItem {
-	item := MenuItem{gtk_menu_item_new_with_label(label.str)}
-	return item
+	return MenuItem{gtk_menu_item_new_with_label(label.str)}
 }
 
 pub fn new_menu_item() MenuItem {
-	item := MenuItem{gtk_menu_item_new()}
-	return item
+	return MenuItem{gtk_menu_item_new()}
 }
 
 // MENUBAR

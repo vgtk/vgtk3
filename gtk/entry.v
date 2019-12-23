@@ -5,8 +5,7 @@ pub struct Entry {
 }
 
 pub fn new_entry() Entry {
-	btn := Entry{gtk_entry_new()}
-	return btn
+	return Entry{gtk_entry_new()}
 }
 
 pub fn (e &Entry) get_gtk_widget() &Widget {

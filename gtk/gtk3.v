@@ -33,18 +33,15 @@ fn init() {
 }
 
 pub fn new_alignment(xalign f32, yalign f32, xscale f32, yscale f32) Alignment {
-	align := Alignment{gtk_alignment_new(xalign, yalign, xscale, yscale)}
-	return align
+	return Alignment{gtk_alignment_new(xalign, yalign, xscale, yscale)}
 }
 
 pub fn new_vbox(homogeneous bool, spacing int) VBox {
-	vbox := VBox{gtk_vbox_new(homogeneous, spacing)}
-	return vbox
+	return VBox{gtk_vbox_new(homogeneous, spacing)}
 }
 
 pub fn new_hbox(homogeneous bool, spacing int) HBox {
-	hbox := HBox{gtk_hbox_new(homogeneous, spacing)}
-	return hbox
+	return HBox{gtk_hbox_new(homogeneous, spacing)}
 }
 
 // This function is blocking!

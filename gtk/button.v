@@ -5,8 +5,7 @@ pub struct Button {
 }
 
 pub fn new_button(label string) Button {
-	btn := Button{gtk_button_new_with_label(label.str)}
-	return btn
+	return Button{gtk_button_new_with_label(label.str)}
 }
 
 pub fn (b &Button) get_gtk_widget() &Widget {

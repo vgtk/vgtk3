@@ -18,13 +18,11 @@ pub struct Window {
 }
 
 pub fn new_window() Window {
-	win := Window{gtk_window_new(WindowType.toplevel)}
-	return win
+	return Window{gtk_window_new(WindowType.toplevel)}
 }
 
 pub fn new_window_type(@type WindowType) Window {
-	win := Window{gtk_window_new(@type)}
-	return win
+	return Window{gtk_window_new(@type)}
 }
 
 pub fn (w Window) add(widget Widgeter) {
