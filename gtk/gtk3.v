@@ -4,7 +4,7 @@ module gtk
 struct C.GtkWidget
 
 pub type gtk__Widget GtkWidget
-// Due to some current bug in V, the type must be named gtk3__Widget
+// Due to some current bug in V, the type must be named gtk__Widget
 
 pub interface Widgeter {
 	get_gtk_widget() &Widget
