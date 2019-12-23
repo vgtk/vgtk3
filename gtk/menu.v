@@ -1,15 +1,15 @@
 module gtk
 
 pub struct MenuBar {
-	gtk_widget &Widget
+	widget &Widget
 }
 
 pub struct Menu {
-	gtk_widget &Widget
+	widget &Widget
 }
 
 pub struct MenuItem {
-	gtk_widget &Widget
+	widget &Widget
 }
 
 /// CONSTRUCTORS
@@ -35,55 +35,55 @@ pub fn new_menu_item() MenuItem {
 
 // MENUBAR
 pub fn (mb &MenuBar) get_gtk_widget() &Widget {
-	return mb.gtk_widget
+	return mb.widget
 }
 
 pub fn (mb MenuBar) append(item MenuItem) {
-	gtk_menu_shell_append(mb.gtk_widget, item.gtk_widget)
+	gtk_menu_shell_append(mb.widget, item.widget)
 }
 
 // MENU
 pub fn (m &Menu) get_gtk_widget() &Widget {
-	return m.gtk_widget
+	return m.widget
 }
 
 pub fn (m Menu) append(item MenuItem) {
-	gtk_menu_shell_append(m.gtk_widget, item.gtk_widget)
+	gtk_menu_shell_append(m.widget, item.widget)
 }
 
 // MENUITEM
 pub fn (mi MenuItem) set_submenu(menu Menu) {
-	gtk_menu_item_set_submenu(mi.gtk_widget, menu.gtk_widget)
+	gtk_menu_item_set_submenu(mi.widget, menu.widget)
 }
 
 pub fn (mi &MenuItem) on(event_name string, handler fn(&Widget,MenuItem)) int {
-	return C.g_signal_connect(mi.gtk_widget, event_name.str, handler, mi)
+	return C.g_signal_connect(mi.widget, event_name.str, handler, mi)
 }
 
 pub fn (mi MenuItem) set_label(label string) {
-	gtk_menu_item_set_label(mi.gtk_widget, label.str)
+	gtk_menu_item_set_label(mi.widget, label.str)
 }
 
 pub fn (mi MenuItem) get_label() string {
-	return tos3(gtk_menu_item_get_label(mi.gtk_widget))
+	return tos3(gtk_menu_item_get_label(mi.widget))
 }
 
 pub fn (mi MenuItem) get_use_underline() bool {
-	return gtk_menu_item_get_use_underline(mi.gtk_widget)
+	return gtk_menu_item_get_use_underline(mi.widget)
 }
 
 pub fn (mi MenuItem) set_use_underline(under bool) {
-	gtk_menu_item_set_use_underline(mi.gtk_widget, under)
+	gtk_menu_item_set_use_underline(mi.widget, under)
 }
 
 pub fn (mi MenuItem) set_accel_path(label string) {
-	gtk_menu_item_set_accel_path(mi.gtk_widget, label.str)
+	gtk_menu_item_set_accel_path(mi.widget, label.str)
 }
 
 pub fn (mi MenuItem) get_accel_path() string {
-	return tos3(gtk_menu_item_get_accel_path(mi.gtk_widget))
+	return tos3(gtk_menu_item_get_accel_path(mi.widget))
 }
 
 pub fn (mi &MenuItem) get_gtk_widget() &Widget {
-	return mi.gtk_widget
+	return mi.widget
 }

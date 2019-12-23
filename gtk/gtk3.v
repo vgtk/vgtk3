@@ -16,15 +16,15 @@ pub interface Container {
 
 // Struct definition
 pub struct Alignment {
-	gtk_widget &Widget
+	widget &Widget
 }
 
 pub struct VBox {
-	gtk_widget &Widget
+	widget &Widget
 }
 
 pub struct HBox {
-	gtk_widget &Widget
+	widget &Widget
 }
 
 // Actual code
@@ -64,32 +64,32 @@ pub fn add_custom_signal(widget Widgeter, name string, handler fn(&Widget,Widget
 // Alignment struct
 
 pub fn (h &Alignment) get_gtk_widget() &Widget {
-	return h.gtk_widget
+	return h.widget
 }
 
 pub fn (h Alignment) add(widget Widgeter) {
 	w := widget.get_gtk_widget()
-	gtk_container_add(h.gtk_widget, w)
+	gtk_container_add(h.widget, w)
 }
 
 // VBox struct
 
 pub fn (v &VBox) get_gtk_widget() &Widget {
-	return v.gtk_widget
+	return v.widget
 }
 
 pub fn (v VBox) add(widget Widgeter) {
 	w := widget.get_gtk_widget()
-	gtk_container_add(v.gtk_widget, w)
+	gtk_container_add(v.widget, w)
 }
 
 // HBox struct
 
 pub fn (h &HBox) get_gtk_widget() &Widget {
-	return h.gtk_widget
+	return h.widget
 }
 
 pub fn (h HBox) add(widget Widgeter) {
 	w := widget.get_gtk_widget()
-	gtk_container_add(h.gtk_widget, w)
+	gtk_container_add(h.widget, w)
 }
