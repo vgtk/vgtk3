@@ -2,8 +2,8 @@ module gtk
 
 /* MAIN */
 fn C.gtk_init(int, voidptr)
-fn C.gtk_main_quit()
 fn C.gtk_main()
+fn C.gtk_main_quit()
 /* WINDOW */
 fn C.gtk_window_new(int) &Widget
 fn C.gtk_window_get_default_size(&int, &int)
@@ -43,9 +43,26 @@ fn C.gtk_menu_item_set_accel_path(&Widget, charptr)
 fn C.gtk_menu_item_set_label(&Widget, charptr)
 fn C.gtk_menu_item_set_submenu(&Widget, &Widget)
 fn C.gtk_menu_item_set_use_underline(&Widget, bool)
-
-fn C.g_intern_static_string(charptr) charptr
-fn C.g_signal_connect(&Widget, charptr, voidptr, voidptr) int
+/* LABEL */
+fn C.gtk_label_new(charptr) &Widget
+fn C.gtk_label_set_text(&Widget, charptr)
+fn C.gtk_label_set_markup(&Widget, charptr)
+fn C.gtk_label_set_markup_with_mnemonic(&Widget, charptr)
+fn C.gtk_label_set_pattern(&Widget, charptr)
+fn C.gtk_label_set_justify(&Widget, int)
+fn C.gtk_label_set_xalign(&Widget, f32)
+fn C.gtk_label_set_yalign(&Widget, f32)
+// TODO: gtk_label_set_ellipsize()
+fn C.gtk_label_set_width_chars(&Widget, int)
+fn C.gtk_label_set_max_width_chars(&Widget, int)
+fn C.gtk_label_set_line_wrap(&Widget, bool)
+// TODO: gtk_label_set_line_wrap_mode()
+fn C.gtk_label_set_lines(&Widget, int)
+/* CONTAINER */
 fn C.gtk_container_add(&Widget, &Widget)
+/* WIDGET */
 fn C.gtk_widget_set_size_request(&Widget, int, int)
 fn C.gtk_widget_show_all(&Widget)
+// OTHERS
+fn C.g_intern_static_string(charptr) charptr
+fn C.g_signal_connect(&Widget, charptr, voidptr, voidptr) int
