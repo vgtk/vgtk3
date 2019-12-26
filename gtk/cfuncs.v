@@ -12,9 +12,17 @@ fn C.gtk_window_set_position(&Widget, int)
 fn C.gtk_window_get_title(&Widget) charptr
 fn C.gtk_window_set_title(&Widget, charptr)
 /* BUTTON */
+fn C.gtk_button_new() &Widget
 fn C.gtk_button_new_with_label(charptr) &Widget
+fn C.gtk_button_new_with_mnemonic(charptr) &Widget
+fn C.gtk_button_new_from_icon_name(charptr, int) &Widget
+fn C.gtk_button_clicked(&Widget)
+fn C.gtk_button_set_relief(&Widget, int)
+fn C.gtk_button_get_relief(&Widget)
 fn C.gtk_button_get_label(&Widget) charptr
 fn C.gtk_button_set_label(&Widget, charptr)
+fn C.gtk_button_get_use_underline(&Widget) bool
+fn C.gtk_button_set_use_underline(&Widget, bool)
 /* ENTRY */
 fn C.gtk_entry_new() &Widget
 fn C.gtk_entry_get_text(&Widget) charptr
