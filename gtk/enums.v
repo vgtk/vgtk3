@@ -22,3 +22,9 @@ pub enum ReliefStyle {
 	half
 	@none
 }
+
+pub enum TextDirection {
+	@none
+	ltr
+	rtl
+}
