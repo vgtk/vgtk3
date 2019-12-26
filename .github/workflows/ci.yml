@@ -10,6 +10,6 @@ jobs:
               run: cd ~; git clone https://github.com/vlang/v.git; cd v; make CC=clang; sudo ./v symlink
             - uses: actions/checkout@v1
             - name: Running Test
-              env: 
+              env:
                   VFLAGS: -show_c_cmd -cg
-              run: xvfb-run make test
+              run: v version; xvfb-run make test
