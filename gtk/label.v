@@ -5,9 +5,6 @@ struct Label {
 }
 
 pub fn new_label(label string) Label {
-	if label.str == 0 {
-		panic('vgtk3.gtk.new_label: nil string')
-	}
 	return Label{gtk_label_new(label.str)}
 }
 
