@@ -27,9 +27,9 @@ fn main() {
 	window := gtk.new_window()
 	vbox := gtk.new_vbox(false, 20)
 	align := gtk.new_alignment(0, 0, 1, 1)
-	btn := gtk.new_button("VGTK3 is ..")
-	btn2 := gtk.new_button("I'm useless!")
-	alert := gtk.new_button("Alert!")
+	btn := gtk.new_button_with_label("VGTK3 is ..")
+	btn2 := gtk.new_button_with_label("I'm useless!")
+	alert := gtk.new_button_with_label("Alert!")
 
 	bar := gtk.new_menu_bar()
 	menu := gtk.new_menu()

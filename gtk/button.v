@@ -4,12 +4,12 @@ pub struct Button {
 	widget &Widget
 }
 
-pub fn new_button(label string) Button {
-	return Button{gtk_button_new_with_label(label.str)}
+pub fn new_button() Button {
+	return Button{gtk_button_new()}
 }
 
-pub fn new_empty_button() Button {
-	return Button{gtk_button_new()}
+pub fn new_button_with_label(label string) Button {
+	return Button{gtk_button_new_with_label(label.str)}
 }
 
 pub fn new_button_with_mnemonic(label string) Button {
