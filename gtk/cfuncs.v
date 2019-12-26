@@ -6,6 +6,7 @@ fn C.gtk_main()
 fn C.gtk_main_quit()
 /* WINDOW */
 fn C.gtk_window_new(int) &Widget
+fn C.gtk_window_set_resizable(bool)
 fn C.gtk_window_get_default_size(&int, &int)
 fn C.gtk_window_set_default_size(&Widget, int, int)
 fn C.gtk_window_set_position(&Widget, int)
@@ -31,6 +32,10 @@ fn C.gtk_entry_set_text(&Widget, charptr)
 fn C.gtk_entry_set_visibility(&Widget, bool)
 /* ACCEL MAP */
 fn C.gtk_accel_map_add_entry(charptr, int, int)
+/* EDITABLE */
+fn C.gtk_editable_set_editable(&Widget, bool)
+/* BOX */
+fn C.gtk_box_pack_start(&Widget, &Widget, bool, bool, int)
 
 fn C.gtk_alignment_new(int, int, int, int) &Widget
 fn C.gtk_hbox_new(bool, int) &Widget
@@ -70,6 +75,8 @@ fn C.gtk_label_set_lines(&Widget, int)
 fn C.gtk_container_add(&Widget, &Widget)
 /* WIDGET */
 fn C.gtk_widget_set_size_request(&Widget, int, int)
+fn C.gtk_widget_set_direction(&Widget, int)
+fn C.gtk_widget_show(&Widget)
 fn C.gtk_widget_show_all(&Widget)
 // OTHERS
 fn C.g_intern_static_string(charptr) charptr
