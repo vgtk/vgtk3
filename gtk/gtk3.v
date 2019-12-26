@@ -19,14 +19,6 @@ pub struct Alignment {
 	widget &Widget
 }
 
-pub struct VBox {
-	widget &Widget
-}
-
-pub struct HBox {
-	widget &Widget
-}
-
 // Actual code
 fn init() {
 	gtk_init(0, [""].data) // TODO: use os library for arguments
@@ -65,28 +57,6 @@ pub fn (h &Alignment) get_gtk_widget() &Widget {
 }
 
 pub fn (h Alignment) add(widget Widgeter) {
-	w := widget.get_gtk_widget()
-	gtk_container_add(h.widget, w)
-}
-
-// VBox struct
-
-pub fn (v &VBox) get_gtk_widget() &Widget {
-	return v.widget
-}
-
-pub fn (v VBox) add(widget Widgeter) {
-	w := widget.get_gtk_widget()
-	gtk_container_add(v.widget, w)
-}
-
-// HBox struct
-
-pub fn (h &HBox) get_gtk_widget() &Widget {
-	return h.widget
-}
-
-pub fn (h HBox) add(widget Widgeter) {
 	w := widget.get_gtk_widget()
 	gtk_container_add(h.widget, w)
 }
