@@ -26,4 +26,12 @@ pub fn (e Entry) set_visibility(visible bool) {
 
 pub fn (e Entry) set_invisible_char(ch rune) {
 	gtk_entry_set_invisible_char(e.widget, ch)
-} 
+}
+
+pub fn (e Entry) set_editable(setting bool) {
+	gtk_editable_set_editable(e.widget, setting)
+}
+
+pub fn (e Entry) set_direction(direction TextDirection) {
+	gtk_widget_set_direction(e.widget, direction)
+}
