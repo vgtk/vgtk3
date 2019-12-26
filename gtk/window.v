@@ -61,6 +61,10 @@ pub fn (w Window) set_title(title string) {
 	gtk_window_set_title(w.widget, title.str)
 }
 
+pub fn (w Window) set_resizable(setting bool) {
+	gtk_window_set_resizable(w.widget, setting)
+}
+
 pub fn (w &Window) on(event_name string, handler fn(&Widget,Window)) int {
 	return g_signal_connect(w.widget, event_name.str, handler, w)
 }
