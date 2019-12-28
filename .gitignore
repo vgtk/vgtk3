@@ -10,3 +10,4 @@ gtk.vh
 # Tests
 tests/gtk
 tests/*_test
+output.v
