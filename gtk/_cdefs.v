@@ -1,5 +1,6 @@
 module gtk
 
+struct C.GtkWidget
 struct C.GError
 
 /* MAIN */
