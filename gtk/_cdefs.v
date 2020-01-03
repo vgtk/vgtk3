@@ -10,7 +10,7 @@ fn C.gtk_main_quit()
 /* WINDOW */
 fn C.gtk_window_new(int) &Widget
 fn C.gtk_window_set_title(&Widget, charptr)
-fn C.gtk_window_set_wmclass(&Widget, charptr, charptr)
+fn C.gtk_window_set_wmclass(&Widget, charptr, charptr) // !DEPRECATED
 fn C.gtk_window_set_resizable(&Widget, bool)
 fn C.gtk_window_get_resizable(&Widget) bool
 // fn C.gtk_window_add_accel_group(&Widget, &GtkAccelGroup)
@@ -19,10 +19,10 @@ fn C.gtk_window_activate_focus(&Widget) bool
 fn C.gtk_window_activate_default(&Widget) bool
 fn C.gtk_window_set_modal(&Widget, bool)
 fn C.gtk_window_set_default_size(&Widget, int, int)
-fn C.gtk_window_set_default_geometry(&Widget, int, int)
+fn C.gtk_window_set_default_geometry(&Widget, int, int) // !DEPRECATED
 // fn C.gtk_window_set_geometry_hints(&Widget, &Widget, &GdkGeometry, GdkWindowHints)
-// fn C.gtk_window_set_gravity(&Widget, GdkGravity)
-// fn C.gtk_window_get_gravity(&Widget) GdkGravity
+fn C.gtk_window_set_gravity(&Widget, int)
+fn C.gtk_window_get_gravity(&Widget) int
 fn C.gtk_window_set_position(&Widget, int)
 fn C.gtk_window_set_transient_for(&Widget, &Widget)
 fn C.gtk_window_set_attached_to(&Widget, &Widget)
