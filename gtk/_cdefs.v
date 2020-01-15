@@ -1,7 +1,7 @@
 module gtk
 
 struct C.GtkWidget
-struct C.GError
+pub struct C.GError
 
 /* MAIN */
 fn C.gtk_init(int, voidptr)
@@ -158,7 +158,7 @@ fn C.gtk_button_set_image_position(&Widget, int)
 fn C.gtk_button_get_image_position(&Widget) int
 fn C.gtk_button_set_always_show_image(&Widget, bool)
 fn C.gtk_button_get_always_show_image(&Widget) bool
-// fn C.gtk_button_get_event_window(&Widget) &GdkWindow
+fn C.gtk_button_get_event_window(&Widget) &GdkWindow
 
 /* ENTRY */
 fn C.gtk_entry_new() &Widget
