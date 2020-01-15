@@ -1,6 +1,6 @@
 module gtk
 
-struct Label {
+pub struct Label {
 	widget &Widget
 }
 
