@@ -1,8 +1,6 @@
 module gtk
 #include <gtk/gtk.h>
 
-struct C.GtkWidget
-
 pub type gtk__Widget GtkWidget
 // Due to some current bug in V, the type must be named gtk__Widget
 
