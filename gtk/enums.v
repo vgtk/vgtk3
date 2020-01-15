@@ -64,3 +64,10 @@ pub enum Orientation {
 	horizontal
 	vertical
 }
+
+pub enum Position {
+	left
+	right
+	top
+	bottom
+}
