@@ -1,3 +1,5 @@
+module main
+
 import gtk
 
 fn btn_clicked(w &gtk.Widget, btn &gtk.Button) {
@@ -67,7 +69,7 @@ fn main() {
 	align.add(vbox)
 
 	//window.set_size(640, 480)
-	window.set_position(.center)
+	window.set_position(gtk.WIN_POS_CENTER)
 	window.set_title("I'm made with V")
 	window.add(align)
 	window.on("destroy", win_destroy)
