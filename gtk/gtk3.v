@@ -8,7 +8,7 @@ pub interface Widgeter {
 	get_gtk_widget() &Widget
 }
 
-pub interface Container {
+pub interface ContainerLiker {
 	add(Widgeter)
 }
 
