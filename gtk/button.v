@@ -92,6 +92,10 @@ pub fn (b Button) get_event_window() gdk.Window {
 	return gdk.Window{cptr}
 }
 
+pub fn (b &Button) show() {
+	gtk_widget_show(b.widget)
+}
+
 ////////////////////// CUSTOM API's //////////////////////
 pub fn (b &Button) on(event_name string, handler fn(&Widget,Button)) int {
 	return g_signal_connect(b.widget, event_name.str, handler, b)
