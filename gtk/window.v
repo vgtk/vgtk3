@@ -35,7 +35,6 @@ pub fn (w Window) set_title(title string) {
 	C.gtk_window_set_title(w.widget, title.str)
 }
 
-[deprecated]
 pub fn (w Window) set_wmclass(name, class string) {
 	gtk_window_set_wmclass(w.widget, name.str, class.str)
 }
@@ -64,7 +63,6 @@ pub fn (w Window) set_default_size(width int, height int) {
 	gtk_window_set_default_size(w.widget, width, height)
 }
 
-[deprecated]
 pub fn (w Window) set_default_geometry(width int, height int) {
 	gtk_window_set_default_geometry(w.widget, width, height)
 }
@@ -98,12 +96,11 @@ pub fn (w Window) set_hide_titlebar_when_maximized(setting bool) {
 	gtk_window_set_hide_titlebar_when_maximized(w.widget, setting)
 }
 
-pub fn (w Window) add(widget Widgeter) {
-	wi := widget.get_gtk_widget()
-	gtk_container_add(w.widget, wi)
+pub fn (w Window) show() {
+	gtk_widget_show(w.widget)
 }
 
-pub fn (w Window) show() {
+pub fn (w Window) show_all() {
 	gtk_widget_show_all(w.widget)
 }
 
@@ -122,10 +119,78 @@ pub fn (w Window) get_title() string {
 	return tos3(gtk_window_get_title(w.widget))
 }
 
-pub fn (w &Window) on(event_name string, handler fn(&Widget,Window)) int {
-	return g_signal_connect(w.widget, event_name.str, handler, w)
+// GdkWindowTypeHint gtk_window_get_type_hint (GtkWindow *window)
+
+pub fn (w Window) get_skip_taskbar_hint() bool {
+	return gtk_window_get_skip_taskbar_hint(w.widget)
+}
+
+pub fn (w Window) get_skip_pager_hint() bool {
+	return gtk_window_get_skip_pager_hint(w.widget)
+}
+
+pub fn (w Window) get_urgency_hint() bool {
+	return gtk_window_get_urgency_hint(w.widget)
+}
+
+pub fn (w Window) get_accept_focus() bool {
+	return gtk_window_get_accept_focus(w.widget)
+}
+
+pub fn (w Window) get_focus_on_map() bool {
+	return gtk_window_get_focus_on_map(w.widget)
+} 
+
+// GtkWindowGroup * gtk_window_get_group (GtkWindow *window)
+
+pub fn (w Window) has_group() bool {
+	return gtk_window_has_group(w.widget)
+}
+
+pub fn (w Window) get_window_type() WindowType {
+	return gtk_window_get_window_type(w.widget)
+}
+
+pub fn (w Window) move(x, y int) {
+	gtk_window_move(w.widget, x, y)
+}
+
+pub fn (w Window) parse_geometry(geometry string) bool {
+	return gtk_window_parse_geometry(w.widget, geometry.str)
+}
+
+pub fn (w Window) reshow_with_initial_size() {
+	gtk_window_reshow_with_initial_size(w.widget)
+}
+
+pub fn (w Window) resize(width, height int) {
+	gtk_window_resize(w.widget, width, height)
+}
+
+pub fn (w Window) resize_to_geometry(width, height int){
+	gtk_window_resize_to_geometry(w.widget, width, height)
+}
+
+/* INHERITED FROM CONTAINER */
+pub fn (w Window) add(widget Widgeter) {
+	wgt := widget.get_gtk_widget()
+	gtk_container_add(w.widget, wgt)
+}
+
+pub fn (w Window) set_border_width(border_width int) {
+	w.to_container().set_border_width(border_width)
+}
+
+/* CUSTOM API's */
+pub fn (w &Window) on(event_name string, handler fn(window Window, _data voidptr), data voidptr) int {
+	return g_signal_connect(w.widget, event_name.str, handler, 0)
 }
 
 pub fn (w &Window) get_gtk_widget() &Widget {
 	return w.widget
+}
+
+pub fn (w &Window) to_container() &Container {
+	cptr := &GtkContainer(w.widget)
+	return &Container{cptr}
 }
