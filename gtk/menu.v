@@ -52,8 +52,8 @@ pub fn (mi MenuItem) set_submenu(menu Menu) {
 	gtk_menu_item_set_submenu(mi.widget, menu.widget)
 }
 
-pub fn (mi &MenuItem) on(event_name string, handler fn(&Widget,MenuItem)) int {
-	return C.g_signal_connect(mi.widget, event_name.str, handler, mi)
+pub fn (mi &MenuItem) on(event_name string, handler fn(menu_item MenuItem, _data voidptr), data voidptr) int {
+	return C.g_signal_connect(mi.widget, event_name.str, handler, data)
 }
 
 pub fn (mi MenuItem) set_label(label string) {

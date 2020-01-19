@@ -2,10 +2,7 @@ module main
 
 import gtk
 
-fn btn_clicked(w &gtk.Widget, btn &gtk.Button) {
-	//btn := data[0]
-
-	// The GtkWidget object should be ignored
+fn btn_clicked(btn gtk.Button, data voidptr) {
 	if (btn.get_label() == "VGTK3 is ..") {
 		btn.set_label("VGTK3 is awesome!")
 	} else {
@@ -13,15 +10,15 @@ fn btn_clicked(w &gtk.Widget, btn &gtk.Button) {
 	}
 }
 
-fn menu_exit(w &gtk.Widget, mi &gtk.MenuItem) {
+fn menu_exit(mi gtk.MenuItem, data voidptr) {
 	gtk.main_quit()
 }
 
-fn alert_clicked(w &gtk.Widget, btn &gtk.Button) {
+fn alert_clicked(btn gtk.Button, data voidptr) {
 	btn.set_label("All Fine!")
 }
 
-fn win_destroy(w &gtk.Widget, win &gtk.Window) {
+fn win_destroy(win gtk.Window, data voidptr) {
 	gtk.main_quit() // necessary as gtk won't exit itself when window is destroyed.
 }
 
@@ -48,16 +45,14 @@ fn main() {
 	btn2.set_size(100, 50)
 	alert.set_size(80, 20)
 	entry.set_text("Good Night!")
-	//entry.set_visibility(false)
-	//entry.set_invisible_char('*')
-	btn.on("clicked", btn_clicked)
+	btn.on("clicked", btn_clicked, 0)
 
 	gtk.accel_map_add_entry("GTK-Test/File/Quit", 65, 0)
 	quit.set_accel_path("GTKTest/File/Quit")
 	quit.set_use_underline(true)
-	quit.on("activate", menu_exit)
+	quit.on("activate", menu_exit, 0)
 
-	alert.on("clicked", alert_clicked)
+	alert.on("clicked", alert_clicked, 0)
 
 	hbox.add(entry)
 	hbox.add(alert)
@@ -68,11 +63,10 @@ fn main() {
 	vbox.add(hbox)
 	align.add(vbox)
 
-	//window.set_size(640, 480)
 	window.set_position(gtk.WIN_POS_CENTER)
 	window.set_title("I'm made with V")
 	window.add(align)
-	window.on("destroy", win_destroy)
-	window.show()
+	window.on("destroy", win_destroy, 0)
+	window.show_all()
 	gtk.main()
 }
