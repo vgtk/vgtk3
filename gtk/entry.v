@@ -35,3 +35,8 @@ pub fn (e Entry) set_editable(setting bool) {
 pub fn (e Entry) set_direction(direction TextDirection) {
 	gtk_widget_set_direction(e.widget, direction)
 }
+
+/* INHERITED FROM WIDGET */
+pub fn (e Entry) show() {
+	gtk_widget_show(e.widget)
+}
