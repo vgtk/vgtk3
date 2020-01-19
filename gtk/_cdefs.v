@@ -1,6 +1,14 @@
 module gtk
 
+struct C.GtkContainer
 struct C.GtkWidget
+struct C.GtkWidgetPath
+struct C.GtkAdjustment
+struct C.GType
+struct C.GValue
+struct C.GParamSpec
+struct C.GObjectClass
+struct C.GtkContainerClass
 pub struct C.GError
 
 /* MAIN */
@@ -253,7 +261,45 @@ fn C.gtk_label_set_track_visited_links(&Widget, bool)
 fn C.gtk_label_get_track_visited_links(&Widget) bool
 
 /* CONTAINER */
-fn C.gtk_container_add(&Widget, &Widget)
+fn C.gtk_container_add(&GtkContainer, &GtkWidget) 
+fn C.gtk_container_remove(&GtkContainer, &GtkWidget) 
+fn C.gtk_container_add_with_properties(&GtkContainer, &GtkWidget, &charptr) 
+fn C.gtk_container_get_resize_mode(&GtkContainer) int /* GtkResizeMode */
+fn C.gtk_container_set_resize_mode(&GtkContainer, int /* GtkResizeMode */) 
+fn C.gtk_container_check_resize(&GtkContainer) 
+fn C.gtk_container_foreach(&GtkContainer, fn()/* GtkCallback */, voidptr/* gpointer */) 
+fn C.gtk_container_get_children(&GtkContainer) &GList
+fn C.gtk_container_get_path_for_child(&GtkContainer, &GtkWidget) &GtkWidgetPath
+fn C.gtk_container_set_reallocate_redraws(&GtkContainer, bool) 
+fn C.gtk_container_get_focus_child(&GtkContainer) &GtkWidget
+fn C.gtk_container_set_focus_child(&GtkContainer, &GtkWidget) 
+fn C.gtk_container_get_focus_vadjustment(&GtkContainer) &GtkAdjustment
+fn C.gtk_container_set_focus_vadjustment(&GtkContainer, &GtkAdjustment) 
+fn C.gtk_container_get_focus_hadjustment(&GtkContainer) &GtkAdjustment
+fn C.gtk_container_set_focus_hadjustment(&GtkContainer, &GtkAdjustment) 
+fn C.gtk_container_resize_children(&GtkContainer) 
+fn C.gtk_container_child_type(&GtkContainer) GType
+fn C.gtk_container_child_get(&GtkContainer, &GtkWidget, &charptr) 
+fn C.gtk_container_child_set(&GtkContainer, &GtkWidget, &charptr) 
+fn C.gtk_container_child_get_property(&GtkContainer, &GtkWidget, &charptr, &GValue) 
+fn C.gtk_container_child_set_property(&GtkContainer, &GtkWidget, &charptr, &GValue) 
+fn C.gtk_container_child_get_valist(&GtkContainer, &GtkWidget, &charptr, va_list) 
+fn C.gtk_container_child_set_valist(&GtkContainer, &GtkWidget, &charptr, va_list) 
+fn C.gtk_container_child_notify(&GtkContainer, &GtkWidget, &charptr) 
+fn C.gtk_container_child_notify_by_pspec(&GtkContainer, &GtkWidget, &GParamSpec) 
+fn C.gtk_container_forall(&GtkContainer, fn()/* GtkCallback */, voidptr /* gpointer */) 
+fn C.gtk_container_get_border_width(&GtkContainer) u32
+fn C.gtk_container_set_border_width(&GtkContainer, u32) 
+// fn C.gtk_container_propagate_draw(&GtkContainer, &GtkWidget, &cairo_t) 
+fn C.gtk_container_get_focus_chain(&GtkContainer, &GList) bool
+fn C.gtk_container_set_focus_chain(&GtkContainer, &GList) 
+fn C.gtk_container_unset_focus_chain(&GtkContainer) 
+fn C.gtk_container_class_find_child_property(&GObjectClass, &charptr) &GParamSpec
+fn C.gtk_container_class_install_child_property(&GtkContainerClass, u32, &GParamSpec) 
+fn C.gtk_container_class_install_child_properties(&GtkContainerClass, u32, &GParamSpec) 
+fn C.gtk_container_class_list_child_properties(&GObjectClass, &u32) &GParamSpec
+fn C.gtk_container_class_handle_border_width(&GtkContainerClass) 
+
 
 /* WIDGET */
 // fn C.gtk_widget_new(GType, charptr) &Widget
