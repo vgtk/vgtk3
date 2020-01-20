@@ -10,10 +10,11 @@ This is mostly why the functions aren't auto-generated, as this doesn't create a
 
 - GTK
   - [ ] Accel Map
+  - [ ] Application
   - [x] Button
   - [ ] Entry
-  - [ ] Label
+  - [x] Label
   - [ ] Menu
   - [ ] Window
 - GDK
-  - [ ] Window 
+  - [ ] Window
