@@ -1,5 +1,10 @@
 module gtk
 
+struct C.GtkLabel
+struct C.GtkApplication
+struct C.GtkApplicationWindow
+struct C.GtkApplicationWindowClass
+struct C.GtkWindow
 struct C.GtkContainer
 struct C.GtkWidget
 struct C.GtkWidgetPath
@@ -259,6 +264,36 @@ fn C.gtk_label_set_angle(&Widget, f64)
 fn C.gtk_label_get_current_uri(&Widget) charptr
 fn C.gtk_label_set_track_visited_links(&Widget, bool)
 fn C.gtk_label_get_track_visited_links(&Widget) bool
+
+/* APPLICATION */
+fn C.gtk_application_new(charptr, int/* GApplicationFlags */) &GtkApplication
+fn C.g_application_run(&GtkApplication, int, charptr) int
+fn C.gtk_application_add_window(&GtkApplication, &GtkWindow) 
+fn C.gtk_application_remove_window(&GtkApplication, &GtkWindow) 
+fn C.gtk_application_get_windows(&GtkApplication) &GList
+fn C.gtk_application_get_window_by_id(&GtkApplication, u32) &GtkWindow
+fn C.gtk_application_get_active_window(&GtkApplication) &GtkWindow
+fn C.gtk_application_inhibit(&GtkApplication, &GtkWindow, int/* GtkApplicationInhibitFlags */, charptr) u32
+fn C.gtk_application_uninhibit(&GtkApplication, u32) 
+fn C.gtk_application_is_inhibited(&GtkApplication, int/* GtkApplicationInhibitFlags */) bool
+fn C.gtk_application_prefers_app_menu(&GtkApplication) bool
+// fn C.gtk_application_get_app_menu(&GtkApplication) &GMenuModel
+// fn C.gtk_application_set_app_menu(&GtkApplication, &GMenuModel) 
+// fn C.gtk_application_get_menubar(&GtkApplication) &GMenuModel
+// fn C.gtk_application_set_menubar(&GtkApplication, &GMenuModel) 
+// fn C.gtk_application_get_menu_by_id(&GtkApplication, charptr) &GMenu
+// fn C.gtk_application_add_accelerator(&GtkApplication, charptr, &charptr, &GVariant) 
+// fn C.gtk_application_remove_accelerator(&GtkApplication, &charptr, &GVariant) 
+fn C.gtk_application_list_action_descriptions(&GtkApplication) &charptr
+fn C.gtk_application_get_accels_for_action(&GtkApplication, &charptr) &charptr
+fn C.gtk_application_set_accels_for_action(&GtkApplication, &charptr, &charptr) 
+fn C.gtk_application_get_actions_for_accel(&GtkApplication, &charptr) &charptr
+
+
+fn C.gtk_application_window_new(&GtkApplication) &Widget
+fn C.gtk_application_window_set_show_menubar(&GtkApplicationWindow, bool)
+fn C.gtk_application_window_get_show_menubar(&GtkApplicationWindow) bool
+fn C.gtk_application_window_get_id(&GtkApplicationWindow) u32
 
 /* CONTAINER */
 fn C.gtk_container_add(&GtkContainer, &GtkWidget) 
@@ -566,6 +601,9 @@ fn C.gtk_widget_init_template(&Widget)
 // fn C.gtk_widget_class_bind_template_child_internal_privatewidget_class(TypeName) #define
 // fn C.gtk_widget_class_bind_template_callbackwidget_class() #define
 
+/* GOBJECT */
+fn C.g_object_unref(voidptr)
+
 // OTHERS
 fn C.g_intern_static_string(charptr) charptr
-fn C.g_signal_connect(&Widget, charptr, voidptr, voidptr) int
+fn C.g_signal_connect(&Widget, charptr, voidptr, voidptr) u32
