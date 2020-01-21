@@ -5,6 +5,7 @@ struct C.GtkApplication
 struct C.GtkApplicationWindow
 struct C.GtkApplicationWindowClass
 struct C.GtkWindow
+struct C.GtkGrid
 struct C.GtkContainer
 struct C.GtkWidget
 struct C.GtkWidgetPath
@@ -311,30 +312,52 @@ fn C.gtk_container_set_focus_child(&GtkContainer, &GtkWidget)
 fn C.gtk_container_get_focus_vadjustment(&GtkContainer) &GtkAdjustment
 fn C.gtk_container_set_focus_vadjustment(&GtkContainer, &GtkAdjustment) 
 fn C.gtk_container_get_focus_hadjustment(&GtkContainer) &GtkAdjustment
-fn C.gtk_container_set_focus_hadjustment(&GtkContainer, &GtkAdjustment) 
-fn C.gtk_container_resize_children(&GtkContainer) 
+fn C.gtk_container_set_focus_hadjustment(&GtkContainer, &GtkAdjustment)
+fn C.gtk_container_resize_children(&GtkContainer)
 fn C.gtk_container_child_type(&GtkContainer) GType
-fn C.gtk_container_child_get(&GtkContainer, &GtkWidget, &charptr) 
-fn C.gtk_container_child_set(&GtkContainer, &GtkWidget, &charptr) 
-fn C.gtk_container_child_get_property(&GtkContainer, &GtkWidget, &charptr, &GValue) 
-fn C.gtk_container_child_set_property(&GtkContainer, &GtkWidget, &charptr, &GValue) 
-fn C.gtk_container_child_get_valist(&GtkContainer, &GtkWidget, &charptr, va_list) 
-fn C.gtk_container_child_set_valist(&GtkContainer, &GtkWidget, &charptr, va_list) 
-fn C.gtk_container_child_notify(&GtkContainer, &GtkWidget, &charptr) 
-fn C.gtk_container_child_notify_by_pspec(&GtkContainer, &GtkWidget, &GParamSpec) 
-fn C.gtk_container_forall(&GtkContainer, fn()/* GtkCallback */, voidptr /* gpointer */) 
+fn C.gtk_container_child_get(&GtkContainer, &GtkWidget, &charptr)
+fn C.gtk_container_child_set(&GtkContainer, &GtkWidget, &charptr)
+fn C.gtk_container_child_get_property(&GtkContainer, &GtkWidget, &charptr, &GValue)
+fn C.gtk_container_child_set_property(&GtkContainer, &GtkWidget, &charptr, &GValue)
+fn C.gtk_container_child_get_valist(&GtkContainer, &GtkWidget, &charptr, va_list)
+fn C.gtk_container_child_set_valist(&GtkContainer, &GtkWidget, &charptr, va_list)
+fn C.gtk_container_child_notify(&GtkContainer, &GtkWidget, &charptr)
+fn C.gtk_container_child_notify_by_pspec(&GtkContainer, &GtkWidget, &GParamSpec)
+fn C.gtk_container_forall(&GtkContainer, fn()/* GtkCallback */, voidptr /* gpointer */)
 fn C.gtk_container_get_border_width(&GtkContainer) u32
-fn C.gtk_container_set_border_width(&GtkContainer, u32) 
+fn C.gtk_container_set_border_width(&GtkContainer, u32)
 // fn C.gtk_container_propagate_draw(&GtkContainer, &GtkWidget, &cairo_t) 
 fn C.gtk_container_get_focus_chain(&GtkContainer, &GList) bool
-fn C.gtk_container_set_focus_chain(&GtkContainer, &GList) 
-fn C.gtk_container_unset_focus_chain(&GtkContainer) 
+fn C.gtk_container_set_focus_chain(&GtkContainer, &GList)
+fn C.gtk_container_unset_focus_chain(&GtkContainer)
 fn C.gtk_container_class_find_child_property(&GObjectClass, &charptr) &GParamSpec
-fn C.gtk_container_class_install_child_property(&GtkContainerClass, u32, &GParamSpec) 
-fn C.gtk_container_class_install_child_properties(&GtkContainerClass, u32, &GParamSpec) 
+fn C.gtk_container_class_install_child_property(&GtkContainerClass, u32, &GParamSpec)
+fn C.gtk_container_class_install_child_properties(&GtkContainerClass, u32, &GParamSpec)
 fn C.gtk_container_class_list_child_properties(&GObjectClass, &u32) &GParamSpec
 fn C.gtk_container_class_handle_border_width(&GtkContainerClass) 
 
+/* GRID */
+fn C.gtk_grid_new() &Widget
+fn C.gtk_grid_attach(&GtkGrid, &Widget, int, int, int, int) 
+fn C.gtk_grid_attach_next_to(&GtkGrid, &Widget, &Widget, int /* GtkPositionType */, int, int) 
+fn C.gtk_grid_get_child_at(&GtkGrid, int, int) &Widget
+fn C.gtk_grid_insert_row(&GtkGrid, int)
+fn C.gtk_grid_insert_column(&GtkGrid, int)
+fn C.gtk_grid_remove_row(&GtkGrid, int) 
+fn C.gtk_grid_remove_column(&GtkGrid, int) 
+fn C.gtk_grid_insert_next_to(&GtkGrid, &Widget, int /* GtkPositionType */) 
+fn C.gtk_grid_set_row_homogeneous(&GtkGrid, bool) 
+fn C.gtk_grid_get_row_homogeneous(&GtkGrid) bool
+fn C.gtk_grid_set_row_spacing(&GtkGrid, u32) 
+fn C.gtk_grid_get_row_spacing(&GtkGrid) u32
+fn C.gtk_grid_set_column_homogeneous(&GtkGrid, bool) 
+fn C.gtk_grid_get_column_homogeneous(&GtkGrid) bool
+fn C.gtk_grid_set_column_spacing(&GtkGrid, u32) 
+fn C.gtk_grid_get_column_spacing(&GtkGrid) u32
+fn C.gtk_grid_get_baseline_row(&GtkGrid) int
+fn C.gtk_grid_set_baseline_row(&GtkGrid, int) 
+fn C.gtk_grid_get_row_baseline_position(&GtkGrid, int) int /* GtkBaselinePosition */
+fn C.gtk_grid_set_row_baseline_position(&GtkGrid, int, int /* GtkBaselinePosition */) 
 
 /* WIDGET */
 // fn C.gtk_widget_new(GType, charptr) &Widget
