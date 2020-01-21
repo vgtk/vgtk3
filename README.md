@@ -13,6 +13,7 @@ This is mostly why the functions aren't auto-generated, as this doesn't create a
   - [ ] Application
   - [x] Button
   - [ ] Entry
+  - [x] Grid
   - [x] Label
   - [ ] Menu
   - [ ] Window
