@@ -627,6 +627,10 @@ fn C.gtk_widget_init_template(&Widget)
 /* GOBJECT */
 fn C.g_object_unref(voidptr)
 
+/* ORIENTABLE */
+fn C.gtk_orientable_get_orientation(&Widget) int /* GtkOrientation */
+fn C.gtk_orientable_set_orientation(&Widget, int /* GtkOrientation */)
+
 // OTHERS
 fn C.g_intern_static_string(charptr) charptr
 fn C.g_signal_connect(&Widget, charptr, voidptr, voidptr) u32
