@@ -12,6 +12,15 @@ pub interface ContainerLiker {
 	add(Widgeter)
 }
 
+// TODO: Remove this, when V bug is fixed
+pub type gtk__BaselinePosition int 
+
+const (
+	BASELINE_POSITION_TOP    = BaselinePosition(C.GTK_BASELINE_POSITION_TOP)
+	BASELINE_POSITION_CENTER = BaselinePosition(C.GTK_BASELINE_POSITION_CENTER)
+	BASELINE_POSITION_BOTTOM = BaselinePosition(C.GTK_BASELINE_POSITION_BOTTOM)
+)
+
 // Struct definition
 pub struct Alignment {
 	widget &Widget
