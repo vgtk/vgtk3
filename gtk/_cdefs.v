@@ -188,7 +188,20 @@ fn C.gtk_accel_map_add_entry(charptr, int, int)
 fn C.gtk_editable_set_editable(&Widget, bool)
 
 /* BOX */
-fn C.gtk_box_pack_start(&Widget, &Widget, bool, bool, int)
+fn C.gtk_box_new(int/* GtkOrientation */, int) &Widget
+fn C.gtk_box_pack_start(&Widget, &Widget, bool, bool, u32)
+fn C.gtk_box_pack_end(&Widget, &Widget, bool, bool, u32)
+fn C.gtk_box_get_homogeneous(&Widget) bool
+fn C.gtk_box_set_homogeneous(&Widget, bool)
+fn C.gtk_box_get_spacing(&Widget) int
+fn C.gtk_box_set_spacing(&Widget, int)
+fn C.gtk_box_reorder_child(&Widget, &Widget, int)
+fn C.gtk_box_query_child_packing(&Widget, &Widget, &bool, &bool, &u32, &int/* &GtkPackType */)
+fn C.gtk_box_set_child_packing(&Widget, &Widget, bool, bool, u32, int/* GtkPackType */)
+fn C.gtk_box_get_baseline_position(&Widget) int /* GtkBaselinePosition */
+fn C.gtk_box_set_baseline_position(&Widget, int /* GtkBaselinePosition */)
+fn C.gtk_box_get_center_widget(&Widget) &Widget
+fn C.gtk_box_set_center_widget(&Widget, &Widget)
 
 fn C.gtk_alignment_new(int, int, int, int) &Widget
 fn C.gtk_hbox_new(bool, int) &Widget

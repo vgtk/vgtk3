@@ -12,7 +12,7 @@ pub interface ContainerLiker {
 	add(Widgeter)
 }
 
-// TODO: Remove this, when V bug is fixed
+// TODO: Remove the prefix `gtk__`, when V bug is fixed
 pub type gtk__BaselinePosition int 
 
 const (
