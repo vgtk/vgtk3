@@ -136,8 +136,8 @@ fn C.gtk_window_set_has_resize_grip(&Widget, bool)
 fn C.gtk_window_get_has_resize_grip(&Widget) bool
 fn C.gtk_window_resize_grip_is_visible(&Widget) bool
 // fn C.gtk_window_get_resize_grip_area(&Widget, &GdkRectangle) bool
-// fn C.gtk_window_get_application(&Widget) &GtkApplication
-// fn C.gtk_window_set_application(&Widget, &GtkApplication)
+fn C.gtk_window_get_application(&Widget) &GtkApplication
+fn C.gtk_window_set_application(&Widget, &GtkApplication)
 fn C.gtk_window_set_has_user_ref_count(&Widget, bool)
 fn C.gtk_window_set_titlebar(&Widget, &Widget)
 fn C.gtk_window_get_titlebar(&Widget) &Widget
@@ -630,6 +630,14 @@ fn C.g_object_unref(voidptr)
 /* ORIENTABLE */
 fn C.gtk_orientable_get_orientation(&Widget) int /* GtkOrientation */
 fn C.gtk_orientable_set_orientation(&Widget, int /* GtkOrientation */)
+
+/* ACTIONABLE */
+// fn C.gtk_actionable_get_action_name(&Widget) charptr
+// fn C.gtk_actionable_set_action_name(&Widget, &charptr)
+// fn C.gtk_actionable_get_action_target_value(&Widget) &GVariant
+// fn C.gtk_actionable_set_action_target_value(&Widget, &GVariant)
+// fn C.gtk_actionable_set_action_target(&Widget, &charptr)
+// fn C.gtk_actionable_set_detailed_action_name(&Widget, &charptr)
 
 // OTHERS
 fn C.g_intern_static_string(charptr) charptr

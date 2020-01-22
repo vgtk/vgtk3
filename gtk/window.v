@@ -96,14 +96,6 @@ pub fn (w Window) set_hide_titlebar_when_maximized(setting bool) {
 	gtk_window_set_hide_titlebar_when_maximized(w.widget, setting)
 }
 
-pub fn (w Window) show() {
-	gtk_widget_show(w.widget)
-}
-
-pub fn (w Window) show_all() {
-	gtk_widget_show_all(w.widget)
-}
-
 pub fn (w Window) get_default_size() (int, int) {
 	width := 0
 	height := 0
@@ -171,7 +163,103 @@ pub fn (w Window) resize_to_geometry(width, height int){
 	gtk_window_resize_to_geometry(w.widget, width, height)
 }
 
+// TODO: void gtk_window_set_default_icon_list (GList *list)
+
+// TODO: void gtk_window_set_default_icon (GdkPixbuf *icon)
+
+pub fn (w Window) set_default_icon_from_file(filename string) bool {
+	return gtk_window_set_default_icon_from_file(filename.str, 0)
+}
+
+pub fn (w Window) set_default_icon_name(name string) {
+	gtk_window_set_default_icon_name(name.str)
+}
+
+// TODO: void gtk_window_set_icon (GtkWindow *window, GdkPixbuf *icon)
+
+// TODO: void gtk_window_set_icon_list (GtkWindow *window, GList *list)
+
+pub fn (w Window) set_icon_from_file(filename string) bool {
+	return gtk_window_set_icon_from_file(w.widget, filename.str, 0)
+}
+
+pub fn (w Window) set_icon_name(name string) {
+	gtk_window_set_icon_name(w.widget, name.str)
+}
+
+pub fn (w Window) set_auto_startup_notification(setting bool) {
+	gtk_window_set_auto_startup_notification(setting)
+}
+
+pub fn (w Window) get_opacity() f32 {
+	return gtk_window_get_opacity(w.widget)
+}
+
+pub fn (w Window) set_opacity(opacity f32) {
+	gtk_window_set_opacity(w.widget, opacity)
+}
+
+pub fn (w Window) get_mnemonics_visible() bool {
+	return gtk_window_get_mnemonics_visible(w.widget)
+}
+
+pub fn (w Window) set_mnemonics_visible(setting bool)  {
+	gtk_window_set_mnemonics_visible(w.widget, setting)
+}
+
+pub fn (w Window) get_focus_visible() bool {
+	return gtk_window_get_focus_visible(w.widget)
+}
+
+pub fn (w Window) set_focus_visible(setting bool) {
+	gtk_window_set_focus_visible(w.widget, setting)
+}
+
+pub fn (w Window) set_has_resize_grip(value bool) {
+	gtk_window_set_has_resize_grip(w.widget, value)
+}
+
+pub fn (w Window) get_has_resize_grip() bool {
+	return gtk_window_get_has_resize_grip(w.widget)
+}
+
+pub fn (w Window) resize_grip_is_visible() bool {
+	return gtk_window_resize_grip_is_visible(w.widget)
+}
+
+// gboolean gtk_window_get_resize_grip_area (GtkWindow *window, GdkRectangle *rect)
+
+pub fn (w Window) get_application() &Application {
+	cptr := gtk_window_get_application(w.widget)
+	if cptr == 0 {
+		return 0
+	}
+	return &Application{cptr}
+}
+
+pub fn (w Window) set_application(application Application) {
+	gtk_window_set_application(w.widget, application.c)
+}
+
+pub fn (w Window) set_has_user_ref_count(setting bool) {
+	gtk_window_set_has_user_ref_count(w.widget, setting)
+}
+
+pub fn (w Window) set_titlebar(widget Widgeter) {
+	wgt := widget.get_gtk_widget()
+	gtk_window_set_titlebar(w.widget, wgt)
+}
+
+pub fn (w Window) get_titlebar() &Widget {
+	return gtk_window_get_titlebar(w.widget)
+}
+
+pub fn (w Window) set_interactive_debugging(enable bool) {
+	gtk_window_set_interactive_debugging(enable)
+} 
+
 /* INHERITED FROM CONTAINER */
+
 pub fn (w Window) add(widget Widgeter) {
 	wgt := widget.get_gtk_widget()
 	gtk_container_add(w.widget, wgt)
@@ -181,13 +269,25 @@ pub fn (w Window) set_border_width(border_width int) {
 	w.to_container().set_border_width(border_width)
 }
 
-/* CUSTOM API's */
-pub fn (w &Window) on(event_name string, handler fn(window Window, _data voidptr), data voidptr) int {
-	return g_signal_connect(w.widget, event_name.str, handler, 0)
+/* INHERITED FROM WIDGET */ 
+
+pub fn (w Window) show() {
+	gtk_widget_show(w.widget)
 }
+
+pub fn (w Window) show_all() {
+	gtk_widget_show_all(w.widget)
+}
+
+/* IMPLEMENTING WIDGETER */
 
 pub fn (w &Window) get_gtk_widget() &Widget {
 	return w.widget
+}
+
+/* CUSTOM API's */
+pub fn (w &Window) on(event_name string, handler fn(window Window, _data voidptr), data voidptr) int {
+	return g_signal_connect(w.widget, event_name.str, handler, 0)
 }
 
 pub fn (w &Window) to_container() &Container {
