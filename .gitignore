@@ -11,3 +11,5 @@ gtk.vh
 tests/gtk
 tests/*_test
 output.v
+label_demo
+box_demo
