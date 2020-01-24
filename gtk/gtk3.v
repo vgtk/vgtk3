@@ -35,14 +35,6 @@ pub fn new_alignment(xalign f32, yalign f32, xscale f32, yscale f32) Alignment {
 	return Alignment{gtk_alignment_new(xalign, yalign, xscale, yscale)}
 }
 
-pub fn new_vbox(homogeneous bool, spacing int) VBox {
-	return VBox{gtk_vbox_new(homogeneous, spacing)}
-}
-
-pub fn new_hbox(homogeneous bool, spacing int) HBox {
-	return HBox{gtk_hbox_new(homogeneous, spacing)}
-}
-
 // This function is blocking!
 pub fn main() {
 	gtk_main()

@@ -8,9 +8,9 @@ fn main() {
 	window.set_default_size(500, 500)
 	window.set_border_width(10)
 
-	hbox := gtk.new_hbox(false, 10)
-	vbox_left := gtk.new_vbox(false, 10)
-	vbox_right := gtk.new_vbox(false, 10)
+	hbox := gtk.new_hbox(10)
+	vbox_left := gtk.new_vbox(10)
+	vbox_right := gtk.new_vbox(10)
 	
 	hbox.pack_start(vbox_left, true, true, 0)
 	hbox.pack_start(vbox_right, true, true, 0)

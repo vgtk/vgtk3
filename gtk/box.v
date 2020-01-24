@@ -15,6 +15,14 @@ pub fn new_box(orientation Orientation, space int) Box {
 	return Box{gtk_box_new(orientation, space)}
 }
 
+pub fn new_hbox(space int) Box {
+	return new_box(.horizontal, space)
+}
+
+pub fn new_vbox(space int) Box {
+	return new_box(.vertical, space)
+}
+
 pub fn (b Box) pack_start(child Widgeter, expand bool, fill bool, padding u32) {
 	child_ := child.get_gtk_widget()
 	gtk_box_pack_start(b.c, child_, expand, fill, padding)

@@ -24,7 +24,7 @@ fn win_destroy(win gtk.Window, data voidptr) {
 
 fn main() {
 	window := gtk.new_window()
-	vbox := gtk.new_vbox(false, 20)
+	vbox := gtk.new_vbox(20)
 	align := gtk.new_alignment(0, 0, 1, 1)
 	btn := gtk.new_button_with_label("VGTK3 is ..")
 	btn2 := gtk.new_button_with_label("I'm useless!")
@@ -38,7 +38,7 @@ fn main() {
 	menu.append(quit)
 	bar.append(file_me)
 
-	hbox := gtk.new_hbox(false, 20)
+	hbox := gtk.new_hbox(20)
 	entry := gtk.new_entry()
 
 	btn.set_size(200, 100)
