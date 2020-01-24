@@ -1,7 +1,6 @@
 module gdk
 
 import glib
-import gtk
 
 pub struct C.GdkWindow
 struct C.GdkWindowAttr
@@ -83,7 +82,7 @@ fn C.gdk_window_rain_size(&GdkGeometry, int /* GdkWindowHints */, int, int, &int
 fn C.gdk_window_beep(&GdkWindow) 
 fn C.gdk_window_get_scale_factor(&GdkWindow) int
 // fn C.gdk_window_set_opaque_region(&GdkWindow, &cairo_region_t) 
-fn C.gdk_window_create_gl_context(&GdkWindow, &GError) &GdkGLContext
+// fn C.gdk_window_create_gl_context(&GdkWindow, &GError) &GdkGLContext
 // fn C.gdk_window_mark_paint_from_clip(&GdkWindow, &cairo_t)
 // fn C.gdk_window_get_clip_region(&GdkWindow) &cairo_region_t
 fn C.gdk_window_begin_paint_rect(&GdkWindow, &GdkRectangle) 

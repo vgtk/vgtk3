@@ -176,10 +176,82 @@ fn C.gtk_button_get_event_window(&Widget) &GdkWindow
 
 /* ENTRY */
 fn C.gtk_entry_new() &Widget
+// fn C.gtk_entry_new_with_buffer(&GtkEntryBuffer) &Widget
+// fn C.gtk_entry_get_buffer(&Widget) &GtkEntryBuffer
+// fn C.gtk_entry_set_buffer(&Widget, &GtkEntryBuffer)
+fn C.gtk_entry_set_text(&Widget, &charptr) 
 fn C.gtk_entry_get_text(&Widget) charptr
-fn C.gtk_entry_set_invisible_char(&Widget, rune)
-fn C.gtk_entry_set_text(&Widget, charptr)
-fn C.gtk_entry_set_visibility(&Widget, bool)
+fn C.gtk_entry_get_text_length(&Widget) u32
+// fn C.gtk_entry_get_text_area(&Widget, &GdkRectangle) 
+fn C.gtk_entry_set_visibility(&Widget, bool) 
+fn C.gtk_entry_set_invisible_char(&Widget, byte /* gunichar */) 
+fn C.gtk_entry_unset_invisible_char(&Widget) 
+fn C.gtk_entry_set_max_length(&Widget, int) 
+fn C.gtk_entry_get_activates_default(&Widget) bool
+fn C.gtk_entry_get_has_frame(&Widget) bool
+fn C.gtk_entry_get_inner_border(&Widget) 
+fn C.gtk_entry_get_width_chars(&Widget) int
+fn C.gtk_entry_get_max_width_chars(&Widget) int
+fn C.gtk_entry_set_activates_default(&Widget, bool) 
+fn C.gtk_entry_set_has_frame(&Widget, bool) 
+// fn C.gtk_entry_set_inner_border(&Widget, &GtkBorder) 
+fn C.gtk_entry_set_width_chars(&Widget, int) 
+fn C.gtk_entry_set_max_width_chars(&Widget, int) 
+fn C.gtk_entry_get_invisible_char(&Widget) rune /* gunichar */
+fn C.gtk_entry_set_alignment(&Widget, f32) 
+fn C.gtk_entry_get_alignment(&Widget) f32
+fn C.gtk_entry_set_placeholder_text(&Widget, &charptr) 
+fn C.gtk_entry_get_placeholder_text(&Widget) charptr
+fn C.gtk_entry_set_overwrite_mode(&Widget, bool) 
+fn C.gtk_entry_get_overwrite_mode(&Widget) bool
+// fn C.gtk_entry_get_layout(&Widget) &PangoLayout
+fn C.gtk_entry_get_layout_offsets(&Widget, &int, &int) 
+fn C.gtk_entry_layout_index_to_text_index(&Widget, int) int
+fn C.gtk_entry_text_index_to_layout_index(&Widget, int) int
+// fn C.gtk_entry_set_attributes(&Widget, &PangoAttrList) 
+// fn C.gtk_entry_get_attributes(&Widget) &PangoAttrList
+fn C.gtk_entry_get_max_length(&Widget) int
+fn C.gtk_entry_get_visibility(&Widget) bool
+// fn C.gtk_entry_set_completion(&Widget, &GtkEntryCompletion) 
+// fn C.gtk_entry_get_completion(&Widget) &GtkEntryCompletion
+fn C.gtk_entry_set_cursor_hadjustment(&Widget, &GtkAdjustment) 
+fn C.gtk_entry_get_cursor_hadjustment(&Widget) &GtkAdjustment
+fn C.gtk_entry_set_progress_fraction(&Widget, f64) 
+fn C.gtk_entry_get_progress_fraction(&Widget) f64
+fn C.gtk_entry_set_progress_pulse_step(&Widget, f64) 
+fn C.gtk_entry_get_progress_pulse_step(&Widget) f64
+fn C.gtk_entry_progress_pulse(&Widget) 
+// fn C.gtk_entry_im_context_filter_keypress(&Widget, &GdkEventKey) bool
+fn C.gtk_entry_reset_im_context(&Widget) 
+// fn C.gtk_entry_get_tabs(&Widget) &PangoTabArray
+// fn C.gtk_entry_set_tabs(&Widget, &PangoTabArray) 
+// fn C.gtk_entry_set_icon_from_pixbuf(&Widget, GtkEntryIconPosition, &GdkPixbuf) 
+fn C.gtk_entry_set_icon_from_stock(&Widget, int /* GtkEntryIconPosition */, &charptr) 
+fn C.gtk_entry_set_icon_from_icon_name(&Widget, int /* GtkEntryIconPosition */, &charptr) 
+// fn C.gtk_entry_set_icon_from_gicon(&Widget, int /* GtkEntryIconPosition */, &GIcon) 
+fn C.gtk_entry_get_icon_storage_type(&Widget, int /* GtkEntryIconPosition */) int /* GtkImageType */
+// fn C.gtk_entry_get_icon_pixbuf(&Widget, int /* GtkEntryIconPosition */) &GdkPixbuf
+fn C.gtk_entry_get_icon_stock(&Widget, int /* GtkEntryIconPosition */) charptr
+fn C.gtk_entry_get_icon_name(&Widget, int /* GtkEntryIconPosition */) charptr
+// fn C.gtk_entry_get_icon_gicon(&Widget, int /* GtkEntryIconPosition */) &GIcon
+fn C.gtk_entry_set_icon_activatable(&Widget, int /* GtkEntryIconPosition */, bool) 
+fn C.gtk_entry_get_icon_activatable(&Widget, int /* GtkEntryIconPosition */) bool
+fn C.gtk_entry_set_icon_sensitive(&Widget, int /* GtkEntryIconPosition */, bool) 
+fn C.gtk_entry_get_icon_sensitive(&Widget, int /* GtkEntryIconPosition */) bool
+fn C.gtk_entry_get_icon_at_pos(&Widget, int, int) int
+fn C.gtk_entry_set_icon_tooltip_text(&Widget, int /* GtkEntryIconPosition */, &charptr) 
+fn C.gtk_entry_get_icon_tooltip_text(&Widget, int /* GtkEntryIconPosition */) charptr
+fn C.gtk_entry_set_icon_tooltip_markup(&Widget, int /* GtkEntryIconPosition */, &charptr) 
+fn C.gtk_entry_get_icon_tooltip_markup(&Widget, int /* GtkEntryIconPosition */) charptr
+// fn C.gtk_entry_set_icon_drag_source(&Widget, int /* GtkEntryIconPosition */, &GtkTargetList, GdkDragAction) 
+fn C.gtk_entry_get_current_icon_drag_source(&Widget) int
+// fn C.gtk_entry_get_icon_area(&Widget, int /* GtkEntryIconPosition */, &GdkRectangle) 
+fn C.gtk_entry_set_input_purpose(&Widget, int /* GtkInputPurpose */) 
+fn C.gtk_entry_get_input_purpose(&Widget) int /* GtkInputPurpose */
+fn C.gtk_entry_set_input_hints(&Widget, int /* GtkInputHints */) 
+fn C.gtk_entry_get_input_hints(&Widget) int /* GtkInputHints */
+fn C.gtk_entry_grab_focus_without_selecting(&Widget) 
+
 
 /* ACCEL MAP */
 fn C.gtk_accel_map_add_entry(charptr, int, int)
