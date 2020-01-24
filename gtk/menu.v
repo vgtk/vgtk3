@@ -1,15 +1,15 @@
 module gtk
 
 pub struct MenuBar {
-	widget &Widget
+	widget &GtkWidget
 }
 
 pub struct Menu {
-	widget &Widget
+	widget &GtkWidget
 }
 
 pub struct MenuItem {
-	widget &Widget
+	widget &GtkWidget
 }
 
 /// CONSTRUCTORS
@@ -30,7 +30,7 @@ pub fn new_menu_item() MenuItem {
 }
 
 // MENUBAR
-pub fn (mb &MenuBar) get_gtk_widget() &Widget {
+pub fn (mb &MenuBar) get_gtk_widget() &GtkWidget {
 	return mb.widget
 }
 
@@ -39,7 +39,7 @@ pub fn (mb MenuBar) append(item MenuItem) {
 }
 
 // MENU
-pub fn (m &Menu) get_gtk_widget() &Widget {
+pub fn (m &Menu) get_gtk_widget() &GtkWidget {
 	return m.widget
 }
 
@@ -80,6 +80,6 @@ pub fn (mi MenuItem) get_accel_path() string {
 	return tos3(gtk_menu_item_get_accel_path(mi.widget))
 }
 
-pub fn (mi &MenuItem) get_gtk_widget() &Widget {
+pub fn (mi &MenuItem) get_gtk_widget() &GtkWidget {
 	return mi.widget
 }

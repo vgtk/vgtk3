@@ -1,7 +1,7 @@
 module gtk
 
 pub struct Grid {
-	c &Widget
+	c &GtkWidget
 }
 
 pub fn new_grid() Grid {
@@ -19,7 +19,7 @@ pub fn (g Grid) attach_next_to(child Widgeter, sibling Widgeter, side Position, 
 	gtk_grid_attach_next_to(g.c, child_, sibling_, side, width, height)
 }
 
-pub fn (g Grid) get_child_at(left, top int) &Widget {
+pub fn (g Grid) get_child_at(left, top int) &GtkWidget {
 	return gtk_grid_get_child_at(g.c, left, top)
 }
 
@@ -116,6 +116,6 @@ pub fn (g Grid) get_orientation() Orientation {
 
 /* IMPLEMENTING Widgeter */
 
-pub fn (g &Grid) get_gtk_widget() &Widget {
+pub fn (g &Grid) get_gtk_widget() &GtkWidget {
 	return g.c
 }

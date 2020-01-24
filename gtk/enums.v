@@ -71,3 +71,14 @@ pub enum Position {
 	top
 	bottom
 }
+
+pub enum PackType {
+	start
+	end
+}
+
+pub enum BaselinePosition {
+	top
+	center
+	bottom
+}

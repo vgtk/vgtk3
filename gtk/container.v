@@ -1,12 +1,10 @@
 module gtk
 
-pub type ResizeMode int
-
-const (
-	RESIZE_PARENT    = ResizeMode(C.GTK_RESIZE_PARENT)
-	RESIZE_QUEUE     = ResizeMode(C.GTK_RESIZE_QUEUE)
-	RESIZE_IMMEDIATE = ResizeMode(C.GTK_RESIZE_IMMEDIATE)
-)
+pub enum ResizeMode {
+	parent
+	queue
+	immediate
+}
 
 pub struct Container {
 	c &GtkContainer

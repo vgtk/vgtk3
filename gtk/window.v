@@ -2,29 +2,25 @@ module gtk
 
 import gdk
 
-pub type WindowType int
+pub enum WindowType {
+	toplevel
+	popup
+}
 
-pub const (
-	WINDOW_TOPLEVEL = WindowType(C.GTK_WINDOW_TOPLEVEL)
-	WINDOW_POPUP    = WindowType(C.GTK_WINDOW_POPUP)
-)
-
-pub type WindowPosition int
-
-pub const (
-	WIN_POS_NONE             = WindowPosition(C.GTK_WIN_POS_NONE)
-	WIN_POS_CENTER           = WindowPosition(C.GTK_WIN_POS_CENTER)
-	WIN_POS_MOUSE            = WindowPosition(C.GTK_WIN_POS_MOUSE)
-	WIN_POS_CENTER_ALWAYS    = WindowPosition(C.GTK_WIN_POS_CENTER_ALWAYS)
-	WIN_POS_CENTER_ON_PARENT = WindowPosition(C.GTK_WIN_POS_CENTER_ON_PARENT)
-)
+pub enum WindowPosition {
+	@none
+	center
+	mouse
+	center_always
+	center_on_parent
+}
 
 pub struct Window {
-	widget &Widget
+	widget &GtkWidget
 }
 
 pub fn new_window() Window {
-	return Window{gtk_window_new(WINDOW_TOPLEVEL)}
+	return Window{gtk_window_new(C.GTK_WINDOW_TOPLEVEL)}
 }
 
 pub fn new_window_type(type_ WindowType) Window {
@@ -104,7 +100,7 @@ pub fn (w Window) get_default_size() (int, int) {
 }
 
 pub fn (w Window) center() {
-	gtk_window_set_position(w.widget, WIN_POS_CENTER)
+	gtk_window_set_position(w.widget, WindowPosition.center)
 }
 
 pub fn (w Window) get_title() string {
@@ -250,7 +246,7 @@ pub fn (w Window) set_titlebar(widget Widgeter) {
 	gtk_window_set_titlebar(w.widget, wgt)
 }
 
-pub fn (w Window) get_titlebar() &Widget {
+pub fn (w Window) get_titlebar() &GtkWidget {
 	return gtk_window_get_titlebar(w.widget)
 }
 
@@ -281,7 +277,7 @@ pub fn (w Window) show_all() {
 
 /* IMPLEMENTING WIDGETER */
 
-pub fn (w &Window) get_gtk_widget() &Widget {
+pub fn (w &Window) get_gtk_widget() &GtkWidget {
 	return w.widget
 }
 

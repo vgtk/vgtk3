@@ -1,7 +1,7 @@
 module gtk
 
 pub struct Label {
-	widget &Widget
+	widget &GtkWidget
 }
 
 pub fn new_label(label string) Label {
@@ -147,7 +147,7 @@ pub fn (l Label) get_lines() int {
 	return gtk_label_get_lines(l.widget)
 }
 
-pub fn (l Label) get_mnemonic_widget() &Widget {
+pub fn (l Label) get_mnemonic_widget() &GtkWidget {
 	return gtk_label_get_mnemonic_widget(l.widget)
 }
 
@@ -207,6 +207,6 @@ pub fn (l Label) get_track_visited_links() bool {
 	return gtk_label_get_track_visited_links(l.widget)
 }
 
-pub fn (l &Label) get_gtk_widget() &Widget {
+pub fn (l &Label) get_gtk_widget() &GtkWidget {
 	return l.widget
 }

@@ -1,46 +1,40 @@
 module gtk
 
-pub type EntryIconPosition int
+pub enum EntryIconPosition {
+	primary
+  	secondary
+}
 
-pub const (
-	ENTRY_ICON_PRIMARY   = EntryIconPosition(C.GTK_ENTRY_ICON_PRIMARY)
-	ENTRY_ICON_SECONDARY = EntryIconPosition(C.GTK_ENTRY_ICON_SECONDARY)
-)
+pub enum InputPurpose {
+	free_form
+	alpha
+	digits
+	number
+	phone
+	url
+	email
+	name
+	password
+	pin
+}
 
-pub type InputPurpose int
-
-pub const (
-	INPUT_PURPOSE_FREE_FORM = InputPurpose(C.GTK_INPUT_PURPOSE_FREE_FORM)
-	INPUT_PURPOSE_ALPHA     = InputPurpose(C.GTK_INPUT_PURPOSE_ALPHA)
-	INPUT_PURPOSE_DIGITS    = InputPurpose(C.GTK_INPUT_PURPOSE_DIGITS)
-	INPUT_PURPOSE_NUMBER    = InputPurpose(C.GTK_INPUT_PURPOSE_NUMBER)
-	INPUT_PURPOSE_PHONE     = InputPurpose(C.GTK_INPUT_PURPOSE_PHONE)
-	INPUT_PURPOSE_URL       = InputPurpose(C.GTK_INPUT_PURPOSE_URL)
-	INPUT_PURPOSE_EMAIL     = InputPurpose(C.GTK_INPUT_PURPOSE_EMAIL)
-	INPUT_PURPOSE_NAME      = InputPurpose(C.GTK_INPUT_PURPOSE_NAME)
-	INPUT_PURPOSE_PASSWORD  = InputPurpose(C.GTK_INPUT_PURPOSE_PASSWORD)
-	INPUT_PURPOSE_PIN       = InputPurpose(C.GTK_INPUT_PURPOSE_PIN)
-)
-
-pub type InputHints int
-
-pub const (
-	INPUT_HINT_NONE                = InputHints(C.GTK_INPUT_HINT_NONE)
-	INPUT_HINT_SPELLCHECK          = InputHints(C.GTK_INPUT_HINT_SPELLCHECK)
-	INPUT_HINT_NO_SPELLCHECK       = InputHints(C.GTK_INPUT_HINT_NO_SPELLCHECK)
-	INPUT_HINT_WORD_COMPLETION     = InputHints(C.GTK_INPUT_HINT_WORD_COMPLETION)
-	INPUT_HINT_LOWERCASE           = InputHints(C.GTK_INPUT_HINT_LOWERCASE)
-	INPUT_HINT_UPPERCASE_CHARS     = InputHints(C.GTK_INPUT_HINT_UPPERCASE_CHARS)
-	INPUT_HINT_UPPERCASE_WORDS     = InputHints(C.GTK_INPUT_HINT_UPPERCASE_WORDS)
-	INPUT_HINT_UPPERCASE_SENTENCES = InputHints(C.GTK_INPUT_HINT_UPPERCASE_SENTENCES)
-	INPUT_HINT_INHIBIT_OSK         = InputHints(C.GTK_INPUT_HINT_INHIBIT_OSK)
-	INPUT_HINT_VERTICAL_WRITING    = InputHints(C.GTK_INPUT_HINT_VERTICAL_WRITING)
-	INPUT_HINT_EMOJI               = InputHints(C.GTK_INPUT_HINT_EMOJI)
-	INPUT_HINT_NO_EMOJI            = InputHints(C.GTK_INPUT_HINT_NO_EMOJI)
-)
+pub enum InputHints {
+	@none               = 0
+	spellcheck          = 1
+	no_spellcheck       = 2
+	word_completion     = 4
+	lowercase           = 8
+	uppercase_chars     = 16
+	uppercase_words     = 32
+	uppercase_sentences = 64
+	inhibit_osk         = 128
+	vertical_writing    = 256
+	emoji               = 512
+	no_emoji            = 1024
+}
 
 pub struct Entry {
-	widget &Widget
+	widget &GtkWidget
 }
 
 pub fn new_entry() Entry {
@@ -322,7 +316,7 @@ pub fn (e Entry) show_all() {
 
 /* IMPLEMENTING Widgeter */
 
-pub fn (e &Entry) get_gtk_widget() &Widget {
+pub fn (e &Entry) get_gtk_widget() &GtkWidget {
 	return e.widget
 }
 

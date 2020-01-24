@@ -3,7 +3,7 @@ module gtk
 import gdk
 
 pub struct Button {
-	widget &Widget
+	widget &GtkWidget
 }
 
 pub fn new_button() Button {
@@ -67,7 +67,7 @@ pub fn (b Button) set_image(img_widget Widgeter) {
 	gtk_button_set_image(b.widget, wi)
 }
 
-pub fn (b Button) get_image() Widget {
+pub fn (b Button) get_image() GtkWidget {
 	return gtk_button_get_image(b.widget)
 }
 
@@ -100,7 +100,7 @@ pub fn (b &Button) show() {
 
 /* IMPLEMENTING Widgeter */
 
-pub fn (b &Button) get_gtk_widget() &Widget {
+pub fn (b &Button) get_gtk_widget() &GtkWidget {
 	return b.widget
 }
 

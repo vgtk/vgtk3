@@ -1,7 +1,7 @@
 module gtk
 
 pub struct Box {
-	c &Widget
+	c &GtkWidget
 }
 
 pub struct BoxQuery {
@@ -77,7 +77,7 @@ pub fn (b Box) set_baseline_position(position BaselinePosition) {
 	gtk_box_set_baseline_position(b.c, position)
 }
 
-pub fn (b Box) get_center_widget() &Widget {
+pub fn (b Box) get_center_widget() &GtkWidget {
 	return gtk_box_get_center_widget(b.c)
 }
 
@@ -110,6 +110,6 @@ pub fn (b Box) get_orientation() Orientation {
 
 /* IMPLEMENTING Widgeter */
 
-pub fn (b &Box) get_gtk_widget() &Widget {
+pub fn (b &Box) get_gtk_widget() &GtkWidget {
 	return b.c
 }

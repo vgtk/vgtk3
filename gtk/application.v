@@ -1,29 +1,24 @@
 module gtk
 
-pub type ApplicationFlags int
+pub enum ApplicationFlags {
+	flags_none
+	is_service
+	is_launcher
+	handles_open
+	handles_command_line
+	send_environment
+	non_unique
+	can_override_app_id
+	allow_replacement
+	replace
+}
 
-// TODO: Get the original value from C and move this to GIO
-pub const (
-	APPLICATION_FLAGS_NONE           = ApplicationFlags(0) /* C.G_APPLICATION_FLAGS_NONE */
-	APPLICATION_IS_SERVICE           = ApplicationFlags(1) /* C.G_APPLICATION_IS_SERVICE */
-	APPLICATION_IS_LAUNCHER          = ApplicationFlags(2) /* C.G_APPLICATION_IS_LAUNCHER */
-	APPLICATION_HANDLES_OPEN         = ApplicationFlags(3) /* C.G_APPLICATION_HANDLES_OPEN */
-	APPLICATION_HANDLES_COMMAND_LINE = ApplicationFlags(4) /* C.G_APPLICATION_HANDLES_COMMAND_LINE */
-	APPLICATION_SEND_ENVIRONMENT     = ApplicationFlags(5) /* C.G_APPLICATION_SEND_ENVIRONMENT */
-	APPLICATION_NON_UNIQUE           = ApplicationFlags(6) /* C.G_APPLICATION_NON_UNIQUE */
-	APPLICATION_CAN_OVERRIDE_APP_ID  = ApplicationFlags(7) /* C.G_APPLICATION_CAN_OVERRIDE_APP_ID */
-	APPLICATION_ALLOW_REPLACEMENT    = ApplicationFlags(8) /* C.G_APPLICATION_ALLOW_REPLACEMENT */
-	APPLICATION_REPLACE              = ApplicationFlags(9) /* C.G_APPLICATION_REPLACE */
-)
-
-pub type ApplicationInhibitFlags int
-
-pub const (
-	APPLICATION_INHIBIT_LOGOUT  = ApplicationInhibitFlags(C.GTK_APPLICATION_INHIBIT_LOGOUT)
-	APPLICATION_INHIBIT_SWITCH  = ApplicationInhibitFlags(C.GTK_APPLICATION_INHIBIT_SWITCH)
-	APPLICATION_INHIBIT_SUSPEND = ApplicationInhibitFlags(C.GTK_APPLICATION_INHIBIT_SUSPEND)
-	APPLICATION_INHIBIT_IDLE    = ApplicationInhibitFlags(C.GTK_APPLICATION_INHIBIT_IDLE)
-)
+pub enum ApplicationInhibitFlags {
+	logout  = 1
+	@switch = 2
+	suspend = 4
+	idle    = 8
+}
 
 pub struct Application {
 	c &GtkApplication

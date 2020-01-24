@@ -94,7 +94,7 @@ fn on_btn_icon_clicked(button gtk.Button, data voidptr) {
 	value := button.get_label()
 	cond := value == 'Icon'
 	icon_name := if cond { '' } else { 'system-search-symbolic' }
-	this.entry.set_icon_from_icon_name(gtk.ENTRY_ICON_PRIMARY, icon_name)
+	this.entry.set_icon_from_icon_name(.primary, icon_name)
 	if cond {
 		button.set_label('No icon')
 	} else {
