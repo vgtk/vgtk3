@@ -1,0 +1,10 @@
+{
+    "name": "vgtk3",
+    "version": "0.3.0",
+    "author": ["Don Alfons Nisnoni <donnisnoni.tid3@gmail.com>", "zenith391 <pawalamde@gmail.com>"],
+    "repo": "https://github.com/vgtk/vgtk3",
+    "sources": [
+        "https://vpkg-project.github.io/registry/"
+    ],
+    "dependencies": []
+}
