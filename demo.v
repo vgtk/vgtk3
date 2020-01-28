@@ -25,7 +25,7 @@ fn win_destroy(win gtk.Window, data voidptr) {
 fn main() {
 	window := gtk.new_window()
 	vbox := gtk.new_vbox(20)
-	align := gtk.new_alignment(0, 0, 1, 1)
+	vbox.set_halign(.fill)
 	btn := gtk.new_button_with_label("VGTK3 is ..")
 	btn2 := gtk.new_button_with_label("I'm useless!")
 	alert := gtk.new_button_with_label("Alert!")
@@ -39,6 +39,7 @@ fn main() {
 	bar.append(file_me)
 
 	hbox := gtk.new_hbox(20)
+	hbox.set_halign(.end)
 	entry := gtk.new_entry()
 
 	btn.set_size(200, 100)
@@ -61,11 +62,10 @@ fn main() {
 	vbox.add(btn)
 	vbox.add(btn2)
 	vbox.add(hbox)
-	align.add(vbox)
 
-	window.set_position(gtk.WIN_POS_CENTER)
+	window.set_position(.center)
 	window.set_title("I'm made with V")
-	window.add(align)
+	window.add(vbox)
 	window.on("destroy", win_destroy, 0)
 	window.show_all()
 	gtk.main()
