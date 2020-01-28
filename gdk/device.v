@@ -13,3 +13,11 @@ const (
 	SOURCE_TRACKPOINT  = InputSource(C.GDK_SOURCE_TRACKPOINT)
 	SOURCE_TABLET_PAD  = InputSource(C.GDK_SOURCE_TABLET_PAD)
 )
+
+pub struct Device {
+	c &GdkDevice
+}
+
+pub fn (d &Device) get_cptr() &GdkDevice {
+	return d.c
+}

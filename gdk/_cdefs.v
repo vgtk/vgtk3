@@ -9,7 +9,7 @@ struct C.GdkDisplay
 struct C.GdkScreen
 struct C.GdkVisual
 struct C.GdkRectangle
-struct C.GdkDevice
+pub struct C.GdkDevice
 struct C.GdkEvent
 struct C.GdkGeometry
 struct C.GdkGLContext
