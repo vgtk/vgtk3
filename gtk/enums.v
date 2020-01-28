@@ -20,30 +20,30 @@ pub enum IconSize {
 pub enum ReliefStyle {
 	normal
 	half
-	@none
+	_none
 }
 
 pub enum TextDirection {
-	@none
+	_none
 	ltr
 	rtl
 }
 
 pub enum StateFlags {
-	normal
-	active
-	prelight
-	selected
-	insensitive
-	inconsistent
-	focused
-	backdrop
-	dir_ltr
-	dir_rtl
-	link
-	visited
-	checked
-	drop_active
+	normal       = 0
+	active       = 1
+	prelight     = 2
+	selected     = 4
+	insensitive  = 8
+	inconsistent = 16
+	focused      = 32
+	backdrop     = 64
+	dir_ltr      = 128
+	dir_rtl      = 256
+	link         = 512
+	visited      = 1024
+	checked      = 2048
+	drop_active  = 4096
 }
 
 pub enum SizeRequestMode {
@@ -81,4 +81,13 @@ pub enum BaselinePosition {
 	top
 	center
 	bottom
+}
+
+pub enum DirectionType {
+	tab_forward
+	tab_backward
+	up
+	down
+	left
+	right
 }
