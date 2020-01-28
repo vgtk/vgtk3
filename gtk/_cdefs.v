@@ -15,6 +15,8 @@ struct C.GValue
 struct C.GParamSpec
 struct C.GObjectClass
 struct C.GtkContainerClass
+struct C.GtkAllocation
+struct C.GtkStyleContext
 pub struct C.GError
 
 /* MAIN */
@@ -142,6 +144,25 @@ fn C.gtk_window_set_has_user_ref_count(&GtkWidget, bool)
 fn C.gtk_window_set_titlebar(&GtkWidget, &GtkWidget)
 fn C.gtk_window_get_titlebar(&GtkWidget) &GtkWidget
 fn C.gtk_window_set_interactive_debugging(bool)
+
+/* DIALOG */
+fn C.gtk_dialog_new() &GtkWidget
+fn C.gtk_dialog_new_with_buttons(&charptr, &GtkWindow, int /* GtkDialogFlags */, charptr, int) &GtkWidget
+fn C.gtk_dialog_run(&GtkWidget) int
+fn C.gtk_dialog_response(&GtkWidget, int) 
+fn C.gtk_dialog_add_button(&GtkWidget, &charptr, int) &GtkWidget
+fn C.gtk_dialog_add_buttons(&GtkWidget, &charptr) 
+fn C.gtk_dialog_add_action_widget(&GtkWidget, &GtkWidget, int) 
+fn C.gtk_dialog_set_default_response(&GtkWidget, int) 
+fn C.gtk_dialog_set_response_sensitive(&GtkWidget, int, bool) 
+fn C.gtk_dialog_get_response_for_widget(&GtkWidget, &GtkWidget) int
+fn C.gtk_dialog_get_widget_for_response(&GtkWidget, int) &GtkWidget
+fn C.gtk_dialog_get_action_area(&GtkWidget) &GtkWidget
+fn C.gtk_dialog_get_content_area(&GtkWidget) &GtkWidget
+fn C.gtk_dialog_get_header_bar(&GtkWidget) &GtkWidget
+fn C.gtk_dialog_set_alternative_button_order(&GtkWidget, int) 
+fn C.gtk_dialog_set_alternative_button_order_from_array(&GtkWidget, int, &int) 
+
 
 /* BUTTON */
 fn C.gtk_button_new() &GtkWidget
@@ -499,7 +520,7 @@ fn C.gtk_widget_add_events(&GtkWidget, int)
 // fn C.gtk_widget_set_device_enabled(&GtkWidget, &GdkDevice, bool)
 // fn C.gtk_widget_get_device_enabled(&GtkWidget, &GdkDevice) bool
 fn C.gtk_widget_get_toplevel(&GtkWidget) &GtkWidget
-// fn C.gtk_widget_get_ancestor(&GtkWidget, GType) &GtkWidget
+fn C.gtk_widget_get_ancestor(&GtkWidget, GType) &GtkWidget
 // fn C.gtk_widget_get_visual(&GtkWidget) &GdkVisual
 // fn C.gtk_widget_set_visual(&GtkWidget, &GdkVisual)
 fn C.gtk_widget_get_pointer(&GtkWidget, &int, &int)
@@ -559,13 +580,13 @@ fn C.gtk_widget_mnemonic_activate(&GtkWidget, bool) bool
 // fn C.gtk_widget_send_expose(&GtkWidget, &GdkEvent) int
 // fn C.gtk_widget_send_focus_change(&GtkWidget, &GdkEvent) bool
 fn C.gtk_widget_style_get(&GtkWidget, charptr)
-// fn C.gtk_widget_style_get_property(&GtkWidget, charptr, &GValue)
+fn C.gtk_widget_style_get_property(&GtkWidget, charptr, &GValue)
 // fn C.gtk_widget_style_get_valist(&GtkWidget, charptr, va_list)
 // fn C.gtk_widget_style_attach(&GtkWidget)
 // fn C.gtk_widget_class_set_accessible_type(&WidgetClass, GType)
 // fn C.gtk_widget_class_set_accessible_role(&WidgetClass, AtkRole)
 // fn C.gtk_widget_get_accessible(&GtkWidget) &AtkObject
-// fn C.gtk_widget_child_focus(&GtkWidget, int) bool
+fn C.gtk_widget_child_focus(&GtkWidget, int) bool
 fn C.gtk_widget_child_notify(&GtkWidget, charptr)
 fn C.gtk_widget_freeze_child_notify(&GtkWidget)
 fn C.gtk_widget_get_child_visible(&GtkWidget) bool
@@ -597,19 +618,19 @@ fn C.gtk_widget_set_tooltip_window(&GtkWidget, &GtkWidget)
 fn C.gtk_widget_get_has_tooltip(&GtkWidget) bool
 fn C.gtk_widget_set_has_tooltip(&GtkWidget, bool)
 fn C.gtk_widget_trigger_tooltip_query(&GtkWidget)
-// fn C.gtk_widget_get_window(&GtkWidget) &GdkWindow
-// fn C.gtk_widget_register_window(&GtkWidget, &GdkWindow)
-// fn C.gtk_widget_unregister_window(&GtkWidget, &GdkWindow)
+fn C.gtk_widget_get_window(&GtkWidget) &GdkWindow
+fn C.gtk_widget_register_window(&GtkWidget, &GdkWindow)
+fn C.gtk_widget_unregister_window(&GtkWidget, &GdkWindow)
 // fn C.gtk_cairo_should_draw_window(&cairo_t, &GdkWindow) bool
 // fn C.gtk_cairo_transform_to_window(&cairo_t, &GtkWidget, &GdkWindow)
 fn C.gtk_widget_get_allocated_width(&GtkWidget) int
 fn C.gtk_widget_get_allocated_height(&GtkWidget) int
-// fn C.gtk_widget_get_allocation(&GtkWidget, &GtkAllocation)
-// fn C.gtk_widget_set_allocation(&GtkWidget, &GtkAllocation)
+fn C.gtk_widget_get_allocation(&GtkWidget, &GtkAllocation)
+fn C.gtk_widget_set_allocation(&GtkWidget, &GtkAllocation)
 fn C.gtk_widget_get_allocated_baseline(&GtkWidget) int
-// fn C.gtk_widget_get_allocated_size(&GtkWidget, &GtkAllocation, &int)
-// fn C.gtk_widget_get_clip(&GtkWidget, &GtkAllocation)
-// fn C.gtk_widget_set_clip(&GtkWidget, &GtkAllocation)
+fn C.gtk_widget_get_allocated_size(&GtkWidget, &GtkAllocation, &int)
+fn C.gtk_widget_get_clip(&GtkWidget, &GtkAllocation)
+fn C.gtk_widget_set_clip(&GtkWidget, &GtkAllocation)
 fn C.gtk_widget_get_app_paintable(&GtkWidget) bool
 fn C.gtk_widget_get_can_default(&GtkWidget) bool
 fn C.gtk_widget_set_can_default(&GtkWidget, bool)
@@ -636,7 +657,7 @@ fn C.gtk_widget_has_grab(&GtkWidget) bool
 fn C.gtk_widget_has_rc_style(&GtkWidget) bool
 fn C.gtk_widget_is_drawable(&GtkWidget) bool
 fn C.gtk_widget_is_toplevel(&GtkWidget) bool
-// fn C.gtk_widget_set_window(&GtkWidget, &GdkWindow)
+fn C.gtk_widget_set_window(&GtkWidget, &GdkWindow)
 fn C.gtk_widget_set_receives_default(&GtkWidget, bool)
 fn C.gtk_widget_get_receives_default(&GtkWidget) bool
 fn C.gtk_widget_set_support_multidevice(&GtkWidget, bool)
@@ -646,15 +667,15 @@ fn C.gtk_widget_get_realized(&GtkWidget) bool
 fn C.gtk_widget_set_mapped(&GtkWidget, bool)
 fn C.gtk_widget_get_mapped(&GtkWidget) bool
 // fn C.gtk_widget_get_requisition(&GtkWidget, &GtkRequisition) 
-// fn C.gtk_widget_device_is_shadowed(&GtkWidget, &GdkDevice) bool
-// fn C.gtk_widget_get_modifier_mask(&GtkWidget, GdkModifierIntent) GdkModifierType
-// fn C.gtk_widget_insert_action_group(&GtkWidget, charptr, &GActionGroup)
+fn C.gtk_widget_device_is_shadowed(&GtkWidget, &GdkDevice) bool
+fn C.gtk_widget_get_modifier_mask(&GtkWidget, int /* GdkModifierIntent */) int /* GdkModifierType */
+fn C.gtk_widget_insert_action_group(&GtkWidget, charptr, &GActionGroup)
 fn C.gtk_widget_get_opacity(&GtkWidget) f64
 fn C.gtk_widget_set_opacity(&GtkWidget, f64)
-fn C.gtk_widget_list_action_prefixes(&GtkWidget)
-// fn C.gtk_widget_get_action_group(&GtkWidget, charptr) &GActionGroup
-// fn C.gtk_widget_get_path(&GtkWidget) &WidgetPath
-// fn C.gtk_widget_get_style_context(&GtkWidget) &GtkStyleContext
+fn C.gtk_widget_list_action_prefixes(&GtkWidget) &charptr
+fn C.gtk_widget_get_action_group(&GtkWidget, charptr) &GActionGroup
+fn C.gtk_widget_get_path(&GtkWidget) &GtkWidgetPath
+fn C.gtk_widget_get_style_context(&GtkWidget) &GtkStyleContext
 fn C.gtk_widget_reset_style(&GtkWidget)
 // fn C.gtk_widget_class_get_css_name(&WidgetClass)
 // fn C.gtk_widget_class_set_css_name(&WidgetClass, charptr)
@@ -727,3 +748,4 @@ fn C.gtk_orientable_set_orientation(&GtkWidget, int /* GtkOrientation */)
 // OTHERS
 fn C.g_intern_static_string(charptr) charptr
 fn C.g_signal_connect(&GtkWidget, charptr, voidptr, voidptr) u32
+fn C.g_strfreev(&charptr)
