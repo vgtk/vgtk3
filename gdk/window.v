@@ -97,7 +97,41 @@ const (
 	HINT_USER_SIZE   = WindowHints(C.GDK_HINT_USER_SIZE)
 )
 
+pub enum ModifierType {
+	shift_mask    = 1
+	lock_mask     = 2
+	control_mask  = 4
+	mod1_mask     = 8
+	mod2_mask     = 16
+	mod3_mask     = 32
+	mod4_mask     = 64
+	mod5_mask     = 128
+	button1_mask  = 256
+	button2_mask  = 512
+	button3_mask  = 1024
+	button4_mask  = 2048
+	button5_mask  = 4096
+	super_mask    = 67108864
+	hyper_mask    = 134217728
+	meta_mask     = 268435456
+	release_mask  = 1073741824
+	modifier_mask = 0x5c001fff
+}
+
+pub enum ModifierIntent {
+	primary_accelerator
+	context_menu
+	extend_selection
+	modify_selection
+	no_text_input
+	shift_group
+	default_mod_mask
+}
 
 pub struct Window {
 	c &GdkWindow
+}
+
+pub fn (w Window) get_cptr() &GdkWindow {
+	return w.c
 }
