@@ -7,7 +7,7 @@ fn main() {
 	window.set_title('Button Demo')
 	window.set_border_width(10)
 
-	hbox := gtk.new_hbox(false, 6)
+	hbox := gtk.new_hbox(6)
 	window.add(hbox)
 
 	mut button := gtk.new_button_with_label('Click me')
