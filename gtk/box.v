@@ -86,6 +86,23 @@ pub fn (b Box) set_center_widget(widget Widgeter) {
 	gtk_box_set_center_widget(b.c, wgt)
 }
 
+/* INHERITED FROM Widget */
+pub fn (b Box) get_halign() Align {
+	return gtk_widget_get_halign(b.c)
+}
+
+pub fn (b Box) set_halign(align Align) {
+	gtk_widget_set_halign(b.c, align)
+}
+
+pub fn (b Box) get_valign() Align {
+	return gtk_widget_get_valign(b.c)
+}
+
+pub fn (b Box) set_valign(align Align) {
+	gtk_widget_set_valign(b.c, align)
+}
+
 /* INHERITED FROM CONTAINER */
 
 pub fn (b Box) add(widget Widgeter) {
