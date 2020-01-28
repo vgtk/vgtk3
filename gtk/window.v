@@ -8,7 +8,7 @@ pub enum WindowType {
 }
 
 pub enum WindowPosition {
-	@none
+	_none
 	center
 	mouse
 	center_always
