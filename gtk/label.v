@@ -210,3 +210,9 @@ pub fn (l Label) get_track_visited_links() bool {
 pub fn (l &Label) get_gtk_widget() &GtkWidget {
 	return l.widget
 }
+
+/* IMPLEMENTING Widget */
+
+pub fn (l Label) show() {
+	gtk_widget_show(l.widget)
+}
