@@ -1,15 +1,20 @@
 # Executables files
 demo
 demo.exe
+label_demo
+box_demo
+entry_demo
+grid_demo
+button_demo
+dialog_demo
 
 # Temporary files
 gtk.tmp.c
 fns.txt
 gtk.vh
+*.o
 
 # Tests
 tests/gtk
 tests/*_test
 output.v
-label_demo
-box_demo
