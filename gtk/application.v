@@ -35,7 +35,8 @@ pub fn (app Application) new_window() Window {
 }
 
 pub fn (app &Application) add_window(window Window) {
-	gtk_application_add_window(app.c, window.widget)
+	window_ := window.get_gtk_widget()
+	gtk_application_add_window(app.c, window_)
 }
 
 /* INHERITED FROM GAPPLICATION */
