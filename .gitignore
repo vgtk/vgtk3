@@ -18,3 +18,4 @@ gtk.vh
 tests/gtk
 tests/*_test
 output.v
+vscode_vlang_linter_file.v
