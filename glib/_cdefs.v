@@ -1,6 +1,17 @@
 module glib
 
-pub struct C.GList
+#include <gmodule.h>
+
+pub struct C.GList {
+	data voidptr
+	next &GList
+	prev &GList
+}
+pub struct C.GSList {
+	data voidptr
+	next &GSList
+	prev &GSList	
+}
 pub struct C.GArray {
   data charptr
   len u32
@@ -68,3 +79,72 @@ fn C.g_string_up(&GString) &GString
 fn C.g_string_down(&GString) &GString
 fn C.g_string_hash(&GString) u32
 fn C.g_string_equal(&GString, &GString) bool
+
+/* GSList */
+fn C.g_slist_alloc() &GSList
+fn C.g_slist_append(&GSList, voidptr) &GSList
+fn C.g_slist_prepend(&GSList, voidptr) &GSList
+fn C.g_slist_insert(&GSList, voidptr, int) &GSList
+fn C.g_slist_insert_before(&GSList, &GSList, voidptr) &GSList
+fn C.g_slist_insert_sorted(&GSList, voidptr, int) &GSList
+fn C.g_slist_remove(&GSList, voidptr) &GSList
+fn C.g_slist_remove_link(&GSList, &GSList) &GSList
+fn C.g_slist_delete_link(&GSList, &GSList) &GSList
+fn C.g_slist_remove_all(&GSList, voidptr) &GSList
+fn C.g_slist_free(&GSList)
+fn C.g_slist_free_full(&GSList, voidptr)
+fn C.g_slist_free_1(&GSList)
+fn C.g_slist_length(&GSList) u32
+fn C.g_slist_copy(&GSList) &GSList
+fn C.g_slist_copy_deep(&GSList, int, voidptr) &GSList
+fn C.g_slist_reverse(&GSList) &GSList
+fn C.g_slist_insert_sorted_with_data(&GSList, voidptr, int, voidptr) &GSList
+fn C.g_slist_sort(&GSList, int) &GSList
+fn C.g_slist_sort_with_data(&GSList, int, voidptr) &GSList
+fn C.g_slist_concat(&GSList, &GSList) &GSList
+fn C.g_slist_foreach(&GSList, int, voidptr)
+fn C.g_slist_last(&GSList) &GSList
+fn C.g_slist_next(&GSList) &GSList
+fn C.g_slist_nth(&GSList, u32) &GSList
+fn C.g_slist_nth_data(&GSList, u32) voidptr
+fn C.g_slist_find(&GSList, voidptr) &GSList
+fn C.g_slist_find_custom(&GSList, voidptr, int) &GSList
+fn C.g_slist_position(&GSList, &GSList) int
+fn C.g_slist_index(&GSList, voidptr) int
+
+/* GList */
+fn C.g_list_append(&GList, voidptr) &GList
+fn C.g_list_prepend(&GList, voidptr) &GList
+fn C.g_list_insert(&GList, voidptr, int) &GList
+fn C.g_list_insert_before(&GList, &GList, voidptr) &GList
+fn C.g_list_insert_before_link(&GList, GList, GList) &GList
+fn C.g_list_insert_sorted(&GList, voidptr, int) &GList
+fn C.g_list_remove(&GList, voidptr) &GList
+fn C.g_list_remove_link(&GList, &GList) &GList
+fn C.g_list_delete_link(&GList, &GList) &GList
+fn C.g_list_remove_all(&GList, voidptr) &GList
+fn C.g_list_free(&GList)
+fn C.g_list_free_full(&GList, voidptr)
+fn C.g_list_alloc() &GList
+fn C.g_list_free_1(&GList)
+fn C.g_list_length(&GList) u32
+fn C.g_list_copy(&GList) &GList
+fn C.g_list_copy_deep(&GList, int, voidptr) &GList
+fn C.g_list_reverse(&GList) &GList
+fn C.g_list_sort(&GList, int) &GList
+fn C.g_list_insert_sorted_with_data(&GList, voidptr, int, voidptr) &GList
+fn C.g_list_sort_with_data(&GList, int, voidptr) &GList
+fn C.g_list_concat(&GList, &GList) &GList
+fn C.g_list_foreach(&GList, voidptr, voidptr)
+fn C.g_list_first(&GList) &GList
+fn C.g_list_last(&GList) &GList
+fn C.g_list_previous(&GList) &GList
+fn C.g_list_next(&GList) &GList
+fn C.g_list_nth(&GList, u32) &GList
+fn C.g_list_nth_data(&GList, u32) voidptr
+fn C.g_list_nth_prev(&GList, u32) &GList
+fn C.g_list_find(&GList, voidptr) &GList
+fn C.g_list_find_custom(&GList, voidptr, int) &GList
+fn C.g_list_position(&GList, &GList) int
+fn C.g_list_index(&GList, voidptr) int
+fn C.g_list_free1(&GList)
