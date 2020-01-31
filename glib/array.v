@@ -71,16 +71,16 @@ pub fn (a Array) remove_range(index u32, len u32) Array {
 	return Array{cptr}
 }
 
-pub fn (a Array) sort(compare_fn CompareFn) {
+pub fn (a Array) sort(compare_fn CompareFunc) {
 	g_array_sort(a.c, compare_fn)
 }
 
-pub fn (a Array) sort_with_data(compare_fn CompareDataFn, user_data voidptr) {
+pub fn (a Array) sort_with_data(compare_fn CompareDataFunc, user_data voidptr) {
 	g_array_sort_with_data(a.c, compare_fn, user_data)
 }
 
 // TODO:
-// pub fn (a Array) binary_search(target voidptr, compare_fn CompareFn, out_match_index &u32) bool {
+// pub fn (a Array) binary_search(target voidptr, compare_fn CompareFunc, out_match_index &u32) bool {
 // 	return g_array_binary_search(a.c, target, compare_fn, out_match_index)
 // }
 
