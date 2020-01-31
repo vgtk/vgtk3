@@ -35,3 +35,9 @@ This is mostly why the functions aren't auto-generated, as this doesn't create a
   - [ ] Window
 - GIO
   - [ ] File
+- GLIB
+  - [ ] Array
+  - [ ] List
+  - [ ] Node
+  - [ ] SList
+  - [ ] String
