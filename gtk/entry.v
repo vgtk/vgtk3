@@ -19,7 +19,7 @@ pub enum InputPurpose {
 }
 
 pub enum InputHints {
-	@none               = 0
+	_none               = 0
 	spellcheck          = 1
 	no_spellcheck       = 2
 	word_completion     = 4
@@ -250,7 +250,6 @@ pub fn (e Entry) set_icon_tooltip_text(icon_pos EntryIconPosition, tooltip strin
 
 pub fn (e Entry) get_icon_tooltip_text(icon_pos EntryIconPosition) string {
 	res := gtk_entry_get_icon_tooltip_text(e.widget, icon_pos)
-	defer { free(&res) }
 	return tos3(res)
 }
 
@@ -263,7 +262,6 @@ pub fn (e Entry) set_icon_tooltip_markup(icon_pos EntryIconPosition, tooltip str
 
 pub fn (e Entry) get_icon_tooltip_markup(icon_pos EntryIconPosition) string {
 	res := gtk_entry_get_icon_tooltip_markup(e.widget, icon_pos)
-	defer { free(&res) }
 	return tos3(res)
 }
 
