@@ -10,14 +10,18 @@ struct C.GtkContainer
 struct C.GtkWidget
 struct C.GtkWidgetPath
 struct C.GtkAdjustment
-struct C.GType
-struct C.GValue
-struct C.GParamSpec
-struct C.GObjectClass
 struct C.GtkContainerClass
 struct C.GtkAllocation
 struct C.GtkStyleContext
-pub struct C.GError
+struct C.GtkRequisition
+struct C.GtkRequestedSize
+struct C.GtkBuilder
+struct C.GtkBuildable
+struct C.GtkShortcutsWindow
+struct C.GtkActionable
+struct C.GtkMessageType
+struct C.GtkDialogFlags
+struct C.GtkButtonsType
 
 /* MAIN */
 fn C.gtk_init(int, voidptr)
@@ -384,23 +388,25 @@ fn C.gtk_application_inhibit(&GtkApplication, &GtkWindow, int/* GtkApplicationIn
 fn C.gtk_application_uninhibit(&GtkApplication, u32) 
 fn C.gtk_application_is_inhibited(&GtkApplication, int/* GtkApplicationInhibitFlags */) bool
 fn C.gtk_application_prefers_app_menu(&GtkApplication) bool
-// fn C.gtk_application_get_app_menu(&GtkApplication) &GMenuModel
-// fn C.gtk_application_set_app_menu(&GtkApplication, &GMenuModel) 
-// fn C.gtk_application_get_menubar(&GtkApplication) &GMenuModel
-// fn C.gtk_application_set_menubar(&GtkApplication, &GMenuModel) 
-// fn C.gtk_application_get_menu_by_id(&GtkApplication, charptr) &GMenu
-// fn C.gtk_application_add_accelerator(&GtkApplication, charptr, &charptr, &GVariant) 
-// fn C.gtk_application_remove_accelerator(&GtkApplication, &charptr, &GVariant) 
+fn C.gtk_application_get_app_menu(&GtkApplication) &GMenuModel
+fn C.gtk_application_set_app_menu(&GtkApplication, &GMenuModel) 
+fn C.gtk_application_get_menubar(&GtkApplication) &GMenuModel
+fn C.gtk_application_set_menubar(&GtkApplication, &GMenuModel) 
+fn C.gtk_application_get_menu_by_id(&GtkApplication, charptr) &GMenu
+fn C.gtk_application_add_accelerator(&GtkApplication, charptr, &charptr, &GVariant) 
+fn C.gtk_application_remove_accelerator(&GtkApplication, &charptr, &GVariant) 
 fn C.gtk_application_list_action_descriptions(&GtkApplication) &charptr
 fn C.gtk_application_get_accels_for_action(&GtkApplication, &charptr) &charptr
 fn C.gtk_application_set_accels_for_action(&GtkApplication, &charptr, &charptr) 
 fn C.gtk_application_get_actions_for_accel(&GtkApplication, &charptr) &charptr
 
-
+/* ApplicationWindow */
 fn C.gtk_application_window_new(&GtkApplication) &GtkWidget
 fn C.gtk_application_window_set_show_menubar(&GtkApplicationWindow, bool)
 fn C.gtk_application_window_get_show_menubar(&GtkApplicationWindow) bool
 fn C.gtk_application_window_get_id(&GtkApplicationWindow) u32
+fn C.gtk_application_window_set_help_overlay(&GtkApplicationWindow, &GtkShortcutsWindow)
+fn C.gtk_application_window_get_help_overlay(&GtkApplicationWindow) &GtkShortcutsWindow
 
 /* CONTAINER */
 fn C.gtk_container_add(&GtkContainer, &GtkWidget) 
@@ -688,8 +694,8 @@ fn C.gtk_widget_get_preferred_height_for_width(&GtkWidget, int, &int, &int)
 fn C.gtk_widget_get_preferred_width_for_height(&GtkWidget, int, &int, &int)
 fn C.gtk_widget_get_preferred_height_and_baseline_for_width(&GtkWidget, int, &int, &int, &int, &int)
 fn C.gtk_widget_get_request_mode(&GtkWidget) int
-// fn C.gtk_widget_get_preferred_size(&GtkWidget, &GtkRequisition, &GtkRequisition)
-// fn C.gtk_distribute_natural_allocation(int, u32, &GtkRequestedSize) int
+fn C.gtk_widget_get_preferred_size(&GtkWidget, &GtkRequisition, &GtkRequisition)
+fn C.gtk_distribute_natural_allocation(int, u32, &GtkRequestedSize) int
 fn C.gtk_widget_get_halign(&GtkWidget) int
 fn C.gtk_widget_set_halign(&GtkWidget, int)
 fn C.gtk_widget_get_valign(&GtkWidget) int
@@ -730,6 +736,45 @@ fn C.gtk_widget_init_template(&GtkWidget)
 // fn C.gtk_widget_class_bind_template_child_internal_privatewidget_class(TypeName) #define
 // fn C.gtk_widget_class_bind_template_callbackwidget_class() #define
 
+fn C.gtk_builder_new() &GtkBuilder
+fn C.gtk_builder_new_from_file(&charptr) &GtkBuilder
+fn C.gtk_builder_new_from_resource(&charptr) &GtkBuilder
+fn C.gtk_builder_new_from_string(&charptr, int) &GtkBuilder
+fn C.gtk_builder_add_callback_symbol(&GtkBuilder, &charptr, voidptr /* GCallback */)
+// fn C.gtk_builder_add_callback_symbols(&GtkBuilder, &charptr, GCallback)
+// fn C.gtk_builder_lookup_callback_symbol(&GtkBuilder, &charptr) GCallback
+fn C.gtk_builder_add_from_file(&GtkBuilder, &charptr, &GError) u32
+fn C.gtk_builder_add_from_resource(&GtkBuilder, &charptr, &GError) u32
+fn C.gtk_builder_add_from_string(&GtkBuilder, &charptr, int, &GError) u32
+fn C.gtk_builder_add_objects_from_file(&GtkBuilder, &charptr, &charptr, &GError) u32
+fn C.gtk_builder_add_objects_from_string(&GtkBuilder, &charptr, int, &charptr, &GError) u32
+fn C.gtk_builder_add_objects_from_resource(&GtkBuilder, &charptr, &charptr, &GError) u32
+fn C.gtk_builder_extend_with_template(&GtkBuilder, &GtkWidget, GType, &charptr, int, &GError) u32
+fn C.gtk_builder_get_object(&GtkBuilder, &charptr) &GObject
+fn C.gtk_builder_get_objects(&GtkBuilder) &GSList
+fn C.gtk_builder_expose_object(&GtkBuilder, &charptr, &GObject)
+fn C.gtk_builder_connect_signals(&GtkBuilder, voidptr)
+// fn C.gtk_builder_connect_signals_full(&GtkBuilder, GtkBuilderConnectFunc, voidptr)
+fn C.gtk_builder_set_translation_domain(&GtkBuilder, &charptr)
+fn C.gtk_builder_get_translation_domain(&GtkBuilder) charptr
+fn C.gtk_builder_set_application(&GtkBuilder, &GtkApplication)
+fn C.gtk_builder_get_application(&GtkBuilder) &GtkApplication
+fn C.gtk_builder_get_type_from_name(&GtkBuilder, &char) GType
+fn C.gtk_builder_value_from_string(&GtkBuilder, &GParamSpec, &charptr, &GValue, &GError) bool
+fn C.gtk_builder_value_from_string_type(&GtkBuilder, GType, &charptr, &GValue, &GError) bool
+
+/* Buildable */
+fn C.gtk_buildable_set_name(&GtkBuildable, &charptr)
+fn C.gtk_buildable_get_name(&GtkBuildable) charptr
+fn C.gtk_buildable_add_child(&GtkBuildable, &GtkBuilder, &GObject, &charptr)
+fn C.gtk_buildable_set_buildable_property(&GtkBuildable, &GtkBuilder, &charptr, &GValue)
+fn C.gtk_buildable_construct_child(&GtkBuildable, &GtkBuilder, &charptr) &GObject
+fn C.gtk_buildable_custom_tag_start(&GtkBuildable, &GtkBuilder, &GObject, &charptr, &GMarkupParser, &voidptr) bool
+fn C.gtk_buildable_custom_tag_end(&GtkBuildable, &GtkBuilder, &GObject, &charptr, &voidptr)
+fn C.gtk_buildable_custom_finished(&GtkBuildable, &GtkBuilder, &GObject, &charptr, voidptr)
+fn C.gtk_buildable_parser_finished(&GtkBuildable, &GtkBuilder)
+fn C.gtk_buildable_get_internal_child(&GtkBuildable, &GtkBuilder, &charptr) &GObject
+
 /* GOBJECT */
 fn C.g_object_unref(voidptr)
 
@@ -737,13 +782,28 @@ fn C.g_object_unref(voidptr)
 fn C.gtk_orientable_get_orientation(&GtkWidget) int /* GtkOrientation */
 fn C.gtk_orientable_set_orientation(&GtkWidget, int /* GtkOrientation */)
 
-/* ACTIONABLE */
-// fn C.gtk_actionable_get_action_name(&GtkWidget) charptr
-// fn C.gtk_actionable_set_action_name(&GtkWidget, &charptr)
-// fn C.gtk_actionable_get_action_target_value(&GtkWidget) &GVariant
-// fn C.gtk_actionable_set_action_target_value(&GtkWidget, &GVariant)
-// fn C.gtk_actionable_set_action_target(&GtkWidget, &charptr)
-// fn C.gtk_actionable_set_detailed_action_name(&GtkWidget, &charptr)
+/* Requisition */
+fn C.gtk_requisition_new() &GtkRequisition
+fn C.gtk_requisition_copy(&GtkRequisition) &GtkRequisition
+fn C.gtk_requisition_free(&GtkRequisition)
+
+/* Actionable */
+fn C.gtk_actionable_get_action_name(&GtkWidget) charptr
+fn C.gtk_actionable_set_action_name(&GtkWidget, &charptr)
+fn C.gtk_actionable_get_action_target_value(&GtkWidget) &GVariant
+fn C.gtk_actionable_set_action_target_value(&GtkWidget, &GVariant)
+fn C.gtk_actionable_set_action_target(&GtkWidget, &charptr)
+fn C.gtk_actionable_set_detailed_action_name(&GtkWidget, &charptr)
+
+/* MessageDialog */
+fn C.gtk_message_dialog_new(&GtkWindow, GtkDialogFlags, GtkMessageType, GtkButtonsType, charptr) &GtkWidget
+fn C.gtk_message_dialog_new_with_markup(&GtkWindow, GtkDialogFlags, GtkMessageType, GtkButtonsType, charptr) &GtkWidget
+fn C.gtk_message_dialog_set_markup(&GtkWidget, charptr)
+fn C.gtk_message_dialog_set_image(&GtkWidget, &GtkWidget)
+fn C.gtk_message_dialog_get_image(&GtkWidget) &GtkWidget
+fn C.gtk_message_dialog_format_secondary_text(&GtkWidget, charptr)
+fn C.gtk_message_dialog_format_secondary_markup(&GtkWidget, charptr)
+fn C.gtk_message_dialog_get_message_area(&GtkWidget) &GtkWidget
 
 // OTHERS
 fn C.g_intern_static_string(charptr) charptr
