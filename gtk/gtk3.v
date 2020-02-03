@@ -28,3 +28,13 @@ pub fn add_custom_signal(widget Widgeter, name string, handler fn(&GtkWidget,Wid
 	w := widget.get_gtk_widget() // must be stored in a variable to avoid some weird C compilation bugs
 	return g_signal_connect(w, name.str, handler, voidptr(&widget))
 }
+
+/* Castings */
+
+pub fn to_widget(widget voidptr) Widget {
+	return &Widget(widget)
+}
+
+pub fn to_window(widget voidptr) Window {
+	return &Window(widget)
+}
