@@ -11,6 +11,12 @@ pub enum Align {
 	baseline
 }
 
+pub enum SizeRequestMode {
+	height_for_width = 0
+	width_for_height = 1
+	constant_size    = 2 
+}
+
 pub struct Widget {
 	c &GtkWidget
 }
@@ -625,6 +631,146 @@ pub fn (w Widget) reset_style() {
 	gtk_widget_reset_style(w.c)
 }
 
-pub fn (w &GtkWidget) to_window() Window {
-	return Window{w}
+pub fn (w Widget) get_preferred_width() (int, int) {
+	minimum_width := 0
+	natural_width := 0
+	gtk_widget_get_preferred_width(w.c, &minimum_width, &natural_width)
+	return minimum_width, natural_width
+}
+
+pub fn (w Widget) get_preferred_height_for_width(width int) (int, int) {
+	minimum_height := 0
+	natural_height := 0
+	gtk_widget_get_preferred_height_for_width(w.c, width, &minimum_height, &natural_height)
+	return minimum_height, natural_height
+}
+
+pub fn (w Widget) get_preferred_width_for_height(height int) (int, int){
+	minimum_width := 0
+	natural_width := 0
+	gtk_widget_get_preferred_width_for_height(w.c, height, &minimum_width, &natural_width)
+	return minimum_width, natural_width
+}
+
+pub fn (w Widget) get_preferred_height_and_baseline_for_width(width int) (int, int, int, int) {
+	minimum_height := 0
+	natural_height := 0
+	minimum_baseline := 0
+	natural_baseline := 0
+	gtk_widget_get_preferred_height_and_baseline_for_width(w.c, width, &minimum_height, &natural_height, &minimum_baseline, &natural_baseline)
+	return minimum_height, natural_height, minimum_baseline, natural_baseline
+}
+
+pub fn (w Widget) get_request_mode() SizeRequestMode {
+	return gtk_widget_get_request_mode(w.c)
+}
+
+pub fn (w Widget) get_preferred_size() (Requisition, Requisition) {
+	minimum_size := &GtkRequisition(0)
+	natural_size := &GtkRequisition(0)
+	gtk_widget_get_preferred_size(w.c, &minimum_size, &natural_size)
+	return Requisition{minimum_size}, Requisition{natural_size}
+}
+
+pub fn (w Widget) get_halign() Align {
+	return gtk_widget_get_halign(w.c)
+}
+
+pub fn (w Widget) set_halign(align Align) {
+	gtk_widget_set_halign(w.c, align)
+}
+
+pub fn (w Widget) get_valign() Align {
+	return gtk_widget_get_valign(w.c)
+}
+
+pub fn (w Widget) get_valign_with_baseline() Align {
+	return gtk_widget_get_valign_with_baseline(w.c)
+}
+
+pub fn (w Widget) set_valign(align Align) {
+	gtk_widget_set_valign(w.c, align)
+}
+
+pub fn (w Widget) get_margin_start() int {
+	return gtk_widget_get_margin_start(w.c)
+}
+
+pub fn (w Widget) set_margin_start(margin int) {
+	gtk_widget_set_margin_start(w.c, margin)
+}
+
+pub fn (w Widget) get_margin_end() int {
+	return gtk_widget_get_margin_end(w.c)
+}
+
+pub fn (w Widget) set_margin_end(margin int) {
+	gtk_widget_set_margin_end(w.c, margin)
+}
+
+pub fn (w Widget) get_margin_top() int {
+	return gtk_widget_get_margin_top(w.c)
+}
+
+pub fn (w Widget) set_margin_top(margin int) {
+	gtk_widget_set_margin_top(w.c, margin)
+}
+
+pub fn (w Widget) get_margin_bottom() int {
+	return gtk_widget_get_margin_bottom(w.c)
+}
+
+pub fn (w Widget) set_margin_bottom(margin int) {
+	gtk_widget_set_margin_bottom(w.c, margin)
+}
+
+pub fn (w Widget) get_hexpand() bool {
+	return gtk_widget_get_hexpand(w.c)
+}
+
+pub fn (w Widget) set_hexpand(hexpand bool) {
+	gtk_widget_set_hexpand(w.c, hexpand)
+}
+
+pub fn (w Widget) get_hexpand_set() bool {
+	return gtk_widget_get_hexpand_set(w.c)
+}
+
+pub fn (w Widget) set_hexpand_set(set bool) {
+	gtk_widget_set_hexpand_set(w.c, set)
+}
+
+pub fn (w Widget) get_vexpand() bool {
+	return gtk_widget_get_vexpand(w.c)
+}
+
+pub fn (w Widget) set_vexpand(expand bool) {
+	gtk_widget_set_vexpand(w.c, expand)
+}
+
+pub fn (w Widget) get_vexpand_set() bool {
+	return gtk_widget_get_vexpand_set(w.c)
+}
+
+pub fn (w Widget) set_vexpand_set(set bool) {
+	gtk_widget_set_vexpand_set(w.c, set)
+}
+
+pub fn (w Widget) queue_compute_expand() {
+	gtk_widget_queue_compute_expand(w.c)
+}
+
+pub fn (w Widget) compute_expand(orientation Orientation) bool {
+	return gtk_widget_compute_expand(w.c, orientation)
+}
+
+pub fn (w Widget) init_template() {
+	gtk_widget_init_template(w.c)
+}
+
+// TODO: GObject * gtk_widget_get_template_child (GtkWidget *widget, GType widget_type, const gchar *name)
+
+// Functions
+fn distribute_natural_allocation(extra_space int, n_requested_sizes u32, sizes RequestedSize) int {
+	return gtk_distribute_natural_allocation(extra_space, n_requested_sizes, sizes.c)
 }
