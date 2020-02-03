@@ -21,6 +21,19 @@ pub struct C.GString {
 	len int
 }
 pub struct C.GBytes
+pub struct C.GError {
+pub:
+	message charptr
+}
+pub struct C.GType
+pub struct C.GValue
+pub struct C.GParamSpec
+pub struct C.GObjectClass
+pub struct C.GObject
+pub struct C.GMarkupParser
+pub struct C.GMenuModel
+pub struct C.GMenu
+pub struct C.GVariant
 
 /* Arrays */
 fn C.g_array_new(bool, bool, u32) &GArray
