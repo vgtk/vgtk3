@@ -19,6 +19,7 @@ struct C.GdkColor
 struct C.GdkRGBA
 struct C.GdkCursor
 pub struct C.GdkModifierType
+pub struct C.GdkPixbuf
 
 /*  GDK WINDOW */
 fn C.gdk_window_new(&GdkWindow, &GdkWindowAttr, int) &GdkWindow
