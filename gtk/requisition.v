@@ -12,6 +12,7 @@ pub fn (r Requisition) copy() Requisition {
 	return Requisition{gtk_requisition_copy(r.c)}
 }
 
+[unsafe_fn]
 pub fn (r Requisition) free() {
 	gtk_requisition_free(r.c)
 }
