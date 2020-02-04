@@ -1,7 +1,5 @@
 module gdk
 
-import glib
-
 pub struct C.GdkWindow
 struct C.GdkWindowAttr
 struct C.GdkGravity
@@ -20,7 +18,7 @@ struct C.GdkFilterFunc
 struct C.GdkColor
 struct C.GdkRGBA
 struct C.GdkCursor
-struct C.GdkModifierType
+pub struct C.GdkModifierType
 
 /*  GDK WINDOW */
 fn C.gdk_window_new(&GdkWindow, &GdkWindowAttr, int) &GdkWindow
