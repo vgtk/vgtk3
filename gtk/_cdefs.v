@@ -22,6 +22,10 @@ struct C.GtkActionable
 struct C.GtkMessageType
 struct C.GtkDialogFlags
 struct C.GtkButtonsType
+struct C.GtkAccelMap
+struct C.GtkAccelKey
+struct C.GtkAboutDialog
+struct C.GtkLicense
 
 /* MAIN */
 fn C.gtk_init(int, voidptr)
@@ -279,7 +283,20 @@ fn C.gtk_entry_grab_focus_without_selecting(&GtkWidget)
 
 
 /* ACCEL MAP */
-fn C.gtk_accel_map_add_entry(charptr, int, int)
+fn C.gtk_accel_map_add_entry(charptr, u32, GdkModifierType)
+fn C.gtk_accel_map_lookup_entry(charptr, &GtkAccelKey) bool
+fn C.gtk_accel_map_change_entry(charptr, u32, GdkModifierType, bool) bool
+fn C.gtk_accel_map_load(charptr)
+fn C.gtk_accel_map_save(charptr)
+fn C.gtk_accel_map_foreach(voidptr, voidptr)
+fn C.gtk_accel_map_load_fd(int)
+fn C.gtk_accel_map_save_fd(int)
+fn C.gtk_accel_map_load_scanner(&GScanner)
+fn C.gtk_accel_map_add_filter(charptr)
+fn C.gtk_accel_map_foreach_unfiltered(voidptr, voidptr)
+fn C.gtk_accel_map_get() &GtkAccelMap
+fn C.gtk_accel_map_lock_path(charptr)
+fn C.gtk_accel_map_unlock_path(charptr)
 
 /* EDITABLE */
 fn C.gtk_editable_set_editable(&GtkWidget, bool)
@@ -775,6 +792,41 @@ fn C.gtk_buildable_custom_finished(&GtkBuildable, &GtkBuilder, &GObject, &charpt
 fn C.gtk_buildable_parser_finished(&GtkBuildable, &GtkBuilder)
 fn C.gtk_buildable_get_internal_child(&GtkBuildable, &GtkBuilder, &charptr) &GObject
 
+/* AboutDialog */
+fn C.gtk_about_dialog_new() &GtkWidget
+fn C.gtk_about_dialog_get_program_name(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_program_name(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_version(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_version(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_copyright(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_copyright(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_comments(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_comments(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_license(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_license(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_wrap_license(&GtkAboutDialog) bool
+fn C.gtk_about_dialog_set_wrap_license(&GtkAboutDialog, bool)
+fn C.gtk_about_dialog_get_license_type(&GtkAboutDialog) GtkLicense
+fn C.gtk_about_dialog_set_license_type(&GtkAboutDialog, GtkLicense)
+fn C.gtk_about_dialog_get_website(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_website(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_website_label(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_website_label(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_authors(&GtkAboutDialog) &charptr
+fn C.gtk_about_dialog_set_authors(&GtkAboutDialog, &charptr)
+fn C.gtk_about_dialog_get_artists(&GtkAboutDialog) &charptr
+fn C.gtk_about_dialog_set_artists(&GtkAboutDialog, &charptr)
+fn C.gtk_about_dialog_get_documenters(&GtkAboutDialog) &charptr
+fn C.gtk_about_dialog_set_documenters(&GtkAboutDialog, &charptr)
+fn C.gtk_about_dialog_get_translator_credits(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_translator_credits(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_get_logo(&GtkAboutDialog) &GdkPixbuf
+fn C.gtk_about_dialog_set_logo(&GtkAboutDialog, &GdkPixbuf)
+fn C.gtk_about_dialog_get_logo_icon_name(&GtkAboutDialog) charptr
+fn C.gtk_about_dialog_set_logo_icon_name(&GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_add_credit_section(&GtkAboutDialog, charptr, &charptr)
+fn C.gtk_show_about_dialog(&GtkWidget, charptr)
+
 /* GOBJECT */
 fn C.g_object_unref(voidptr)
 
@@ -804,6 +856,8 @@ fn C.gtk_message_dialog_get_image(&GtkWidget) &GtkWidget
 fn C.gtk_message_dialog_format_secondary_text(&GtkWidget, charptr)
 fn C.gtk_message_dialog_format_secondary_markup(&GtkWidget, charptr)
 fn C.gtk_message_dialog_get_message_area(&GtkWidget) &GtkWidget
+
+fn C._() charptr
 
 // OTHERS
 fn C.g_intern_static_string(charptr) charptr

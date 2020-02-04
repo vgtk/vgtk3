@@ -34,6 +34,7 @@ pub struct C.GMarkupParser
 pub struct C.GMenuModel
 pub struct C.GMenu
 pub struct C.GVariant
+pub struct C.GScanner
 
 /* Arrays */
 fn C.g_array_new(bool, bool, u32) &GArray
