@@ -10,6 +10,6 @@ fn carray_string_to_array_string(arr &charptr) []string {
         arr_str << tos_clone(elem)
         i++
     }
-    free(arr)
+    unsafe { free(arr) }
     return arr_str
 }
