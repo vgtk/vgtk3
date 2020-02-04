@@ -41,3 +41,13 @@ This is mostly why the functions aren't auto-generated, as this doesn't create a
   - [ ] Node
   - [ ] SList
   - [ ] String
+
+## Minimum supported versions
+
+- Gdk 3.16
+- GLib 2.44
+- Gtk 3.16
+
+## License
+
+Gtk is available under the MIT License, please refer to it.
