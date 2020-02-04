@@ -1,6 +1,8 @@
 # VGTK3
 
-Last stable version: **0.3.0**
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/vgtk/vgtk3/CI/master?style=flat-square)
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/vgtk/vgtk3?style=flat-square)
 
 ## What is this
 
