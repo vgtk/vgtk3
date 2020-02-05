@@ -1,8 +1,7 @@
-# VGTK3
+# VGTK3 ![GitHub Workflow Status (branch)][workflow-badge] ![GitHub release (latest by date)][release-badge]
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/vgtk/vgtk3/CI/master?style=flat-square)
-
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/vgtk/vgtk3?style=flat-square)
+[workflow-badge]: https://img.shields.io/github/workflow/status/vgtk/vgtk3/CI/master?style=flat-square
+[release-badge]: https://img.shields.io/github/v/release/vgtk/vgtk3?style=flat-square
 
 ## What is this
 
