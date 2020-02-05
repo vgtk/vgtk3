@@ -162,3 +162,6 @@ fn C.g_list_find_custom(&GList, voidptr, int) &GList
 fn C.g_list_position(&GList, &GList) int
 fn C.g_list_index(&GList, voidptr) int
 fn C.g_list_free1(&GList)
+
+fn C.g_timeout_add(u32, voidptr, voidptr) u32
+fn C.g_source_remove(u32) bool
