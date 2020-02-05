@@ -1,15 +1,17 @@
 module main
 
 import gtk
+import glib
 
 struct EntryDemo {
 mut:
 	window       gtk.Window
 	entry        gtk.Entry
-	btn_editable gtk.Button
-	btn_visible  gtk.Button
-	btn_pulse    gtk.Button
-	btn_icon     gtk.Button
+	btn_editable gtk.CheckButton
+	btn_visible  gtk.CheckButton
+	btn_pulse    gtk.CheckButton
+	btn_icon     gtk.CheckButton
+	timeout_id   u32
 }
 
 fn new_entry_demo() EntryDemo {
@@ -29,56 +31,53 @@ fn new_entry_demo() EntryDemo {
 	hbox := gtk.new_box(.horizontal, 6)
 	vbox.pack_start(hbox, true, true, 0)
 
-	// TODO: Using CheckButton instead
-	btn_editable := this.btn_editable = gtk.new_button_with_label('Editable')
-	btn_editable.on('clicked', on_btn_editable_clicked, this)
+	btn_editable := this.btn_editable = gtk.new_check_button_with_label('Editable')
+	btn_editable.on('toggled', on_btn_editable_toggled, this)
 	hbox.pack_start(btn_editable, true, true, 0)
 
-	// TODO: Using CheckButton instead
-	btn_visible := this.btn_visible = gtk.new_button_with_label('Visible')
-	btn_visible.on('clicked', on_btn_visible_clicked, this)
+	btn_visible := this.btn_visible = gtk.new_check_button_with_label('Visible')
+	btn_visible.on('toggled', on_btn_visible_toggled, this)
 	hbox.pack_start(btn_visible, true, true, 0)
 
-	// TODO: Using CheckButton instead
-	btn_pulse := this.btn_pulse = gtk.new_button_with_label('Pulse')
-	btn_pulse.on('clicked', on_btn_pulse_clicked, this)
+	btn_pulse := this.btn_pulse = gtk.new_check_button_with_label('Pulse')
+	btn_pulse.on('toggled', on_btn_pulse_clicked, this)
 	hbox.pack_start(btn_pulse, true, true, 0)
 
-	// TODO: Using CheckButton instead
-	btn_icon := this.btn_icon = gtk.new_button_with_label('No icon')
-	btn_icon.on('clicked', on_btn_icon_clicked, this)
+	btn_icon := this.btn_icon = gtk.new_check_button_with_label('Icon')
+	btn_icon.on('toggled', on_btn_icon_clicked, this)
 	hbox.pack_start(btn_icon, true, true, 0)
 
 	return this
 }
 
-fn on_btn_editable_clicked(button gtk.Button, data voidptr) {
+fn on_btn_editable_toggled(button gtk.CheckButton, data voidptr) {
 	this := &EntryDemo(data)
-	value := button.get_label()
-	cond := value == 'Editable'
-	this.entry.set_editable(!cond)
-	if cond {
-		button.set_label('Not editable')
-	} else {
-		button.set_label('Editable')
-	}
+	value := button.get_active()
+	this.entry.set_editable(value)
 }
 
-fn on_btn_visible_clicked(button gtk.Button, data voidptr) {
+fn on_btn_visible_toggled(button gtk.CheckButton, data voidptr) {
 	this := &EntryDemo(data)
-	value := button.get_label()
-	cond := value == 'Visible'
-	this.entry.set_visibility(!cond)
-	if cond {
-		button.set_label('Not visible')
-	} else {
-		button.set_label('Visible')
-	}
+	value := button.get_active()
+	this.entry.set_visibility(value)
 }
 
-fn on_btn_pulse_clicked(button gtk.Button, data voidptr) {
+fn do_pulse(data voidptr) bool {
 	this := &EntryDemo(data)
 	this.entry.progress_pulse()
+	return true
+}
+
+fn on_btn_pulse_clicked(button gtk.CheckButton, data voidptr) {
+	mut this := &EntryDemo(data)
+	if button.get_active() {
+		this.entry.set_progress_pulse_step(0.2)
+		this.timeout_id = glib.timeout_add(u32(100), do_pulse, data)
+	} else {
+		glib.source_remove(this.timeout_id)
+		this.timeout_id = u32(0)
+		this.entry.set_progress_pulse_step(f32(0))
+	}
 }
 
 fn on_entry_text_changed(entry gtk.Entry, data voidptr) {
@@ -89,17 +88,10 @@ fn on_entry_text_changed(entry gtk.Entry, data voidptr) {
 	}
 }
 
-fn on_btn_icon_clicked(button gtk.Button, data voidptr) {
+fn on_btn_icon_clicked(button gtk.CheckButton, data voidptr) {
 	this := &EntryDemo(data)
-	value := button.get_label()
-	cond := value == 'Icon'
-	icon_name := if cond { '' } else { 'system-search-symbolic' }
+	icon_name := if button.get_active() {'system-search-symbolic' } else { '' }
 	this.entry.set_icon_from_icon_name(.primary, icon_name)
-	if cond {
-		button.set_label('No icon')
-	} else {
-		button.set_label('Icon')
-	}
 }
 
 fn main() {
