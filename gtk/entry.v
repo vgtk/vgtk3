@@ -204,6 +204,10 @@ pub fn (e Entry) reset_im_context() {
 // TODO: void gtk_entry_set_tabs (GtkEntry *entry, PangoTabArray *tabs)
 
 pub fn (e Entry) set_icon_from_icon_name(icon_pos EntryIconPosition, icon_name string) {
+	if icon_name == '' {
+		gtk_entry_set_icon_from_icon_name(e.c, icon_pos, 0)
+		return
+	}
 	gtk_entry_set_icon_from_icon_name(e.c, icon_pos, icon_name.str)
 }
 
