@@ -16,7 +16,7 @@ struct C.GdkWindowInvalidateHandlerFunc
 struct C.GdkFrameClock
 struct C.GdkFilterFunc
 struct C.GdkColor
-struct C.GdkRGBA
+pub struct C.GdkRGBA
 struct C.GdkCursor
 pub struct C.GdkModifierType
 pub struct C.GdkPixbuf

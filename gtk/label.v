@@ -195,8 +195,7 @@ pub fn (l Label) set_angle(angle f64) {
 }
 
 pub fn (l Label) get_current_uri() string {
-	uri := gtk_label_get_current_uri(l.c)
-	return tos3(uri)
+	return tos3(gtk_label_get_current_uri(l.c))
 }
 
 pub fn (l Label) set_track_visited_links(setting bool) {

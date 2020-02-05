@@ -26,11 +26,25 @@ struct C.GtkAccelMap
 struct C.GtkAccelKey
 struct C.GtkAboutDialog
 struct C.GtkLicense
+struct C.GtkBin
+struct C.GtkColorChooser
+struct C.GtkOrientation
+struct C.GtkToggleButton
 
 /* MAIN */
 fn C.gtk_init(int, voidptr)
 fn C.gtk_main()
 fn C.gtk_main_quit()
+
+/* Bin */
+fn C.gtk_bin_get_child(&GtkBin) &GtkWidget
+
+/* ColorChooser */
+fn C.gtk_color_chooser_get_rgba(&GtkColorChooser, &GdkRGBA)
+fn C.gtk_color_chooser_set_rgba(&GtkColorChooser, &GdkRGBA)
+fn C.gtk_color_chooser_get_use_alpha(&GtkColorChooser) bool
+fn C.gtk_color_chooser_set_use_alpha(&GtkColorChooser, bool)
+fn C.gtk_color_chooser_add_palette(&GtkColorChooser, GtkOrientation, int, int, &GdkRGBA)
 
 /* WINDOW */
 fn C.gtk_window_new(int) &GtkWidget
@@ -157,19 +171,19 @@ fn C.gtk_window_set_interactive_debugging(bool)
 fn C.gtk_dialog_new() &GtkWidget
 fn C.gtk_dialog_new_with_buttons(&charptr, &GtkWindow, int /* GtkDialogFlags */, charptr, int) &GtkWidget
 fn C.gtk_dialog_run(&GtkWidget) int
-fn C.gtk_dialog_response(&GtkWidget, int) 
+fn C.gtk_dialog_response(&GtkWidget, int)
 fn C.gtk_dialog_add_button(&GtkWidget, &charptr, int) &GtkWidget
-fn C.gtk_dialog_add_buttons(&GtkWidget, &charptr) 
-fn C.gtk_dialog_add_action_widget(&GtkWidget, &GtkWidget, int) 
-fn C.gtk_dialog_set_default_response(&GtkWidget, int) 
-fn C.gtk_dialog_set_response_sensitive(&GtkWidget, int, bool) 
+fn C.gtk_dialog_add_buttons(&GtkWidget, &charptr)
+fn C.gtk_dialog_add_action_widget(&GtkWidget, &GtkWidget, int)
+fn C.gtk_dialog_set_default_response(&GtkWidget, int)
+fn C.gtk_dialog_set_response_sensitive(&GtkWidget, int, bool)
 fn C.gtk_dialog_get_response_for_widget(&GtkWidget, &GtkWidget) int
 fn C.gtk_dialog_get_widget_for_response(&GtkWidget, int) &GtkWidget
 fn C.gtk_dialog_get_action_area(&GtkWidget) &GtkWidget
 fn C.gtk_dialog_get_content_area(&GtkWidget) &GtkWidget
 fn C.gtk_dialog_get_header_bar(&GtkWidget) &GtkWidget
-fn C.gtk_dialog_set_alternative_button_order(&GtkWidget, int) 
-fn C.gtk_dialog_set_alternative_button_order_from_array(&GtkWidget, int, &int) 
+fn C.gtk_dialog_set_alternative_button_order(&GtkWidget, int)
+fn C.gtk_dialog_set_alternative_button_order_from_array(&GtkWidget, int, &int)
 
 
 /* BUTTON */
@@ -208,78 +222,78 @@ fn C.gtk_entry_new() &GtkWidget
 // fn C.gtk_entry_new_with_buffer(&GtkEntryBuffer) &GtkWidget
 // fn C.gtk_entry_get_buffer(&GtkWidget) &GtkEntryBuffer
 // fn C.gtk_entry_set_buffer(&GtkWidget, &GtkEntryBuffer)
-fn C.gtk_entry_set_text(&GtkWidget, &charptr) 
+fn C.gtk_entry_set_text(&GtkWidget, &charptr)
 fn C.gtk_entry_get_text(&GtkWidget) charptr
 fn C.gtk_entry_get_text_length(&GtkWidget) u32
-// fn C.gtk_entry_get_text_area(&GtkWidget, &GdkRectangle) 
-fn C.gtk_entry_set_visibility(&GtkWidget, bool) 
-fn C.gtk_entry_set_invisible_char(&GtkWidget, byte /* gunichar */) 
-fn C.gtk_entry_unset_invisible_char(&GtkWidget) 
-fn C.gtk_entry_set_max_length(&GtkWidget, int) 
+// fn C.gtk_entry_get_text_area(&GtkWidget, &GdkRectangle)
+fn C.gtk_entry_set_visibility(&GtkWidget, bool)
+fn C.gtk_entry_set_invisible_char(&GtkWidget, byte /* gunichar */)
+fn C.gtk_entry_unset_invisible_char(&GtkWidget)
+fn C.gtk_entry_set_max_length(&GtkWidget, int)
 fn C.gtk_entry_get_activates_default(&GtkWidget) bool
 fn C.gtk_entry_get_has_frame(&GtkWidget) bool
-fn C.gtk_entry_get_inner_border(&GtkWidget) 
+fn C.gtk_entry_get_inner_border(&GtkWidget)
 fn C.gtk_entry_get_width_chars(&GtkWidget) int
 fn C.gtk_entry_get_max_width_chars(&GtkWidget) int
-fn C.gtk_entry_set_activates_default(&GtkWidget, bool) 
-fn C.gtk_entry_set_has_frame(&GtkWidget, bool) 
-// fn C.gtk_entry_set_inner_border(&GtkWidget, &GtkBorder) 
-fn C.gtk_entry_set_width_chars(&GtkWidget, int) 
-fn C.gtk_entry_set_max_width_chars(&GtkWidget, int) 
+fn C.gtk_entry_set_activates_default(&GtkWidget, bool)
+fn C.gtk_entry_set_has_frame(&GtkWidget, bool)
+// fn C.gtk_entry_set_inner_border(&GtkWidget, &GtkBorder)
+fn C.gtk_entry_set_width_chars(&GtkWidget, int)
+fn C.gtk_entry_set_max_width_chars(&GtkWidget, int)
 fn C.gtk_entry_get_invisible_char(&GtkWidget) rune /* gunichar */
-fn C.gtk_entry_set_alignment(&GtkWidget, f32) 
+fn C.gtk_entry_set_alignment(&GtkWidget, f32)
 fn C.gtk_entry_get_alignment(&GtkWidget) f32
-fn C.gtk_entry_set_placeholder_text(&GtkWidget, &charptr) 
+fn C.gtk_entry_set_placeholder_text(&GtkWidget, &charptr)
 fn C.gtk_entry_get_placeholder_text(&GtkWidget) charptr
-fn C.gtk_entry_set_overwrite_mode(&GtkWidget, bool) 
+fn C.gtk_entry_set_overwrite_mode(&GtkWidget, bool)
 fn C.gtk_entry_get_overwrite_mode(&GtkWidget) bool
 // fn C.gtk_entry_get_layout(&GtkWidget) &PangoLayout
-fn C.gtk_entry_get_layout_offsets(&GtkWidget, &int, &int) 
+fn C.gtk_entry_get_layout_offsets(&GtkWidget, &int, &int)
 fn C.gtk_entry_layout_index_to_text_index(&GtkWidget, int) int
 fn C.gtk_entry_text_index_to_layout_index(&GtkWidget, int) int
-// fn C.gtk_entry_set_attributes(&GtkWidget, &PangoAttrList) 
+// fn C.gtk_entry_set_attributes(&GtkWidget, &PangoAttrList)
 // fn C.gtk_entry_get_attributes(&GtkWidget) &PangoAttrList
 fn C.gtk_entry_get_max_length(&GtkWidget) int
 fn C.gtk_entry_get_visibility(&GtkWidget) bool
-// fn C.gtk_entry_set_completion(&GtkWidget, &GtkEntryCompletion) 
+// fn C.gtk_entry_set_completion(&GtkWidget, &GtkEntryCompletion)
 // fn C.gtk_entry_get_completion(&GtkWidget) &GtkEntryCompletion
-fn C.gtk_entry_set_cursor_hadjustment(&GtkWidget, &GtkAdjustment) 
+fn C.gtk_entry_set_cursor_hadjustment(&GtkWidget, &GtkAdjustment)
 fn C.gtk_entry_get_cursor_hadjustment(&GtkWidget) &GtkAdjustment
-fn C.gtk_entry_set_progress_fraction(&GtkWidget, f64) 
+fn C.gtk_entry_set_progress_fraction(&GtkWidget, f64)
 fn C.gtk_entry_get_progress_fraction(&GtkWidget) f64
-fn C.gtk_entry_set_progress_pulse_step(&GtkWidget, f64) 
+fn C.gtk_entry_set_progress_pulse_step(&GtkWidget, f64)
 fn C.gtk_entry_get_progress_pulse_step(&GtkWidget) f64
-fn C.gtk_entry_progress_pulse(&GtkWidget) 
+fn C.gtk_entry_progress_pulse(&GtkWidget)
 // fn C.gtk_entry_im_context_filter_keypress(&GtkWidget, &GdkEventKey) bool
-fn C.gtk_entry_reset_im_context(&GtkWidget) 
+fn C.gtk_entry_reset_im_context(&GtkWidget)
 // fn C.gtk_entry_get_tabs(&GtkWidget) &PangoTabArray
-// fn C.gtk_entry_set_tabs(&GtkWidget, &PangoTabArray) 
-// fn C.gtk_entry_set_icon_from_pixbuf(&GtkWidget, GtkEntryIconPosition, &GdkPixbuf) 
-fn C.gtk_entry_set_icon_from_stock(&GtkWidget, int /* GtkEntryIconPosition */, &charptr) 
-fn C.gtk_entry_set_icon_from_icon_name(&GtkWidget, int /* GtkEntryIconPosition */, &charptr) 
-// fn C.gtk_entry_set_icon_from_gicon(&GtkWidget, int /* GtkEntryIconPosition */, &GIcon) 
+// fn C.gtk_entry_set_tabs(&GtkWidget, &PangoTabArray)
+// fn C.gtk_entry_set_icon_from_pixbuf(&GtkWidget, GtkEntryIconPosition, &GdkPixbuf)
+fn C.gtk_entry_set_icon_from_stock(&GtkWidget, int /* GtkEntryIconPosition */, &charptr)
+fn C.gtk_entry_set_icon_from_icon_name(&GtkWidget, int /* GtkEntryIconPosition */, &charptr)
+// fn C.gtk_entry_set_icon_from_gicon(&GtkWidget, int /* GtkEntryIconPosition */, &GIcon)
 fn C.gtk_entry_get_icon_storage_type(&GtkWidget, int /* GtkEntryIconPosition */) int /* GtkImageType */
 // fn C.gtk_entry_get_icon_pixbuf(&GtkWidget, int /* GtkEntryIconPosition */) &GdkPixbuf
 fn C.gtk_entry_get_icon_stock(&GtkWidget, int /* GtkEntryIconPosition */) charptr
 fn C.gtk_entry_get_icon_name(&GtkWidget, int /* GtkEntryIconPosition */) charptr
 // fn C.gtk_entry_get_icon_gicon(&GtkWidget, int /* GtkEntryIconPosition */) &GIcon
-fn C.gtk_entry_set_icon_activatable(&GtkWidget, int /* GtkEntryIconPosition */, bool) 
+fn C.gtk_entry_set_icon_activatable(&GtkWidget, int /* GtkEntryIconPosition */, bool)
 fn C.gtk_entry_get_icon_activatable(&GtkWidget, int /* GtkEntryIconPosition */) bool
-fn C.gtk_entry_set_icon_sensitive(&GtkWidget, int /* GtkEntryIconPosition */, bool) 
+fn C.gtk_entry_set_icon_sensitive(&GtkWidget, int /* GtkEntryIconPosition */, bool)
 fn C.gtk_entry_get_icon_sensitive(&GtkWidget, int /* GtkEntryIconPosition */) bool
 fn C.gtk_entry_get_icon_at_pos(&GtkWidget, int, int) int
-fn C.gtk_entry_set_icon_tooltip_text(&GtkWidget, int /* GtkEntryIconPosition */, &charptr) 
+fn C.gtk_entry_set_icon_tooltip_text(&GtkWidget, int /* GtkEntryIconPosition */, &charptr)
 fn C.gtk_entry_get_icon_tooltip_text(&GtkWidget, int /* GtkEntryIconPosition */) charptr
-fn C.gtk_entry_set_icon_tooltip_markup(&GtkWidget, int /* GtkEntryIconPosition */, &charptr) 
+fn C.gtk_entry_set_icon_tooltip_markup(&GtkWidget, int /* GtkEntryIconPosition */, &charptr)
 fn C.gtk_entry_get_icon_tooltip_markup(&GtkWidget, int /* GtkEntryIconPosition */) charptr
-// fn C.gtk_entry_set_icon_drag_source(&GtkWidget, int /* GtkEntryIconPosition */, &GtkTargetList, GdkDragAction) 
+// fn C.gtk_entry_set_icon_drag_source(&GtkWidget, int /* GtkEntryIconPosition */, &GtkTargetList, GdkDragAction)
 fn C.gtk_entry_get_current_icon_drag_source(&GtkWidget) int
-// fn C.gtk_entry_get_icon_area(&GtkWidget, int /* GtkEntryIconPosition */, &GdkRectangle) 
-fn C.gtk_entry_set_input_purpose(&GtkWidget, int /* GtkInputPurpose */) 
+// fn C.gtk_entry_get_icon_area(&GtkWidget, int /* GtkEntryIconPosition */, &GdkRectangle)
+fn C.gtk_entry_set_input_purpose(&GtkWidget, int /* GtkInputPurpose */)
 fn C.gtk_entry_get_input_purpose(&GtkWidget) int /* GtkInputPurpose */
-fn C.gtk_entry_set_input_hints(&GtkWidget, int /* GtkInputHints */) 
+fn C.gtk_entry_set_input_hints(&GtkWidget, int /* GtkInputHints */)
 fn C.gtk_entry_get_input_hints(&GtkWidget) int /* GtkInputHints */
-fn C.gtk_entry_grab_focus_without_selecting(&GtkWidget) 
+fn C.gtk_entry_grab_focus_without_selecting(&GtkWidget)
 
 
 /* ACCEL MAP */
@@ -396,25 +410,25 @@ fn C.gtk_label_get_track_visited_links(&GtkWidget) bool
 /* APPLICATION */
 fn C.gtk_application_new(charptr, int/* GApplicationFlags */) &GtkApplication
 fn C.g_application_run(&GtkApplication, int, charptr) int
-fn C.gtk_application_add_window(&GtkApplication, &GtkWindow) 
-fn C.gtk_application_remove_window(&GtkApplication, &GtkWindow) 
+fn C.gtk_application_add_window(&GtkApplication, &GtkWindow)
+fn C.gtk_application_remove_window(&GtkApplication, &GtkWindow)
 fn C.gtk_application_get_windows(&GtkApplication) &GList
 fn C.gtk_application_get_window_by_id(&GtkApplication, u32) &GtkWindow
 fn C.gtk_application_get_active_window(&GtkApplication) &GtkWindow
 fn C.gtk_application_inhibit(&GtkApplication, &GtkWindow, int/* GtkApplicationInhibitFlags */, charptr) u32
-fn C.gtk_application_uninhibit(&GtkApplication, u32) 
+fn C.gtk_application_uninhibit(&GtkApplication, u32)
 fn C.gtk_application_is_inhibited(&GtkApplication, int/* GtkApplicationInhibitFlags */) bool
 fn C.gtk_application_prefers_app_menu(&GtkApplication) bool
 fn C.gtk_application_get_app_menu(&GtkApplication) &GMenuModel
-fn C.gtk_application_set_app_menu(&GtkApplication, &GMenuModel) 
+fn C.gtk_application_set_app_menu(&GtkApplication, &GMenuModel)
 fn C.gtk_application_get_menubar(&GtkApplication) &GMenuModel
-fn C.gtk_application_set_menubar(&GtkApplication, &GMenuModel) 
+fn C.gtk_application_set_menubar(&GtkApplication, &GMenuModel)
 fn C.gtk_application_get_menu_by_id(&GtkApplication, charptr) &GMenu
-fn C.gtk_application_add_accelerator(&GtkApplication, charptr, &charptr, &GVariant) 
-fn C.gtk_application_remove_accelerator(&GtkApplication, &charptr, &GVariant) 
+fn C.gtk_application_add_accelerator(&GtkApplication, charptr, &charptr, &GVariant)
+fn C.gtk_application_remove_accelerator(&GtkApplication, &charptr, &GVariant)
 fn C.gtk_application_list_action_descriptions(&GtkApplication) &charptr
 fn C.gtk_application_get_accels_for_action(&GtkApplication, &charptr) &charptr
-fn C.gtk_application_set_accels_for_action(&GtkApplication, &charptr, &charptr) 
+fn C.gtk_application_set_accels_for_action(&GtkApplication, &charptr, &charptr)
 fn C.gtk_application_get_actions_for_accel(&GtkApplication, &charptr) &charptr
 
 /* ApplicationWindow */
@@ -426,20 +440,20 @@ fn C.gtk_application_window_set_help_overlay(&GtkApplicationWindow, &GtkShortcut
 fn C.gtk_application_window_get_help_overlay(&GtkApplicationWindow) &GtkShortcutsWindow
 
 /* CONTAINER */
-fn C.gtk_container_add(&GtkContainer, &GtkWidget) 
-fn C.gtk_container_remove(&GtkContainer, &GtkWidget) 
-fn C.gtk_container_add_with_properties(&GtkContainer, &GtkWidget, &charptr) 
+fn C.gtk_container_add(&GtkContainer, &GtkWidget)
+fn C.gtk_container_remove(&GtkContainer, &GtkWidget)
+fn C.gtk_container_add_with_properties(&GtkContainer, &GtkWidget, &charptr)
 fn C.gtk_container_get_resize_mode(&GtkContainer) int /* GtkResizeMode */
-fn C.gtk_container_set_resize_mode(&GtkContainer, int /* GtkResizeMode */) 
-fn C.gtk_container_check_resize(&GtkContainer) 
-fn C.gtk_container_foreach(&GtkContainer, fn()/* GtkCallback */, voidptr/* gpointer */) 
+fn C.gtk_container_set_resize_mode(&GtkContainer, int /* GtkResizeMode */)
+fn C.gtk_container_check_resize(&GtkContainer)
+fn C.gtk_container_foreach(&GtkContainer, fn()/* GtkCallback */, voidptr/* gpointer */)
 fn C.gtk_container_get_children(&GtkContainer) &GList
 fn C.gtk_container_get_path_for_child(&GtkContainer, &GtkWidget) &GtkWidgetPath
-fn C.gtk_container_set_reallocate_redraws(&GtkContainer, bool) 
+fn C.gtk_container_set_reallocate_redraws(&GtkContainer, bool)
 fn C.gtk_container_get_focus_child(&GtkContainer) &GtkWidget
-fn C.gtk_container_set_focus_child(&GtkContainer, &GtkWidget) 
+fn C.gtk_container_set_focus_child(&GtkContainer, &GtkWidget)
 fn C.gtk_container_get_focus_vadjustment(&GtkContainer) &GtkAdjustment
-fn C.gtk_container_set_focus_vadjustment(&GtkContainer, &GtkAdjustment) 
+fn C.gtk_container_set_focus_vadjustment(&GtkContainer, &GtkAdjustment)
 fn C.gtk_container_get_focus_hadjustment(&GtkContainer) &GtkAdjustment
 fn C.gtk_container_set_focus_hadjustment(&GtkContainer, &GtkAdjustment)
 fn C.gtk_container_resize_children(&GtkContainer)
@@ -455,7 +469,7 @@ fn C.gtk_container_child_notify_by_pspec(&GtkContainer, &GtkWidget, &GParamSpec)
 fn C.gtk_container_forall(&GtkContainer, fn()/* GtkCallback */, voidptr /* gpointer */)
 fn C.gtk_container_get_border_width(&GtkContainer) u32
 fn C.gtk_container_set_border_width(&GtkContainer, u32)
-// fn C.gtk_container_propagate_draw(&GtkContainer, &GtkWidget, &cairo_t) 
+// fn C.gtk_container_propagate_draw(&GtkContainer, &GtkWidget, &cairo_t)
 fn C.gtk_container_get_focus_chain(&GtkContainer, &GList) bool
 fn C.gtk_container_set_focus_chain(&GtkContainer, &GList)
 fn C.gtk_container_unset_focus_chain(&GtkContainer)
@@ -463,30 +477,30 @@ fn C.gtk_container_class_find_child_property(&GObjectClass, &charptr) &GParamSpe
 fn C.gtk_container_class_install_child_property(&GtkContainerClass, u32, &GParamSpec)
 fn C.gtk_container_class_install_child_properties(&GtkContainerClass, u32, &GParamSpec)
 fn C.gtk_container_class_list_child_properties(&GObjectClass, &u32) &GParamSpec
-fn C.gtk_container_class_handle_border_width(&GtkContainerClass) 
+fn C.gtk_container_class_handle_border_width(&GtkContainerClass)
 
 /* GRID */
 fn C.gtk_grid_new() &GtkWidget
-fn C.gtk_grid_attach(&GtkGrid, &GtkWidget, int, int, int, int) 
-fn C.gtk_grid_attach_next_to(&GtkGrid, &GtkWidget, &GtkWidget, int /* GtkPositionType */, int, int) 
+fn C.gtk_grid_attach(&GtkGrid, &GtkWidget, int, int, int, int)
+fn C.gtk_grid_attach_next_to(&GtkGrid, &GtkWidget, &GtkWidget, int /* GtkPositionType */, int, int)
 fn C.gtk_grid_get_child_at(&GtkGrid, int, int) &GtkWidget
 fn C.gtk_grid_insert_row(&GtkGrid, int)
 fn C.gtk_grid_insert_column(&GtkGrid, int)
-fn C.gtk_grid_remove_row(&GtkGrid, int) 
-fn C.gtk_grid_remove_column(&GtkGrid, int) 
-fn C.gtk_grid_insert_next_to(&GtkGrid, &GtkWidget, int /* GtkPositionType */) 
-fn C.gtk_grid_set_row_homogeneous(&GtkGrid, bool) 
+fn C.gtk_grid_remove_row(&GtkGrid, int)
+fn C.gtk_grid_remove_column(&GtkGrid, int)
+fn C.gtk_grid_insert_next_to(&GtkGrid, &GtkWidget, int /* GtkPositionType */)
+fn C.gtk_grid_set_row_homogeneous(&GtkGrid, bool)
 fn C.gtk_grid_get_row_homogeneous(&GtkGrid) bool
-fn C.gtk_grid_set_row_spacing(&GtkGrid, u32) 
+fn C.gtk_grid_set_row_spacing(&GtkGrid, u32)
 fn C.gtk_grid_get_row_spacing(&GtkGrid) u32
-fn C.gtk_grid_set_column_homogeneous(&GtkGrid, bool) 
+fn C.gtk_grid_set_column_homogeneous(&GtkGrid, bool)
 fn C.gtk_grid_get_column_homogeneous(&GtkGrid) bool
-fn C.gtk_grid_set_column_spacing(&GtkGrid, u32) 
+fn C.gtk_grid_set_column_spacing(&GtkGrid, u32)
 fn C.gtk_grid_get_column_spacing(&GtkGrid) u32
 fn C.gtk_grid_get_baseline_row(&GtkGrid) int
-fn C.gtk_grid_set_baseline_row(&GtkGrid, int) 
+fn C.gtk_grid_set_baseline_row(&GtkGrid, int)
 fn C.gtk_grid_get_row_baseline_position(&GtkGrid, int) int /* GtkBaselinePosition */
-fn C.gtk_grid_set_row_baseline_position(&GtkGrid, int, int /* GtkBaselinePosition */) 
+fn C.gtk_grid_set_row_baseline_position(&GtkGrid, int, int /* GtkBaselinePosition */)
 
 /* WIDGET */
 // fn C.gtk_widget_new(GType, charptr) &GtkWidget
@@ -689,7 +703,7 @@ fn C.gtk_widget_set_realized(&GtkWidget, bool)
 fn C.gtk_widget_get_realized(&GtkWidget) bool
 fn C.gtk_widget_set_mapped(&GtkWidget, bool)
 fn C.gtk_widget_get_mapped(&GtkWidget) bool
-// fn C.gtk_widget_get_requisition(&GtkWidget, &GtkRequisition) 
+// fn C.gtk_widget_get_requisition(&GtkWidget, &GtkRequisition)
 fn C.gtk_widget_device_is_shadowed(&GtkWidget, &GdkDevice) bool
 fn C.gtk_widget_get_modifier_mask(&GtkWidget, int /* GdkModifierIntent */) int /* GdkModifierType */
 fn C.gtk_widget_insert_action_group(&GtkWidget, charptr, &GActionGroup)
@@ -831,8 +845,8 @@ fn C.gtk_show_about_dialog(&GtkWidget, charptr)
 fn C.g_object_unref(voidptr)
 
 /* ORIENTABLE */
-fn C.gtk_orientable_get_orientation(&GtkWidget) int /* GtkOrientation */
-fn C.gtk_orientable_set_orientation(&GtkWidget, int /* GtkOrientation */)
+fn C.gtk_orientable_get_orientation(&GtkWidget) GtkOrientation
+fn C.gtk_orientable_set_orientation(&GtkWidget, GtkOrientation)
 
 /* Requisition */
 fn C.gtk_requisition_new() &GtkRequisition
@@ -856,6 +870,23 @@ fn C.gtk_message_dialog_get_image(&GtkWidget) &GtkWidget
 fn C.gtk_message_dialog_format_secondary_text(&GtkWidget, charptr)
 fn C.gtk_message_dialog_format_secondary_markup(&GtkWidget, charptr)
 fn C.gtk_message_dialog_get_message_area(&GtkWidget) &GtkWidget
+
+/* ToggleButton */
+fn C.gtk_toggle_button_new() &GtkWidget
+fn C.gtk_toggle_button_new_with_label(&charptr) &GtkWidget
+fn C.gtk_toggle_button_new_with_mnemonic(&charptr) &GtkWidget
+fn C.gtk_toggle_button_set_mode(&GtkWidget, bool)
+fn C.gtk_toggle_button_get_mode(&GtkWidget) bool
+fn C.gtk_toggle_button_toggled(&GtkWidget)
+fn C.gtk_toggle_button_get_active(&GtkWidget) bool
+fn C.gtk_toggle_button_set_active(&GtkWidget, bool)
+fn C.gtk_toggle_button_get_inconsistent(&GtkWidget) bool
+fn C.gtk_toggle_button_set_inconsistent(&GtkWidget, bool)
+
+/* CheckButton */
+fn C.gtk_check_button_new() &GtkWidget
+fn C.gtk_check_button_new_with_label(&charptr) &GtkWidget
+fn C.gtk_check_button_new_with_mnemonic(&charptr) &GtkWidget
 
 fn C._() charptr
 

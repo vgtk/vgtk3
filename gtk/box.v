@@ -86,7 +86,8 @@ pub fn (b Box) set_center_widget(widget Widgeter) {
 	gtk_box_set_center_widget(b.c, wgt)
 }
 
-/* INHERITED FROM Widget */
+/* Inherited from Widget */
+
 pub fn (b Box) get_halign() Align {
 	return gtk_widget_get_halign(b.c)
 }
@@ -103,7 +104,7 @@ pub fn (b Box) set_valign(align Align) {
 	gtk_widget_set_valign(b.c, align)
 }
 
-/* INHERITED FROM CONTAINER */
+/* Inherited from Container */
 
 pub fn (b Box) add(widget Widgeter) {
 	wgt := widget.get_gtk_widget()
@@ -115,7 +116,7 @@ pub fn (b Box) remove(widget Widgeter) {
 	gtk_container_remove(b.c, wgt)
 }
 
-/* IMPLEMENTING GtkOrientable */
+/* Implementing GtkOrientable */
 
 pub fn (b Box) set_orientation(orientation Orientation) {
 	gtk_orientable_set_orientation(b.c, orientation)
@@ -125,7 +126,7 @@ pub fn (b Box) get_orientation() Orientation {
 	return Orientation(gtk_orientable_get_orientation(b.c))
 }
 
-/* IMPLEMENTING Widgeter */
+/* Implementing Widgeter */
 
 pub fn (b &Box) get_gtk_widget() &GtkWidget {
 	return b.c
