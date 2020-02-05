@@ -6,6 +6,7 @@ fn main() {
 	window := gtk.new_window()
 	window.set_title('Main window')
 	window.set_default_size(500, 250)
+	window.on('destroy', on_window_destroy, 0)
 
 	dialog := gtk.new_dialog_from_parent('Dialog', window, .modal)
 	dialog.set_default_size(150, 150)
@@ -38,4 +39,8 @@ fn on_btn_show_dialog_clicked(button gtk.Button, data voidptr) {
 		println('Cancel')
 		dialog.hide()
 	}
+}
+
+fn on_window_destroy(window gtk.Window, data voidptr) {
+	gtk.main_quit()
 }
