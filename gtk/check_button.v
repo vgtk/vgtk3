@@ -119,6 +119,10 @@ pub fn (c CheckButton) get_event_window() gdk.Window {
 	return gdk.Window{gtk_button_get_event_window(c.c)}
 }
 
+pub fn (c &CheckButton) on(event_name string, handler fn(button CheckButton, _data voidptr), data voidptr) int {
+	return g_signal_connect(c.c, event_name.str, handler, data)
+}
+
 /* Inherited from Bin */
 
 pub fn (c CheckButton) get_child() Widget {
@@ -142,3 +146,10 @@ pub fn (c CheckButton) get_child() Widget {
 
 
 /* Implemented from Activatable */
+
+
+/* Implemented from Widgeter */
+
+pub fn (c &CheckButton) get_gtk_widget() &GtkWidget {
+	return c.c
+}
