@@ -131,8 +131,7 @@ pub fn (l Label) get_max_width_chars() int {
 }
 
 pub fn (l Label) get_label() string {
-	str := gtk_label_get_label(l.c)
-	return tos3(str)
+	return tos3(gtk_label_get_label(l.c))
 }
 
 /* TODO: PangoLayout * gtk_label_get_layout (GtkLabel *label) */
@@ -210,7 +209,7 @@ pub fn (l &Label) get_gtk_widget() &GtkWidget {
 	return l.c
 }
 
-/* IMPLEMENTING Widget */
+/* Implemented Widget */
 
 pub fn (l Label) show() {
 	gtk_widget_show(l.c)

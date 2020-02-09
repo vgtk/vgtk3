@@ -888,6 +888,17 @@ fn C.gtk_check_button_new() &GtkWidget
 fn C.gtk_check_button_new_with_label(&charptr) &GtkWidget
 fn C.gtk_check_button_new_with_mnemonic(&charptr) &GtkWidget
 
+/* RadioButton */
+fn C.gtk_radio_button_new(&GSList) &GtkWidget
+fn C.gtk_radio_button_new_from_widget(&GtkWidget) &GtkWidget
+fn C.gtk_radio_button_new_with_label(&GSList, &charptr) &GtkWidget
+fn C.gtk_radio_button_new_with_label_from_widget(&GtkWidget, &charptr) &GtkWidget
+fn C.gtk_radio_button_new_with_mnemonic(&GSList, &charptr) &GtkWidget
+fn C.gtk_radio_button_new_with_mnemonic_from_widget(&GtkWidget, &charptr) &GtkWidget
+fn C.gtk_radio_button_set_group(&GtkWidget, &GSList)
+fn C.gtk_radio_button_get_group(&GtkWidget) &GSList
+fn C.gtk_radio_button_join_group(&GtkWidget, &GtkWidget)
+
 fn C._() charptr
 
 // OTHERS

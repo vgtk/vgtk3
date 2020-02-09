@@ -136,9 +136,6 @@ pub fn (s SList) data() voidptr {
 	return s.c.data
 }
 
-
-
-
-
-
-// 
+pub fn (s SList) get_cptr() &GSList {
+	return s.c
+}
