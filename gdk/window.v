@@ -12,7 +12,7 @@ const (
 	WINDOW_SUBSURFACE	= WindowType(C.GDK_WINDOW_SUBSURFACE)
 )
 
-pub type gdk__Gravity int
+pub type Gravity int
 
 pub const (
 	GRAVITY_NORTH_WEST = Gravity(C.GDK_GRAVITY_NORTH_WEST)

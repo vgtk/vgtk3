@@ -1,3 +1,3 @@
 module glib
 
-pub type glib__DestroyNotify fn(voidptr) voidptr
+pub type DestroyNotify fn(voidptr) voidptr

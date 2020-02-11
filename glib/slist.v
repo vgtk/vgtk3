@@ -1,7 +1,7 @@
 module glib
 
-pub type glib__CompareFunc 		fn(voidptr, voidptr) int
-pub type glib__CompareDataFunc	fn(voidptr, voidptr, voidptr) int
+pub type CompareFunc 		fn(voidptr, voidptr) int
+pub type CompareDataFunc	fn(voidptr, voidptr, voidptr) int
 
 pub struct SList {
 	c &GSList

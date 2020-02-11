@@ -131,7 +131,7 @@ fn C.gdk_window_get_geometry(&GdkWindow, &int, &int, &int, &int)
 fn C.gdk_window_set_geometry_hints(&GdkWindow, &GdkGeometry, int /* GdkWindowHints */) 
 fn C.gdk_window_get_width(&GdkWindow) int
 fn C.gdk_window_get_height(&GdkWindow) int
-fn C.gdk_window_set_icon_list(&GdkWindow, &GList) 
+fn C.gdk_window_set_icon_list(&GdkWindow, &C.GList) 
 fn C.gdk_window_set_modal_hint(&GdkWindow, bool) 
 fn C.gdk_window_get_modal_hint(&GdkWindow) bool
 fn C.gdk_window_set_type_hint(&GdkWindow, int /* GdkWindowTypeHint */) 
@@ -150,9 +150,9 @@ fn C.gdk_window_get_device_position(&GdkWindow, &GdkDevice, &int, &int, &GdkModi
 fn C.gdk_window_get_device_position_double(&GdkWindow, &GdkDevice, &f64, &f64, &GdkModifierType) &GdkWindow
 fn C.gdk_window_get_parent(&GdkWindow) &GdkWindow
 fn C.gdk_window_get_toplevel(&GdkWindow) &GdkWindow
-fn C.gdk_window_get_children(&GdkWindow) &GList
-fn C.gdk_window_get_children_with_user_data(&GdkWindow, voidptr) &GList
-fn C.gdk_window_peek_children(&GdkWindow) &GList
+fn C.gdk_window_get_children(&GdkWindow) &C.GList
+fn C.gdk_window_get_children_with_user_data(&GdkWindow, voidptr) &C.GList
+fn C.gdk_window_peek_children(&GdkWindow) &C.GList
 fn C.gdk_window_get_events(&GdkWindow) int /* GdkEventMask */
 fn C.gdk_window_set_events(&GdkWindow, int /* GdkEventMask */) 
 fn C.gdk_window_set_icon_name(&GdkWindow, &charptr) 
