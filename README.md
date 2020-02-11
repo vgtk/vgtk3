@@ -9,7 +9,9 @@ This is a manual wrapper for `gtk3` for V.
 The advantage compared to using `C.<function>` directly is that `vgtk3` uses V structs and does it best to have a good V style when "translating" `gtk3` to V.
 This is mostly why the functions aren't auto-generated, as this doesn't create any helpful structures nor does it splits the files, because it doesn't know what a container is, this wrapper knows it and offers a `Container` interface ready for use.
 
-> Note: We are still combining everything together here, will be separated after everything is finished
+> Notes: We are still combining everything together here, will be separated after everything is finished
+
+**Caution**: For now, this only work with `clang` compiler.
 
 ## Progress
 
