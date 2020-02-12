@@ -11,8 +11,6 @@ This is mostly why the functions aren't auto-generated, as this doesn't create a
 
 > Notes: We are still combining everything together here, will be separated after everything is finished
 
-**Caution**: For now, this only work with `clang` compiler.
-
 ## Progress
 
 - GTK
@@ -45,11 +43,9 @@ This is mostly why the functions aren't auto-generated, as this doesn't create a
   - [ ] SList
   - [ ] String
 
-## Minimum supported versions
-
-- Gdk 3.16
-- GLib 2.44
-- Gtk 3.16
+## Notes
+- You need the latest GTK+ installed.
+- For now, this only work with `clang` compiler.
 
 ## License
 
