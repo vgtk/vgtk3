@@ -1,10 +1,10 @@
 import gtk
 
 fn test_window_title() {
-	window := gtk.new_window()
-	window.set_title('gtk window')
-	assert window.get_title() == 'gtk window'
-	window.show()
+	w := gtk.new_window()
+	w .set_title('gtk window')
+	assert w.get_title() == 'gtk window'
+	w.show()
 	gtk.main_quit()
 }
 

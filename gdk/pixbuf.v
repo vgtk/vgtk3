@@ -1,9 +1,9 @@
 module gdk
 
 pub struct Pixbuf {
-	c &GdkPixbuf
+	c &C.GdkPixbuf
 }
 
-pub fn (p Pixbuf) get_cptr() &GdkPixbuf {
+pub fn (p Pixbuf) get_cptr() &C.GdkPixbuf {
 	return p.c
 }

@@ -3,7 +3,7 @@ module main
 import gtk
 
 fn btn_clicked(btn gtk.Button, data voidptr) {
-	if (btn.get_label() == "VGTK3 is ..") {
+	if btn.get_label() == "VGTK3 is .." {
 		btn.set_label("VGTK3 is awesome!")
 	} else {
 		btn.set_label("VGTK3 is ..")
@@ -21,6 +21,7 @@ fn alert_clicked(btn gtk.Button, data voidptr) {
 fn win_destroy(win gtk.Window, data voidptr) {
 	gtk.main_quit() // necessary as gtk won't exit itself when window is destroyed.
 }
+
 
 fn main() {
 	window := gtk.new_window()
@@ -46,14 +47,14 @@ fn main() {
 	btn2.set_size(100, 50)
 	alert.set_size(80, 20)
 	entry.set_text("Good Night!")
-	btn.on("clicked", btn_clicked, 0)
+	btn.on("clicked", btn_clicked, &window)
 
 	gtk.accel_map_add_entry("GTK-Test/File/Quit", 65, 0)
 	quit.set_accel_path("GTKTest/File/Quit")
 	quit.set_use_underline(true)
-	quit.on("activate", menu_exit, 0)
+	quit.on("activate", menu_exit, &window)
 
-	alert.on("clicked", alert_clicked, 0)
+	alert.on("clicked", alert_clicked, &window)
 
 	hbox.add(entry)
 	hbox.add(alert)
@@ -66,7 +67,7 @@ fn main() {
 	window.set_position(.center)
 	window.set_title("I'm made with V")
 	window.add(vbox)
-	window.on("destroy", win_destroy, 0)
+	window.on("destroy", win_destroy, voidptr(0))
 	window.show_all()
 	gtk.main()
 }

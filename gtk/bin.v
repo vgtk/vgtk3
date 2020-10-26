@@ -1,9 +1,9 @@
 module gtk
 
 pub struct Bin {
-	c &GtkBin
+	c &C.GtkBin
 }
 
 pub fn (b Bin) get_child() Widget {
-	return Widget{gtk_bin_get_child(b.c)}
+	return Widget{C.gtk_bin_get_child(b.c)}
 }

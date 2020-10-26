@@ -1,23 +1,23 @@
 module gdk
 
-pub type InputSource int
+pub type InputSource = int
 
 const (
-	SOURCE_MOUSE       = InputSource(C.GDK_SOURCE_MOUSE)
-	SOURCE_PEN         = InputSource(C.GDK_SOURCE_PEN)
-	SOURCE_ERASER      = InputSource(C.GDK_SOURCE_ERASER)
-	SOURCE_CURSOR      = InputSource(C.GDK_SOURCE_CURSOR)
-	SOURCE_KEYBOARD    = InputSource(C.GDK_SOURCE_KEYBOARD)
-	SOURCE_TOUCHSCREEN = InputSource(C.GDK_SOURCE_TOUCHSCREEN)
-	SOURCE_TOUCHPAD    = InputSource(C.GDK_SOURCE_TOUCHPAD)
-	SOURCE_TRACKPOINT  = InputSource(C.GDK_SOURCE_TRACKPOINT)
-	SOURCE_TABLET_PAD  = InputSource(C.GDK_SOURCE_TABLET_PAD)
+	source_mouse       = InputSource(C.GDK_SOURCE_MOUSE)
+	source_pen         = InputSource(C.GDK_SOURCE_PEN)
+	source_eraser      = InputSource(C.GDK_SOURCE_ERASER)
+	source_cursor      = InputSource(C.GDK_SOURCE_CURSOR)
+	source_keyboard    = InputSource(C.GDK_SOURCE_KEYBOARD)
+	source_touchscreen = InputSource(C.GDK_SOURCE_TOUCHSCREEN)
+	source_touchpad    = InputSource(C.GDK_SOURCE_TOUCHPAD)
+	source_trackpoint  = InputSource(C.GDK_SOURCE_TRACKPOINT)
+	source_tablet_pad  = InputSource(C.GDK_SOURCE_TABLET_PAD)
 )
 
 pub struct Device {
-	c &GdkDevice
+	c &C.GdkDevice
 }
 
-pub fn (d &Device) get_cptr() &GdkDevice {
+pub fn (d &Device) get_cptr() &C.GdkDevice {
 	return d.c
 }

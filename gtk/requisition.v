@@ -1,18 +1,18 @@
 module gtk
 
 pub struct Requisition {
-	c &GtkRequisition
+	c &C.GtkRequisition
 }
 
 pub fn new_requisition() Requisition {
-	return Requisition{gtk_requisition_new()}
+	return Requisition{C.gtk_requisition_new()}
 }
 
 pub fn (r Requisition) copy() Requisition {
-	return Requisition{gtk_requisition_copy(r.c)}
+	return Requisition{C.gtk_requisition_copy(r.c)}
 }
 
-[unsafe_fn]
+[unsafe]
 pub fn (r Requisition) free() {
-	gtk_requisition_free(r.c)
+	C.gtk_requisition_free(r.c)
 }

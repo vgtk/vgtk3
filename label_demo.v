@@ -68,7 +68,7 @@ fn main() {
 	vbox_right.pack_start(button, true, true, 0)
 
 	window.add(hbox)
-	window.on('destroy', on_destroy, 0)
+	window.on('destroy', on_destroy, window)
 	window.show_all()
 
 	gtk.main()

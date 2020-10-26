@@ -11,18 +11,18 @@ fn main() {
 	window.add(hbox)
 
 	mut button := gtk.new_button_with_label('Click me')
-	button.on('clicked', on_clickme_clicked, 0)
+	button.on('clicked', on_clickme_clicked, window)
 	hbox.pack_start(button, true, true, 0)
 
 	button = gtk.new_button_with_mnemonic('_Open')
-	button.on('clicked', on_open_clicked, 0)
+	button.on('clicked', on_open_clicked, window)
 	hbox.pack_start(button, true, true, 0)
 
 	button = gtk.new_button_with_mnemonic('_Close')
-	button.on('clicked', on_close_clicked, 0)
+	button.on('clicked', on_close_clicked, window)
 	hbox.pack_start(button, true, true, 0)
 
-	window.on('destroy', on_destroy, 0)
+	window.on('destroy', on_destroy, window)
 	window.show_all()
 
 	gtk.main()

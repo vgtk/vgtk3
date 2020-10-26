@@ -1,9 +1,9 @@
 module gtk
 
 pub struct WidgetPath {
-	c &GtkWidgetPath
+	c &C.GtkWidgetPath
 }
 
-pub fn (wp &WidgetPath) get_cptr() &GtkWidgetPath {
+pub fn (wp &WidgetPath) get_cptr() &C.GtkWidgetPath {
 	return wp.c
 }

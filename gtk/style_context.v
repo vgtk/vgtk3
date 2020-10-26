@@ -1,9 +1,9 @@
 module gtk
 
 pub struct StyleContext {
-	c &GtkStyleContext
+	c &C.GtkStyleContext
 }
 
-pub fn (sc &StyleContext) get_cptr() &GtkStyleContext {
+pub fn (sc &StyleContext) get_cptr() &C.GtkStyleContext {
 	return sc.c
 }
