@@ -4,6 +4,14 @@ fn test_window_title() {
 	w := gtk.new_window()
 	w.set_title('gtk window')
 	assert w.get_title() == 'gtk window'
+	
+	//////////////////////////////////////////////////////////////////
+	// TODO: remove this workaround. Without it, with V 0.1.29 be02ee9
+	// there is a C error about a missing gtk__Widgeter_name_table
+	label := gtk.new_label('This is a normal label')
+	w.add(label)
+	//////////////////////////////////////////////////////////////////
+	
 	w.show()
 	gtk.main_quit()
 }
