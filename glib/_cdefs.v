@@ -3,24 +3,30 @@ module glib
 #include <gmodule.h>
 #include <glib/glist.h>
 
-pub struct C._GList {
+[typedef]
+pub struct C.GList {
 	data voidptr
-	next &C._GList
-	prev &C._GList
+	next &C.GList
+	prev &C.GList
 }
-pub struct C._GSList {
+
+[typedef]
+pub struct C.GSList {
 	data voidptr
-	next &C._GSList
-	prev &C._GSList
+	next &C.GSList
+	prev &C.GSList
 }
 pub struct C.GArray {
   data charptr
   len u32
 }
-pub struct C._GString {
+
+[typedef]
+pub struct C.GString {
 	str charptr
 	len int
 }
+
 pub struct C.GBytes
 pub struct C._GError {
 pub:
@@ -62,38 +68,38 @@ fn C.g_array_set_clear_func(&C.GArray, voidptr)
 fn C.g_array_free(&C.GArray, bool) &charptr
 
 /* Strings */
-fn C.g_string_new(charptr) &C._GString
-fn C.g_string_new_len(charptr, int) &C._GString
-fn C.g_string_sized_new(int) &C._GString
-fn C.g_string_assign(&C._GString, charptr) &C._GString
-fn C.g_string_vprintf(&C._GString, charptr, va_list) 
-fn C.g_string_append_vprintf(&C._GString, charptr, va_list) 
-fn C.g_string_printf(&C._GString, charptr) 
-fn C.g_string_append_printf(&C._GString, charptr) 
-fn C.g_string_append(&C._GString, charptr) &C._GString
-fn C.g_string_append_c(&C._GString, charptr) &C._GString
-fn C.g_string_append_unichar(&C._GString, rune) &C._GString
-fn C.g_string_append_len(&C._GString, charptr, int) &C._GString
-fn C.g_string_append_uri_escaped(&C._GString, charptr, charptr, bool) &C._GString
-fn C.g_string_prepend(&C._GString, charptr) &C._GString
-fn C.g_string_prepend_c(&C._GString, charptr) &C._GString
-fn C.g_string_prepend_unichar(&C._GString, rune) &C._GString
-fn C.g_string_prepend_len(&C._GString, charptr, int) &C._GString
-fn C.g_string_insert(&C._GString, int, charptr) &C._GString
-fn C.g_string_insert_c(&C._GString, int, charptr) &C._GString
-fn C.g_string_insert_unichar(&C._GString, int, rune) &C._GString
-fn C.g_string_insert_len(&C._GString, int, charptr, int) &C._GString
-fn C.g_string_overwrite(&C._GString, int, charptr) &C._GString
-fn C.g_string_overwrite_len(&C._GString, int, charptr, int) &C._GString
-fn C.g_string_erase(&C._GString, int, int) &C._GString
-fn C.g_string_truncate(&C._GString, int) &C._GString
-fn C.g_string_set_size(&C._GString, int) &C._GString
-fn C.g_string_free(&C._GString, bool) charptr
-fn C.g_string_free_to_bytes(&C._GString) &GBytes
-fn C.g_string_up(&C._GString) &C._GString
-fn C.g_string_down(&C._GString) &C._GString
-fn C.g_string_hash(&C._GString) u32
-fn C.g_string_equal(&C._GString, &C._GString) bool
+fn C.g_string_new(charptr) &C.GString
+fn C.g_string_new_len(charptr, int) &C.GString
+fn C.g_string_sized_new(int) &C.GString
+fn C.g_string_assign(&C.GString, charptr) &C.GString
+fn C.g_string_vprintf(&C.GString, charptr, va_list) 
+fn C.g_string_append_vprintf(&C.GString, charptr, va_list) 
+fn C.g_string_printf(&C.GString, charptr) 
+fn C.g_string_append_printf(&C.GString, charptr) 
+fn C.g_string_append(&C.GString, charptr) &C.GString
+fn C.g_string_append_c(&C.GString, charptr) &C.GString
+fn C.g_string_append_unichar(&C.GString, rune) &C.GString
+fn C.g_string_append_len(&C.GString, charptr, int) &C.GString
+fn C.g_string_append_uri_escaped(&C.GString, charptr, charptr, bool) &C.GString
+fn C.g_string_prepend(&C.GString, charptr) &C.GString
+fn C.g_string_prepend_c(&C.GString, charptr) &C.GString
+fn C.g_string_prepend_unichar(&C.GString, rune) &C.GString
+fn C.g_string_prepend_len(&C.GString, charptr, int) &C.GString
+fn C.g_string_insert(&C.GString, int, charptr) &C.GString
+fn C.g_string_insert_c(&C.GString, int, charptr) &C.GString
+fn C.g_string_insert_unichar(&C.GString, int, rune) &C.GString
+fn C.g_string_insert_len(&C.GString, int, charptr, int) &C.GString
+fn C.g_string_overwrite(&C.GString, int, charptr) &C.GString
+fn C.g_string_overwrite_len(&C.GString, int, charptr, int) &C.GString
+fn C.g_string_erase(&C.GString, int, int) &C.GString
+fn C.g_string_truncate(&C.GString, int) &C.GString
+fn C.g_string_set_size(&C.GString, int) &C.GString
+fn C.g_string_free(&C.GString, bool) charptr
+fn C.g_string_free_to_bytes(&C.GString) &GBytes
+fn C.g_string_up(&C.GString) &C.GString
+fn C.g_string_down(&C.GString) &C.GString
+fn C.g_string_hash(&C.GString) u32
+fn C.g_string_equal(&C.GString, &C.GString) bool
 
 /* C.GSList */
 fn C.g_slist_alloc() &C.GSList

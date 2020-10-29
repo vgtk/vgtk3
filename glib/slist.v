@@ -4,11 +4,11 @@ pub type CompareFunc = fn(voidptr, voidptr) int
 pub type CompareDataFunc = fn(voidptr, voidptr, voidptr) int
 
 pub struct SList {
-	c &C._GSList
+	c &C.GSList
 }
 
 pub fn new_slist() SList {
-	return SList{&C._GSList(0)}
+	return SList{&C.GSList(0)}
 }
 
 pub fn slist_alloc() SList {
@@ -136,6 +136,6 @@ pub fn (s SList) data() voidptr {
 	return s.c.data
 }
 
-pub fn (s SList) get_cptr() &C._GSList {
+pub fn (s SList) get_cptr() &C.GSList {
 	return s.c
 }

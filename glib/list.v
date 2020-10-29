@@ -5,12 +5,12 @@ module glib
 pub type Func = fn(voidptr, voidptr)
 
 pub struct List {
-	c &C._GList
+	c &C.GList
 }
 
 pub fn new_list() List {
-	l := C._GList{0,0,0}
-	return List{&l}
+	l := &C.GList{0,0,0}
+	return List{l}
 }
 
 pub fn list_alloc() List {
@@ -158,6 +158,6 @@ pub fn (l List) data() voidptr {
 	return l.c.data
 }
 
-pub fn (l &List) get_cptr() &C._GList {
+pub fn (l &List) get_cptr() &C.GList {
 	return l.c
 }

@@ -3,7 +3,7 @@ module glib
 pub type VAList = voidptr
 
 pub struct String {
-	c &C._GString
+	c &C.GString
 }
 
 pub fn new_string(str string) String {
@@ -147,7 +147,7 @@ pub fn (s String) equal(str2 String) bool {
 	return C.g_string_equal(s.c, str2.c)
 }
 
-pub fn (s String) get_cptr() &C._GString {
+pub fn (s String) get_cptr() &C.GString {
 	return s.c
 }
 

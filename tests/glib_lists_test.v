@@ -8,16 +8,19 @@ const (
 fn test_list() {
 	mut list := glib.new_list()
 	for i := 0; i < 10; i++ {
-		list = list.append(test_nums[i])
+		x := test_nums[i]
+		list = list.append(voidptr(x))
 	}
 	list = list.reverse()
 	for i := 0; i < 10; i++ {
 		t := list.nth(u32(i))
-		assert int(t.data()) == 9 - i
+		x := int(t.data())
+		assert x == 9 - i
 	}
 	for i := 0; i < 10; i++ {
 		l := list.nth(u32(i))
-		assert list.position(l) == i
+		pos := list.position(l)
+		assert pos == i
 	}
 	list.free()
 }
