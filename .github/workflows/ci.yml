@@ -11,5 +11,5 @@ jobs:
             - uses: actions/checkout@v1
             - name: Running Test
               env:
-                  VFLAGS: -cg
+                  VFLAGS: -cg -showcc
               run: v version; xvfb-run make test

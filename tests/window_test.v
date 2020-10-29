@@ -2,7 +2,7 @@ import gtk
 
 fn test_window_title() {
 	w := gtk.new_window()
-	w .set_title('gtk window')
+	w.set_title('gtk window')
 	assert w.get_title() == 'gtk window'
 	w.show()
 	gtk.main_quit()
