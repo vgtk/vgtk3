@@ -1,5 +1,5 @@
 module gtk
 
 pub struct RequestedSize {
-	c &GtkRequestedSize
+	c &C.GtkRequestedSize
 }

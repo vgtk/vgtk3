@@ -17,33 +17,39 @@ mut:
 fn new_entry_demo() EntryDemo {
 	mut this := EntryDemo{}
 
-	window := this.window = gtk.new_window()
+	window := gtk.new_window()
+	this.window = window
 	window.set_title('Entry Demo')
 
 	vbox := gtk.new_box(.vertical, 6)
 	window.add(vbox)
 
-	entry := this.entry = gtk.new_entry()
+	entry := gtk.new_entry()
+	this.entry = entry
 	entry.set_text('Hello World')
-	entry.on('changed', on_entry_text_changed, 0)
+	entry.on('changed', on_entry_text_changed, this)
 	vbox.pack_start(entry, true, true, 0)
 
 	hbox := gtk.new_box(.horizontal, 6)
 	vbox.pack_start(hbox, true, true, 0)
 
-	btn_editable := this.btn_editable = gtk.new_check_button_with_label('Editable')
+	btn_editable := gtk.new_check_button_with_label('Editable')
+	this.btn_editable = btn_editable
 	btn_editable.on('toggled', on_btn_editable_toggled, this)
 	hbox.pack_start(btn_editable, true, true, 0)
 
-	btn_visible := this.btn_visible = gtk.new_check_button_with_label('Visible')
+	btn_visible := gtk.new_check_button_with_label('Visible')
+	this.btn_visible = btn_visible
 	btn_visible.on('toggled', on_btn_visible_toggled, this)
 	hbox.pack_start(btn_visible, true, true, 0)
 
-	btn_pulse := this.btn_pulse = gtk.new_check_button_with_label('Pulse')
+	btn_pulse := gtk.new_check_button_with_label('Pulse')
+	this.btn_pulse = btn_pulse
 	btn_pulse.on('toggled', on_btn_pulse_clicked, this)
 	hbox.pack_start(btn_pulse, true, true, 0)
 
-	btn_icon := this.btn_icon = gtk.new_check_button_with_label('Icon')
+	btn_icon := gtk.new_check_button_with_label('Icon')
+	this.btn_icon = btn_icon
 	btn_icon.on('toggled', on_btn_icon_clicked, this)
 	hbox.pack_start(btn_icon, true, true, 0)
 
@@ -97,7 +103,7 @@ fn on_btn_icon_clicked(button gtk.CheckButton, data voidptr) {
 fn main() {
 	entry_demo := new_entry_demo()
 	window := &entry_demo.window
-	window.on('destroy', on_window_destroy, 0)
+	window.on('destroy', on_window_destroy, voidptr(0))
 	window.show_all()
 	gtk.main()
 }

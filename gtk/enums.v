@@ -47,10 +47,11 @@ pub enum StateFlags {
 }
 
 pub enum SizeRequestMode {
-	height_for_width
-	width_for_height
-	constant_size
+	height_for_width = 0
+	width_for_height = 1
+	constant_size    = 2
 }
+
 
 pub enum Align {
 	fill

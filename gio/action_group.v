@@ -1,9 +1,9 @@
 module gio
 
 pub struct ActionGroup {
-	c &GActionGroup
+	c &C.GActionGroup
 }
 
-pub fn (a &ActionGroup) get_cptr() &GActionGroup {
+pub fn (a &ActionGroup) get_cptr() &C.GActionGroup {
 	return a.c
 }

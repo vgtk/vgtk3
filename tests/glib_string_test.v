@@ -1,6 +1,6 @@
 import glib
 
-pub fn test_gstring_append() {
+fn test_gstring_append() {
 	str := glib.new_string('Hey...')
 	str.append(' What')
 	str.append(' are ')
@@ -17,8 +17,8 @@ pub fn test_gstring_append() {
 	assert str2.str().len == 21
 }
 
-pub fn test_gstring_new_len() {
-	str := glib.new_string_len('dddddd', 90)	
+fn test_gstring_new_len() {
+	str := glib.new_string_len('dddddd', 90)
 	assert str.str().len == 6
 	assert str.str() == 'dddddd'
 }

@@ -2,7 +2,7 @@ module gtk
 
 pub enum EntryIconPosition {
 	primary
-  	secondary
+	secondary
 }
 
 pub enum InputPurpose {
@@ -34,295 +34,295 @@ pub enum InputHints {
 }
 
 pub struct Entry {
-	c &GtkWidget
+	c &C.GtkWidget
 }
 
 pub fn new_entry() Entry {
-	return Entry{gtk_entry_new()}
+	return Entry{C.gtk_entry_new()}
 }
 
 pub fn (e Entry) set_text(text string) {
-	gtk_entry_set_text(e.c, text.str)
+	C.gtk_entry_set_text(e.c, text.str)
 }
 
 pub fn (e Entry) get_text() string {
-	return tos3(gtk_entry_get_text(e.c))
+	return tos3(C.gtk_entry_get_text(e.c))
 }
 
 pub fn (e Entry) get_text_length() u16 {
-	return gtk_entry_get_text_length(e.c)
+	return u16(C.gtk_entry_get_text_length(e.c))
 }
 
-// TODO: void gtk_entry_get_text_area (GtkEntry *entry, GdkRectangle *text_area)
+// TODO: void C.gtk_entry_get_text_area (GtkEntry *entry, GdkRectangle *text_area)
 
 pub fn (e Entry) set_visibility(visible bool) {
-	gtk_entry_set_visibility(e.c, visible)
+	C.gtk_entry_set_visibility(e.c, visible)
 }
 
 pub fn (e Entry) set_invisible_char(ch rune) {
-	gtk_entry_set_invisible_char(e.c, ch)
+	C.gtk_entry_set_invisible_char(e.c, ch)
 }
 
 pub fn (e Entry) unset_invisible_char() {
-	gtk_entry_unset_invisible_char(e.c)
+	C.gtk_entry_unset_invisible_char(e.c)
 }
 
 pub fn (e Entry) set_max_length(max int) {
-	gtk_entry_set_max_length(e.c, max)
+	C.gtk_entry_set_max_length(e.c, max)
 }
 
 pub fn (e Entry) get_activates_default() bool {
-	return gtk_entry_get_activates_default(e.c)
+	return C.gtk_entry_get_activates_default(e.c)
 }
 
 pub fn (e Entry) gtk_entry_get_has_frame() bool {
-	return gtk_entry_get_has_frame(e.c)
+	return C.gtk_entry_get_has_frame(e.c)
 }
 
 // WARNING: Has been deprecated since version 3.4
-// TODO: const GtkBorder * gtk_entry_get_inner_border (GtkEntry *entry) 
+// TODO: const GtkBorder * C.gtk_entry_get_inner_border (GtkEntry *entry) 
 
 pub fn (e Entry) get_width_chars() int {
-	return gtk_entry_get_width_chars(e.c)
+	return int(C.gtk_entry_get_width_chars(e.c))
 }
 
 pub fn (e Entry) get_max_width_chars() int {
-	return gtk_entry_get_max_width_chars(e.c)
+	return int(C.gtk_entry_get_max_width_chars(e.c))
 }
 
 pub fn (e Entry) set_activates_default(setting bool) {
-	gtk_entry_set_activates_default(e.c, setting)
+	C.gtk_entry_set_activates_default(e.c, setting)
 }
 
 pub fn (e Entry) set_has_frame(setting bool) {
-	gtk_entry_set_has_frame(e.c, setting)
+	C.gtk_entry_set_has_frame(e.c, setting)
 }
 
-// TODO: void gtk_entry_set_inner_border (GtkEntry *entry, const GtkBorder *border)
+// TODO: void C.gtk_entry_set_inner_border (GtkEntry *entry, const GtkBorder *border)
 
 pub fn (e Entry) set_width_chars(n_chars int) {
-	gtk_entry_set_width_chars(e.c, n_chars)
+	C.gtk_entry_set_width_chars(e.c, n_chars)
 }
 
 pub fn (e Entry) set_max_width_chars(n_chars int) {
-	gtk_entry_set_max_width_chars(e.c, n_chars)
+	C.gtk_entry_set_max_width_chars(e.c, n_chars)
 }
 
 pub fn (e Entry) get_invisible_char() rune {
-	return gtk_entry_get_invisible_char(e.c)
+	return C.gtk_entry_get_invisible_char(e.c)
 }
 
 pub fn (e Entry) set_alignment(xalign f32) {
-	gtk_entry_set_alignment(e.c, xalign)
+	C.gtk_entry_set_alignment(e.c, xalign)
 }
 
 pub fn (e Entry) get_alignment() f32 {
-	return gtk_entry_get_alignment(e.c)
+	return C.gtk_entry_get_alignment(e.c)
 }
 
 pub fn (e Entry) set_placeholder_text(text string) {
-	gtk_entry_set_placeholder_text(e.c, text.str)
+	C.gtk_entry_set_placeholder_text(e.c, text.str)
 }
 
 pub fn (e Entry) get_placeholder_text() string {
-	return tos3(gtk_entry_get_placeholder_text(e.c))
+	return tos3(C.gtk_entry_get_placeholder_text(e.c))
 }
 
 pub fn (e Entry) set_overwrite_mode(setting bool) {
-	gtk_entry_set_overwrite_mode(e.c, setting)
+	C.gtk_entry_set_overwrite_mode(e.c, setting)
 }
 
 pub fn (e Entry) get_overwrite_mode() bool {
-	return gtk_entry_get_overwrite_mode(e.c)
+	return C.gtk_entry_get_overwrite_mode(e.c)
 }
 
-/* TODO: PangoLayout * gtk_entry_get_layout (GtkEntry *entry) */
+/* TODO: PangoLayout * C.gtk_entry_get_layout (GtkEntry *entry) */
 
 pub fn (e Entry) get_layout_offsets() (int, int) {
 	x := 0
 	y := 0
-	gtk_entry_get_layout_offsets(e.c, &x, &y)
+	C.gtk_entry_get_layout_offsets(e.c, &x, &y)
 	return x, y
 }
 
 pub fn (e Entry) layout_index_to_text_index(layout_index int) int {
-	return gtk_entry_layout_index_to_text_index(e.c, layout_index)
+	return int(C.gtk_entry_layout_index_to_text_index(e.c, layout_index))
 }
 
 pub fn (e Entry) index_to_layout_index(layout_index int) int {
-	return gtk_entry_text_index_to_layout_index(e.c, layout_index)
+	return int(C.gtk_entry_text_index_to_layout_index(e.c, layout_index))
 }
 
-// TODO: void gtk_entry_set_attributes (GtkEntry *entry, PangoAttrList *attrs)
+// TODO: void C.gtk_entry_set_attributes (GtkEntry *entry, PangoAttrList *attrs)
 
-// TODO: PangoAttrList * gtk_entry_get_attributes (GtkEntry *entry)
+// TODO: PangoAttrList * C.gtk_entry_get_attributes (GtkEntry *entry)
 
 pub fn (e Entry) get_max_length() int {
-	return gtk_entry_get_max_length(e.c)
+	return int(C.gtk_entry_get_max_length(e.c))
 }
 
 pub fn (e Entry) get_visibility() bool {
-	return gtk_entry_get_visibility(e.c)
+	return C.gtk_entry_get_visibility(e.c)
 }
 
-// TODO: void gtk_entry_set_completion (GtkEntry *entry, GtkEntryCompletion *completion)
+// TODO: void C.gtk_entry_set_completion (GtkEntry *entry, GtkEntryCompletion *completion)
 
-// TODO: GtkEntryCompletion * gtk_entry_get_completion (GtkEntry *entry)
+// TODO: GtkEntryCompletion * C.gtk_entry_get_completion (GtkEntry *entry)
 
-// TODO: void gtk_entry_set_cursor_hadjustment (GtkEntry *entry, GtkAdjustment *adjustment)
+// TODO: void C.gtk_entry_set_cursor_hadjustment (GtkEntry *entry, GtkAdjustment *adjustment)
 
-// TODO: GtkAdjustment * gtk_entry_get_cursor_hadjustment (GtkEntry *entry)
+// TODO: GtkAdjustment * C.gtk_entry_get_cursor_hadjustment (GtkEntry *entry)
 
 pub fn (e Entry) set_progress_fraction(fraction f32) {
-	gtk_entry_set_progress_fraction(e.c, fraction)
+	C.gtk_entry_set_progress_fraction(e.c, fraction)
 }
 
 pub fn (e Entry) get_progress_fraction() f32 {
-	return gtk_entry_get_progress_fraction(e.c)
+	return f32(C.gtk_entry_get_progress_fraction(e.c))
 }
 
 pub fn (e Entry) set_progress_pulse_step(fraction f32) {
-	gtk_entry_set_progress_pulse_step(e.c, fraction)
+	C.gtk_entry_set_progress_pulse_step(e.c, fraction)
 }
 
 pub fn (e Entry) get_progress_pulse_step() f32 {
-	return gtk_entry_get_progress_pulse_step(e.c)
+	return f32(C.gtk_entry_get_progress_pulse_step(e.c))
 }
 
 pub fn (e Entry) progress_pulse() {
-	gtk_entry_progress_pulse(e.c)
+	C.gtk_entry_progress_pulse(e.c)
 }
 
-// TODO: gboolean gtk_entry_im_context_filter_keypress (GtkEntry *entry, GdkEventKey *event)
+// TODO: gboolean C.gtk_entry_im_context_filter_keypress (GtkEntry *entry, GdkEventKey *event)
 
 pub fn (e Entry) reset_im_context() {
-	gtk_entry_reset_im_context(e.c)
+	C.gtk_entry_reset_im_context(e.c)
 }
 
-// TODO: PangoTabArray * gtk_entry_get_tabs (GtkEntry *entry)
+// TODO: PangoTabArray * C.gtk_entry_get_tabs (GtkEntry *entry)
 
-// TODO: void gtk_entry_set_tabs (GtkEntry *entry, PangoTabArray *tabs)
+// TODO: void C.gtk_entry_set_tabs (GtkEntry *entry, PangoTabArray *tabs)
 
 pub fn (e Entry) set_icon_from_icon_name(icon_pos EntryIconPosition, icon_name string) {
 	if icon_name == '' {
-		gtk_entry_set_icon_from_icon_name(e.c, icon_pos, 0)
+		C.gtk_entry_set_icon_from_icon_name(e.c, icon_pos, 0)
 		return
 	}
-	gtk_entry_set_icon_from_icon_name(e.c, icon_pos, icon_name.str)
+	C.gtk_entry_set_icon_from_icon_name(e.c, icon_pos, icon_name.str)
 }
 
-// TODO: void gtk_entry_set_icon_from_gicon (GtkEntry *entry, GtkEntryIconPosition icon_pos, GIcon *icon)
+// TODO: void C.gtk_entry_set_icon_from_gicon (GtkEntry *entry, GtkEntryIconPosition icon_pos, GIcon *icon)
 
 pub fn (e Entry) get_icon_storage_type(icon_pos EntryIconPosition) ImageType {
-	return ImageType(gtk_entry_get_icon_storage_type(e.c, icon_pos))
+	return ImageType(C.gtk_entry_get_icon_storage_type(e.c, icon_pos))
 }
 
-// TODO: GdkPixbuf * gtk_entry_get_icon_pixbuf (GtkEntry *entry, GtkEntryIconPosition icon_pos)
+// TODO: GdkPixbuf * C.gtk_entry_get_icon_pixbuf (GtkEntry *entry, GtkEntryIconPosition icon_pos)
 
 pub fn (e Entry) get_icon_name(icon_pos EntryIconPosition) string {
-	return tos3(gtk_entry_get_icon_name(e.c, icon_pos))
+	return tos3(C.gtk_entry_get_icon_name(e.c, icon_pos))
 }
 
-// TODO: GIcon * gtk_entry_get_icon_gicon (GtkEntry *entry, GtkEntryIconPosition icon_pos)
+// TODO: GIcon * C.gtk_entry_get_icon_gicon (GtkEntry *entry, GtkEntryIconPosition icon_pos)
 
 pub fn (e Entry) set_icon_activatable(icon_pos EntryIconPosition, activatable bool) {
-	gtk_entry_set_icon_activatable(e.c, icon_pos, activatable)
+	C.gtk_entry_set_icon_activatable(e.c, icon_pos, activatable)
 }
 
 pub fn (e Entry) get_icon_activatable(icon_pos EntryIconPosition) bool {
-	return gtk_entry_get_icon_activatable(e.c, icon_pos)
+	return C.gtk_entry_get_icon_activatable(e.c, icon_pos)
 }
 
 pub fn (e Entry) set_icon_sensitive(icon_pos EntryIconPosition, sensitive bool) {
-	gtk_entry_set_icon_sensitive(e.c, icon_pos, sensitive)
+	C.gtk_entry_set_icon_sensitive(e.c, icon_pos, sensitive)
 }
 
 pub fn (e Entry) get_icon_sensitive(icon_pos EntryIconPosition) bool {
-	return gtk_entry_get_icon_sensitive(e.c, icon_pos)
+	return C.gtk_entry_get_icon_sensitive(e.c, icon_pos)
 }
 
-pub fn (e Entry) get_icon_at_pos(x, y int) int {
-	return gtk_entry_get_icon_at_pos(e.c, x, y)
+pub fn (e Entry) get_icon_at_pos(x int, y int) int {
+	return int(C.gtk_entry_get_icon_at_pos(e.c, x, y))
 }
 
 pub fn (e Entry) set_icon_tooltip_text(icon_pos EntryIconPosition, tooltip string) {
 	if tooltip == '' {
-		gtk_entry_set_icon_tooltip_text(e.c, icon_pos, 0)
+		C.gtk_entry_set_icon_tooltip_text(e.c, icon_pos, 0)
 	}
-	gtk_entry_set_icon_tooltip_text(e.c, icon_pos, tooltip.str)
+	C.gtk_entry_set_icon_tooltip_text(e.c, icon_pos, tooltip.str)
 }
 
 pub fn (e Entry) get_icon_tooltip_text(icon_pos EntryIconPosition) string {
-	res := gtk_entry_get_icon_tooltip_text(e.c, icon_pos)
+	res := C.gtk_entry_get_icon_tooltip_text(e.c, icon_pos)
 	return tos3(res)
 }
 
 pub fn (e Entry) set_icon_tooltip_markup(icon_pos EntryIconPosition, tooltip string) {
 	if tooltip == '' {
-		gtk_entry_set_icon_tooltip_markup(e.c, icon_pos, 0)
+		C.gtk_entry_set_icon_tooltip_markup(e.c, icon_pos, 0)
 	}
-	gtk_entry_set_icon_tooltip_markup(e.c, icon_pos, tooltip.str)
+	C.gtk_entry_set_icon_tooltip_markup(e.c, icon_pos, tooltip.str)
 }
 
 pub fn (e Entry) get_icon_tooltip_markup(icon_pos EntryIconPosition) string {
-	res := gtk_entry_get_icon_tooltip_markup(e.c, icon_pos)
+	res := C.gtk_entry_get_icon_tooltip_markup(e.c, icon_pos)
 	return tos3(res)
 }
 
-// TODO: void gtk_entry_set_icon_drag_source (GtkEntry *entry, GtkEntryIconPosition icon_pos, GtkTargetList *target_list, GdkDragAction actions)
+// TODO: void C.gtk_entry_set_icon_drag_source (GtkEntry *entry, GtkEntryIconPosition icon_pos, GtkTargetList *target_list, GdkDragAction actions)
 
 pub fn (e Entry) get_current_icon_drag_source() int {
-	return gtk_entry_get_current_icon_drag_source(e.c)
+	return int(C.gtk_entry_get_current_icon_drag_source(e.c))
 }
 
-// TODO void gtk_entry_get_icon_area (GtkEntry *entry, GtkEntryIconPosition icon_pos, GdkRectangle *icon_area)
+// TODO void C.gtk_entry_get_icon_area (GtkEntry *entry, GtkEntryIconPosition icon_pos, GdkRectangle *icon_area)
 
 pub fn (e Entry) set_input_purpose(purpose InputPurpose) {
-	gtk_entry_set_input_purpose(e.c, purpose)
+	C.gtk_entry_set_input_purpose(e.c, purpose)
 }
 
 pub fn (e Entry) get_input_purpose() InputPurpose {
-	return InputPurpose(gtk_entry_get_input_purpose(e.c))
+	return InputPurpose(C.gtk_entry_get_input_purpose(e.c))
 }
 
 pub fn (e Entry) set_input_hints(hints InputHints) {
-	gtk_entry_set_input_hints(e.c, hints)
+	C.gtk_entry_set_input_hints(e.c, hints)
 }
 
 pub fn (e Entry) get_input_hints() InputHints {
-	return InputHints(gtk_entry_get_input_hints(e.c))
+	return InputHints(C.gtk_entry_get_input_hints(e.c))
 }
 
 pub fn (e Entry) grab_focus_without_selecting() {
-	gtk_entry_grab_focus_without_selecting(e.c)
+	C.gtk_entry_grab_focus_without_selecting(e.c)
 }
 
 /* IMPLEMENTING EDITABLE */
 
 pub fn (e Entry) set_editable(setting bool) {
-	gtk_editable_set_editable(e.c, setting)
+	C.gtk_editable_set_editable(e.c, setting)
 }
 
 pub fn (e Entry) set_direction(direction TextDirection) {
-	gtk_widget_set_direction(e.c, direction)
+	C.gtk_widget_set_direction(e.c, direction)
 }
 
 /* INHERITED FROM WIDGET */
 pub fn (e Entry) show() {
-	gtk_widget_show(e.c)
+	C.gtk_widget_show(e.c)
 }
 
 pub fn (e Entry) show_all() {
-	gtk_widget_show_all(e.c)
+	C.gtk_widget_show_all(e.c)
 }
 
 /* IMPLEMENTING Widgeter */
 
-pub fn (e &Entry) get_gtk_widget() &GtkWidget {
+pub fn (e &Entry) get_gtk_widget() &C.GtkWidget {
 	return e.c
 }
 
 /* CUSTOM API's */
 pub fn (e &Entry) on(event_name string, handler fn(entry Entry, _data voidptr), data voidptr) int {
-	return g_signal_connect(e.c, event_name.str, handler, data)
+	return int(C.g_signal_connect(e.c, event_name.str, handler, data))
 }
