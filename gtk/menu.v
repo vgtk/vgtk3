@@ -21,6 +21,10 @@ pub fn new_menu() Menu {
 	return Menu{C.gtk_menu_new()}
 }
 
+pub fn new_separator_menu_item() MenuItem {
+	return MenuItem{C.gtk_separator_menu_item_new()}
+}
+
 pub fn new_menu_item_with_label(label string) MenuItem {
 	return MenuItem{C.gtk_menu_item_new_with_label(label.str)}
 }

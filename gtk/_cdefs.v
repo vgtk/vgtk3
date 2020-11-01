@@ -359,6 +359,10 @@ fn C.gtk_menu_item_set_label(&C.GtkWidget, charptr)
 fn C.gtk_menu_item_set_submenu(&C.GtkWidget, &C.GtkWidget)
 fn C.gtk_menu_item_set_use_underline(&C.GtkWidget, bool)
 
+/* MENU SEPARATOR ITEM */
+fn C.gtk_separator_menu_item_new() &C.GtkWidget
+fn C.gtk_separator_menu_item_get_type() C.GType
+
 /* LABEL */
 fn C.gtk_label_new(charptr) &C.GtkWidget
 fn C.gtk_label_set_text(&C.GtkWidget, charptr)
