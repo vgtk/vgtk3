@@ -18,7 +18,7 @@ fn main() {
 	box.add(button2)
 
 	button3 := gtk.new_button_with_label('Warning')
-	button2.on('clicked', on_warn_clicked, &window)
+	button3.on('clicked', on_warn_clicked, &window)
 	box.add(button3)
 
 	button4 := gtk.new_button_with_label('Question')
