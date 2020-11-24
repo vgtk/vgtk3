@@ -14,8 +14,8 @@ mut:
 	timeout_id   u32
 }
 
-fn new_entry_demo() EntryDemo {
-	mut this := EntryDemo{}
+fn new_entry_demo() &EntryDemo {
+	mut this := &EntryDemo{}
 
 	window := gtk.new_window()
 	this.window = window
