@@ -35,6 +35,10 @@ struct C.GtkOrientation
 struct C.GtkToggleButton
 struct C._GtkBox
 
+struct GtkTextIter{
+	data [128]int
+}
+
 /* MAIN */
 fn C.gtk_init(int, voidptr)
 fn C.gtk_main()
@@ -189,6 +193,46 @@ fn C.gtk_dialog_get_header_bar(&C.GtkWidget) &C.GtkWidget
 fn C.gtk_dialog_set_alternative_button_order(&C.GtkWidget, int)
 fn C.gtk_dialog_set_alternative_button_order_from_array(&C.GtkWidget, int, &int)
 
+
+pub enum ButtonBoxStyle {
+	spread = C.GTK_BUTTONBOX_SPREAD
+	edge = C.GTK_BUTTONBOX_EDGE
+	start = C.GTK_BUTTONBOX_START
+	end = C.GTK_BUTTONBOX_END
+	center = C.GTK_BUTTONBOX_CENTER
+	expand = C.GTK_BUTTONBOX_EXPAND
+}
+
+/* TEXTVIEW */
+
+fn C.gtk_text_tag_table_new() &C.GtkWidget
+fn C.gtk_text_buffer_new(tt &C.GtkWidget) &C.GtkWidget
+fn C.gtk_text_buffer_set_text(t &C.GtkWidget, b byteptr, len int)
+fn C.gtk_text_buffer_get_text(t &C.GtkWidget, start &GtkTextIter, end &GtkTextIter) byteptr
+
+fn C.gtk_text_buffer_get_bounds (b &C.GtkWidget, start &GtkTextIter, end &GtkTextIter)
+fn C.gtk_text_buffer_get_start_iter (b &C.GtkWidget, start &GtkTextIter)
+fn C.gtk_text_buffer_get_end_iter (b &C.GtkWidget, end &GtkTextIter)
+
+fn C.gtk_text_view_new() &C.GtkWidget
+fn C.gtk_text_view_set_editable(t &C.GtkWidget, e bool)
+fn C.gtk_scrolled_window_new(t &C.GtkWidget, o &C.GtkWidget) &C.GtkWidget
+fn C.gtk_text_view_set_buffer(t &C.GtkWidget, w &C.GtkWidget)
+fn C.gtk_text_view_get_buffer(t &C.GtkWidget) &C.GtkWidget
+
+/* PANED */
+fn C.gtk_paned_new(o Orientation) &C.GtkWidget
+fn C.gtk_paned_add1(p &C.GtkWidget, wgt Widgeter)
+fn C.gtk_paned_add2(p &C.GtkWidget, wgt Widgeter)
+fn C.gtk_paned_set_wide_handle(p &C.GtkWidget, wide bool)
+fn C.gtk_paned_set_position(p &C.GtkWidget, pos int)
+
+/* BUTTONBOX */
+fn C.gtk_vbutton_box_new() &C.GtkWidget
+fn C.gtk_hbutton_box_new() &C.GtkWidget
+fn C.gtk_button_box_set_layout(w &C.GtkWidget, layout ButtonBoxStyle)
+fn C.gtk_button_box_set_child_secondary(w &C.GtkWidget, child &C.GtkWidget, is_secondary bool)
+fn C.gtk_button_box_set_child_non_homogeneous(w &C.GtkWidget, child &C.GtkWidget, non_homogeneous bool)
 
 /* BUTTON */
 fn C.gtk_button_new() &C.GtkWidget
