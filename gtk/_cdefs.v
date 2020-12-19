@@ -28,10 +28,8 @@ struct C.GtkButtonsType
 struct C.GtkAccelMap
 struct C.GtkAccelKey
 struct C.GtkAboutDialog
-struct C.GtkLicense
 struct C.GtkBin
 struct C.GtkColorChooser
-struct C.GtkOrientation
 struct C.GtkToggleButton
 struct C._GtkBox
 
@@ -52,7 +50,7 @@ fn C.gtk_color_chooser_get_rgba(&C.GtkColorChooser, &C.GdkRGBA)
 fn C.gtk_color_chooser_set_rgba(&C.GtkColorChooser, &C.GdkRGBA)
 fn C.gtk_color_chooser_get_use_alpha(&C.GtkColorChooser) bool
 fn C.gtk_color_chooser_set_use_alpha(&C.GtkColorChooser, bool)
-fn C.gtk_color_chooser_add_palette(&C.GtkColorChooser, C.GtkOrientation, int, int, &C.GdkRGBA)
+fn C.gtk_color_chooser_add_palette(&C.GtkColorChooser, int, int, int, &C.GdkRGBA)
 
 /* WINDOW */
 fn C.gtk_window_new(int) &C._GtkWidget
@@ -364,7 +362,7 @@ fn C.gtk_accel_map_unlock_path(charptr)
 fn C.gtk_editable_set_editable(&C.GtkWidget, bool)
 
 /* BOX */
-fn C.gtk_box_new(int/* C.GtkOrientation */, int) &C.GtkWidget
+fn C.gtk_box_new(int/* int */, int) &C.GtkWidget
 fn C.gtk_box_pack_start(&C.GtkWidget, &C.GtkWidget, bool, bool, u32)
 fn C.gtk_box_pack_end(&C.GtkWidget, &C.GtkWidget, bool, bool, u32)
 fn C.gtk_box_get_homogeneous(&C.GtkWidget) bool
@@ -872,8 +870,8 @@ fn C.gtk_about_dialog_get_license(&C.GtkAboutDialog) charptr
 fn C.gtk_about_dialog_set_license(&C.GtkAboutDialog, charptr)
 fn C.gtk_about_dialog_get_wrap_license(&C.GtkAboutDialog) bool
 fn C.gtk_about_dialog_set_wrap_license(&C.GtkAboutDialog, bool)
-fn C.gtk_about_dialog_get_license_type(&C.GtkAboutDialog) C.GtkLicense
-fn C.gtk_about_dialog_set_license_type(&C.GtkAboutDialog, C.GtkLicense)
+fn C.gtk_about_dialog_get_license_type(&C.GtkAboutDialog) int
+fn C.gtk_about_dialog_set_license_type(&C.GtkAboutDialog, int)
 fn C.gtk_about_dialog_get_website(&C.GtkAboutDialog) charptr
 fn C.gtk_about_dialog_set_website(&C.GtkAboutDialog, charptr)
 fn C.gtk_about_dialog_get_website_label(&C.GtkAboutDialog) charptr
@@ -897,8 +895,8 @@ fn C.gtk_show_about_dialog(&C.GtkWidget, charptr)
 fn C.g_object_unref(voidptr)
 
 /* ORIENTABLE */
-fn C.gtk_orientable_get_orientation(&C.GtkWidget) C.GtkOrientation
-fn C.gtk_orientable_set_orientation(&C.GtkWidget, C.GtkOrientation)
+fn C.gtk_orientable_get_orientation(&C.GtkWidget) int
+fn C.gtk_orientable_set_orientation(&C.GtkWidget, int)
 
 /* Requisition */
 fn C.gtk_requisition_new() &C.GtkRequisition
