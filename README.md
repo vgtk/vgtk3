@@ -44,8 +44,8 @@ This is mostly why the functions aren't auto-generated, as this doesn't create a
   - [ ] String
 
 ## Notes
+
 - You need the latest GTK+ installed.
-- For now, this only work with `clang` compiler.
 
 ## License
 
