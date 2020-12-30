@@ -1,15 +1,26 @@
 name: CI
 on: [push, pull_request]
 jobs:
-    ubuntu-latest:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Installing Dependencies
-              run: sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list; sudo apt-get update; sudo apt-get install xvfb; sudo apt-get install libgtk-3-dev;
-            - name: Installing V
-              run: cd ~; git clone https://github.com/vlang/v.git; cd v; make CC=clang; sudo ./v symlink
-            - uses: actions/checkout@v1
-            - name: Running Test
-              env:
-                  VFLAGS: -cg -showcc
-              run: v version; xvfb-run make test
+  ubuntu-latest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Installing Dependencies
+        run: sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list; sudo apt-get update; sudo apt-get install xvfb; sudo apt-get install libgtk-3-dev;
+      - name: Installing V
+        run: cd ~; git clone https://github.com/vlang/v.git; cd v; make; sudo ./v symlink
+      - uses: actions/checkout@v2
+
+      - name: Running Test (TCC)
+        env:
+          VFLAGS: -cc tcc  -cg -showcc
+        run: xvfb-run make test
+
+      - name: Running Test (CLANG)
+        env:
+          VFLAGS: -cc clang -cg -showcc
+        run: xvfb-run make test
+
+      - name: Running Test (GCC)
+        env:
+          VFLAGS: -cc gcc -cg -showcc
+        run: xvfb-run make test
