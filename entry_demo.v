@@ -27,6 +27,7 @@ fn new_entry_demo() &EntryDemo {
 	entry := gtk.new_entry()
 	this.entry = entry
 	entry.set_text('Hello World')
+	entry.set_editable(false)
 	entry.on('changed', on_entry_text_changed, this)
 	vbox.pack_start(entry, true, true, 0)
 
