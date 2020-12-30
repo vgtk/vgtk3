@@ -1,12 +1,10 @@
-VC=v
-
 test:
 	v test tests
-	v box_demo.v
-	v button_demo.v
-	v demo.v
-	v dialog_demo.v
-	v entry_demo.v
-	v grid_demo.v
-	v label_demo.v
+	v ./examples/box.v
+	v ./examples/button.v
+	v ./examples/basic.v
+	v ./examples/dialog.v
+	v ./examples/entry.v
+	v ./examples/grid.v
+	v ./examples/label.v
 .PHONY: test
