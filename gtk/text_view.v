@@ -1,6 +1,5 @@
 module gtk
 
-
 pub struct TextView {
 	c &C.GtkWidget
 }
@@ -22,30 +21,28 @@ pub fn (tv TextView) set_text(text string) {
 }
 
 pub fn (tv TextView) get_text() string {
-	b := C.gtk_text_view_get_buffer (tv.c)
+	b := C.gtk_text_view_get_buffer(tv.c)
 	mut start := GtkTextIter{}
 	mut end := GtkTextIter{}
-	C.gtk_text_buffer_get_bounds (b, &start, &end)
-	text := C.gtk_text_buffer_get_text (b, &start, &end, false)
+	C.gtk_text_buffer_get_bounds(b, &start, &end)
+	text := C.gtk_text_buffer_get_text(b, &start, &end, false)
 	if text != 0 {
-		return tos2 (text)
+		return tos2(text)
 	}
 	return ''
 }
 
-/* INHERITED FROM WIDGET */
-
+// INHERITED FROM WIDGET
 pub fn (b &TextView) show() {
 	C.gtk_widget_show(b.c)
 }
 
-/* IMPLEMENTING Widgeter */
-
+// IMPLEMENTING Widgeter
 pub fn (b &TextView) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }
 
-/* CUSTOM API's */
-pub fn (b &TextView) on(event_name string, handler fn(button TextView, _data voidptr), data voidptr) int {
+// CUSTOM API's
+pub fn (b &TextView) on(event_name string, handler fn (TextView, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(b.c, event_name.str, handler, data))
 }

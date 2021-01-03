@@ -92,19 +92,17 @@ pub fn (b Button) get_event_window() gdk.Window {
 	return gdk.Window{cptr}
 }
 
-/* INHERITED FROM WIDGET */
-
+// INHERITED FROM WIDGET
 pub fn (b &Button) show() {
 	C.gtk_widget_show(b.c)
 }
 
-/* IMPLEMENTING Widgeter */
-
+// IMPLEMENTING Widgeter
 pub fn (b &Button) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }
 
-/* CUSTOM API's */
-pub fn (b &Button) on(event_name string, handler fn(button Button, _data voidptr), data voidptr) int {
+// CUSTOM API's
+pub fn (b &Button) on(event_name string, handler fn (Button, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(b.c, event_name.str, handler, data))
 }

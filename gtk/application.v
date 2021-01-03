@@ -16,10 +16,10 @@ pub enum ApplicationFlags {
 }
 
 pub enum ApplicationInhibitFlags {
-	logout  = 1
+	logout = 1
 	switch = 2
 	suspend = 4
-	idle    = 8
+	idle = 8
 }
 
 pub struct Application {
@@ -114,16 +114,16 @@ pub fn (app Application) get_actions_for_accel(accel string) []string {
 	return carray_string_to_array_string(actions)
 }
 
-/* INHERITED FROM GAPPLICATION */
+// INHERITED FROM GAPPLICATION
 pub fn (app Application) run(argv []string) int {
 	return C.g_application_run(app.c, argv.len, argv.data)
 }
 
-/* INHERITED FROM GOBJECT */
+// INHERITED FROM GOBJECT
 pub fn (app Application) unref() {
 	C.g_object_unref(app.c)
 }
 
-pub fn (app Application) on(event_name string, handler fn(app Application, _data voidptr), data voidptr) u32 {
+pub fn (app Application) on(event_name string, handler fn (Application, voidptr), data voidptr) u32 {
 	return C.g_signal_connect(app.c, event_name.str, handler, data)
 }

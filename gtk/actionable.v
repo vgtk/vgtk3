@@ -22,7 +22,6 @@ pub fn (a Actionable) set_action_target_value(target_value &C.GVariant) {
 }
 
 // TODO: void C.gtk_actionable_set_action_target (GtkActionable *actionable, const gchar *format_string, ...)
-
 pub fn (a Actionable) set_detailed_action_name(detailed_action_name string) {
 	C.gtk_actionable_set_detailed_action_name(a.c, detailed_action_name.str)
 }

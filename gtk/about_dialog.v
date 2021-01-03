@@ -156,18 +156,16 @@ pub fn show_about_dialog(parent Window) {
 	C.gtk_show_about_dialog(parent.c, 0)
 }
 
-pub fn (a AboutDialog) on_activate_link(handler fn (label AboutDialog, uri charptr, _user_data voidptr), user_data voidptr) {
+pub fn (a AboutDialog) on_activate_link(handler fn (AboutDialog, charptr, voidptr), user_data voidptr) {
 	C.g_signal_connect(a.c, 'activate-link', handler, user_data)
 }
 
-/* Inherited from Widget */
-
+// Inherited from Widget
 pub fn (a AboutDialog) show() {
 	C.gtk_widget_show(a.c)
 }
 
-/* Inherited from Window */
-
+// Inherited from Window
 pub fn (a AboutDialog) set_title(title string) {
 	C.gtk_window_set_title(a.c, title.str)
 }

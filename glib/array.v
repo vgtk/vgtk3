@@ -13,7 +13,6 @@ pub fn new_sized_array(zero_terminated bool, clear_ bool, element_size u32, rese
 }
 
 // TODO: GArray * C.g_array_copy (GArray *array)
-
 pub fn (a Array) ref() Array {
 	return Array{C.g_array_ref(a.c)}
 }
@@ -83,7 +82,6 @@ pub fn (a Array) sort_with_data(compare_fn CompareDataFunc, user_data voidptr) {
 // pub fn (a Array) binary_search(target voidptr, compare_fn CompareFunc, out_match_index &u32) bool {
 // 	return C.g_array_binary_search(a.c, target, compare_fn, out_match_index)
 // }
-
 pub fn (a Array) set_size(len u32) Array {
 	cptr := C.g_array_set_size(a.c, len)
 	return Array{cptr}

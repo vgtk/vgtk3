@@ -61,7 +61,8 @@ pub fn (s String) append_len(val string, len i64) String {
 }
 
 pub fn (s String) append_uri_escaped(unescaped string, reserved_chars_allowed string) String {
-	cptr := C.g_string_append_uri_escaped(s.c, unescaped.str, reserved_chars_allowed.str, true)
+	cptr := C.g_string_append_uri_escaped(s.c, unescaped.str, reserved_chars_allowed.str,
+		true)
 	return String{cptr}
 }
 

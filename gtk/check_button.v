@@ -18,8 +18,7 @@ pub fn new_check_button_with_mnemonic(label string) CheckButton {
 	return CheckButton{C.gtk_check_button_new_with_mnemonic(label.str)}
 }
 
-/* Inherited from ToggleButton */
-
+// Inherited from ToggleButton
 pub fn (c CheckButton) set_mode(draw_indicator bool) {
 	C.gtk_toggle_button_set_mode(c.c, draw_indicator)
 }
@@ -48,8 +47,7 @@ pub fn (c CheckButton) set_inconsistent(setting bool) {
 	C.gtk_toggle_button_set_inconsistent(c.c, setting)
 }
 
-/* Inherited from Button */
-
+// Inherited from Button
 pub fn (c CheckButton) clicked() {
 	C.gtk_button_clicked(c.c)
 }
@@ -119,37 +117,21 @@ pub fn (c CheckButton) get_event_window() gdk.Window {
 	return gdk.Window{C.gtk_button_get_event_window(c.c)}
 }
 
-pub fn (c &CheckButton) on(event_name string, handler fn(button CheckButton, _data voidptr), data voidptr) int {
+pub fn (c &CheckButton) on(event_name string, handler fn (CheckButton, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(c.c, event_name.str, handler, data))
 }
 
-/* Inherited from Bin */
-
+// Inherited from Bin
 pub fn (c CheckButton) get_child() Widget {
 	return Widget{C.gtk_bin_get_child(c.c)}
 }
 
-/* Inherited from Container */
-
-
-
-/* Inherited from Widget */
-
-
-
-/* Implemented from Buildable */
-
-
-
-/* Implemented from Actionable */
-
-
-
-/* Implemented from Activatable */
-
-
-/* Implemented from Widgeter */
-
+// Inherited from Container
+// Inherited from Widget
+// Implemented from Buildable
+// Implemented from Actionable
+// Implemented from Activatable
+// Implemented from Widgeter
 pub fn (c &CheckButton) get_gtk_widget() &C.GtkWidget {
 	return c.c
 }

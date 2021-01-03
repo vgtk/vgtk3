@@ -57,7 +57,6 @@ pub fn (w Widget) unrealize() {
 }
 
 // TODO: void C.gtk_widget_draw (GtkWidget *widget, cairo_t *cr)
-
 pub fn (w Widget) queue_draw() {
 	C.gtk_widget_queue_draw(w.c)
 }
@@ -75,7 +74,6 @@ pub fn (w Widget) queue_allocate() {
 }
 
 // TODO: GdkFrameClock * C.gtk_widget_get_frame_clock (GtkWidget *widget)
-
 pub fn (w Widget) get_scale_factor() int {
 	return C.gtk_widget_get_scale_factor(w.c)
 }
@@ -85,29 +83,21 @@ pub fn (w Widget) remove_tick_callback(id u32) {
 }
 
 // TODO: void C.gtk_widget_size_allocate (GtkWidget *widget, GtkAllocation *allocation)
-
 // TODO: void C.gtk_widget_size_allocate_with_baseline (GtkWidget *widget, GtkAllocation *allocation, gint baseline)
-
 // TODO: void C.gtk_widget_add_accelerator (GtkWidget *widget, const gchar *accel_signal, GtkAccelGroup *accel_group, guint accel_key, GdkModifierType accel_mods, GtkAccelFlags accel_flags)
-
 // TODO: gboolean C.gtk_widget_remove_accelerator (GtkWidget *widget, GtkAccelGroup *accel_group, guint accel_key, GdkModifierType accel_mods)
-
 // TODO: void C.gtk_widget_set_accel_path (GtkWidget *widget, const gchar *accel_path, GtkAccelGroup *accel_group)
-
 // TODO: GList * C.gtk_widget_list_accel_closures (GtkWidget *widget)
-
 pub fn (w Widget) can_activate_accel(signal_id int) bool {
 	return C.gtk_widget_can_activate_accel(w.c, signal_id)
 }
 
 // TODO: gboolean C.gtk_widget_event (GtkWidget *widget, GdkEvent *event)
-
 pub fn (w Widget) activate() bool {
 	return C.gtk_widget_activate(w.c)
 }
 
 // TODO: gboolean C.gtk_widget_intersect (GtkWidget *widget, const GdkRectangle *area, GdkRectangle *intersection)
-
 pub fn (w Widget) is_focus() bool {
 	return C.gtk_widget_is_focus(w.c)
 }
@@ -134,9 +124,7 @@ pub fn (w Widget) set_parent(parent Widgeter) {
 }
 
 // TODO: void C.gtk_widget_set_parent_window (GtkWidget *widget, GdkWindow *parent_window)
-
 // TODO: GdkWindow * C.gtk_widget_get_parent_window (GtkWidget *widget)
-
 pub fn (w Widget) set_events(events int) {
 	C.gtk_widget_set_events(w.c, events)
 }
@@ -150,29 +138,21 @@ pub fn (w Widget) add_events(events int) {
 }
 
 // TODO: void C.gtk_widget_set_device_events (GtkWidget *widget, GdkDevice *device, GdkEventMask events)
-
 // TODO: GdkEventMask C.gtk_widget_get_device_events (GtkWidget *widget, GdkDevice *device)
-
 // TODO: void C.gtk_widget_add_device_events (GtkWidget *widget, GdkDevice *device, GdkEventMask events)
-
 // TODO: void C.gtk_widget_set_device_enabled (GtkWidget *widget, GdkDevice *device, gboolean enabled)
-
 // TODO: gboolean C.gtk_widget_get_device_enabled (GtkWidget *widget, GdkDevice *device)
-
 pub fn (w Widget) get_toplevel() &C.GtkWidget {
 	return C.gtk_widget_get_toplevel(w.c)
 }
-/*
 
+/*
 pub fn (w Widget) get_ancestor(widget_type C._GType) &C.GtkWidget {
 	return C.gtk_widget_get_ancestor(w.c, widget_type)
 }
 */
-
 // TODO: GdkVisual * C.gtk_widget_get_visual (GtkWidget *widget)
-
 // TODO: void C.gtk_widget_set_visual (GtkWidget *widget, GdkVisual *visual)
-
 pub fn (w Widget) is_ancestor(ancestor Widgeter) bool {
 	ancestor_ := ancestor.get_gtk_widget()
 	return C.gtk_widget_is_ancestor(w.c, ancestor_)
@@ -207,29 +187,19 @@ pub fn (w Widget) get_default_direction() TextDirection {
 }
 
 // TODO: void C.gtk_widget_shape_combine_region (GtkWidget *widget, cairo_region_t *region)
-
 // TODO: void C.gtk_widget_input_shape_combine_region (GtkWidget *widget, cairo_region_t *region)
-
 // TODO: PangoContext * C.gtk_widget_create_pango_context (GtkWidget *widget)
-
 // TODO: PangoContext * C.gtk_widget_get_pango_context (GtkWidget *widget)
-
 // TODO: void C.gtk_widget_set_font_options (GtkWidget *widget, const cairo_font_options_t *options)
-
 // TODO: const cairo_font_options_t * C.gtk_widget_get_font_options (GtkWidget *widget)
-
 // TODO: void C.gtk_widget_set_font_map (GtkWidget *widget, PangoFontMap *font_map)
-
 // TODO: PangoFontMap * C.gtk_widget_get_font_map (GtkWidget *widget)
-
 // PangoLayout * C.gtk_widget_create_pango_layout (GtkWidget *widget, const gchar *text)
-
 pub fn (w Widget) queue_draw_area(x int, y int, width int, height int) {
 	C.gtk_widget_queue_draw_area(w.c, x, y, width, height)
 }
 
 // TODO: void C.gtk_widget_queue_draw_region (GtkWidget *widget, const cairo_region_t *region)
-
 pub fn (w Widget) set_app_paintable(paintable bool) {
 	C.gtk_widget_set_app_paintable(w.c, paintable)
 }
@@ -243,17 +213,11 @@ pub fn (w Widget) mnemonic_activate(group_cycling bool) bool {
 }
 
 // TODO: void C.gtk_widget_class_install_style_property (GtkWidgetClass *klass, GParamSpec *pspec)
-
 // TODO: void C.gtk_widget_class_install_style_property_parser (GtkWidgetClass *klass, GParamSpec *pspec, GtkRcPropertyParser parser)
-
 // TODO: GParamSpec * C.gtk_widget_class_find_style_property (GtkWidgetClass *klass, const gchar *property_name)
-
 // TODO: GParamSpec ** C.gtk_widget_class_list_style_properties (GtkWidgetClass *klass, guint *n_properties)
-
 // TODO: gboolean C.gtk_widget_send_focus_change (GtkWidget *widget, GdkEvent *event)
-
 // TODO: void C.gtk_widget_style_get (GtkWidget *widget, const gchar *first_property_name, ...)
-
 pub fn (w Widget) style_get_property(property_name string) voidptr {
 	// TODO: ret is GValue, fix this after Gobject is implemented
 	ret := voidptr(0)
@@ -262,13 +226,9 @@ pub fn (w Widget) style_get_property(property_name string) voidptr {
 }
 
 // TODO: void C.gtk_widget_style_get_valist (GtkWidget *widget, const gchar *first_property_name, va_list var_args)
-
 // TODO: void C.gtk_widget_class_set_accessible_type (GtkWidgetClass *widget_class, GType type)
-
 // TODO: void C.gtk_widget_class_set_accessible_role (GtkWidgetClass *widget_class, AtkRole role)
-
 // TODO: AtkObject * C.gtk_widget_get_accessible (GtkWidget *widget)
-
 pub fn (w Widget) child_focus(direction DirectionType) bool {
 	return C.gtk_widget_child_focus(w.c, direction)
 }
@@ -291,13 +251,9 @@ pub fn (w Widget) get_parent() Widget {
 }
 
 // TODO: GtkSettings * C.gtk_widget_get_settings (GtkWidget *widget)
-
 // TODO: GtkClipboard * C.gtk_widget_get_clipboard (GtkWidget *widget, GdkAtom selection)
-
 // TODO: GdkDisplay * C.gtk_widget_get_display (GtkWidget *widget)
-
 // TODO: GdkScreen * C.gtk_widget_get_screen (GtkWidget *widget)
-
 pub fn (w Widget) has_screen() bool {
 	return C.gtk_widget_has_screen(w.c)
 }
@@ -330,7 +286,6 @@ pub fn (w Widget) get_no_show_all() bool {
 }
 
 // TODO: GList * C.gtk_widget_list_mnemonic_labels (GtkWidget *widget)
-
 pub fn (w Widget) add_mnemonic_label(label Widgeter) {
 	l := label.get_gtk_widget()
 	C.gtk_widget_add_mnemonic_label(w.c, l)
@@ -393,19 +348,17 @@ pub fn (w Widget) get_window() gdk.Window {
 }
 
 pub fn (w Widget) register_window(window gdk.Window) {
-	window_ := window.get_cptr() 
+	window_ := window.get_cptr()
 	C.gtk_widget_register_window(w.c, window_)
 }
 
 pub fn (w Widget) unregister_window(window gdk.Window) {
-	window_ := window.get_cptr() 
+	window_ := window.get_cptr()
 	C.gtk_widget_unregister_window(w.c, window_)
 }
 
 // TODO: gboolean C.gtk_cairo_should_draw_window (cairo_t *cr, GdkWindow *window)
-
 // TODO: void C.gtk_cairo_transform_to_window (cairo_t *cr, GtkWidget *widget, GdkWindow *window)
-
 pub fn (w Widget) get_allocated_width() int {
 	return C.gtk_widget_get_allocated_width(w.c)
 }
@@ -455,7 +408,7 @@ pub fn (w Widget) get_can_default() bool {
 	return C.gtk_widget_get_can_default(w.c)
 }
 
-pub fn (w Widget) set_can_default(can_default bool)  {
+pub fn (w Widget) set_can_default(can_default bool) {
 	C.gtk_widget_set_can_default(w.c, can_default)
 }
 
@@ -550,7 +503,7 @@ pub fn (w Widget) get_receives_default() bool {
 
 pub fn (w Widget) set_support_multidevice(support_multidevice bool) {
 	C.gtk_widget_set_support_multidevice(w.c, support_multidevice)
-} 
+}
 
 pub fn (w Widget) get_support_multidevice() bool {
 	return C.gtk_widget_get_support_multidevice(w.c)
@@ -633,7 +586,7 @@ pub fn (w Widget) get_preferred_height_for_width(width int) (int, int) {
 	return minimum_height, natural_height
 }
 
-pub fn (w Widget) get_preferred_width_for_height(height int) (int, int){
+pub fn (w Widget) get_preferred_width_for_height(height int) (int, int) {
 	minimum_width := 0
 	natural_width := 0
 	C.gtk_widget_get_preferred_width_for_height(w.c, height, &minimum_width, &natural_width)
@@ -645,7 +598,8 @@ pub fn (w Widget) get_preferred_height_and_baseline_for_width(width int) (int, i
 	natural_height := 0
 	minimum_baseline := 0
 	natural_baseline := 0
-	C.gtk_widget_get_preferred_height_and_baseline_for_width(w.c, width, &minimum_height, &natural_height, &minimum_baseline, &natural_baseline)
+	C.gtk_widget_get_preferred_height_and_baseline_for_width(w.c, width, &minimum_height,
+		&natural_height, &minimum_baseline, &natural_baseline)
 	return minimum_height, natural_height, minimum_baseline, natural_baseline
 }
 
@@ -757,7 +711,6 @@ pub fn (w Widget) init_template() {
 }
 
 // TODO: GObject * C.gtk_widget_get_template_child (GtkWidget *widget, GType widget_type, const gchar *name)
-
 // Functions
 fn distribute_natural_allocation(extra_space int, n_requested_sizes u32, sizes RequestedSize) int {
 	return C.gtk_distribute_natural_allocation(extra_space, n_requested_sizes, sizes.c)

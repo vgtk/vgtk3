@@ -56,7 +56,7 @@ pub fn (mi MenuItem) set_submenu(menu Menu) {
 	C.gtk_menu_item_set_submenu(mi.c, menu.c)
 }
 
-pub fn (mi &MenuItem) on(event_name string, handler fn(menu_item MenuItem, _data voidptr), data voidptr) int {
+pub fn (mi &MenuItem) on(event_name string, handler fn (MenuItem, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(mi.c, event_name.str, handler, data))
 }
 

@@ -17,7 +17,6 @@ pub fn (l Label) set_text(label string) {
 }
 
 // TODO: C.gtk_label_set_attributes()
-
 pub fn (l Label) set_markup(str string) {
 	C.gtk_label_set_markup(l.c, str.str)
 }
@@ -49,7 +48,6 @@ pub fn (l Label) set_yalign(yalign f32) {
 }
 
 // TODO: C.gtk_label_set_ellipsize()
-
 pub fn (l Label) set_width_chars(n_chars int) {
 	C.gtk_label_set_width_chars(l.c, n_chars)
 }
@@ -63,7 +61,6 @@ pub fn (l Label) set_line_wrap(setting bool) {
 }
 
 // TODO: C.gtk_label_set_line_wrap_mode()
-
 pub fn (l Label) set_lines(lines int) {
 	C.gtk_label_set_lines(l.c, lines)
 }
@@ -120,8 +117,7 @@ pub fn (l Label) get_yalign() f32 {
 	return C.gtk_label_get_yalign(l.c)
 }
 
-/* TODO: PangoEllipsizeMode C.gtk_label_get_ellipsize (GtkLabel *label) */
-
+// TODO: PangoEllipsizeMode C.gtk_label_get_ellipsize (GtkLabel *label)
 pub fn (l Label) get_width_chars() int {
 	return C.gtk_label_get_width_chars(l.c)
 }
@@ -134,14 +130,12 @@ pub fn (l Label) get_label() string {
 	return tos3(C.gtk_label_get_label(l.c))
 }
 
-/* TODO: PangoLayout * C.gtk_label_get_layout (GtkLabel *label) */
-
+// TODO: PangoLayout * C.gtk_label_get_layout (GtkLabel *label)
 pub fn (l Label) get_line_wrap() bool {
 	return C.gtk_label_get_line_wrap(l.c)
 }
 
-/* TODO: PangoWrapMode C.gtk_label_get_line_wrap_mode (GtkLabel *label) */
-
+// TODO: PangoWrapMode C.gtk_label_get_line_wrap_mode (GtkLabel *label)
 pub fn (l Label) get_lines() int {
 	return C.gtk_label_get_lines(l.c)
 }
@@ -209,8 +203,7 @@ pub fn (l &Label) get_gtk_widget() &C.GtkWidget {
 	return l.c
 }
 
-/* Implemented Widget */
-
+// Implemented Widget
 pub fn (l Label) show() {
 	C.gtk_widget_show(l.c)
 }

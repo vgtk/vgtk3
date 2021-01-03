@@ -19,7 +19,8 @@ pub fn new_radio_button_with_label(group glib.SList, label string) RadioButton {
 }
 
 pub fn new_radio_button_with_label_from_widget(radio_group_member RadioButton, label string) RadioButton {
-	return RadioButton{C.gtk_radio_button_new_with_label_from_widget(radio_group_member.c, label.str)}
+	return RadioButton{C.gtk_radio_button_new_with_label_from_widget(radio_group_member.c,
+		label.str)}
 }
 
 pub fn new_radio_button_with_mnemonic(group glib.SList, label string) RadioButton {
@@ -27,7 +28,8 @@ pub fn new_radio_button_with_mnemonic(group glib.SList, label string) RadioButto
 }
 
 pub fn new_radio_button_with_mnemonic_from_widget(radio_group_member RadioButton, label string) RadioButton {
-	return RadioButton{C.gtk_radio_button_new_with_mnemonic_from_widget(radio_group_member.c, label.str)}
+	return RadioButton{C.gtk_radio_button_new_with_mnemonic_from_widget(radio_group_member.c,
+		label.str)}
 }
 
 pub fn (r RadioButton) set_group(group glib.SList) {

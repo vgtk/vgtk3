@@ -3,13 +3,13 @@ module gdk
 pub type WindowType = int
 
 const (
-	window_root		= WindowType(C.GDK_WINDOW_ROOT)
-	window_toplevel		= WindowType(C.GDK_WINDOW_TOPLEVEL)
-	window_child		= WindowType(C.GDK_WINDOW_CHILD)
-	window_temp		= WindowType(C.GDK_WINDOW_TEMP)
-	window_foreign		= WindowType(C.GDK_WINDOW_FOREIGN)
-	window_offscreen	= WindowType(C.GDK_WINDOW_OFFSCREEN)
-	window_subsurface	= WindowType(C.GDK_WINDOW_SUBSURFACE)
+	window_root       = WindowType(C.GDK_WINDOW_ROOT)
+	window_toplevel   = WindowType(C.GDK_WINDOW_TOPLEVEL)
+	window_child      = WindowType(C.GDK_WINDOW_CHILD)
+	window_temp       = WindowType(C.GDK_WINDOW_TEMP)
+	window_foreign    = WindowType(C.GDK_WINDOW_FOREIGN)
+	window_offscreen  = WindowType(C.GDK_WINDOW_OFFSCREEN)
+	window_subsurface = WindowType(C.GDK_WINDOW_SUBSURFACE)
 )
 
 pub type Gravity = int
@@ -52,8 +52,8 @@ const (
 pub type FullScreenMode = int
 
 const (
-	fullscreen_on_current_monitor	= FullScreenMode(C.GDK_FULLSCREEN_ON_CURRENT_MONITOR)
-	fullscreen_on_all_monitors		= FullScreenMode(C.GDK_FULLSCREEN_ON_ALL_MONITORS)
+	fullscreen_on_current_monitor = FullScreenMode(C.GDK_FULLSCREEN_ON_CURRENT_MONITOR)
+	fullscreen_on_all_monitors    = FullScreenMode(C.GDK_FULLSCREEN_ON_ALL_MONITORS)
 )
 
 pub type AnchorHints = int
@@ -98,23 +98,23 @@ const (
 )
 
 pub enum ModifierType {
-	shift_mask    = 1
-	lock_mask     = 2
-	control_mask  = 4
-	mod1_mask     = 8
-	mod2_mask     = 16
-	mod3_mask     = 32
-	mod4_mask     = 64
-	mod5_mask     = 128
-	button1_mask  = 256
-	button2_mask  = 512
-	button3_mask  = 1024
-	button4_mask  = 2048
-	button5_mask  = 4096
-	super_mask    = 67108864
-	hyper_mask    = 134217728
-	meta_mask     = 268435456
-	release_mask  = 1073741824
+	shift_mask = 1
+	lock_mask = 2
+	control_mask = 4
+	mod1_mask = 8
+	mod2_mask = 16
+	mod3_mask = 32
+	mod4_mask = 64
+	mod5_mask = 128
+	button1_mask = 256
+	button2_mask = 512
+	button3_mask = 1024
+	button4_mask = 2048
+	button5_mask = 4096
+	super_mask = 67108864
+	hyper_mask = 134217728
+	meta_mask = 268435456
+	release_mask = 1073741824
 	modifier_mask = 0x5c001fff
 }
 

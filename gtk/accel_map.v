@@ -1,6 +1,6 @@
 module gtk
 
-pub type AccelMapForeach = fn(voidptr, charptr, u32, C.GdkModifierType, bool)
+pub type AccelMapForeach = fn (voidptr, charptr, u32, C.GdkModifierType, bool)
 
 pub struct AccelMap {
 	c &C.GtkAccelMap
@@ -22,7 +22,6 @@ pub fn accel_map_change_entry(accel_path string, accel_key u32, accel_mods C.Gdk
 	return C.gtk_accel_map_change_entry(accel_path.str, accel_key, accel_mods, replace)
 }
 */
-
 pub fn accel_map_load(filename string) {
 	C.gtk_accel_map_load(filename.str)
 }
@@ -48,7 +47,6 @@ pub fn accel_map_load_scanner(scanner &C.GScanner) {
 	C.gtk_accel_map_load_scanner(scanner)
 }
 */
-
 pub fn accel_map_add_filter(filter_pattern string) {
 	C.gtk_accel_map_add_filter(filter_pattern.str)
 }

@@ -13,19 +13,17 @@ pub fn (b ScrolledWindow) add(widget Widgeter) {
 	C.gtk_container_add(b.c, wgt)
 }
 
-/* INHERITED FROM WIDGET */
-
+// INHERITED FROM WIDGET
 pub fn (b &ScrolledWindow) show() {
 	C.gtk_widget_show(b.c)
 }
 
-/* IMPLEMENTING Widgeter */
-
+// IMPLEMENTING Widgeter
 pub fn (b &ScrolledWindow) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }
 
-/* CUSTOM API's */
-pub fn (b &ScrolledWindow) on(event_name string, handler fn(button ScrolledWindow, _data voidptr), data voidptr) int {
+// CUSTOM API's
+pub fn (b &ScrolledWindow) on(event_name string, handler fn (ScrolledWindow, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(b.c, event_name.str, handler, data))
 }

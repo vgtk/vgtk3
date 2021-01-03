@@ -39,7 +39,7 @@ pub fn new_builder_from_string(str string) Builder {
 	return Builder{C.gtk_builder_new_from_string(str.str, str.len)}
 }
 
-pub fn (b Builder) add_callback_symbol(callback_name string, callback fn()) {
+pub fn (b Builder) add_callback_symbol(callback_name string, callback fn ()) {
 	C.gtk_builder_add_callback_symbol(b.c, callback_name.str, callback)
 }
 
@@ -70,7 +70,7 @@ pub fn (b Builder) add_from_string(buffer string) ?u32 {
 	return ret
 }
 
-pub fn (b Builder) add_objects_from_file(filename string, object_ids[]string) ?u32 {
+pub fn (b Builder) add_objects_from_file(filename string, object_ids []string) ?u32 {
 	err := &C._GError{0}
 	ret := C.gtk_builder_add_objects_from_file(b.c, filename.str, object_ids.data, &err)
 	if err != 0 {
@@ -79,18 +79,20 @@ pub fn (b Builder) add_objects_from_file(filename string, object_ids[]string) ?u
 	return ret
 }
 
-pub fn (b Builder) add_objects_from_string(buffer string, object_ids[]string) ?u32 {
+pub fn (b Builder) add_objects_from_string(buffer string, object_ids []string) ?u32 {
 	err := &C._GError{0}
-	ret := C.gtk_builder_add_objects_from_string(b.c, buffer.str, buffer.len, object_ids.data, &err)
+	ret := C.gtk_builder_add_objects_from_string(b.c, buffer.str, buffer.len, object_ids.data,
+		&err)
 	if err != 0 {
 		return error(tos3(err.message))
 	}
 	return ret
 }
 
-pub fn (b Builder) add_objects_from_resource(resource_path string, object_ids[]string) ?u32 {
+pub fn (b Builder) add_objects_from_resource(resource_path string, object_ids []string) ?u32 {
 	err := &C._GError{0}
-	ret := C.gtk_builder_add_objects_from_resource(b.c, resource_path.str, object_ids.data, &err)
+	ret := C.gtk_builder_add_objects_from_resource(b.c, resource_path.str, object_ids.data,
+		&err)
 	if err != 0 {
 		return error(tos3(err.message))
 	}
@@ -108,7 +110,6 @@ pub fn (b Builder) extend_with_template(widget Widgeter, template_type C.GType, 
 	return ret
 }
 */
-
 pub fn (b Builder) get_object(name string) &C._GObject {
 	return C.gtk_builder_get_object(b.c, name.str)
 }
@@ -122,13 +123,11 @@ pub fn (b Builder) expose_object(name string, object C.GObject) {
 	C.gtk_builder_expose_object(b.c, name.str, &object)
 }
 */
-
 pub fn (b Builder) connect_signals(user_data voidptr) {
 	C.gtk_builder_connect_signals(b.c, user_data)
 }
 
 // TODO: void C.gtk_builder_connect_signals_full (GtkBuilder *builder, GtkBuilderConnectFunc func, gpointer user_data)
-
 pub fn (b Builder) set_translation_domain(domain string) {
 	C.gtk_builder_set_translation_domain(b.c, domain.str)
 }
