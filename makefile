@@ -1,4 +1,5 @@
 test:
+	v run ./fmt.vsh
 	v test tests
 	v ./examples/box.v
 	v ./examples/button.v
