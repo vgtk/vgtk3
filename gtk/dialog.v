@@ -1,23 +1,23 @@
 module gtk
 
 pub enum DialogFlags {
-	modal               = 1
+	modal = 1
 	destroy_with_parent = 2
-	use_header_bar      = 4
+	use_header_bar = 4
 }
 
 pub enum ResponseType {
-	_none        = -1
-	reject       = -2
-	accept       = -3
+	_none = -1
+	reject = -2
+	accept = -3
 	delete_event = -4
-	ok           = -5
-	cancel       = -6
-	close        = -7
-	yes          = -8
-	no           = -9
-	apply        = -10
-	help         = -11
+	ok = -5
+	cancel = -6
+	close = -7
+	yes = -8
+	no = -9
+	apply = -10
+	help = -11
 }
 
 pub struct Dialog {
@@ -34,7 +34,6 @@ pub fn new_dialog_from_parent(title string, parent Window, flags DialogFlags) Di
 }
 
 // TODO: GtkWidget * C.gtk_dialog_new_with_buttons (const gchar *title, GtkWindow *parent, GtkDialogFlags flags, const gchar *first_button_text, ...)
-
 pub fn (d Dialog) run() ResponseType {
 	return C.gtk_dialog_run(d.c)
 }
@@ -48,7 +47,6 @@ pub fn (d Dialog) add_button(button_text string, response_id ResponseType) Butto
 }
 
 // TODO: void C.gtk_dialog_add_buttons (GtkDialog *dialog, const gchar *first_button_text, ...)
-
 pub fn (d Dialog) add_action_widget(child Widgeter, response_id ResponseType) {
 	child_ := child.get_gtk_widget()
 	C.gtk_dialog_add_action_widget(d.c, child_, response_id)
@@ -69,7 +67,9 @@ pub fn (d Dialog) get_response_for_widget(widget Widgeter) int {
 
 pub fn (d Dialog) get_widget_for_response(response_id ResponseType) &Widget {
 	widget := C.gtk_dialog_get_widget_for_response(d.c, response_id)
-	if widget == 0 { return 0 }
+	if widget == 0 {
+		return 0
+	}
 	return &Widget{widget}
 }
 
@@ -80,12 +80,13 @@ pub fn (d Dialog) get_content_area() Box {
 
 pub fn (d Dialog) get_header_bar() &Widget {
 	widget := C.gtk_dialog_get_header_bar(d.c)
-	if widget == 0 { return 0 }
+	if widget == 0 {
+		return 0
+	}
 	return &Widget{widget}
 }
 
-/* INHERITED FROM WIDGET */
-
+// INHERITED FROM WIDGET
 pub fn (d Dialog) destroy() {
 	C.gtk_widget_destroy(d.c)
 }
@@ -213,7 +214,6 @@ pub fn (d Dialog) get_ancestor(widget_type C._GType) &C.GtkWidget {
 	return C.gtk_widget_get_ancestor(d.c, widget_type)
 }
 */
-
 pub fn (d Dialog) is_ancestor(ancestor Widgeter) bool {
 	ancestor_ := ancestor.get_gtk_widget()
 	return C.gtk_widget_is_ancestor(d.c, ancestor_)
@@ -247,9 +247,8 @@ pub fn (d Dialog) get_default_direction() TextDirection {
 	return TextDirection(C.gtk_widget_get_default_direction())
 }
 
-/* INHERITED FROM WINDOW */
-
-pub fn (d Dialog) set_default_size(width int, height int)  {
+// INHERITED FROM WINDOW
+pub fn (d Dialog) set_default_size(width int, height int) {
 	C.gtk_window_set_default_size(d.c, width, height)
 }
 
@@ -257,13 +256,12 @@ pub fn (d Dialog) get_title() string {
 	return tos3(C.gtk_window_get_title(d.c))
 }
 
-/* IMPLEMENTING Widgeter */
-
+// IMPLEMENTING Widgeter
 pub fn (d &Dialog) get_gtk_widget() &C.GtkWidget {
 	return d.c
 }
 
-/* CUSTOM API's */
-pub fn (d &Dialog) on(event_name string, handler fn(window Dialog, _data voidptr), data voidptr) int {
+// CUSTOM API's
+pub fn (d &Dialog) on(event_name string, handler fn (Dialog, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(d.c, event_name.str, handler, 0))
 }

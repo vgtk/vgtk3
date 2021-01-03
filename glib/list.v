@@ -1,15 +1,14 @@
 module glib
 
 #include <glib/glist.h>
-
-pub type Func = fn(voidptr, voidptr)
+pub type Func = fn (voidptr, voidptr)
 
 pub struct List {
 	c &C.GList
 }
 
 pub fn new_list() List {
-	l := &C.GList{0,0,0}
+	l := &C.GList{0, 0, 0}
 	return List{l}
 }
 
@@ -37,11 +36,9 @@ pub fn (l List) insert_before(sibling List, data voidptr) List {
 // 	cptr := g_list_insert_before_link(l.c, sibling.c, link.c)
 // 	return List{cptr}
 // }
-
 // pub fn (l List) insert_sorted(data voidptr, func CompareFunc) List {
 // 	return List{g_list_insert_before_link(l.c, data, func)}
 // }
-
 pub fn (l List) remove(data voidptr) List {
 	return List{C.g_list_remove(l.c, data)}
 }
@@ -82,11 +79,11 @@ pub fn (l List) copy_deep(func CopyFunc, user_data voidptr) List {
 	return List{C.g_list_copy_deep(l.c, func, user_data)}
 }
 
-pub fn (l List) reverse() List{
+pub fn (l List) reverse() List {
 	return List{C.g_list_reverse(l.c)}
 }
 
-pub fn (l List) sort(compare_func fn(voidptr, voidptr) int) List {
+pub fn (l List) sort(compare_func fn (voidptr, voidptr) int) List {
 	return List{C.g_list_sort(l.c, compare_func)}
 }
 

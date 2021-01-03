@@ -1,3 +1,3 @@
 module gio
 
-pub struct C.GActionGroup
+pub struct C.GActionGroup {}

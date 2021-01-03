@@ -108,7 +108,6 @@ pub fn (w Window) get_title() string {
 }
 
 // GdkWindowTypeHint C.gtk_window_get_type_hint (GtkWindow *window)
-
 pub fn (w Window) get_skip_taskbar_hint() bool {
 	return C.gtk_window_get_skip_taskbar_hint(w.c)
 }
@@ -127,10 +126,9 @@ pub fn (w Window) get_accept_focus() bool {
 
 pub fn (w Window) get_focus_on_map() bool {
 	return C.gtk_window_get_focus_on_map(w.c)
-} 
+}
 
 // GtkWindowGroup * C.gtk_window_get_group (GtkWindow *window)
-
 pub fn (w Window) has_group() bool {
 	return C.gtk_window_has_group(w.c)
 }
@@ -155,14 +153,12 @@ pub fn (w Window) resize(width int, height int) {
 	C.gtk_window_resize(w.c, width, height)
 }
 
-pub fn (w Window) resize_to_geometry(width int, height int){
+pub fn (w Window) resize_to_geometry(width int, height int) {
 	C.gtk_window_resize_to_geometry(w.c, width, height)
 }
 
 // TODO: void C.gtk_window_set_default_icon_list (GList *list)
-
 // TODO: void C.gtk_window_set_default_icon (GdkPixbuf *icon)
-
 pub fn (w Window) set_default_icon_from_file(filename string) bool {
 	return C.gtk_window_set_default_icon_from_file(filename.str, 0)
 }
@@ -172,9 +168,7 @@ pub fn (w Window) set_default_icon_name(name string) {
 }
 
 // TODO: void C.gtk_window_set_icon (GtkWindow *window, GdkPixbuf *icon)
-
 // TODO: void C.gtk_window_set_icon_list (GtkWindow *window, GList *list)
-
 pub fn (w Window) set_icon_from_file(filename string) bool {
 	return C.gtk_window_set_icon_from_file(w.c, filename.str, 0)
 }
@@ -199,7 +193,7 @@ pub fn (w Window) get_mnemonics_visible() bool {
 	return C.gtk_window_get_mnemonics_visible(w.c)
 }
 
-pub fn (w Window) set_mnemonics_visible(setting bool)  {
+pub fn (w Window) set_mnemonics_visible(setting bool) {
 	C.gtk_window_set_mnemonics_visible(w.c, setting)
 }
 
@@ -224,7 +218,6 @@ pub fn (w Window) resize_grip_is_visible() bool {
 }
 
 // gboolean C.gtk_window_get_resize_grip_area (GtkWindow *window, GdkRectangle *rect)
-
 pub fn (w Window) get_application() &Application {
 	cptr := C.gtk_window_get_application(w.c)
 	if cptr == 0 {
@@ -254,8 +247,7 @@ pub fn (w Window) set_interactive_debugging(enable bool) {
 	C.gtk_window_set_interactive_debugging(enable)
 }
 
-/* INHERITED FROM CONTAINER */
-
+// INHERITED FROM CONTAINER
 pub fn (w Window) add(widget Widgeter) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(w.c, wgt)
@@ -265,8 +257,7 @@ pub fn (w Window) set_border_width(border_width int) {
 	w.to_container().set_border_width(border_width)
 }
 
-/* INHERITED FROM WIDGET */
-
+// INHERITED FROM WIDGET
 pub fn (w Window) show() {
 	C.gtk_widget_show(w.c)
 }
@@ -275,14 +266,13 @@ pub fn (w Window) show_all() {
 	C.gtk_widget_show_all(w.c)
 }
 
-/* IMPLEMENTING WIDGETER */
-
+// IMPLEMENTING WIDGETER
 pub fn (w &Window) get_gtk_widget() &C._GtkWidget {
 	return voidptr(w.c)
 }
 
-/* CUSTOM API's */
-pub fn (w &Window) on(event_name string, handler fn(window Window, _data voidptr), data voidptr) int {
+// CUSTOM API's
+pub fn (w &Window) on(event_name string, handler fn (Window, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(w.c, event_name.str, handler, 0))
 }
 

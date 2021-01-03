@@ -1,8 +1,8 @@
 import glib
 
 const (
-	test_nums = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-	// more_nums = [ 8, 9, 7, 0, 3, 2, 5, 1, 4, 6 ]
+	test_nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		// more_nums = [ 8, 9, 7, 0, 3, 2, 5, 1, 4, 6 ]
 )
 
 fn test_list() {
@@ -26,7 +26,7 @@ fn test_list() {
 }
 
 fn test_slist() {
-/*
+	/*
 	mut slist := glib.new_slist()
 	for i := 0; i < 10; i++ {
 		slist = slist.append(test_nums[i])
@@ -41,5 +41,5 @@ fn test_slist() {
 		assert slist.position(s) == i
 	}
 	slist.free()
-*/
+	*/
 }

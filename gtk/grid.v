@@ -92,8 +92,7 @@ pub fn (g Grid) set_row_baseline_position(row int, pos BaselinePosition) {
 	C.gtk_grid_set_row_baseline_position(g.c, row, pos)
 }
 
-/* INHERITED FROM CONTAINER */
-
+// INHERITED FROM CONTAINER
 pub fn (g Grid) add(widget Widgeter) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(g.c, wgt)
@@ -104,8 +103,7 @@ pub fn (g Grid) remove(widget Widgeter) {
 	C.gtk_container_remove(g.c, wgt)
 }
 
-/* IMPLEMENTING GtkOrientable */
-
+// IMPLEMENTING GtkOrientable
 pub fn (g Grid) set_orientation(orientation Orientation) {
 	C.gtk_orientable_set_orientation(g.c, orientation)
 }
@@ -114,8 +112,7 @@ pub fn (g Grid) get_orientation() Orientation {
 	return Orientation(C.gtk_orientable_get_orientation(g.c))
 }
 
-/* IMPLEMENTING Widgeter */
-
+// IMPLEMENTING Widgeter
 pub fn (g &Grid) get_gtk_widget() &C.GtkWidget {
 	return g.c
 }

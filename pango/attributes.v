@@ -117,7 +117,4 @@ pub fn new_attr_underline_color(red u16, green u16, blue u16) Attribute {
 	return Attribute{pango_attr_underline_color_new(red, green, blue)}
 }
 
-
-
-
-// 
+//

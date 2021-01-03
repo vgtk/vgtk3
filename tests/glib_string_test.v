@@ -8,7 +8,6 @@ fn test_gstring_append() {
 	str.append('doing?')
 	assert str.str() == 'Hey... What are you doing?'
 	assert str.str().len == 26
-
 	str2 := glib.new_string('')
 	str2.append('Vgtk is')
 	str2.append('')

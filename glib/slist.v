@@ -1,7 +1,8 @@
 module glib
 
-pub type CompareFunc = fn(voidptr, voidptr) int
-pub type CompareDataFunc = fn(voidptr, voidptr, voidptr) int
+pub type CompareFunc = fn (voidptr, voidptr) int
+
+pub type CompareDataFunc = fn (voidptr, voidptr, voidptr) int
 
 pub struct SList {
 	c &C.GSList
@@ -85,7 +86,7 @@ pub fn (s SList) insert_sorted_with_data(data voidptr, func CompareDataFunc, use
 
 pub fn (s SList) sort(compare_fn CompareFunc) SList {
 	return SList{C.g_slist_sort(s.c, compare_fn)}
-} 
+}
 
 pub fn (s SList) sort_with_data(compare_fn CompareDataFunc, user_data voidptr) SList {
 	return SList{C.g_slist_sort_with_data(s.c, compare_fn, user_data)}
@@ -110,7 +111,6 @@ pub fn (s SList) next() SList {
 pub fn (s SList) nth(n u32) SList {
 	return SList{C.g_slist_nth(s.c, n)}
 }
-
 
 pub fn (s SList) nth_data(n u32) voidptr {
 	return C.g_slist_nth_data(s.c, n)

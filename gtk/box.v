@@ -60,8 +60,9 @@ pub fn (b Box) query_child_packing(child Widgeter) BoxQuery {
 	fill := false
 	padding := u32(0)
 	pack_type := PackType(0)
-	C.gtk_box_query_child_packing(voidptr(b.c), voidptr(child_), &expand, &fill, &padding, &pack_type)
-	return BoxQuery{ expand, fill, padding, pack_type }
+	C.gtk_box_query_child_packing(voidptr(b.c), voidptr(child_), &expand, &fill, &padding,
+		&pack_type)
+	return BoxQuery{expand, fill, padding, pack_type}
 }
 
 pub fn (b Box) set_child_packing(child Widgeter, expand bool, fill bool, padding u32, pack_type PackType) {
@@ -86,8 +87,7 @@ pub fn (b Box) set_center_widget(widget Widgeter) {
 	C.gtk_box_set_center_widget(b.c, wgt)
 }
 
-/* Inherited from Widget */
-
+// Inherited from Widget
 pub fn (b Box) get_halign() Align {
 	return C.gtk_widget_get_halign(b.c)
 }
@@ -104,8 +104,7 @@ pub fn (b Box) set_valign(align Align) {
 	C.gtk_widget_set_valign(b.c, align)
 }
 
-/* Inherited from Container */
-
+// Inherited from Container
 pub fn (b Box) add(widget Widgeter) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(b.c, wgt)
@@ -116,8 +115,7 @@ pub fn (b Box) remove(widget Widgeter) {
 	C.gtk_container_remove(b.c, wgt)
 }
 
-/* Implementing GtkOrientable */
-
+// Implementing GtkOrientable
 pub fn (b Box) set_orientation(orientation Orientation) {
 	C.gtk_orientable_set_orientation(b.c, orientation)
 }
@@ -126,8 +124,7 @@ pub fn (b Box) get_orientation() Orientation {
 	return Orientation(C.gtk_orientable_get_orientation(b.c))
 }
 
-/* Implementing Widgeter */
-
+// Implementing Widgeter
 pub fn (b &Box) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }
