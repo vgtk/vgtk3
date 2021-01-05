@@ -277,6 +277,8 @@ pub fn (w &Window) on(event_name string, handler fn (Window, voidptr), data void
 }
 
 pub fn (w &Window) to_container() &Container {
-	cptr := &C.GtkContainer(w.c)
-	return &Container{cptr}
+	unsafe {
+		cptr := &C.GtkContainer(w.c)
+		return &Container{cptr}
+	}
 }
