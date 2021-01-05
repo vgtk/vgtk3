@@ -1,7 +1,7 @@
 module gtk
 
 pub struct ApplicationWindow {
-	c &C._GtkWidget
+	c &C.GtkWidget
 }
 
 pub fn new_application_window(application Application) ApplicationWindow {
