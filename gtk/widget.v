@@ -461,7 +461,7 @@ pub fn (w Widget) unset_state_flags(flags StateFlags) {
 }
 
 pub fn (w Widget) get_state_flags() StateFlags {
-	return C.gtk_widget_get_state_flags(w.c)
+	return StateFlags(C.gtk_widget_get_state_flags(w.c))
 }
 
 pub fn (w Widget) has_default() bool {
@@ -531,7 +531,7 @@ pub fn (w Widget) device_is_shadowed(device gdk.Device) bool {
 }
 
 pub fn (w Widget) get_modifier_mask(intent gdk.ModifierIntent) gdk.ModifierType {
-	return C.gtk_widget_get_modifier_mask(w.c, intent)
+	return gdk.ModifierType(C.gtk_widget_get_modifier_mask(w.c, intent))
 }
 
 pub fn (w Widget) insert_action_group(name string, group gio.ActionGroup) {
@@ -604,7 +604,7 @@ pub fn (w Widget) get_preferred_height_and_baseline_for_width(width int) (int, i
 }
 
 pub fn (w Widget) get_request_mode() SizeRequestMode {
-	return C.gtk_widget_get_request_mode(w.c)
+	return SizeRequestMode(C.gtk_widget_get_request_mode(w.c))
 }
 
 pub fn (w Widget) get_preferred_size() (Requisition, Requisition) {
@@ -615,7 +615,7 @@ pub fn (w Widget) get_preferred_size() (Requisition, Requisition) {
 }
 
 pub fn (w Widget) get_halign() Align {
-	return C.gtk_widget_get_halign(w.c)
+	return Align(C.gtk_widget_get_halign(w.c))
 }
 
 pub fn (w Widget) set_halign(align Align) {
@@ -623,11 +623,11 @@ pub fn (w Widget) set_halign(align Align) {
 }
 
 pub fn (w Widget) get_valign() Align {
-	return C.gtk_widget_get_valign(w.c)
+	return Align(C.gtk_widget_get_valign(w.c))
 }
 
 pub fn (w Widget) get_valign_with_baseline() Align {
-	return C.gtk_widget_get_valign_with_baseline(w.c)
+	return Align(C.gtk_widget_get_valign_with_baseline(w.c))
 }
 
 pub fn (w Widget) set_valign(align Align) {

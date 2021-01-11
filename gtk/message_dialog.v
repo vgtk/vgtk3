@@ -49,7 +49,7 @@ pub fn (m MessageDialog) get_message_area() Widget {
 
 // Inherited from Dialog
 pub fn (m MessageDialog) run() ResponseType {
-	return C.gtk_dialog_run(m.c)
+	return ResponseType(C.gtk_dialog_run(m.c))
 }
 
 pub fn (m MessageDialog) response(response_id ResponseType) {

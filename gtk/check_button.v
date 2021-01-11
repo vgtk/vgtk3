@@ -102,7 +102,7 @@ pub fn (c CheckButton) set_image_position(pos Position) {
 }
 
 pub fn (c CheckButton) get_image_position() Position {
-	return C.gtk_button_get_image_position(c.c)
+	return Position(C.gtk_button_get_image_position(c.c))
 }
 
 pub fn (c CheckButton) set_always_show_image(always_show bool) {

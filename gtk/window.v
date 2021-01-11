@@ -134,7 +134,7 @@ pub fn (w Window) has_group() bool {
 }
 
 pub fn (w Window) get_window_type() WindowType {
-	return C.gtk_window_get_window_type(w.c)
+	return WindowType(C.gtk_window_get_window_type(w.c))
 }
 
 pub fn (w Window) move(x int, y int) {

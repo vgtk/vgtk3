@@ -89,7 +89,7 @@ pub fn (b Box) set_center_widget(widget Widgeter) {
 
 // Inherited from Widget
 pub fn (b Box) get_halign() Align {
-	return C.gtk_widget_get_halign(b.c)
+	return Align(C.gtk_widget_get_halign(b.c))
 }
 
 pub fn (b Box) set_halign(align Align) {
@@ -97,7 +97,7 @@ pub fn (b Box) set_halign(align Align) {
 }
 
 pub fn (b Box) get_valign() Align {
-	return C.gtk_widget_get_valign(b.c)
+	return Align(C.gtk_widget_get_valign(b.c))
 }
 
 pub fn (b Box) set_valign(align Align) {
