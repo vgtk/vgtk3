@@ -76,7 +76,7 @@ pub fn (b Button) set_image_position(pos Position) {
 }
 
 pub fn (b Button) get_image_position() Position {
-	return C.gtk_button_get_image_position(b.c)
+	return Position(C.gtk_button_get_image_position(b.c))
 }
 
 pub fn (b Button) set_always_show_image(always_show bool) {

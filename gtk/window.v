@@ -16,7 +16,7 @@ pub enum WindowPosition {
 }
 
 pub struct Window {
-	c &C._GtkWidget
+	c &C.GtkWidget
 }
 
 pub fn new_window() Window {
@@ -134,7 +134,7 @@ pub fn (w Window) has_group() bool {
 }
 
 pub fn (w Window) get_window_type() WindowType {
-	return C.gtk_window_get_window_type(w.c)
+	return WindowType(C.gtk_window_get_window_type(w.c))
 }
 
 pub fn (w Window) move(x int, y int) {
@@ -267,7 +267,7 @@ pub fn (w Window) show_all() {
 }
 
 // IMPLEMENTING WIDGETER
-pub fn (w &Window) get_gtk_widget() &C._GtkWidget {
+pub fn (w &Window) get_gtk_widget() &C.GtkWidget {
 	return voidptr(w.c)
 }
 

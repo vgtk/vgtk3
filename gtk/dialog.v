@@ -35,7 +35,7 @@ pub fn new_dialog_from_parent(title string, parent Window, flags DialogFlags) Di
 
 // TODO: GtkWidget * C.gtk_dialog_new_with_buttons (const gchar *title, GtkWindow *parent, GtkDialogFlags flags, const gchar *first_button_text, ...)
 pub fn (d Dialog) run() ResponseType {
-	return C.gtk_dialog_run(d.c)
+	return ResponseType(C.gtk_dialog_run(d.c))
 }
 
 pub fn (d Dialog) response(response_id ResponseType) {

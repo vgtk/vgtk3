@@ -8,7 +8,7 @@ struct C.GtkWindow
 struct C.GtkGrid
 struct C.GtkContainer
 struct C.GtkWidget
-struct C._GtkWidget
+// struct C._GtkWidget
 struct C.GtkBox
 struct C._GtkBox
 struct C.GtkWidgetPath
@@ -53,7 +53,7 @@ fn C.gtk_color_chooser_set_use_alpha(&C.GtkColorChooser, bool)
 fn C.gtk_color_chooser_add_palette(&C.GtkColorChooser, int, int, int, &C.GdkRGBA)
 
 /* WINDOW */
-fn C.gtk_window_new(int) &C._GtkWidget
+fn C.gtk_window_new(int) &C.GtkWidget
 fn C.gtk_window_set_title(&C.GtkWidget, charptr)
 fn C.gtk_window_set_wmclass(&C.GtkWidget, charptr, charptr) // !DEPRECATED
 fn C.gtk_window_set_resizable(&C.GtkWidget, bool)
@@ -482,7 +482,7 @@ fn C.gtk_application_set_accels_for_action(&C.GtkApplication, &charptr, &charptr
 fn C.gtk_application_get_actions_for_accel(&C.GtkApplication, &charptr) &charptr
 
 /* ApplicationWindow */
-fn C.gtk_application_window_new(&C.GtkApplication) &C._GtkWidget
+fn C.gtk_application_window_new(&C.GtkApplication) &C.GtkWidget
 fn C.gtk_application_window_set_show_menubar(&C.GtkApplicationWindow, bool)
 fn C.gtk_application_window_get_show_menubar(&C.GtkApplicationWindow) bool
 fn C.gtk_application_window_get_id(&C.GtkApplicationWindow) u32
@@ -700,7 +700,7 @@ fn C.gtk_widget_get_tooltip_markup(&C.GtkWidget) charptr
 fn C.gtk_widget_set_tooltip_markup(&C.GtkWidget, charptr)
 fn C.gtk_widget_get_tooltip_text(&C.GtkWidget) charptr
 fn C.gtk_widget_set_tooltip_text(&C.GtkWidget, charptr)
-fn C.gtk_widget_get_tooltip_window(&C.GtkWidget) &C._GtkWidget
+fn C.gtk_widget_get_tooltip_window(&C.GtkWidget) &C.GtkWidget
 fn C.gtk_widget_set_tooltip_window(&C.GtkWidget, &C.GtkWidget)
 fn C.gtk_widget_get_has_tooltip(&C.GtkWidget) bool
 fn C.gtk_widget_set_has_tooltip(&C.GtkWidget, bool)
