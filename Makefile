@@ -1,11 +1,23 @@
+V ?= v
+
+%.o : %.mod
+
+all: fmt test examples
+
+.PHONY: fmt test examples
+
+fmt:
+	$(V) run ./fmt.vsh
+
 test:
-	v run ./fmt.vsh
-	v test tests
-	v ./examples/box.v
-	v ./examples/button.v
-	v ./examples/basic.v
-	v ./examples/dialog.v
-	v ./examples/entry.v
-	v ./examples/grid.v
-	v ./examples/label.v
-.PHONY: test
+	$(V) test .
+
+examples:
+	$(V) ./examples/box.v
+	$(V) ./examples/button.v
+	$(V) ./examples/basic.v
+	$(V) ./examples/dialog.v
+	$(V) ./examples/entry.v
+	$(V) ./examples/grid.v
+	$(V) ./examples/label.v
+
