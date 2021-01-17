@@ -5,7 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Installing Dependencies
-        run: sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list; sudo apt-get update; sudo apt-get install xvfb; sudo apt-get install libgtk-3-dev;
+        run: sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list; sudo apt-get update; sudo apt-get install xvfb; sudo apt-get install libgtk-3-dev; sudo apt-get install libgdk-pixbuf2.0-dev
+      - name: Linking gdk-pixbuf
+        run: sudo ln -s /usr/include/gdk-pixbuf-2.0/gdk-pixbuf /usr/include/gdk-pixbuf
       - name: Installing V
         run: cd ~; git clone https://github.com/vlang/v.git; cd v; make; sudo ./v symlink
       - uses: actions/checkout@v2
