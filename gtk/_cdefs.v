@@ -1,5 +1,7 @@
 module gtk
 
+import gdk
+
 struct C.GtkLabel {
 }
 
@@ -147,7 +149,7 @@ fn C.gtk_window_set_default_geometry(&C.GtkWidget, int, int)
 // fn C.gtk_window_set_geometry_hints(&C.GtkWidget, &C.GtkWidget, &GdkGeometry, GdkWindowHints)
 fn C.gtk_window_set_gravity(&C.GtkWidget, int)
 
-fn C.gtk_window_get_gravity(&C.GtkWidget) int
+fn C.gtk_window_get_gravity(&C.GtkWidget) gdk.Gravity
 
 fn C.gtk_window_set_position(&C.GtkWidget, int)
 
@@ -406,9 +408,9 @@ fn C.gtk_text_view_get_buffer(t &C.GtkWidget) &C.GtkWidget
 // PANED
 fn C.gtk_paned_new(o Orientation) &C.GtkWidget
 
-fn C.gtk_paned_add1(p &C.GtkWidget, wgt Widgeter)
+fn C.gtk_paned_add1(p &C.GtkWidget, wgt IWidget)
 
-fn C.gtk_paned_add2(p &C.GtkWidget, wgt Widgeter)
+fn C.gtk_paned_add2(p &C.GtkWidget, wgt IWidget)
 
 fn C.gtk_paned_set_wide_handle(p &C.GtkWidget, wide bool)
 

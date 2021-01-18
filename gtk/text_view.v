@@ -37,7 +37,7 @@ pub fn (b &TextView) show() {
 	C.gtk_widget_show(b.c)
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (b &TextView) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }

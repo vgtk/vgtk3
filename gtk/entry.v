@@ -1,36 +1,37 @@
 module gtk
 
 pub enum EntryIconPosition {
-	primary
-	secondary
+	primary = C.GTK_ENTRY_ICON_PRIMARY
+	secondary = C.GTK_ENTRY_ICON_SECONDARY
 }
 
 pub enum InputPurpose {
-	free_form
-	alpha
-	digits
-	number
-	phone
-	url
-	email
-	name
-	password
-	pin
+	free_form = C.GTK_INPUT_PURPOSE_FREE_FORM
+	alpha = C.GTK_INPUT_PURPOSE_ALPHA
+	digits = C.GTK_INPUT_PURPOSE_DIGITS
+	number = C.GTK_INPUT_PURPOSE_NUMBER
+	phone = C.GTK_INPUT_PURPOSE_PHONE
+	url = C.GTK_INPUT_PURPOSE_URL
+	email = C.GTK_INPUT_PURPOSE_EMAIL
+	name = C.GTK_INPUT_PURPOSE_NAME
+	password = C.GTK_INPUT_PURPOSE_PASSWORD
+	pin = C.GTK_INPUT_PURPOSE_PIN
+	terminal = C.GTK_INPUT_PURPOSE_TERMINAL
 }
 
 pub enum InputHints {
-	_none = 0
-	spellcheck = 1
-	no_spellcheck = 2
-	word_completion = 4
-	lowercase = 8
-	uppercase_chars = 16
-	uppercase_words = 32
-	uppercase_sentences = 64
-	inhibit_osk = 128
-	vertical_writing = 256
-	emoji = 512
-	no_emoji = 1024
+	none_ = C.GTK_INPUT_HINT_NONE
+	spellcheck = C.GTK_INPUT_HINT_SPELLCHECK
+	no_spellcheck = C.GTK_INPUT_HINT_NO_SPELLCHECK
+	word_completion = C.GTK_INPUT_HINT_WORD_COMPLETION
+	lowercase = C.GTK_INPUT_HINT_LOWERCASE
+	uppercase_chars = C.GTK_INPUT_HINT_UPPERCASE_CHARS
+	uppercase_words = C.GTK_INPUT_HINT_UPPERCASE_WORDS
+	uppercase_sentences = C.GTK_INPUT_HINT_UPPERCASE_SENTENCES
+	inhibit_osk = C.GTK_INPUT_HINT_INHIBIT_OSK
+	vertical_writing = C.GTK_INPUT_HINT_VERTICAL_WRITING
+	emoji = C.GTK_INPUT_HINT_EMOJI
+	no_emoji = C.GTK_INPUT_HINT_NO_EMOJI
 }
 
 pub struct Entry {
@@ -297,7 +298,7 @@ pub fn (e Entry) show_all() {
 	C.gtk_widget_show_all(e.c)
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (e &Entry) get_gtk_widget() &C.GtkWidget {
 	return e.c
 }

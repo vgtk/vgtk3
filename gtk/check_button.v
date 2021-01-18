@@ -88,7 +88,7 @@ pub fn (c CheckButton) get_focus_on_click() bool {
 	return C.gtk_widget_get_focus_on_click(c.c)
 }
 
-pub fn (c CheckButton) set_image(img_widget Widgeter) {
+pub fn (c CheckButton) set_image(img_widget IWidget) {
 	wi := img_widget.get_gtk_widget()
 	C.gtk_button_set_image(c.c, wi)
 }
@@ -131,7 +131,7 @@ pub fn (c CheckButton) get_child() Widget {
 // Implemented from Buildable
 // Implemented from Actionable
 // Implemented from Activatable
-// Implemented from Widgeter
+// Implemented from IWidget
 pub fn (c &CheckButton) get_gtk_widget() &C.GtkWidget {
 	return c.c
 }

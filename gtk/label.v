@@ -29,7 +29,7 @@ pub fn (l Label) set_pattern(pattern string) {
 	C.gtk_label_set_pattern(l.c, pattern.str)
 }
 
-pub fn (l Label) set_justify(jtype Justify) {
+pub fn (l Label) set_justify(jtype Justification) {
 	C.gtk_label_set_justify(l.c, jtype)
 }
 
@@ -92,7 +92,7 @@ pub fn (l Label) select_region(start_offset int, end_offset int) {
 	C.gtk_label_select_region(l.c, start_offset, end_offset)
 }
 
-pub fn (l Label) set_mnemonic_widget(widget Widgeter) {
+pub fn (l Label) set_mnemonic_widget(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_label_set_mnemonic_widget(l.c, wgt)
 }
@@ -105,8 +105,8 @@ pub fn (l Label) set_text_with_mnemonic(str string) {
 	C.gtk_label_set_text_with_mnemonic(l.c, str.str)
 }
 
-pub fn (l Label) get_justify() Justify {
-	return Justify(C.gtk_label_get_justify(l.c))
+pub fn (l Label) get_justify() Justification {
+	return Justification(C.gtk_label_get_justify(l.c))
 }
 
 pub fn (l Label) get_xalign() f32 {

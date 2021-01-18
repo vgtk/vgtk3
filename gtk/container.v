@@ -1,16 +1,16 @@
 module gtk
 
 pub enum ResizeMode {
-	parent
-	queue
-	immediate
+	parent = C.GTK_RESIZE_PARENT
+	queue = C.GTK_RESIZE_QUEUE
+	immediate = C.GTK_RESIZE_IMMEDIATE
 }
 
 pub struct Container {
 	c &C.GtkContainer
 }
 
-pub fn (c &Container) add(widget Widgeter) {
+pub fn (c &Container) add(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(c.c, wgt)
 }

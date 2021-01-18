@@ -8,12 +8,12 @@ pub fn new_paned(orientation Orientation) Paned {
 	return Paned{C.gtk_paned_new(orientation)}
 }
 
-pub fn (b Paned) add1(widget Widgeter) {
+pub fn (b Paned) add1(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_paned_add1(b.c, wgt)
 }
 
-pub fn (b Paned) add2(widget Widgeter) {
+pub fn (b Paned) add2(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_paned_add2(b.c, wgt)
 }
@@ -31,7 +31,7 @@ pub fn (b &Paned) show() {
 	C.gtk_widget_show(b.c)
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (b &Paned) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }

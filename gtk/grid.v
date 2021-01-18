@@ -8,12 +8,12 @@ pub fn new_grid() Grid {
 	return Grid{C.gtk_grid_new()}
 }
 
-pub fn (g Grid) attach(child Widgeter, left int, top int, width int, height int) {
+pub fn (g Grid) attach(child IWidget, left int, top int, width int, height int) {
 	wgt := child.get_gtk_widget()
 	C.gtk_grid_attach(g.c, wgt, left, top, width, height)
 }
 
-pub fn (g Grid) attach_next_to(child Widgeter, sibling Widgeter, side Position, width int, height int) {
+pub fn (g Grid) attach_next_to(child IWidget, sibling IWidget, side Position, width int, height int) {
 	child_ := child.get_gtk_widget()
 	sibling_ := sibling.get_gtk_widget()
 	C.gtk_grid_attach_next_to(g.c, child_, sibling_, side, width, height)
@@ -39,7 +39,7 @@ pub fn (g Grid) remove_column(position int) {
 	C.gtk_grid_remove_column(g.c, position)
 }
 
-pub fn (g Grid) insert_next_to(sibling Widgeter, side Position) {
+pub fn (g Grid) insert_next_to(sibling IWidget, side Position) {
 	sibling_ := sibling.get_gtk_widget()
 	C.gtk_grid_insert_next_to(g.c, sibling_, side)
 }
@@ -93,12 +93,12 @@ pub fn (g Grid) set_row_baseline_position(row int, pos BaselinePosition) {
 }
 
 // INHERITED FROM CONTAINER
-pub fn (g Grid) add(widget Widgeter) {
+pub fn (g Grid) add(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(g.c, wgt)
 }
 
-pub fn (g Grid) remove(widget Widgeter) {
+pub fn (g Grid) remove(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_remove(g.c, wgt)
 }
@@ -112,7 +112,7 @@ pub fn (g Grid) get_orientation() Orientation {
 	return Orientation(C.gtk_orientable_get_orientation(g.c))
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (g &Grid) get_gtk_widget() &C.GtkWidget {
 	return g.c
 }

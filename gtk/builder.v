@@ -3,20 +3,20 @@ module gtk
 import glib
 
 pub enum BuilderError {
-	invalid_type_function
-	unhandled_tag
-	missing_attribute
-	invalid_attribute
-	invalid_tag
-	missing_property_value
-	invalid_value
-	version_mismatch
-	duplicate_id
-	object_type_refused
-	template_mismatch
-	invalid_property
-	invalid_signal
-	invalid_id
+	invalid_type_function = C.GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION
+	unhandled_tag = C.GTK_BUILDER_ERROR_UNHANDLED_TAG
+	missing_attribute = C.GTK_BUILDER_ERROR_MISSING_ATTRIBUTE
+	invalid_attribute = C.GTK_BUILDER_ERROR_INVALID_ATTRIBUTE
+	invalid_tag = C.GTK_BUILDER_ERROR_INVALID_TAG
+	missing_property_value = C.GTK_BUILDER_ERROR_MISSING_PROPERTY_VALUE
+	invalid_value = C.GTK_BUILDER_ERROR_INVALID_VALUE
+	version_mismatch = C.GTK_BUILDER_ERROR_VERSION_MISMATCH
+	duplicate_id = C.GTK_BUILDER_ERROR_DUPLICATE_ID
+	object_type_refused = C.GTK_BUILDER_ERROR_OBJECT_TYPE_REFUSED
+	template_mismatch = C.GTK_BUILDER_ERROR_TEMPLATE_MISMATCH
+	invalid_property = C.GTK_BUILDER_ERROR_INVALID_PROPERTY
+	invalid_signal = C.GTK_BUILDER_ERROR_INVALID_SIGNAL
+	invalid_id = C.GTK_BUILDER_ERROR_INVALID_ID
 }
 
 pub struct Builder {
@@ -100,7 +100,7 @@ pub fn (b Builder) add_objects_from_resource(resource_path string, object_ids []
 }
 
 /*
-pub fn (b Builder) extend_with_template(widget Widgeter, template_type C.GType, buffer string) ?u32 {
+pub fn (b Builder) extend_with_template(widget IWidget, template_type C.GType, buffer string) ?u32 {
 	err := &C._GError{0}
 	wgt := widget.get_gtk_widget()
 	ret := C.gtk_builder_extend_with_template(b.c, wgt, template_type, buffer.str, buffer.len, &err)

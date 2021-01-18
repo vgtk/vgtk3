@@ -1,20 +1,20 @@
 module gtk
 
 pub enum MessageType {
-	info
-	warning
-	question
-	error
-	other
+	info = C.GTK_MESSAGE_INFO
+	warning = C.GTK_MESSAGE_WARNING
+	question = C.GTK_MESSAGE_QUESTION
+	error = C.GTK_MESSAGE_ERROR
+	other = C.GTK_MESSAGE_OTHER
 }
 
 pub enum ButtonsType {
-	none_
-	ok
-	close
-	cancel
-	yes_no
-	ok_cancel
+	none_ = C.GTK_BUTTONS_NONE
+	ok = C.GTK_BUTTONS_OK
+	close = C.GTK_BUTTONS_CLOSE
+	cancel = C.GTK_BUTTONS_CANCEL
+	yes_no = C.GTK_BUTTONS_YES_NO
+	ok_cancel = C.GTK_BUTTONS_OK_CANCEL
 }
 
 pub struct MessageDialog {
@@ -61,7 +61,7 @@ pub fn (m MessageDialog) add_button(button_text string, response_id ResponseType
 }
 
 // TODO: void C.gtk_dialog_add_buttons (GtkDialog *dialog, const gchar *first_button_text, ...)
-pub fn (m MessageDialog) add_action_widget(child Widgeter, response_id ResponseType) {
+pub fn (m MessageDialog) add_action_widget(child IWidget, response_id ResponseType) {
 	child_ := child.get_gtk_widget()
 	C.gtk_dialog_add_action_widget(m.c, child_, response_id)
 }
@@ -74,7 +74,7 @@ pub fn (m MessageDialog) set_response_sensitive(response_id ResponseType, settin
 	C.gtk_dialog_set_response_sensitive(m.c, response_id, setting)
 }
 
-pub fn (m MessageDialog) get_response_for_widget(widget Widgeter) int {
+pub fn (m MessageDialog) get_response_for_widget(widget IWidget) int {
 	widget_ := widget.get_gtk_widget()
 	return C.gtk_dialog_get_response_for_widget(m.c, widget_)
 }

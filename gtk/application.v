@@ -1,32 +1,20 @@
 module gtk
 
 import glib
-
-pub enum ApplicationFlags {
-	flags_none
-	is_service
-	is_launcher
-	handles_open
-	handles_command_line
-	send_environment
-	non_unique
-	can_override_app_id
-	allow_replacement
-	replace
-}
+import gio
 
 pub enum ApplicationInhibitFlags {
-	logout = 1
-	switch = 2
-	suspend = 4
-	idle = 8
+	logout = C.GTK_APPLICATION_INHIBIT_LOGOUT
+	switch = C.GTK_APPLICATION_INHIBIT_SWITCH
+	suspend = C.GTK_APPLICATION_INHIBIT_SUSPEND
+	idle = C.GTK_APPLICATION_INHIBIT_IDLE
 }
 
 pub struct Application {
 	c &C.GtkApplication
 }
 
-pub fn new_application(app_id string, flags ApplicationFlags) Application {
+pub fn new_application(app_id string, flags gio.GApplicationFlags) Application {
 	app := C.gtk_application_new(app_id.str, flags)
 	return Application{app}
 }
