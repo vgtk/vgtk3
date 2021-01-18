@@ -15,7 +15,7 @@ pub fn (w Widget) in_destruction() bool {
 	return C.gtk_widget_in_destruction(w.c)
 }
 
-pub fn (w Widget) destroyed(widget Widgeter) {
+pub fn (w Widget) destroyed(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_widget_destroyed(w.c, wgt)
 }
@@ -118,7 +118,7 @@ pub fn (w Widget) set_sensitive(sensitive bool) {
 	C.gtk_widget_set_sensitive(w.c, sensitive)
 }
 
-pub fn (w Widget) set_parent(parent Widgeter) {
+pub fn (w Widget) set_parent(parent IWidget) {
 	parent_ := parent.get_gtk_widget()
 	C.gtk_widget_set_parent(w.c, parent_)
 }
@@ -153,12 +153,12 @@ pub fn (w Widget) get_ancestor(widget_type C._GType) &C.GtkWidget {
 */
 // TODO: GdkVisual * C.gtk_widget_get_visual (GtkWidget *widget)
 // TODO: void C.gtk_widget_set_visual (GtkWidget *widget, GdkVisual *visual)
-pub fn (w Widget) is_ancestor(ancestor Widgeter) bool {
+pub fn (w Widget) is_ancestor(ancestor IWidget) bool {
 	ancestor_ := ancestor.get_gtk_widget()
 	return C.gtk_widget_is_ancestor(w.c, ancestor_)
 }
 
-pub fn (w Widget) translate_coordinates(dest_widget Widgeter, x int, y int) (int, int) {
+pub fn (w Widget) translate_coordinates(dest_widget IWidget, x int, y int) (int, int) {
 	dest_widget_ := dest_widget.get_gtk_widget()
 	out_x := 0
 	out_y := 0
@@ -286,12 +286,12 @@ pub fn (w Widget) get_no_show_all() bool {
 }
 
 // TODO: GList * C.gtk_widget_list_mnemonic_labels (GtkWidget *widget)
-pub fn (w Widget) add_mnemonic_label(label Widgeter) {
+pub fn (w Widget) add_mnemonic_label(label IWidget) {
 	l := label.get_gtk_widget()
 	C.gtk_widget_add_mnemonic_label(w.c, l)
 }
 
-pub fn (w Widget) remove_mnemonic_label(label Widgeter) {
+pub fn (w Widget) remove_mnemonic_label(label IWidget) {
 	l := label.get_gtk_widget()
 	C.gtk_widget_remove_mnemonic_label(w.c, l)
 }

@@ -92,7 +92,7 @@ pub fn (l Label) select_region(start_offset int, end_offset int) {
 	C.gtk_label_select_region(l.c, start_offset, end_offset)
 }
 
-pub fn (l Label) set_mnemonic_widget(widget Widgeter) {
+pub fn (l Label) set_mnemonic_widget(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_label_set_mnemonic_widget(l.c, wgt)
 }

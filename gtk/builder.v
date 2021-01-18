@@ -100,7 +100,7 @@ pub fn (b Builder) add_objects_from_resource(resource_path string, object_ids []
 }
 
 /*
-pub fn (b Builder) extend_with_template(widget Widgeter, template_type C.GType, buffer string) ?u32 {
+pub fn (b Builder) extend_with_template(widget IWidget, template_type C.GType, buffer string) ?u32 {
 	err := &C._GError{0}
 	wgt := widget.get_gtk_widget()
 	ret := C.gtk_builder_extend_with_template(b.c, wgt, template_type, buffer.str, buffer.len, &err)

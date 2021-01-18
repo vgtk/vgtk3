@@ -62,7 +62,7 @@ pub fn (b Button) get_focus_on_click() bool {
 	return C.gtk_widget_get_focus_on_click(b.c)
 }
 
-pub fn (b Button) set_image(img_widget Widgeter) {
+pub fn (b Button) set_image(img_widget IWidget) {
 	wi := img_widget.get_gtk_widget()
 	C.gtk_button_set_image(b.c, wi)
 }
@@ -97,7 +97,7 @@ pub fn (b &Button) show() {
 	C.gtk_widget_show(b.c)
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (b &Button) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }

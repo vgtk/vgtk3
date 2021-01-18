@@ -297,7 +297,7 @@ pub fn (e Entry) show_all() {
 	C.gtk_widget_show_all(e.c)
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (e &Entry) get_gtk_widget() &C.GtkWidget {
 	return e.c
 }

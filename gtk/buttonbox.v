@@ -12,17 +12,17 @@ pub fn new_vbutton_box() ButtonBox {
 	return ButtonBox{C.gtk_vbutton_box_new()}
 }
 
-pub fn (b ButtonBox) add(widget Widgeter) {
+pub fn (b ButtonBox) add(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(b.c, wgt)
 }
 
-pub fn (b ButtonBox) pack_start(child Widgeter, expand bool, fill bool, padding u32) {
+pub fn (b ButtonBox) pack_start(child IWidget, expand bool, fill bool, padding u32) {
 	child_ := child.get_gtk_widget()
 	C.gtk_box_pack_start(voidptr(b.c), voidptr(child_), expand, fill, padding)
 }
 
-pub fn (b ButtonBox) pack_end(child Widgeter, expand bool, fill bool, padding u32) {
+pub fn (b ButtonBox) pack_end(child IWidget, expand bool, fill bool, padding u32) {
 	child_ := child.get_gtk_widget()
 	C.gtk_box_pack_end(voidptr(b.c), voidptr(child_), expand, fill, padding)
 }
@@ -44,7 +44,7 @@ pub fn (b &ButtonBox) show() {
 	C.gtk_widget_show(b.c)
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (b &ButtonBox) get_gtk_widget() &C.GtkWidget {
 	return b.c
 }

@@ -47,7 +47,7 @@ pub fn (d Dialog) add_button(button_text string, response_id ResponseType) Butto
 }
 
 // TODO: void C.gtk_dialog_add_buttons (GtkDialog *dialog, const gchar *first_button_text, ...)
-pub fn (d Dialog) add_action_widget(child Widgeter, response_id ResponseType) {
+pub fn (d Dialog) add_action_widget(child IWidget, response_id ResponseType) {
 	child_ := child.get_gtk_widget()
 	C.gtk_dialog_add_action_widget(d.c, child_, response_id)
 }
@@ -60,7 +60,7 @@ pub fn (d Dialog) set_response_sensitive(response_id ResponseType, setting bool)
 	C.gtk_dialog_set_response_sensitive(d.c, response_id, setting)
 }
 
-pub fn (d Dialog) get_response_for_widget(widget Widgeter) int {
+pub fn (d Dialog) get_response_for_widget(widget IWidget) int {
 	widget_ := widget.get_gtk_widget()
 	return C.gtk_dialog_get_response_for_widget(d.c, widget_)
 }
@@ -95,7 +95,7 @@ pub fn (d Dialog) in_destruction() bool {
 	return C.gtk_widget_in_destruction(d.c)
 }
 
-pub fn (d Dialog) destroyed(widget Widgeter) {
+pub fn (d Dialog) destroyed(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_widget_destroyed(d.c, wgt)
 }
@@ -188,7 +188,7 @@ pub fn (d Dialog) set_sensitive(sensitive bool) {
 	C.gtk_widget_set_sensitive(d.c, sensitive)
 }
 
-pub fn (d Dialog) set_parent(parent Widgeter) {
+pub fn (d Dialog) set_parent(parent IWidget) {
 	parent_ := parent.get_gtk_widget()
 	C.gtk_widget_set_parent(d.c, parent_)
 }
@@ -214,12 +214,12 @@ pub fn (d Dialog) get_ancestor(widget_type C._GType) &C.GtkWidget {
 	return C.gtk_widget_get_ancestor(d.c, widget_type)
 }
 */
-pub fn (d Dialog) is_ancestor(ancestor Widgeter) bool {
+pub fn (d Dialog) is_ancestor(ancestor IWidget) bool {
 	ancestor_ := ancestor.get_gtk_widget()
 	return C.gtk_widget_is_ancestor(d.c, ancestor_)
 }
 
-pub fn (d Dialog) translate_coordinates(dest_widget Widgeter, x int, y int) (int, int) {
+pub fn (d Dialog) translate_coordinates(dest_widget IWidget, x int, y int) (int, int) {
 	dest_widget_ := dest_widget.get_gtk_widget()
 	out_x := 0
 	out_y := 0
@@ -256,7 +256,7 @@ pub fn (d Dialog) get_title() string {
 	return tos3(C.gtk_window_get_title(d.c))
 }
 
-// IMPLEMENTING Widgeter
+// IMPLEMENTING IWidget
 pub fn (d &Dialog) get_gtk_widget() &C.GtkWidget {
 	return d.c
 }

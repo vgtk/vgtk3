@@ -406,9 +406,9 @@ fn C.gtk_text_view_get_buffer(t &C.GtkWidget) &C.GtkWidget
 // PANED
 fn C.gtk_paned_new(o Orientation) &C.GtkWidget
 
-fn C.gtk_paned_add1(p &C.GtkWidget, wgt Widgeter)
+fn C.gtk_paned_add1(p &C.GtkWidget, wgt IWidget)
 
-fn C.gtk_paned_add2(p &C.GtkWidget, wgt Widgeter)
+fn C.gtk_paned_add2(p &C.GtkWidget, wgt IWidget)
 
 fn C.gtk_paned_set_wide_handle(p &C.GtkWidget, wide bool)
 

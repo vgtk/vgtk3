@@ -79,7 +79,7 @@ pub fn (w Window) set_transient_for(parrent Window) {
 	C.gtk_window_set_transient_for(w.c, parrent.c)
 }
 
-pub fn (w Window) set_attached_to(widget Widgeter) {
+pub fn (w Window) set_attached_to(widget IWidget) {
 	wi := widget.get_gtk_widget()
 	C.gtk_window_set_attached_to(w.c, wi)
 }
@@ -234,7 +234,7 @@ pub fn (w Window) set_has_user_ref_count(setting bool) {
 	C.gtk_window_set_has_user_ref_count(w.c, setting)
 }
 
-pub fn (w Window) set_titlebar(widget Widgeter) {
+pub fn (w Window) set_titlebar(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_window_set_titlebar(w.c, wgt)
 }
@@ -248,7 +248,7 @@ pub fn (w Window) set_interactive_debugging(enable bool) {
 }
 
 // INHERITED FROM CONTAINER
-pub fn (w Window) add(widget Widgeter) {
+pub fn (w Window) add(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(w.c, wgt)
 }
@@ -266,7 +266,7 @@ pub fn (w Window) show_all() {
 	C.gtk_widget_show_all(w.c)
 }
 
-// IMPLEMENTING WIDGETER
+// IMPLEMENTING IWidget
 pub fn (w &Window) get_gtk_widget() &C.GtkWidget {
 	return voidptr(w.c)
 }
