@@ -84,34 +84,42 @@ pub enum WindowHints {
 }
 
 pub enum ModifierType {
-	shift_mask = 1
-	lock_mask = 2
-	control_mask = 4
-	mod1_mask = 8
-	mod2_mask = 16
-	mod3_mask = 32
-	mod4_mask = 64
-	mod5_mask = 128
-	button1_mask = 256
-	button2_mask = 512
-	button3_mask = 1024
-	button4_mask = 2048
-	button5_mask = 4096
-	super_mask = 67108864
-	hyper_mask = 134217728
-	meta_mask = 268435456
-	release_mask = 1073741824
-	modifier_mask = 0x5c001fff
+	shift_mask = C.GDK_SHIFT_MASK
+	lock_mask = C.GDK_LOCK_MASK
+	control_mask = C.GDK_CONTROL_MASK
+	mod1_mask = C.GDK_MOD1_MASK
+	mod2_mask = C.GDK_MOD2_MASK
+	mod3_mask = C.GDK_MOD3_MASK
+	mod4_mask = C.GDK_MOD4_MASK
+	mod5_mask = C.GDK_MOD5_MASK
+	button1_mask = C.GDK_BUTTON1_MASK
+	button2_mask = C.GDK_BUTTON2_MASK
+	button3_mask = C.GDK_BUTTON3_MASK
+	button4_mask = C.GDK_BUTTON4_MASK
+	button5_mask = C.GDK_BUTTON5_MASK
+	modifier_reserved_13_mask = C.GDK_MODIFIER_RESERVED_13_MASK
+	modifier_reserved_14_mask = C.GDK_MODIFIER_RESERVED_14_MASK
+	modifier_reserved_15_mask = C.GDK_MODIFIER_RESERVED_15_MASK
+	modifier_reserved_16_mask = C.GDK_MODIFIER_RESERVED_16_MASK
+	modifier_reserved_17_mask = C.GDK_MODIFIER_RESERVED_17_MASK
+	modifier_reserved_18_mask = C.GDK_MODIFIER_RESERVED_18_MASK
+	modifier_reserved_19_mask = C.GDK_MODIFIER_RESERVED_19_MASK
+	modifier_reserved_20_mask = C.GDK_MODIFIER_RESERVED_20_MASK
+	modifier_reserved_21_mask = C.GDK_MODIFIER_RESERVED_21_MASK
+	modifier_reserved_22_mask = C.GDK_MODIFIER_RESERVED_22_MASK
+	modifier_reserved_23_mask = C.GDK_MODIFIER_RESERVED_23_MASK
+	modifier_reserved_24_mask = C.GDK_MODIFIER_RESERVED_24_MASK
+	modifier_reserved_25_mask = C.GDK_MODIFIER_RESERVED_25_MASK
 }
 
 pub enum ModifierIntent {
-	primary_accelerator
-	context_menu
-	extend_selection
-	modify_selection
-	no_text_input
-	shift_group
-	default_mod_mask
+	primary_accelerator = C.GDK_MODIFIER_INTENT_PRIMARY_ACCELERATOR
+	context_menu = C.GDK_MODIFIER_INTENT_CONTEXT_MENU
+	extend_selection = C.GDK_MODIFIER_INTENT_EXTEND_SELECTION
+	modify_selection = C.GDK_MODIFIER_INTENT_MODIFY_SELECTION
+	no_text_input = C.GDK_MODIFIER_INTENT_NO_TEXT_INPUT
+	shift_group = C.GDK_MODIFIER_INTENT_SHIFT_GROUP
+	default_mod_mask = C.GDK_MODIFIER_INTENT_DEFAULT_MOD_MASK
 }
 
 pub struct Window {

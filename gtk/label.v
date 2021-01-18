@@ -29,7 +29,7 @@ pub fn (l Label) set_pattern(pattern string) {
 	C.gtk_label_set_pattern(l.c, pattern.str)
 }
 
-pub fn (l Label) set_justify(jtype Justify) {
+pub fn (l Label) set_justify(jtype Justification) {
 	C.gtk_label_set_justify(l.c, jtype)
 }
 
@@ -105,8 +105,8 @@ pub fn (l Label) set_text_with_mnemonic(str string) {
 	C.gtk_label_set_text_with_mnemonic(l.c, str.str)
 }
 
-pub fn (l Label) get_justify() Justify {
-	return Justify(C.gtk_label_get_justify(l.c))
+pub fn (l Label) get_justify() Justification {
+	return Justification(C.gtk_label_get_justify(l.c))
 }
 
 pub fn (l Label) get_xalign() f32 {

@@ -3,16 +3,16 @@ module gtk
 import gdk
 
 pub enum WindowType {
-	toplevel
-	popup
+	toplevel = C.GTK_WINDOW_TOPLEVEL
+	popup = C.GTK_WINDOW_POPUP
 }
 
 pub enum WindowPosition {
-	_none
-	center
-	mouse
-	center_always
-	center_on_parent
+	none_ = C.GTK_WIN_POS_NONE
+	center = C.GTK_WIN_POS_CENTER
+	mouse = C.GTK_WIN_POS_MOUSE
+	center_always = C.GTK_WIN_POS_CENTER_ALWAYS
+	center_on_parent = C.GTK_WIN_POS_CENTER_ON_PARENT
 }
 
 pub struct Window {

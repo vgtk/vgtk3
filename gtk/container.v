@@ -1,9 +1,9 @@
 module gtk
 
 pub enum ResizeMode {
-	parent
-	queue
-	immediate
+	parent = C.GTK_RESIZE_PARENT
+	queue = C.GTK_RESIZE_QUEUE
+	immediate = C.GTK_RESIZE_IMMEDIATE
 }
 
 pub struct Container {

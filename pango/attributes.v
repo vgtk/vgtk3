@@ -1,32 +1,35 @@
 module pango
 
 pub enum AttrType {
-	invalid
-	language
-	family
-	style
-	weight
-	variant
-	stretch
-	size
-	font_desc
-	foreground
-	background
-	underline
-	strikethrough
-	rise
-	shape
-	scale
-	fallback
-	letter_spacing
-	underline_color
-	strikethrough_color
-	absolute_size
-	gravity
-	gravity_hint
-	font_features
-	foreground_alpha
-	background_alpha
+	invalid = C.PANGO_ATTR_INVALID
+	language = C.PANGO_ATTR_LANGUAGE
+	family = C.PANGO_ATTR_FAMILY
+	style = C.PANGO_ATTR_STYLE
+	weight = C.PANGO_ATTR_WEIGHT
+	variant = C.PANGO_ATTR_VARIANT
+	stretch = C.PANGO_ATTR_STRETCH
+	size = C.PANGO_ATTR_SIZE
+	font_desc = C.PANGO_ATTR_FONT_DESC
+	foreground = C.PANGO_ATTR_FOREGROUND
+	background = C.PANGO_ATTR_BACKGROUND
+	underline = C.PANGO_ATTR_UNDERLINE
+	strikethrough = C.PANGO_ATTR_STRIKETHROUGH
+	rise = C.PANGO_ATTR_RISE
+	shape = C.PANGO_ATTR_SHAPE
+	scale = C.PANGO_ATTR_SCALE
+	fallback = C.PANGO_ATTR_FALLBACK
+	letter_spacing = C.PANGO_ATTR_LETTER_SPACING
+	underline_color = C.PANGO_ATTR_UNDERLINE_COLOR
+	strikethrough_color = C.PANGO_ATTR_STRIKETHROUGH_COLOR
+	absolute_size = C.PANGO_ATTR_ABSOLUTE_SIZE
+	gravity = C.PANGO_ATTR_GRAVITY
+	gravity_hint = C.PANGO_ATTR_GRAVITY_HINT
+	font_features = C.PANGO_ATTR_FONT_FEATURES
+	foreground_alpha = C.PANGO_ATTR_FOREGROUND_ALPHA
+	background_alpha = C.PANGO_ATTR_BACKGROUND_ALPHA
+	allow_breaks = C.PANGO_ATTR_ALLOW_BREAKS
+	show = C.PANGO_ATTR_SHOW
+	insert_hyphens = C.PANGO_ATTR_INSERT_HYPHENS
 }
 
 pub struct AttrClass {

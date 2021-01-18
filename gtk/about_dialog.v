@@ -3,20 +3,24 @@ module gtk
 import gdk
 
 pub enum License {
-	unknown
-	custom
-	gpl_2_0
-	gpl_3_0
-	lgpl_2_1
-	lgpl_3_0
-	bsd
-	mit_x11
-	artistic
-	gpl_2_0_only
-	gpl_3_0_only
-	lgpl_2_1_only
-	lgpl_3_0_only
-	agpl_3_0
+	unknown = C.GTK_LICENSE_UNKNOWN
+	custom = C.GTK_LICENSE_CUSTOM
+	gpl_2_0 = C.GTK_LICENSE_GPL_2_0
+	gpl_3_0 = C.GTK_LICENSE_GPL_3_0
+	lgpl_2_1 = C.GTK_LICENSE_LGPL_2_1
+	lgpl_3_0 = C.GTK_LICENSE_LGPL_3_0
+	bsd = C.GTK_LICENSE_BSD
+	mit_x11 = C.GTK_LICENSE_MIT_X11
+	artistic = C.GTK_LICENSE_ARTISTIC
+	gpl_2_0_only = C.GTK_LICENSE_GPL_2_0_ONLY
+	gpl_3_0_only = C.GTK_LICENSE_GPL_3_0_ONLY
+	lgpl_2_1_only = C.GTK_LICENSE_LGPL_2_1_ONLY
+	lgpl_3_0_only = C.GTK_LICENSE_LGPL_3_0_ONLY
+	agpl_3_0 = C.GTK_LICENSE_AGPL_3_0
+	agpl_3_0_only = C.GTK_LICENSE_AGPL_3_0_ONLY
+	bsd_3 = C.GTK_LICENSE_BSD_3
+	apache_2_0 = C.GTK_LICENSE_APACHE_2_0
+	mpl_2_0 = C.GTK_LICENSE_MPL_2_0
 }
 
 pub struct AboutDialog {

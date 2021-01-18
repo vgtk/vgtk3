@@ -1,20 +1,20 @@
 module gtk
 
 pub enum MessageType {
-	info
-	warning
-	question
-	error
-	other
+	info = C.GTK_MESSAGE_INFO
+	warning = C.GTK_MESSAGE_WARNING
+	question = C.GTK_MESSAGE_QUESTION
+	error = C.GTK_MESSAGE_ERROR
+	other = C.GTK_MESSAGE_OTHER
 }
 
 pub enum ButtonsType {
-	none_
-	ok
-	close
-	cancel
-	yes_no
-	ok_cancel
+	none_ = C.GTK_BUTTONS_NONE
+	ok = C.GTK_BUTTONS_OK
+	close = C.GTK_BUTTONS_CLOSE
+	cancel = C.GTK_BUTTONS_CANCEL
+	yes_no = C.GTK_BUTTONS_YES_NO
+	ok_cancel = C.GTK_BUTTONS_OK_CANCEL
 }
 
 pub struct MessageDialog {

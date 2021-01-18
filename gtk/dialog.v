@@ -1,23 +1,23 @@
 module gtk
 
 pub enum DialogFlags {
-	modal = 1
-	destroy_with_parent = 2
-	use_header_bar = 4
+	modal = C.GTK_DIALOG_MODAL
+	destroy_with_parent = C.GTK_DIALOG_DESTROY_WITH_PARENT
+	use_header_bar = C.GTK_DIALOG_USE_HEADER_BAR
 }
 
 pub enum ResponseType {
-	_none = -1
-	reject = -2
-	accept = -3
-	delete_event = -4
-	ok = -5
-	cancel = -6
-	close = -7
-	yes = -8
-	no = -9
-	apply = -10
-	help = -11
+	none_ = C.GTK_RESPONSE_NONE
+	reject = C.GTK_RESPONSE_REJECT
+	accept = C.GTK_RESPONSE_ACCEPT
+	delete_event = C.GTK_RESPONSE_DELETE_EVENT
+	ok = C.GTK_RESPONSE_OK
+	cancel = C.GTK_RESPONSE_CANCEL
+	close = C.GTK_RESPONSE_CLOSE
+	yes = C.GTK_RESPONSE_YES
+	no = C.GTK_RESPONSE_NO
+	apply = C.GTK_RESPONSE_APPLY
+	help = C.GTK_RESPONSE_HELP
 }
 
 pub struct Dialog {

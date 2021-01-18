@@ -1,93 +1,93 @@
 module gtk
 
-pub enum Justify {
-	left
-	right
-	center
-	fill
+pub enum Justification {
+	left = C.GTK_JUSTIFY_LEFT
+	right = C.GTK_JUSTIFY_RIGHT
+	center = C.GTK_JUSTIFY_CENTER
+	fill = C.GTK_JUSTIFY_FILL
 }
 
 pub enum IconSize {
-	invalid
-	menu
-	small_toolbar
-	large_toolbar
-	button
-	dnd
-	dialog
+	invalid = C.GTK_ICON_SIZE_INVALID
+	menu = C.GTK_ICON_SIZE_MENU
+	small_toolbar = C.GTK_ICON_SIZE_SMALL_TOOLBAR
+	large_toolbar = C.GTK_ICON_SIZE_LARGE_TOOLBAR
+	button = C.GTK_ICON_SIZE_BUTTON
+	dnd = C.GTK_ICON_SIZE_DND
+	dialog = C.GTK_ICON_SIZE_DIALOG
 }
 
 pub enum ReliefStyle {
-	normal
-	half
-	_none
+	normal = C.GTK_RELIEF_NORMAL
+	half = C.GTK_RELIEF_HALF
+	none_ = C.GTK_RELIEF_NONE
 }
 
 pub enum TextDirection {
-	_none
-	ltr
-	rtl
+	none_ = C.GTK_TEXT_DIR_NONE
+	ltr = C.GTK_TEXT_DIR_LTR
+	rtl = C.GTK_TEXT_DIR_RTL
 }
 
 pub enum StateFlags {
-	normal = 0
-	active = 1
-	prelight = 2
-	selected = 4
-	insensitive = 8
-	inconsistent = 16
-	focused = 32
-	backdrop = 64
-	dir_ltr = 128
-	dir_rtl = 256
-	link = 512
-	visited = 1024
-	checked = 2048
-	drop_active = 4096
+	normal = C.GTK_STATE_FLAG_NORMAL
+	active = C.GTK_STATE_FLAG_ACTIVE
+	prelight = C.GTK_STATE_FLAG_PRELIGHT
+	selected = C.GTK_STATE_FLAG_SELECTED
+	insensitive = C.GTK_STATE_FLAG_INSENSITIVE
+	inconsistent = C.GTK_STATE_FLAG_INCONSISTENT
+	focused = C.GTK_STATE_FLAG_FOCUSED
+	backdrop = C.GTK_STATE_FLAG_BACKDROP
+	dir_ltr = C.GTK_STATE_FLAG_DIR_LTR
+	dir_rtl = C.GTK_STATE_FLAG_DIR_RTL
+	link = C.GTK_STATE_FLAG_LINK
+	visited = C.GTK_STATE_FLAG_VISITED
+	checked = C.GTK_STATE_FLAG_CHECKED
+	drop_active = C.GTK_STATE_FLAG_DROP_ACTIVE
 }
 
 pub enum SizeRequestMode {
-	height_for_width = 0
-	width_for_height = 1
-	constant_size = 2
+	height_for_width = C.GTK_SIZE_REQUEST_HEIGHT_FOR_WIDTH
+	width_for_height = C.GTK_SIZE_REQUEST_WIDTH_FOR_HEIGHT
+	constant_size = C.GTK_SIZE_REQUEST_CONSTANT_SIZE
 }
 
 pub enum Align {
-	fill
-	start
-	end
-	center
-	baseline
+	fill = C.GTK_ALIGN_FILL
+	start = C.GTK_ALIGN_START
+	end = C.GTK_ALIGN_END
+	center = C.GTK_ALIGN_CENTER
+	baseline = C.GTK_ALIGN_BASELINE
 }
 
 pub enum Orientation {
-	horizontal
-	vertical
+	horizontal = C.GTK_ORIENTATION_HORIZONTAL
+	vertical = C.GTK_ORIENTATION_VERTICAL
 }
 
 pub enum Position {
-	left
-	right
-	top
-	bottom
+	left = C.GTK_POS_LEFT
+	right = C.GTK_POS_RIGHT
+	top = C.GTK_POS_TOP
+	bottom = C.GTK_POS_BOTTOM
 }
 
 pub enum PackType {
-	start
-	end
+	start = C.GTK_PACK_START
+	end = C.GTK_PACK_END
 }
 
 pub enum BaselinePosition {
-	top
-	center
-	bottom
+	top = C.GTK_BASELINE_POSITION_TOP
+	center = C.GTK_BASELINE_POSITION_CENTER
+	bottom = C.GTK_BASELINE_POSITION_BOTTOM
 }
 
 pub enum DirectionType {
-	tab_forward
-	tab_backward
-	up
-	down
-	left
-	right
+	tab_forward = C.GTK_DIR_TAB_FORWARD
+	tab_backward = C.GTK_DIR_TAB_BACKWARD
+	up = C.GTK_DIR_UP
+	down = C.GTK_DIR_DOWN
+	left = C.GTK_DIR_LEFT
+	right = C.GTK_DIR_RIGHT
 }
