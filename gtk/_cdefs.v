@@ -1,5 +1,7 @@
 module gtk
 
+import gdk
+
 struct C.GtkLabel {
 }
 
@@ -147,7 +149,7 @@ fn C.gtk_window_set_default_geometry(&C.GtkWidget, int, int)
 // fn C.gtk_window_set_geometry_hints(&C.GtkWidget, &C.GtkWidget, &GdkGeometry, GdkWindowHints)
 fn C.gtk_window_set_gravity(&C.GtkWidget, int)
 
-fn C.gtk_window_get_gravity(&C.GtkWidget) int
+fn C.gtk_window_get_gravity(&C.GtkWidget) gdk.Gravity
 
 fn C.gtk_window_set_position(&C.GtkWidget, int)
 

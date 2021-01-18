@@ -1,101 +1,87 @@
 module gdk
 
-pub type WindowType = int
+pub enum WindowType {
+	root = C.GDK_WINDOW_ROOT
+	toplevel = C.GDK_WINDOW_TOPLEVEL
+	child = C.GDK_WINDOW_CHILD
+	temp = C.GDK_WINDOW_TEMP
+	foreign = C.GDK_WINDOW_FOREIGN
+	offscreen = C.GDK_WINDOW_OFFSCREEN
+	subsurface = C.GDK_WINDOW_SUBSURFACE
+}
 
-const (
-	window_root       = WindowType(C.GDK_WINDOW_ROOT)
-	window_toplevel   = WindowType(C.GDK_WINDOW_TOPLEVEL)
-	window_child      = WindowType(C.GDK_WINDOW_CHILD)
-	window_temp       = WindowType(C.GDK_WINDOW_TEMP)
-	window_foreign    = WindowType(C.GDK_WINDOW_FOREIGN)
-	window_offscreen  = WindowType(C.GDK_WINDOW_OFFSCREEN)
-	window_subsurface = WindowType(C.GDK_WINDOW_SUBSURFACE)
-)
+pub enum Gravity {
+	north_west = C.GDK_GRAVITY_NORTH_WEST
+	north = C.GDK_GRAVITY_NORTH
+	north_east = C.GDK_GRAVITY_NORTH_EAST
+	west = C.GDK_GRAVITY_WEST
+	center = C.GDK_GRAVITY_CENTER
+	east = C.GDK_GRAVITY_EAST
+	south_west = C.GDK_GRAVITY_SOUTH_WEST
+	south = C.GDK_GRAVITY_SOUTH
+	south_east = C.GDK_GRAVITY_SOUTH_EAST
+	static_ = C.GDK_GRAVITY_STATIC
+}
 
-pub type Gravity = int
+pub enum WindowState {
+	withdrawn = C.GDK_WINDOW_STATE_WITHDRAWN
+	iconified = C.GDK_WINDOW_STATE_ICONIFIED
+	maximized = C.GDK_WINDOW_STATE_MAXIMIZED
+	sticky = C.GDK_WINDOW_STATE_STICKY
+	fullscreen = C.GDK_WINDOW_STATE_FULLSCREEN
+	above = C.GDK_WINDOW_STATE_ABOVE
+	below = C.GDK_WINDOW_STATE_BELOW
+	focused = C.GDK_WINDOW_STATE_FOCUSED
+	tiled = C.GDK_WINDOW_STATE_TILED
+	top_tiled = C.GDK_WINDOW_STATE_TOP_TILED
+	top_resizable = C.GDK_WINDOW_STATE_TOP_RESIZABLE
+	right_tiled = C.GDK_WINDOW_STATE_RIGHT_TILED
+	right_resizable = C.GDK_WINDOW_STATE_RIGHT_RESIZABLE
+	bottom_tiled = C.GDK_WINDOW_STATE_BOTTOM_TILED
+	bottom_resizable = C.GDK_WINDOW_STATE_BOTTOM_RESIZABLE
+	left_tiled = C.GDK_WINDOW_STATE_LEFT_TILED
+	left_resizable = C.GDK_WINDOW_STATE_LEFT_RESIZABLE
+}
 
-pub const (
-	gravity_north_west = Gravity(C.GDK_GRAVITY_NORTH_WEST)
-	gravity_north      = Gravity(C.GDK_GRAVITY_NORTH)
-	gravity_north_east = Gravity(C.GDK_GRAVITY_NORTH_EAST)
-	gravity_west       = Gravity(C.GDK_GRAVITY_WEST)
-	gravity_center     = Gravity(C.GDK_GRAVITY_CENTER)
-	gravity_east       = Gravity(C.GDK_GRAVITY_EAST)
-	gravity_south_west = Gravity(C.GDK_GRAVITY_SOUTH_WEST)
-	gravity_south      = Gravity(C.GDK_GRAVITY_SOUTH)
-	gravity_south_east = Gravity(C.GDK_GRAVITY_SOUTH_EAST)
-	gravity_static     = Gravity(C.GDK_GRAVITY_STATIC)
-)
+pub enum FullScreenMode {
+	current_monitor = C.GDK_FULLSCREEN_ON_CURRENT_MONITOR
+	all_monitors = C.GDK_FULLSCREEN_ON_ALL_MONITORS
+}
 
-pub type WindowState = int
+pub enum AnchorHints {
+	flip_x = C.GDK_ANCHOR_FLIP_X
+	flip_y = C.GDK_ANCHOR_FLIP_Y
+	slide_x = C.GDK_ANCHOR_SLIDE_X
+	slide_y = C.GDK_ANCHOR_SLIDE_Y
+	resize_x = C.GDK_ANCHOR_RESIZE_X
+	resize_y = C.GDK_ANCHOR_RESIZE_Y
+	flip = C.GDK_ANCHOR_FLIP
+	slide = C.GDK_ANCHOR_SLIDE
+	resize = C.GDK_ANCHOR_RESIZE
+}
 
-const (
-	window_state_withdrawn        = WindowState(C.GDK_WINDOW_STATE_WITHDRAWN)
-	window_state_iconified        = WindowState(C.GDK_WINDOW_STATE_ICONIFIED)
-	window_state_maximized        = WindowState(C.GDK_WINDOW_STATE_MAXIMIZED)
-	window_state_sticky           = WindowState(C.GDK_WINDOW_STATE_STICKY)
-	window_state_fullscreen       = WindowState(C.GDK_WINDOW_STATE_FULLSCREEN)
-	window_state_above            = WindowState(C.GDK_WINDOW_STATE_ABOVE)
-	window_state_below            = WindowState(C.GDK_WINDOW_STATE_BELOW)
-	window_state_focused          = WindowState(C.GDK_WINDOW_STATE_FOCUSED)
-	window_state_tiled            = WindowState(C.GDK_WINDOW_STATE_TILED)
-	window_state_top_tiled        = WindowState(C.GDK_WINDOW_STATE_TOP_TILED)
-	window_state_top_resizable    = WindowState(C.GDK_WINDOW_STATE_TOP_RESIZABLE)
-	window_state_right_tiled      = WindowState(C.GDK_WINDOW_STATE_RIGHT_TILED)
-	window_state_right_resizable  = WindowState(C.GDK_WINDOW_STATE_RIGHT_RESIZABLE)
-	window_state_bottom_tiled     = WindowState(C.GDK_WINDOW_STATE_BOTTOM_TILED)
-	window_state_bottom_resizable = WindowState(C.GDK_WINDOW_STATE_BOTTOM_RESIZABLE)
-	window_state_left_tiled       = WindowState(C.GDK_WINDOW_STATE_LEFT_TILED)
-	window_state_left_resizable   = WindowState(C.GDK_WINDOW_STATE_LEFT_RESIZABLE)
-)
+pub enum WindowEdge {
+	north_west = C.GDK_WINDOW_EDGE_NORTH_WEST
+	north = C.GDK_WINDOW_EDGE_NORTH
+	north_east = C.GDK_WINDOW_EDGE_NORTH_EAST
+	west = C.GDK_WINDOW_EDGE_WEST
+	east = C.GDK_WINDOW_EDGE_EAST
+	south_west = C.GDK_WINDOW_EDGE_SOUTH_WEST
+	south = C.GDK_WINDOW_EDGE_SOUTH
+	south_east = C.GDK_WINDOW_EDGE_SOUTH_EAST
+}
 
-pub type FullScreenMode = int
-
-const (
-	fullscreen_on_current_monitor = FullScreenMode(C.GDK_FULLSCREEN_ON_CURRENT_MONITOR)
-	fullscreen_on_all_monitors    = FullScreenMode(C.GDK_FULLSCREEN_ON_ALL_MONITORS)
-)
-
-pub type AnchorHints = int
-
-const (
-	anchor_flip_x   = AnchorHints(C.GDK_ANCHOR_FLIP_X)
-	anchor_flip_y   = AnchorHints(C.GDK_ANCHOR_FLIP_Y)
-	anchor_slide_x  = AnchorHints(C.GDK_ANCHOR_SLIDE_X)
-	anchor_slide_y  = AnchorHints(C.GDK_ANCHOR_SLIDE_Y)
-	anchor_resize_x = AnchorHints(C.GDK_ANCHOR_RESIZE_X)
-	anchor_resize_y = AnchorHints(C.GDK_ANCHOR_RESIZE_Y)
-	anchor_flip     = AnchorHints(C.GDK_ANCHOR_FLIP)
-	anchor_slide    = AnchorHints(C.GDK_ANCHOR_SLIDE)
-	anchor_resize   = AnchorHints(C.GDK_ANCHOR_RESIZE)
-)
-
-pub type WindowEdge = int
-
-const (
-	window_edge_north_west = WindowEdge(C.GDK_WINDOW_EDGE_NORTH_WEST)
-	window_edge_north      = WindowEdge(C.GDK_WINDOW_EDGE_NORTH)
-	window_edge_north_east = WindowEdge(C.GDK_WINDOW_EDGE_NORTH_EAST)
-	window_edge_west       = WindowEdge(C.GDK_WINDOW_EDGE_WEST)
-	window_edge_east       = WindowEdge(C.GDK_WINDOW_EDGE_EAST)
-	window_edge_south_west = WindowEdge(C.GDK_WINDOW_EDGE_SOUTH_WEST)
-	window_edge_south      = WindowEdge(C.GDK_WINDOW_EDGE_SOUTH)
-	window_edge_south_east = WindowEdge(C.GDK_WINDOW_EDGE_SOUTH_EAST)
-)
-
-pub type WindowHints = int
-
-const (
-	hint_pos         = WindowHints(C.GDK_HINT_POS)
-	hint_min_size    = WindowHints(C.GDK_HINT_MIN_SIZE)
-	hint_max_size    = WindowHints(C.GDK_HINT_MAX_SIZE)
-	hint_base_size   = WindowHints(C.GDK_HINT_BASE_SIZE)
-	hint_aspect      = WindowHints(C.GDK_HINT_ASPECT)
-	hint_resize_inc  = WindowHints(C.GDK_HINT_RESIZE_INC)
-	hint_win_gravity = WindowHints(C.GDK_HINT_WIN_GRAVITY)
-	hint_user_pos    = WindowHints(C.GDK_HINT_USER_POS)
-	hint_user_size   = WindowHints(C.GDK_HINT_USER_SIZE)
-)
+pub enum WindowHints {
+	hint_pos = C.GDK_HINT_POS
+	hint_min_size = C.GDK_HINT_MIN_SIZE
+	hint_max_size = C.GDK_HINT_MAX_SIZE
+	hint_base_size = C.GDK_HINT_BASE_SIZE
+	hint_aspect = C.GDK_HINT_ASPECT
+	hint_resize_inc = C.GDK_HINT_RESIZE_INC
+	hint_win_gravity = C.GDK_HINT_WIN_GRAVITY
+	hint_user_pos = C.GDK_HINT_USER_POS
+	hint_user_size = C.GDK_HINT_USER_SIZE
+}
 
 pub enum ModifierType {
 	shift_mask = 1
