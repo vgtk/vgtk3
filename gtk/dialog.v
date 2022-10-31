@@ -30,34 +30,36 @@ pub fn new_dialog() Dialog {
 
 pub fn new_dialog_from_parent(title string, parent Window, flags DialogFlags) Dialog {
 	parent_ := parent.get_gtk_widget()
-	return Dialog{C.gtk_dialog_new_with_buttons(title.str, parent_, flags, 0, 0)}
+	return Dialog{C.gtk_dialog_new_with_buttons(title.str, parent_, int(flags), 0, 0, 0)}
 }
 
 // TODO: GtkWidget * C.gtk_dialog_new_with_buttons (const gchar *title, GtkWindow *parent, GtkDialogFlags flags, const gchar *first_button_text, ...)
 pub fn (d Dialog) run() ResponseType {
-	return ResponseType(C.gtk_dialog_run(d.c))
+	unsafe {
+		return ResponseType(C.gtk_dialog_run(d.c))
+	}
 }
 
 pub fn (d Dialog) response(response_id ResponseType) {
-	C.gtk_dialog_response(d.c, response_id)
+	C.gtk_dialog_response(d.c, int(response_id))
 }
 
 pub fn (d Dialog) add_button(button_text string, response_id ResponseType) Button {
-	return Button{C.gtk_dialog_add_button(d.c, button_text.str, response_id)}
+	return Button{C.gtk_dialog_add_button(d.c, button_text.str, int(response_id))}
 }
 
 // TODO: void C.gtk_dialog_add_buttons (GtkDialog *dialog, const gchar *first_button_text, ...)
 pub fn (d Dialog) add_action_widget(child IWidget, response_id ResponseType) {
 	child_ := child.get_gtk_widget()
-	C.gtk_dialog_add_action_widget(d.c, child_, response_id)
+	C.gtk_dialog_add_action_widget(d.c, child_, int(response_id))
 }
 
 pub fn (d Dialog) set_default_response(response_id ResponseType) {
-	C.gtk_dialog_set_default_response(d.c, response_id)
+	C.gtk_dialog_set_default_response(d.c, int(response_id))
 }
 
 pub fn (d Dialog) set_response_sensitive(response_id ResponseType, setting bool) {
-	C.gtk_dialog_set_response_sensitive(d.c, response_id, setting)
+	C.gtk_dialog_set_response_sensitive(d.c, int(response_id), setting)
 }
 
 pub fn (d Dialog) get_response_for_widget(widget IWidget) int {
@@ -66,7 +68,7 @@ pub fn (d Dialog) get_response_for_widget(widget IWidget) int {
 }
 
 pub fn (d Dialog) get_widget_for_response(response_id ResponseType) &Widget {
-	widget := C.gtk_dialog_get_widget_for_response(d.c, response_id)
+	widget := C.gtk_dialog_get_widget_for_response(d.c, int(response_id))
 	if widget == 0 {
 		return 0
 	}
@@ -231,20 +233,24 @@ pub fn (d Dialog) hide_on_delete() bool {
 	return C.gtk_widget_hide_on_delete(d.c)
 }
 
-pub fn (d Dialog) set_direction(direction TextDirection) {
+pub fn (d Dialog) set_direction(direction int/* TextDirection */) {
 	C.gtk_widget_set_direction(d.c, direction)
 }
 
 pub fn (d Dialog) get_direction() TextDirection {
-	return TextDirection(C.gtk_widget_get_direction(d.c))
+	unsafe {
+		return TextDirection(C.gtk_widget_get_direction(d.c))
+	}
 }
 
-pub fn (d Dialog) set_default_direction(direction TextDirection) {
+pub fn (d Dialog) set_default_direction(direction int/* TextDirection */) {
 	C.gtk_widget_set_default_direction(direction)
 }
 
 pub fn (d Dialog) get_default_direction() TextDirection {
-	return TextDirection(C.gtk_widget_get_default_direction())
+	unsafe {
+		return TextDirection(C.gtk_widget_get_default_direction())
+	}
 }
 
 // INHERITED FROM WINDOW
@@ -253,7 +259,9 @@ pub fn (d Dialog) set_default_size(width int, height int) {
 }
 
 pub fn (d Dialog) get_title() string {
-	return tos3(C.gtk_window_get_title(d.c))
+	unsafe {
+		return tos3(C.gtk_window_get_title(d.c))
+	}
 }
 
 // IMPLEMENTING IWidget

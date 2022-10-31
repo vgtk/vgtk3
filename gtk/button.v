@@ -1,6 +1,6 @@
 module gtk
 
-import gdk
+// import gdk
 
 pub struct Button {
 	c &C.GtkWidget
@@ -18,7 +18,7 @@ pub fn new_button_with_mnemonic(label string) Button {
 	return Button{C.gtk_button_new_with_mnemonic(label.str)}
 }
 
-pub fn new_button_from_icon_name(icon_name string, icon_size IconSize) Button {
+pub fn new_button_from_icon_name(icon_name string, icon_size int /* IconSize */) Button {
 	return Button{C.gtk_button_new_from_icon_name(icon_name.str, icon_size)}
 }
 
@@ -26,16 +26,20 @@ pub fn (b Button) clicked() {
 	C.gtk_button_clicked(b.c)
 }
 
-pub fn (b Button) set_relief(relief ReliefStyle) {
+pub fn (b Button) set_relief(relief int/* ReliefStyle */) {
 	C.gtk_button_set_relief(b.c, relief)
 }
 
 pub fn (b Button) get_relief() ReliefStyle {
-	return ReliefStyle(C.gtk_button_get_relief(b.c))
+	unsafe {
+		return ReliefStyle(C.gtk_button_get_relief(b.c))
+	}
 }
 
 pub fn (b Button) get_label() string {
-	return tos3(C.gtk_button_get_label(b.c))
+	unsafe {
+		return tos3(C.gtk_button_get_label(b.c))
+	}
 }
 
 pub fn (b Button) set_label(label string) {
@@ -71,12 +75,14 @@ pub fn (b Button) get_image() &C.GtkWidget {
 	return C.gtk_button_get_image(b.c)
 }
 
-pub fn (b Button) set_image_position(pos Position) {
+pub fn (b Button) set_image_position(pos int/* Position */) {
 	C.gtk_button_set_image_position(b.c, pos)
 }
 
 pub fn (b Button) get_image_position() Position {
-	return Position(C.gtk_button_get_image_position(b.c))
+	unsafe {
+		return Position(C.gtk_button_get_image_position(b.c))
+	}
 }
 
 pub fn (b Button) set_always_show_image(always_show bool) {
@@ -87,10 +93,10 @@ pub fn (b Button) get_always_show_image() bool {
 	return C.gtk_button_get_always_show_image(b.c)
 }
 
-pub fn (b Button) get_event_window() gdk.Window {
-	cptr := C.gtk_button_get_event_window(b.c)
-	return gdk.Window{cptr}
-}
+// pub fn (b Button) get_event_window() gdk.Window {
+// 	cptr := C.gtk_button_get_event_window(b.c)
+// 	return gdk.Window{cptr}
+// }
 
 // INHERITED FROM WIDGET
 pub fn (b &Button) show() {

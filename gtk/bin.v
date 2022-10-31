@@ -1,7 +1,7 @@
 module gtk
 
 pub struct Bin {
-	c &C.GtkBin
+	c /* &C.GtkBin */ &C.GtkWidget
 }
 
 pub fn (b Bin) get_child() Widget {

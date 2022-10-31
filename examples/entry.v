@@ -1,7 +1,6 @@
 module main
 
 import gtk
-import glib
 
 struct EntryDemo {
 mut:

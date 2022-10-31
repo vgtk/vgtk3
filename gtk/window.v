@@ -1,6 +1,6 @@
 module gtk
 
-import gdk
+// import gdk
 
 pub enum WindowType {
 	toplevel = C.GTK_WINDOW_TOPLEVEL
@@ -23,7 +23,7 @@ pub fn new_window() Window {
 	return Window{C.gtk_window_new(C.GTK_WINDOW_TOPLEVEL)}
 }
 
-pub fn new_window_type(type_ WindowType) Window {
+pub fn new_window_type(type_ int/* WindowType */) Window {
 	return Window{C.gtk_window_new(type_)}
 }
 
@@ -63,16 +63,16 @@ pub fn (w Window) set_default_geometry(width int, height int) {
 	C.gtk_window_set_default_geometry(w.c, width, height)
 }
 
-pub fn (w Window) set_gravity(gravity gdk.Gravity) {
+pub fn (w Window) set_gravity(gravity int /* gdk.Gravity */) {
 	C.gtk_window_set_gravity(w.c, gravity)
 }
 
-pub fn (w Window) get_gravity() gdk.Gravity {
-	return C.gtk_window_get_gravity(w.c)
-}
+// pub fn (w Window) get_gravity() gdk.Gravity {
+// 	return C.gtk_window_get_gravity(w.c)
+// }
 
 pub fn (w Window) set_position(position WindowPosition) {
-	C.gtk_window_set_position(w.c, position)
+	C.gtk_window_set_position(w.c, int(position))
 }
 
 pub fn (w Window) set_transient_for(parrent Window) {
@@ -100,11 +100,13 @@ pub fn (w Window) get_default_size() (int, int) {
 }
 
 pub fn (w Window) center() {
-	C.gtk_window_set_position(w.c, WindowPosition.center)
+	C.gtk_window_set_position(w.c, int(WindowPosition.center))
 }
 
 pub fn (w Window) get_title() string {
-	return tos3(C.gtk_window_get_title(w.c))
+	unsafe {
+		return tos3(C.gtk_window_get_title(w.c))
+	}
 }
 
 // GdkWindowTypeHint C.gtk_window_get_type_hint (GtkWindow *window)
@@ -134,7 +136,9 @@ pub fn (w Window) has_group() bool {
 }
 
 pub fn (w Window) get_window_type() WindowType {
-	return WindowType(C.gtk_window_get_window_type(w.c))
+	unsafe {
+		return WindowType(C.gtk_window_get_window_type(w.c))
+	}
 }
 
 pub fn (w Window) move(x int, y int) {
@@ -278,7 +282,6 @@ pub fn (w &Window) on(event_name string, handler fn (Window, voidptr), data void
 
 pub fn (w &Window) to_container() &Container {
 	unsafe {
-		cptr := &C.GtkContainer(w.c)
-		return &Container{cptr}
+		return &Container{w.c}
 	}
 }

@@ -16,7 +16,7 @@ pub fn (g Grid) attach(child IWidget, left int, top int, width int, height int) 
 pub fn (g Grid) attach_next_to(child IWidget, sibling IWidget, side Position, width int, height int) {
 	child_ := child.get_gtk_widget()
 	sibling_ := sibling.get_gtk_widget()
-	C.gtk_grid_attach_next_to(g.c, child_, sibling_, side, width, height)
+	C.gtk_grid_attach_next_to(g.c, child_, sibling_, int(side), int(width), height)
 }
 
 pub fn (g Grid) get_child_at(left int, top int) &C.GtkWidget {
@@ -41,7 +41,7 @@ pub fn (g Grid) remove_column(position int) {
 
 pub fn (g Grid) insert_next_to(sibling IWidget, side Position) {
 	sibling_ := sibling.get_gtk_widget()
-	C.gtk_grid_insert_next_to(g.c, sibling_, side)
+	C.gtk_grid_insert_next_to(g.c, sibling_, int(side))
 }
 
 pub fn (g Grid) set_row_homogeneous(homogeneous bool) {
@@ -85,32 +85,34 @@ pub fn (g Grid) set_baseline_row(row int) {
 }
 
 pub fn (g Grid) get_row_baseline_position(row int) BaselinePosition {
-	return BaselinePosition(C.gtk_grid_get_row_baseline_position(g.c, row))
+	unsafe {
+		return BaselinePosition(C.gtk_grid_get_row_baseline_position(g.c, row))
+	}
 }
 
 pub fn (g Grid) set_row_baseline_position(row int, pos BaselinePosition) {
-	C.gtk_grid_set_row_baseline_position(g.c, row, pos)
+	C.gtk_grid_set_row_baseline_position(g.c, row, int(pos))
 }
 
-// INHERITED FROM CONTAINER
+// // INHERITED FROM CONTAINER
 pub fn (g Grid) add(widget IWidget) {
 	wgt := widget.get_gtk_widget()
 	C.gtk_container_add(g.c, wgt)
 }
 
-pub fn (g Grid) remove(widget IWidget) {
-	wgt := widget.get_gtk_widget()
-	C.gtk_container_remove(g.c, wgt)
-}
+// pub fn (g Grid) remove(widget IWidget) {
+// 	wgt := widget.get_gtk_widget()
+// 	C.gtk_container_remove(g.c, wgt)
+// }
 
-// IMPLEMENTING GtkOrientable
-pub fn (g Grid) set_orientation(orientation Orientation) {
-	C.gtk_orientable_set_orientation(g.c, orientation)
-}
+// // IMPLEMENTING GtkOrientable
+// pub fn (g Grid) set_orientation(orientation Orientation) {
+// 	C.gtk_orientable_set_orientation(g.c, orientation)
+// }
 
-pub fn (g Grid) get_orientation() Orientation {
-	return Orientation(C.gtk_orientable_get_orientation(g.c))
-}
+// pub fn (g Grid) get_orientation() Orientation {
+// 	return Orientation(C.gtk_orientable_get_orientation(g.c))
+// }
 
 // IMPLEMENTING IWidget
 pub fn (g &Grid) get_gtk_widget() &C.GtkWidget {

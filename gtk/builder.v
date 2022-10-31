@@ -1,6 +1,6 @@
 module gtk
 
-import glib
+/* import glib
 
 pub enum BuilderError {
 	invalid_type_function = C.GTK_BUILDER_ERROR_INVALID_TYPE_FUNCTION
@@ -47,7 +47,9 @@ pub fn (b Builder) add_from_file(filename string) ?u32 {
 	err := &C._GError{0}
 	ret := C.gtk_builder_add_from_file(b.c, filename.str, &err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -56,7 +58,9 @@ pub fn (b Builder) add_from_resource(resource_path string) ?u32 {
 	err := &C._GError{0}
 	ret := C.gtk_builder_add_from_resource(b.c, resource_path.str, &err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -65,7 +69,9 @@ pub fn (b Builder) add_from_string(buffer string) ?u32 {
 	err := &C._GError{0}
 	ret := C.gtk_builder_add_from_string(b.c, buffer.str, buffer.len, &err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -74,7 +80,9 @@ pub fn (b Builder) add_objects_from_file(filename string, object_ids []string) ?
 	err := &C._GError{0}
 	ret := C.gtk_builder_add_objects_from_file(b.c, filename.str, object_ids.data, &err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -84,7 +92,9 @@ pub fn (b Builder) add_objects_from_string(buffer string, object_ids []string) ?
 	ret := C.gtk_builder_add_objects_from_string(b.c, buffer.str, buffer.len, object_ids.data,
 		&err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -94,7 +104,9 @@ pub fn (b Builder) add_objects_from_resource(resource_path string, object_ids []
 	ret := C.gtk_builder_add_objects_from_resource(b.c, resource_path.str, object_ids.data,
 		&err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -105,7 +117,9 @@ pub fn (b Builder) extend_with_template(widget IWidget, template_type C.GType, b
 	wgt := widget.get_gtk_widget()
 	ret := C.gtk_builder_extend_with_template(b.c, wgt, template_type, buffer.str, buffer.len, &err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -133,7 +147,9 @@ pub fn (b Builder) set_translation_domain(domain string) {
 }
 
 pub fn (b Builder) get_translation_domain() string {
-	return tos3(C.gtk_builder_get_translation_domain(b.c))
+	unsafe {
+		return tos3(C.gtk_builder_get_translation_domain(b.c))
+	}
 }
 
 pub fn (b Builder) set_application(application Application) {
@@ -142,7 +158,7 @@ pub fn (b Builder) set_application(application Application) {
 
 pub fn (b Builder) get_application() Application {
 	return Application{C.gtk_builder_get_application(b.c)}
-}
+} */
 
 /*
 pub fn (b Builder) get_type_from_name(type_name string) C.GType {
@@ -153,7 +169,9 @@ pub fn (b Builder) value_from_string(pspec &C.GParamSpec, str string, value &C.G
 	err := &C._GError{0}
 	ret := C.gtk_builder_value_from_string(b.c, pspec, str.str, value, &err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }
@@ -162,7 +180,9 @@ pub fn (b Builder) value_from_string_type(type_ C.GType, str string, value &C.GV
 	err := &C._GError{0}
 	ret := C.gtk_builder_value_from_string_type(b.c, type_, str.str, value, &err)
 	if err != 0 {
-		return error(tos3(err.message))
+		unsafe {
+			return error(tos3(err.message))
+		}
 	}
 	return ret
 }

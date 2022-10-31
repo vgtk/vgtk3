@@ -1,7 +1,7 @@
 module gtk
 
-import glib
-import gio
+// import glib
+// import gio
 
 pub enum ApplicationInhibitFlags {
 	logout = C.GTK_APPLICATION_INHIBIT_LOGOUT
@@ -11,10 +11,10 @@ pub enum ApplicationInhibitFlags {
 }
 
 pub struct Application {
-	c &C.GtkApplication
+	c &C.GtkWidget
 }
 
-pub fn new_application(app_id string, flags gio.GApplicationFlags) Application {
+pub fn new_application(app_id string, flags int /* gio.GApplicationFlags */) Application {
 	app := C.gtk_application_new(app_id.str, flags)
 	return Application{app}
 }
@@ -33,9 +33,9 @@ pub fn (app Application) remove_window(window Window) {
 	C.gtk_application_remove_window(app.c, window.c)
 }
 
-pub fn (app Application) get_windows() glib.List {
-	return glib.List{C.gtk_application_get_windows(app.c)}
-}
+// pub fn (app Application) get_windows() glib.List {
+// 	return glib.List{C.gtk_application_get_windows(app.c)}
+// }
 
 pub fn (app Application) get_window_by_id(id u32) Window {
 	window := C.gtk_application_get_window_by_id(app.c, id)
@@ -47,17 +47,17 @@ pub fn (app Application) get_active_window() Window {
 	return to_window(window)
 }
 
-pub fn (app Application) inhibit(window Window, flags ApplicationInhibitFlags, reason string) u32 {
+/* pub fn (app Application) inhibit(window Window, flags ApplicationInhibitFlags, reason string) u32 {
 	return C.gtk_application_inhibit(app.c, window.c, flags, reason.str)
-}
+} */
 
 pub fn (app Application) uninhibit(cookie u32) {
 	C.gtk_application_uninhibit(app.c, cookie)
 }
 
-pub fn (app Application) is_inhibited(flags ApplicationInhibitFlags) bool {
-	return C.gtk_application_is_inhibited(app.c, flags)
-}
+// pub fn (app Application) is_inhibited(flags ApplicationInhibitFlags) bool {
+// 	return C.gtk_application_is_inhibited(app.c, flags)
+// }
 
 pub fn (app Application) prefers_app_menu() bool {
 	return C.gtk_application_prefers_app_menu(app.c)

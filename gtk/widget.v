@@ -1,7 +1,7 @@
 module gtk
 
-import gdk
-import gio
+// import gdk
+// import gio
 
 pub struct Widget {
 	c &C.GtkWidget
@@ -170,20 +170,24 @@ pub fn (w Widget) hide_on_delete() bool {
 	return C.gtk_widget_hide_on_delete(w.c)
 }
 
-pub fn (w Widget) set_direction(direction TextDirection) {
+pub fn (w Widget) set_direction(direction int/* TextDirection */) {
 	C.gtk_widget_set_direction(w.c, direction)
 }
 
 pub fn (w Widget) get_direction() TextDirection {
-	return TextDirection(C.gtk_widget_get_direction(w.c))
+	unsafe {
+		return TextDirection(C.gtk_widget_get_direction(w.c))
+	}
 }
 
-pub fn (w Widget) set_default_direction(direction TextDirection) {
+pub fn (w Widget) set_default_direction(direction int/* TextDirection */) {
 	C.gtk_widget_set_default_direction(direction)
 }
 
 pub fn (w Widget) get_default_direction() TextDirection {
-	return TextDirection(C.gtk_widget_get_default_direction())
+	unsafe {
+		return TextDirection(C.gtk_widget_get_default_direction())
+	}
 }
 
 // TODO: void C.gtk_widget_shape_combine_region (GtkWidget *widget, cairo_region_t *region)
@@ -229,7 +233,7 @@ pub fn (w Widget) style_get_property(property_name string) voidptr {
 // TODO: void C.gtk_widget_class_set_accessible_type (GtkWidgetClass *widget_class, GType type)
 // TODO: void C.gtk_widget_class_set_accessible_role (GtkWidgetClass *widget_class, AtkRole role)
 // TODO: AtkObject * C.gtk_widget_get_accessible (GtkWidget *widget)
-pub fn (w Widget) child_focus(direction DirectionType) bool {
+pub fn (w Widget) child_focus(direction int/* DirectionType */) bool {
 	return C.gtk_widget_child_focus(w.c, direction)
 }
 
@@ -300,12 +304,14 @@ pub fn (w Widget) error_bell() {
 	C.gtk_widget_error_bell(w.c)
 }
 
-pub fn (w Widget) keynav_failed(direction DirectionType) bool {
+pub fn (w Widget) keynav_failed(direction int/* DirectionType */) bool {
 	return C.gtk_widget_keynav_failed(w.c, direction)
 }
 
 pub fn (w Widget) get_tooltip_markup() string {
-	return tos3(C.gtk_widget_get_tooltip_markup(w.c))
+	unsafe {
+		return tos3(C.gtk_widget_get_tooltip_markup(w.c))
+	}
 }
 
 pub fn (w Widget) set_tooltip_markup(markup string) {
@@ -313,7 +319,9 @@ pub fn (w Widget) set_tooltip_markup(markup string) {
 }
 
 pub fn (w Widget) get_tooltip_text() string {
-	return tos3(C.gtk_widget_get_tooltip_text(w.c))
+	unsafe {
+		return tos3(C.gtk_widget_get_tooltip_text(w.c))
+	}
 }
 
 pub fn (w Widget) set_tooltip_text(tooltip string) {
@@ -342,20 +350,20 @@ pub fn (w Widget) trigger_tooltip_query() {
 	C.gtk_widget_trigger_tooltip_query(w.c)
 }
 
-pub fn (w Widget) get_window() gdk.Window {
-	window := C.gtk_widget_get_window(w.c)
-	return gdk.Window{window}
-}
+// pub fn (w Widget) get_window() gdk.Window {
+// 	window := C.gtk_widget_get_window(w.c)
+// 	return gdk.Window{window}
+// }
 
-pub fn (w Widget) register_window(window gdk.Window) {
-	window_ := window.get_cptr()
-	C.gtk_widget_register_window(w.c, window_)
-}
+// pub fn (w Widget) register_window(window gdk.Window) {
+// 	window_ := window.get_cptr()
+// 	C.gtk_widget_register_window(w.c, window_)
+// }
 
-pub fn (w Widget) unregister_window(window gdk.Window) {
-	window_ := window.get_cptr()
-	C.gtk_widget_unregister_window(w.c, window_)
-}
+// pub fn (w Widget) unregister_window(window gdk.Window) {
+// 	window_ := window.get_cptr()
+// 	C.gtk_widget_unregister_window(w.c, window_)
+// }
 
 // TODO: gboolean C.gtk_cairo_should_draw_window (cairo_t *cr, GdkWindow *window)
 // TODO: void C.gtk_cairo_transform_to_window (cairo_t *cr, GtkWidget *widget, GdkWindow *window)
@@ -452,16 +460,18 @@ pub fn (w Widget) set_visible(visible bool) {
 	C.gtk_widget_set_visible(w.c, visible)
 }
 
-pub fn (w Widget) set_state_flags(flags StateFlags, clear bool) {
+pub fn (w Widget) set_state_flags(flags int/* StateFlags */, clear bool) {
 	C.gtk_widget_set_state_flags(w.c, flags, clear)
 }
 
-pub fn (w Widget) unset_state_flags(flags StateFlags) {
+pub fn (w Widget) unset_state_flags(flags int/* StateFlags */) {
 	C.gtk_widget_unset_state_flags(w.c, flags)
 }
 
 pub fn (w Widget) get_state_flags() StateFlags {
-	return StateFlags(C.gtk_widget_get_state_flags(w.c))
+	unsafe {
+		return StateFlags(C.gtk_widget_get_state_flags(w.c))
+	}
 }
 
 pub fn (w Widget) has_default() bool {
@@ -488,10 +498,10 @@ pub fn (w Widget) is_toplevel() bool {
 	return C.gtk_widget_is_toplevel(w.c)
 }
 
-pub fn (w Widget) set_window(window gdk.Window) {
-	window_ := window.get_cptr()
-	C.gtk_widget_set_window(w.c, window_)
-}
+// pub fn (w Widget) set_window(window gdk.Window) {
+// 	window_ := window.get_cptr()
+// 	C.gtk_widget_set_window(w.c, window_)
+// }
 
 pub fn (w Widget) set_receives_default(receives_default bool) {
 	C.gtk_widget_set_receives_default(w.c, receives_default)
@@ -525,19 +535,19 @@ pub fn (w Widget) get_mapped() bool {
 	return C.gtk_widget_get_mapped(w.c)
 }
 
-pub fn (w Widget) device_is_shadowed(device gdk.Device) bool {
-	device_ := device.get_cptr()
-	return C.gtk_widget_device_is_shadowed(w.c, device_)
-}
+// pub fn (w Widget) device_is_shadowed(device gdk.Device) bool {
+// 	device_ := device.get_cptr()
+// 	return C.gtk_widget_device_is_shadowed(w.c, device_)
+// }
 
-pub fn (w Widget) get_modifier_mask(intent gdk.ModifierIntent) gdk.ModifierType {
-	return gdk.ModifierType(C.gtk_widget_get_modifier_mask(w.c, intent))
-}
+// pub fn (w Widget) get_modifier_mask(intent gdk.ModifierIntent) gdk.ModifierType {
+// 	return gdk.ModifierType(C.gtk_widget_get_modifier_mask(w.c, intent))
+// }
 
-pub fn (w Widget) insert_action_group(name string, group gio.ActionGroup) {
-	group_ := group.get_cptr()
-	C.gtk_widget_insert_action_group(w.c, name.str, group_)
-}
+// pub fn (w Widget) insert_action_group(name string, group gio.ActionGroup) {
+// 	group_ := group.get_cptr()
+// 	C.gtk_widget_insert_action_group(w.c, name.str, group_)
+// }
 
 pub fn (w Widget) get_opacity() f32 {
 	return f32(C.gtk_widget_get_opacity(w.c))
@@ -553,10 +563,10 @@ pub fn (w Widget) list_action_prefixes() []string {
 	return v_arr_str
 }
 
-pub fn (w Widget) get_action_group(prefix string) gio.ActionGroup {
-	cptr := C.gtk_widget_get_action_group(w.c, prefix.str)
-	return gio.ActionGroup{cptr}
-}
+// pub fn (w Widget) get_action_group(prefix string) gio.ActionGroup {
+// 	cptr := C.gtk_widget_get_action_group(w.c, prefix.str)
+// 	return gio.ActionGroup{cptr}
+// }
 
 pub fn (w Widget) get_path() WidgetPath {
 	cptr := C.gtk_widget_get_path(w.c)
@@ -604,33 +614,43 @@ pub fn (w Widget) get_preferred_height_and_baseline_for_width(width int) (int, i
 }
 
 pub fn (w Widget) get_request_mode() SizeRequestMode {
-	return SizeRequestMode(C.gtk_widget_get_request_mode(w.c))
+	unsafe {
+		return SizeRequestMode(C.gtk_widget_get_request_mode(w.c))
+	}
 }
 
 pub fn (w Widget) get_preferred_size() (Requisition, Requisition) {
 	minimum_size := &C.GtkRequisition(0)
 	natural_size := &C.GtkRequisition(0)
 	C.gtk_widget_get_preferred_size(w.c, &minimum_size, &natural_size)
-	return Requisition{minimum_size}, Requisition{natural_size}
+	unsafe {
+		return Requisition{minimum_size}, Requisition{natural_size}
+	}
 }
 
 pub fn (w Widget) get_halign() Align {
-	return Align(C.gtk_widget_get_halign(w.c))
+	unsafe {
+		return Align(C.gtk_widget_get_halign(w.c))
+	}
 }
 
-pub fn (w Widget) set_halign(align Align) {
+pub fn (w Widget) set_halign(align int/* Align */) {
 	C.gtk_widget_set_halign(w.c, align)
 }
 
 pub fn (w Widget) get_valign() Align {
-	return Align(C.gtk_widget_get_valign(w.c))
+	unsafe {
+		return Align(C.gtk_widget_get_valign(w.c))
+	}
 }
 
 pub fn (w Widget) get_valign_with_baseline() Align {
-	return Align(C.gtk_widget_get_valign_with_baseline(w.c))
+	unsafe {
+		return Align(C.gtk_widget_get_valign_with_baseline(w.c))
+	}
 }
 
-pub fn (w Widget) set_valign(align Align) {
+pub fn (w Widget) set_valign(align int/* Align */) {
 	C.gtk_widget_set_valign(w.c, align)
 }
 
@@ -702,7 +722,7 @@ pub fn (w Widget) queue_compute_expand() {
 	C.gtk_widget_queue_compute_expand(w.c)
 }
 
-pub fn (w Widget) compute_expand(orientation Orientation) bool {
+pub fn (w Widget) compute_expand(orientation int/* Orientation */) bool {
 	return C.gtk_widget_compute_expand(w.c, orientation)
 }
 

@@ -1,6 +1,6 @@
 module gtk
 
-import gdk
+// import gdk
 
 struct C.GtkLabel {
 }
@@ -108,7 +108,7 @@ fn C.gtk_main()
 fn C.gtk_main_quit()
 
 // Bin
-fn C.gtk_bin_get_child(&C.GtkBin) &C.GtkWidget
+fn C.gtk_bin_get_child(/* &C.GtkBin */&C.GtkWidget) &C.GtkWidget
 
 // ColorChooser
 fn C.gtk_color_chooser_get_rgba(&C.GtkColorChooser, &C.GdkRGBA)
@@ -149,7 +149,7 @@ fn C.gtk_window_set_default_geometry(&C.GtkWidget, int, int)
 // fn C.gtk_window_set_geometry_hints(&C.GtkWidget, &C.GtkWidget, &GdkGeometry, GdkWindowHints)
 fn C.gtk_window_set_gravity(&C.GtkWidget, int)
 
-fn C.gtk_window_get_gravity(&C.GtkWidget) gdk.Gravity
+// fn C.gtk_window_get_gravity(&C.GtkWidget) gdk.Gravity
 
 fn C.gtk_window_set_position(&C.GtkWidget, int)
 
@@ -169,7 +169,7 @@ fn C.gtk_window_is_maximized(&C.GtkWidget) bool
 
 fn C.gtk_window_has_toplevel_focus(&C.GtkWidget) bool
 
-// fn C.gtk_window_list_toplevels() &GList
+// fn C.gtk_window_list_toplevels() &C.GList
 fn C.gtk_window_add_mnemonic(&C.GtkWidget, u32, &C.GtkWidget)
 
 fn C.gtk_window_remove_mnemonic(&C.GtkWidget, u32, &C.GtkWidget)
@@ -239,7 +239,7 @@ fn C.gtk_window_get_decorated(&C.GtkWidget) bool
 
 fn C.gtk_window_get_deletable(&C.GtkWidget) bool
 
-// fn C.gtk_window_get_default_icon_list() &GList
+// fn C.gtk_window_get_default_icon_list() &C.GList
 fn C.gtk_window_get_default_icon_name()
 
 fn C.gtk_window_get_default_size(&C.GtkWidget, &int, &int)
@@ -249,7 +249,7 @@ fn C.gtk_window_get_destroy_with_parent(&C.GtkWidget) bool
 fn C.gtk_window_get_hide_titlebar_when_maximized(&C.GtkWidget) bool
 
 // fn C.gtk_window_get_icon(&C.GtkWidget) &GdkPixbuf
-// fn C.gtk_window_get_icon_list(&C.GtkWidget) &GList
+// fn C.gtk_window_get_icon_list(&C.GtkWidget) &C.GList
 fn C.gtk_window_get_icon_name(&C.GtkWidget)
 
 // fn C.gtk_window_get_mnemonic_modifier(&C.GtkWidget) GdkModifierType
@@ -293,14 +293,14 @@ fn C.gtk_window_resize(&C.GtkWidget, int, int)
 
 fn C.gtk_window_resize_to_geometry(&C.GtkWidget, int, int)
 
-// fn C.gtk_window_set_default_icon_list(&GList)
+// fn C.gtk_window_set_default_icon_list(&C.GList)
 // fn C.gtk_window_set_default_icon(&GdkPixbuf)
 fn C.gtk_window_set_default_icon_from_file(charptr, &GError) bool
 
 fn C.gtk_window_set_default_icon_name(charptr)
 
 // fn C.gtk_window_set_icon(&C.GtkWidget, &GdkPixbuf)
-// fn C.gtk_window_set_icon_list(&C.GtkWidget, &GList)
+// fn C.gtk_window_set_icon_list(&C.GtkWidget, &C.GList)
 fn C.gtk_window_set_icon_from_file(&C.GtkWidget, charptr, &GError) bool
 
 fn C.gtk_window_set_icon_name(&C.GtkWidget, charptr)
@@ -326,9 +326,9 @@ fn C.gtk_window_get_has_resize_grip(&C.GtkWidget) bool
 fn C.gtk_window_resize_grip_is_visible(&C.GtkWidget) bool
 
 // fn C.gtk_window_get_resize_grip_area(&C.GtkWidget, &GdkRectangle) bool
-fn C.gtk_window_get_application(&C.GtkWidget) &C.GtkApplication
+fn C.gtk_window_get_application(&C.GtkWidget) /* &C.GtkApplication */ &C.GtkWidget
 
-fn C.gtk_window_set_application(&C.GtkWidget, &C.GtkApplication)
+fn C.gtk_window_set_application(&C.GtkWidget, /* &C.GtkApplication */ &C.GtkWidget)
 
 fn C.gtk_window_set_has_user_ref_count(&C.GtkWidget, bool)
 
@@ -341,7 +341,7 @@ fn C.gtk_window_set_interactive_debugging(bool)
 // DIALOG
 fn C.gtk_dialog_new() &C.GtkWidget
 
-fn C.gtk_dialog_new_with_buttons(x &charptr, y &C.GtkWindow, z int, a C.GtkDialogFlags, b charptr, c int) &C.GtkWidget
+fn C.gtk_dialog_new_with_buttons(x &charptr, y &C.GtkWidget, z int, a int /* C.GtkDialogFlags */, b charptr, c int) &C.GtkWidget
 
 fn C.gtk_dialog_run(&C.GtkWidget) int
 
@@ -387,7 +387,7 @@ fn C.gtk_text_buffer_new(tt &C.GtkWidget) &C.GtkWidget
 
 fn C.gtk_text_buffer_set_text(t &C.GtkWidget, b byteptr, len int)
 
-fn C.gtk_text_buffer_get_text(t &C.GtkWidget, start &GtkTextIter, end &GtkTextIter) byteptr
+fn C.gtk_text_buffer_get_text(t &C.GtkWidget, start &GtkTextIter, end &GtkTextIter, bool) byteptr
 
 fn C.gtk_text_buffer_get_bounds(b &C.GtkWidget, start &GtkTextIter, end &GtkTextIter)
 
@@ -625,11 +625,11 @@ fn C.gtk_entry_get_input_hints(&C.GtkWidget) int
 fn C.gtk_entry_grab_focus_without_selecting(&C.GtkWidget)
 
 // ACCEL MAP
-fn C.gtk_accel_map_add_entry(charptr, u32, C.GdkModifierType)
+fn C.gtk_accel_map_add_entry(charptr, u32, int /* C.GdkModifierType */)
 
 fn C.gtk_accel_map_lookup_entry(charptr, &C.GtkAccelKey) bool
 
-fn C.gtk_accel_map_change_entry(charptr, u32, C.GdkModifierType, bool) bool
+fn C.gtk_accel_map_change_entry(charptr, u32, int /* C.GdkModifierType */, bool) bool
 
 fn C.gtk_accel_map_load(charptr)
 
@@ -680,7 +680,7 @@ fn C.gtk_box_set_child_packing(&C.GtkWidget, &C.GtkWidget, bool, bool, u32, int,
 fn C.gtk_box_get_baseline_position(&C.GtkWidget) int
 
 // C.GtkBaselinePosition
-fn C.gtk_box_set_baseline_position(&C.GtkWidget, int, C.GtkBaselinePosition)
+fn C.gtk_box_set_baseline_position(&C.GtkWidget, int/* , C.GtkBaselinePosition */)
 
 fn C.gtk_box_get_center_widget(&C.GtkWidget) &C.GtkWidget
 
@@ -820,183 +820,183 @@ fn C.gtk_label_set_track_visited_links(&C.GtkWidget, bool)
 fn C.gtk_label_get_track_visited_links(&C.GtkWidget) bool
 
 // APPLICATION
-fn C.gtk_application_new(charptr, int, C.GApplicationFlags) &C.GtkApplication
+fn C.gtk_application_new(charptr, int, /* int  C.GApplicationFlags */) /* &C.GtkApplication */ &C.GtkWidget
 
-fn C.g_application_run(&C.GtkApplication, int, charptr) int
+fn C.g_application_run(/* &C.GtkApplication */ &C.GtkWidget, int, charptr) int
 
-fn C.gtk_application_add_window(&C.GtkApplication, &C.GtkWindow)
+fn C.gtk_application_add_window(/* &C.GtkApplication */ &C.GtkWidget, &C.GtkWidget)
 
-fn C.gtk_application_remove_window(&C.GtkApplication, &C.GtkWindow)
+fn C.gtk_application_remove_window(/* &C.GtkApplication */ &C.GtkWidget, &C.GtkWidget)
 
-fn C.gtk_application_get_windows(&C.GtkApplication) &GList
+fn C.gtk_application_get_windows(/* &C.GtkApplication */ &C.GtkWidget) &C.GList
 
-fn C.gtk_application_get_window_by_id(&C.GtkApplication, u32) &C.GtkWindow
+fn C.gtk_application_get_window_by_id(/* &C.GtkApplication */ &C.GtkWidget, u32) &C.GtkWidget
 
-fn C.gtk_application_get_active_window(&C.GtkApplication) &C.GtkWindow
+fn C.gtk_application_get_active_window(/* &C.GtkApplication */ &C.GtkWidget) &C.GtkWidget
 
-fn C.gtk_application_inhibit(&C.GtkApplication, &C.GtkWindow, int, C.GtkApplicationInhibitFlags, charptr) u32
+fn C.gtk_application_inhibit(/* &C.GtkApplication */ &C.GtkWidget, &C.GtkWidget, int, C.GtkApplicationInhibitFlags, charptr) u32
 
-fn C.gtk_application_uninhibit(&C.GtkApplication, u32)
+fn C.gtk_application_uninhibit(/* &C.GtkApplication */ &C.GtkWidget, u32)
 
-fn C.gtk_application_is_inhibited(&C.GtkApplication, int, C.GtkApplicationInhibitFlags) bool
+fn C.gtk_application_is_inhibited(/* &C.GtkApplication */ &C.GtkWidget, int, C.GtkApplicationInhibitFlags) bool
 
-fn C.gtk_application_prefers_app_menu(&C.GtkApplication) bool
+fn C.gtk_application_prefers_app_menu(/* &C.GtkApplication */ &C.GtkWidget) bool
 
-fn C.gtk_application_get_app_menu(&C.GtkApplication) &C.GMenuModel
+fn C.gtk_application_get_app_menu(/* &C.GtkApplication */ &C.GtkWidget) &C.GMenuModel
 
-fn C.gtk_application_set_app_menu(&C.GtkApplication, &C.GMenuModel)
+fn C.gtk_application_set_app_menu(/* &C.GtkApplication */ &C.GtkWidget, &C.GMenuModel)
 
-fn C.gtk_application_get_menubar(&C.GtkApplication) &C.GMenuModel
+fn C.gtk_application_get_menubar(/* &C.GtkApplication */ &C.GtkWidget) &C.GMenuModel
 
-fn C.gtk_application_set_menubar(&C.GtkApplication, &C.GMenuModel)
+fn C.gtk_application_set_menubar(/* &C.GtkApplication */ &C.GtkWidget, &C.GMenuModel)
 
-fn C.gtk_application_get_menu_by_id(&C.GtkApplication, charptr) &C.GMenu
+fn C.gtk_application_get_menu_by_id(/* &C.GtkApplication */ &C.GtkWidget, charptr) &C.GMenu
 
-fn C.gtk_application_add_accelerator(&C.GtkApplication, charptr, &charptr, &C.GVariant)
+fn C.gtk_application_add_accelerator(/* &C.GtkApplication */ &C.GtkWidget, charptr, &charptr, &C.GVariant)
 
-fn C.gtk_application_remove_accelerator(&C.GtkApplication, &charptr, &C.GVariant)
+fn C.gtk_application_remove_accelerator(/* &C.GtkApplication */ &C.GtkWidget, &charptr, &C.GVariant)
 
-fn C.gtk_application_list_action_descriptions(&C.GtkApplication) &charptr
+fn C.gtk_application_list_action_descriptions(/* &C.GtkApplication */ &C.GtkWidget) &charptr
 
-fn C.gtk_application_get_accels_for_action(&C.GtkApplication, &charptr) &charptr
+fn C.gtk_application_get_accels_for_action(/* &C.GtkApplication */ &C.GtkWidget, &charptr) &charptr
 
-fn C.gtk_application_set_accels_for_action(&C.GtkApplication, &charptr, &charptr)
+fn C.gtk_application_set_accels_for_action(/* &C.GtkApplication */ &C.GtkWidget, &charptr, &charptr)
 
-fn C.gtk_application_get_actions_for_accel(&C.GtkApplication, &charptr) &charptr
+fn C.gtk_application_get_actions_for_accel(/* &C.GtkApplication */ &C.GtkWidget, &charptr) &charptr
 
 // ApplicationWindow
-fn C.gtk_application_window_new(&C.GtkApplication) &C.GtkWidget
+fn C.gtk_application_window_new(/* &C.GtkApplication */ &C.GtkWidget) &C.GtkWidget
 
-fn C.gtk_application_window_set_show_menubar(&C.GtkApplicationWindow, bool)
+fn C.gtk_application_window_set_show_menubar(/* &C.GtkApplication */ &C.GtkWidget, bool)
 
-fn C.gtk_application_window_get_show_menubar(&C.GtkApplicationWindow) bool
+fn C.gtk_application_window_get_show_menubar(/* &C.GtkApplication */ &C.GtkWidget) bool
 
-fn C.gtk_application_window_get_id(&C.GtkApplicationWindow) u32
+fn C.gtk_application_window_get_id(/* &C.GtkApplication */ &C.GtkWidget) u32
 
-fn C.gtk_application_window_set_help_overlay(&C.GtkApplicationWindow, &C.GtkShortcutsWindow)
+fn C.gtk_application_window_set_help_overlay(/* &C.GtkApplication */ &C.GtkWidget, &C.GtkShortcutsWindow)
 
-fn C.gtk_application_window_get_help_overlay(&C.GtkApplicationWindow) &C.GtkShortcutsWindow
+fn C.gtk_application_window_get_help_overlay(/* &C.GtkApplication */ &C.GtkWidget) &C.GtkShortcutsWindow
 
 // CONTAINER
-fn C.gtk_container_add(&C.GtkContainer, &C.GtkWidget)
+fn C.gtk_container_add(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget)
 
-fn C.gtk_container_remove(&C.GtkContainer, &C.GtkWidget)
+fn C.gtk_container_remove(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget)
 
-fn C.gtk_container_add_with_properties(&C.GtkContainer, &C.GtkWidget, &charptr)
+fn C.gtk_container_add_with_properties(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr)
 
-fn C.gtk_container_get_resize_mode(&C.GtkContainer) int
+fn C.gtk_container_get_resize_mode(/* &C.GtkContainer */ &C.GtkWidget) int
 
 // C.GtkResizeMode
-fn C.gtk_container_set_resize_mode(&C.GtkContainer, int, C.GtkResizeMode)
+fn C.gtk_container_set_resize_mode(/* &C.GtkContainer */ &C.GtkWidget, int, C.GtkResizeMode)
 
-fn C.gtk_container_check_resize(&C.GtkContainer)
+fn C.gtk_container_check_resize(/* &C.GtkContainer */ &C.GtkWidget)
 
-fn C.gtk_container_foreach(&C.GtkContainer, fn (), C.GtkCallback, voidptr, gpointer)
+fn C.gtk_container_foreach(/* &C.GtkContainer */ &C.GtkWidget, fn (), C.GtkCallback, voidptr, gpointer)
 
-fn C.gtk_container_get_children(&C.GtkContainer) &GList
+fn C.gtk_container_get_children(/* &C.GtkContainer */ &C.GtkWidget) &C.GList
 
-fn C.gtk_container_get_path_for_child(&C.GtkContainer, &C.GtkWidget) &C.GtkWidgetPath
+fn C.gtk_container_get_path_for_child(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget) &C.GtkWidgetPath
 
-fn C.gtk_container_set_reallocate_redraws(&C.GtkContainer, bool)
+fn C.gtk_container_set_reallocate_redraws(/* &C.GtkContainer */ &C.GtkWidget, bool)
 
-fn C.gtk_container_get_focus_child(&C.GtkContainer) &C.GtkWidget
+fn C.gtk_container_get_focus_child(/* &C.GtkContainer */ &C.GtkWidget) &C.GtkWidget
 
-fn C.gtk_container_set_focus_child(&C.GtkContainer, &C.GtkWidget)
+fn C.gtk_container_set_focus_child(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget)
 
-fn C.gtk_container_get_focus_vadjustment(&C.GtkContainer) &C.GtkAdjustment
+fn C.gtk_container_get_focus_vadjustment(/* &C.GtkContainer */ &C.GtkWidget) &C.GtkAdjustment
 
-fn C.gtk_container_set_focus_vadjustment(&C.GtkContainer, &C.GtkAdjustment)
+fn C.gtk_container_set_focus_vadjustment(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkAdjustment)
 
-fn C.gtk_container_get_focus_hadjustment(&C.GtkContainer) &C.GtkAdjustment
+fn C.gtk_container_get_focus_hadjustment(/* &C.GtkContainer */ &C.GtkWidget) &C.GtkAdjustment
 
-fn C.gtk_container_set_focus_hadjustment(&C.GtkContainer, &C.GtkAdjustment)
+fn C.gtk_container_set_focus_hadjustment(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkAdjustment)
 
-fn C.gtk_container_resize_children(&C.GtkContainer)
+fn C.gtk_container_resize_children(/* &C.GtkContainer */ &C.GtkWidget)
 
-fn C.gtk_container_child_type(&C.GtkContainer) C.GType
+fn C.gtk_container_child_type(/* &C.GtkContainer */ &C.GtkWidget) C.GType
 
-fn C.gtk_container_child_get(&C.GtkContainer, &C.GtkWidget, &charptr)
+fn C.gtk_container_child_get(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr)
 
-fn C.gtk_container_child_set(&C.GtkContainer, &C.GtkWidget, &charptr)
+fn C.gtk_container_child_set(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr)
 
-fn C.gtk_container_child_get_property(&C.GtkContainer, &C.GtkWidget, &charptr, &C.GValue)
+fn C.gtk_container_child_get_property(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr, &C.GValue)
 
-fn C.gtk_container_child_set_property(&C.GtkContainer, &C.GtkWidget, &charptr, &C.GValue)
+fn C.gtk_container_child_set_property(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr, &C.GValue)
 
-fn C.gtk_container_child_get_valist(&C.GtkContainer, &C.GtkWidget, &charptr, va_list)
+fn C.gtk_container_child_get_valist(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr, va_list)
 
-fn C.gtk_container_child_set_valist(&C.GtkContainer, &C.GtkWidget, &charptr, va_list)
+fn C.gtk_container_child_set_valist(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr, va_list)
 
-fn C.gtk_container_child_notify(&C.GtkContainer, &C.GtkWidget, &charptr)
+fn C.gtk_container_child_notify(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &charptr)
 
-fn C.gtk_container_child_notify_by_pspec(&C.GtkContainer, &C.GtkWidget, &GParamSpec)
+fn C.gtk_container_child_notify_by_pspec(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &C.GParamSpec)
 
-fn C.gtk_container_forall(&C.GtkContainer, fn (), C.GtkCallback, voidptr, gpointer)
+fn C.gtk_container_forall(/* &C.GtkContainer */ &C.GtkWidget, fn (), C.GtkCallback, voidptr, gpointer)
 
-fn C.gtk_container_get_border_width(&C.GtkContainer) u32
+fn C.gtk_container_get_border_width(/* &C.GtkContainer */ &C.GtkWidget) u32
 
-fn C.gtk_container_set_border_width(&C.GtkContainer, u32)
+fn C.gtk_container_set_border_width(/* &C.GtkContainer */ &C.GtkWidget, u32)
 
-// fn C.gtk_container_propagate_draw(&C.GtkContainer, &C.GtkWidget, &cairo_t)
-fn C.gtk_container_get_focus_chain(&C.GtkContainer, &GList) bool
+// fn C.gtk_container_propagate_draw(/* &C.GtkContainer */ &C.GtkWidget, &C.GtkWidget, &cairo_t)
+fn C.gtk_container_get_focus_chain(/* &C.GtkContainer */ &C.GtkWidget, &C.GList) bool
 
-fn C.gtk_container_set_focus_chain(&C.GtkContainer, &GList)
+fn C.gtk_container_set_focus_chain(/* &C.GtkContainer */ &C.GtkWidget, &C.GList)
 
-fn C.gtk_container_unset_focus_chain(&C.GtkContainer)
+fn C.gtk_container_unset_focus_chain(/* &C.GtkContainer */ &C.GtkWidget)
 
-fn C.gtk_container_class_find_child_property(&C._GObjectClass, &charptr) &GParamSpec
+fn C.gtk_container_class_find_child_property(&C._GObjectClass, &charptr) &C.GParamSpec
 
-fn C.gtk_container_class_install_child_property(&C.GtkContainerClass, u32, &GParamSpec)
+fn C.gtk_container_class_install_child_property(/* &C.GtkContainer */ &C.GtkWidgetClass, u32, &C.GParamSpec)
 
-fn C.gtk_container_class_install_child_properties(&C.GtkContainerClass, u32, &GParamSpec)
+fn C.gtk_container_class_install_child_properties(/* &C.GtkContainer */ &C.GtkWidgetClass, u32, &C.GParamSpec)
 
-fn C.gtk_container_class_list_child_properties(&C._GObjectClass, &u32) &GParamSpec
+fn C.gtk_container_class_list_child_properties(&C._GObjectClass, &u32) &C.GParamSpec
 
-fn C.gtk_container_class_handle_border_width(&C.GtkContainerClass)
+fn C.gtk_container_class_handle_border_width(/* &C.GtkContainer */ &C.GtkWidgetClass)
 
 // GRID
 fn C.gtk_grid_new() &C.GtkWidget
 
-fn C.gtk_grid_attach(&C.GtkGrid, &C.GtkWidget, int, int, int, int)
+fn C.gtk_grid_attach(&C.GtkWidget, &C.GtkWidget, int, int, int, int)
 
-fn C.gtk_grid_attach_next_to(&C.GtkGrid, &C.GtkWidget, &C.GtkWidget, int, C.GtkPositionType, int, int)
+fn C.gtk_grid_attach_next_to(&C.GtkWidget, &C.GtkWidget, &C.GtkWidget, int, int/* C.GtkPositionType*/, int)
 
-fn C.gtk_grid_get_child_at(&C.GtkGrid, int, int) &C.GtkWidget
+fn C.gtk_grid_get_child_at(&C.GtkWidget, int, int) &C.GtkWidget
 
-fn C.gtk_grid_insert_row(&C.GtkGrid, int)
+fn C.gtk_grid_insert_row(&C.GtkWidget, int)
 
-fn C.gtk_grid_insert_column(&C.GtkGrid, int)
+fn C.gtk_grid_insert_column(&C.GtkWidget, int)
 
-fn C.gtk_grid_remove_row(&C.GtkGrid, int)
+fn C.gtk_grid_remove_row(&C.GtkWidget, int)
 
-fn C.gtk_grid_remove_column(&C.GtkGrid, int)
+fn C.gtk_grid_remove_column(&C.GtkWidget, int)
 
-fn C.gtk_grid_insert_next_to(&C.GtkGrid, &C.GtkWidget, int, C.GtkPositionType)
+fn C.gtk_grid_insert_next_to(&C.GtkWidget, &C.GtkWidget, int, /* C.GtkPositionType */)
 
-fn C.gtk_grid_set_row_homogeneous(&C.GtkGrid, bool)
+fn C.gtk_grid_set_row_homogeneous(&C.GtkWidget, bool)
 
-fn C.gtk_grid_get_row_homogeneous(&C.GtkGrid) bool
+fn C.gtk_grid_get_row_homogeneous(&C.GtkWidget) bool
 
-fn C.gtk_grid_set_row_spacing(&C.GtkGrid, u32)
+fn C.gtk_grid_set_row_spacing(&C.GtkWidget, u32)
 
-fn C.gtk_grid_get_row_spacing(&C.GtkGrid) u32
+fn C.gtk_grid_get_row_spacing(&C.GtkWidget) u32
 
-fn C.gtk_grid_set_column_homogeneous(&C.GtkGrid, bool)
+fn C.gtk_grid_set_column_homogeneous(&C.GtkWidget, bool)
 
-fn C.gtk_grid_get_column_homogeneous(&C.GtkGrid) bool
+fn C.gtk_grid_get_column_homogeneous(&C.GtkWidget) bool
 
-fn C.gtk_grid_set_column_spacing(&C.GtkGrid, u32)
+fn C.gtk_grid_set_column_spacing(&C.GtkWidget, u32)
 
-fn C.gtk_grid_get_column_spacing(&C.GtkGrid) u32
+fn C.gtk_grid_get_column_spacing(&C.GtkWidget) u32
 
-fn C.gtk_grid_get_baseline_row(&C.GtkGrid) int
+fn C.gtk_grid_get_baseline_row(&C.GtkWidget) int
 
-fn C.gtk_grid_set_baseline_row(&C.GtkGrid, int)
+fn C.gtk_grid_set_baseline_row(&C.GtkWidget, int)
 
-fn C.gtk_grid_get_row_baseline_position(&C.GtkGrid, int) int
+fn C.gtk_grid_get_row_baseline_position(&C.GtkWidget, int) int
 
 // C.GtkBaselinePosition
-fn C.gtk_grid_set_row_baseline_position(&C.GtkGrid, int, int, C.GtkBaselinePosition)
+fn C.gtk_grid_set_row_baseline_position(&C.GtkWidget, int, int /*, C.GtkBaselinePosition */)
 
 // WIDGET
 // fn C.gtk_widget_new(C.GType, charptr) &C.GtkWidget
@@ -1046,7 +1046,7 @@ fn C.gtk_widget_remove_tick_callback(&C.GtkWidget, u32)
 // fn C.gtk_widget_add_accelerator(&C.GtkWidget, charptr, &C.GtkAccelGroup, u32, GdkModifierType, C.GtkAccelFlags)
 // fn C.gtk_widget_remove_accelerator(&C.GtkWidget, &C.GtkAccelGroup, u32, GdkModifierType) bool
 // fn C.gtk_widget_set_accel_path(&C.GtkWidget, charptr, &C.GtkAccelGroup)
-// fn C.gtk_widget_list_accel_closures(&C.GtkWidget) &GList
+// fn C.gtk_widget_list_accel_closures(&C.GtkWidget) &C.GList
 fn C.gtk_widget_can_activate_accel(&C.GtkWidget, u32) bool
 
 // fn C.gtk_widget_event(&C.GtkWidget, &GdkEvent) bool
@@ -1160,10 +1160,10 @@ fn C.gtk_widget_set_composite_name(&C.GtkWidget, charptr)
 
 fn C.gtk_widget_mnemonic_activate(&C.GtkWidget, bool) bool
 
-// fn C.gtk_widget_class_install_style_property(&WidgetClass, &GParamSpec)
-// fn C.gtk_widget_class_install_style_property_parser(&WidgetClass, &GParamSpec, C.GtkRcPropertyParser)
-// fn C.gtk_widget_class_find_style_property(&WidgetClass, charptr) &GParamSpec
-// fn C.gtk_widget_class_list_style_properties(&WidgetClass, &u32) &GParamSpec
+// fn C.gtk_widget_class_install_style_property(&WidgetClass, &C.GParamSpec)
+// fn C.gtk_widget_class_install_style_property_parser(&WidgetClass, &C.GParamSpec, C.GtkRcPropertyParser)
+// fn C.gtk_widget_class_find_style_property(&WidgetClass, charptr) &C.GParamSpec
+// fn C.gtk_widget_class_list_style_properties(&WidgetClass, &u32) &C.GParamSpec
 // fn C.gtk_widget_region_intersect(&C.GtkWidget, &cairo_region_t) &cairo_region_t
 // fn C.gtk_widget_send_expose(&C.GtkWidget, &GdkEvent) int
 // fn C.gtk_widget_send_focus_change(&C.GtkWidget, &GdkEvent) bool
@@ -1205,7 +1205,7 @@ fn C.gtk_widget_set_no_show_all(&C.GtkWidget, bool)
 
 fn C.gtk_widget_get_no_show_all(&C.GtkWidget) bool
 
-// fn C.gtk_widget_list_mnemonic_labels(&C.GtkWidget) &GList
+// fn C.gtk_widget_list_mnemonic_labels(&C.GtkWidget) &C.GList
 fn C.gtk_widget_add_mnemonic_label(&C.GtkWidget, &C.GtkWidget)
 
 fn C.gtk_widget_remove_mnemonic_label(&C.GtkWidget, &C.GtkWidget)
@@ -1477,13 +1477,13 @@ fn C.gtk_builder_set_translation_domain(&C.GtkBuilder, &charptr)
 
 fn C.gtk_builder_get_translation_domain(&C.GtkBuilder) charptr
 
-fn C.gtk_builder_set_application(&C.GtkBuilder, &C.GtkApplication)
+fn C.gtk_builder_set_application(&C.GtkBuilder, /* &C.GtkApplication */ &C.GtkWidget)
 
-fn C.gtk_builder_get_application(&C.GtkBuilder) &C.GtkApplication
+fn C.gtk_builder_get_application(&C.GtkBuilder) /* &C.GtkApplication */ &C.GtkWidget
 
 fn C.gtk_builder_get_type_from_name(&C.GtkBuilder, &char) C.GType
 
-fn C.gtk_builder_value_from_string(&C.GtkBuilder, &GParamSpec, &charptr, &C.GValue, &GError) bool
+fn C.gtk_builder_value_from_string(&C.GtkBuilder, &C.GParamSpec, &charptr, &C.GValue, &GError) bool
 
 fn C.gtk_builder_value_from_string_type(&C.GtkBuilder, C.GType, &charptr, &C.GValue, &GError) bool
 
@@ -1511,67 +1511,67 @@ fn C.gtk_buildable_get_internal_child(&C.GtkBuildable, &C.GtkBuilder, &charptr) 
 // AboutDialog
 fn C.gtk_about_dialog_new() &C.GtkWidget
 
-fn C.gtk_about_dialog_get_program_name(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_program_name(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_program_name(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_program_name(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_version(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_version(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_version(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_version(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_copyright(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_copyright(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_copyright(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_copyright(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_comments(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_comments(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_comments(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_comments(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_license(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_license(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_license(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_license(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_wrap_license(&C.GtkAboutDialog) bool
+fn C.gtk_about_dialog_get_wrap_license(&C.GtkWidget) bool
 
-fn C.gtk_about_dialog_set_wrap_license(&C.GtkAboutDialog, bool)
+fn C.gtk_about_dialog_set_wrap_license(&C.GtkWidget, bool)
 
-fn C.gtk_about_dialog_get_license_type(&C.GtkAboutDialog) int
+fn C.gtk_about_dialog_get_license_type(&C.GtkWidget) int
 
-fn C.gtk_about_dialog_set_license_type(&C.GtkAboutDialog, int)
+fn C.gtk_about_dialog_set_license_type(&C.GtkWidget, int)
 
-fn C.gtk_about_dialog_get_website(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_website(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_website(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_website(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_website_label(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_website_label(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_website_label(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_website_label(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_authors(&C.GtkAboutDialog) &charptr
+fn C.gtk_about_dialog_get_authors(&C.GtkWidget) &charptr
 
-fn C.gtk_about_dialog_set_authors(&C.GtkAboutDialog, &charptr)
+fn C.gtk_about_dialog_set_authors(&C.GtkWidget, &charptr)
 
-fn C.gtk_about_dialog_get_artists(&C.GtkAboutDialog) &charptr
+fn C.gtk_about_dialog_get_artists(&C.GtkWidget) &charptr
 
-fn C.gtk_about_dialog_set_artists(&C.GtkAboutDialog, &charptr)
+fn C.gtk_about_dialog_set_artists(&C.GtkWidget, &charptr)
 
-fn C.gtk_about_dialog_get_documenters(&C.GtkAboutDialog) &charptr
+fn C.gtk_about_dialog_get_documenters(&C.GtkWidget) &charptr
 
-fn C.gtk_about_dialog_set_documenters(&C.GtkAboutDialog, &charptr)
+fn C.gtk_about_dialog_set_documenters(&C.GtkWidget, &charptr)
 
-fn C.gtk_about_dialog_get_translator_credits(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_translator_credits(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_translator_credits(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_translator_credits(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_get_logo(&C.GtkAboutDialog) &C.GdkPixbuf
+fn C.gtk_about_dialog_get_logo(&C.GtkWidget) &C.GdkPixbuf
 
-fn C.gtk_about_dialog_set_logo(&C.GtkAboutDialog, &C.GdkPixbuf)
+fn C.gtk_about_dialog_set_logo(&C.GtkWidget, &C.GdkPixbuf)
 
-fn C.gtk_about_dialog_get_logo_icon_name(&C.GtkAboutDialog) charptr
+fn C.gtk_about_dialog_get_logo_icon_name(&C.GtkWidget) charptr
 
-fn C.gtk_about_dialog_set_logo_icon_name(&C.GtkAboutDialog, charptr)
+fn C.gtk_about_dialog_set_logo_icon_name(&C.GtkWidget, charptr)
 
-fn C.gtk_about_dialog_add_credit_section(&C.GtkAboutDialog, charptr, &charptr)
+fn C.gtk_about_dialog_add_credit_section(&C.GtkWidget, charptr, &charptr)
 
 fn C.gtk_show_about_dialog(&C.GtkWidget, charptr)
 
@@ -1604,9 +1604,9 @@ fn C.gtk_actionable_set_action_target(&C.GtkWidget, &charptr)
 fn C.gtk_actionable_set_detailed_action_name(&C.GtkWidget, charptr)
 
 // MessageDialog
-fn C.gtk_message_dialog_new(&C.GtkWindow, C.GtkDialogFlags, C.GtkMessageType, C.GtkButtonsType, charptr) &C.GtkWidget
+fn C.gtk_message_dialog_new(&C.GtkWidget, C.GtkDialogFlags, C.GtkMessageType, C.GtkButtonsType, charptr) &C.GtkWidget
 
-fn C.gtk_message_dialog_new_with_markup(&C.GtkWindow, C.GtkDialogFlags, C.GtkMessageType, C.GtkButtonsType, charptr) &C.GtkWidget
+fn C.gtk_message_dialog_new_with_markup(&C.GtkWidget, C.GtkDialogFlags, C.GtkMessageType, C.GtkButtonsType, charptr) &C.GtkWidget
 
 fn C.gtk_message_dialog_set_markup(&C.GtkWidget, charptr)
 

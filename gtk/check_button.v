@@ -1,6 +1,6 @@
 module gtk
 
-import gdk
+// import gdk
 
 pub struct CheckButton {
 	c &C.GtkWidget
@@ -52,16 +52,20 @@ pub fn (c CheckButton) clicked() {
 	C.gtk_button_clicked(c.c)
 }
 
-pub fn (c CheckButton) set_relief(relief ReliefStyle) {
+pub fn (c CheckButton) set_relief(relief int/* ReliefStyle */) {
 	C.gtk_button_set_relief(c.c, relief)
 }
 
 pub fn (c CheckButton) get_relief() ReliefStyle {
-	return ReliefStyle(C.gtk_button_get_relief(c.c))
+	unsafe {
+		return ReliefStyle(C.gtk_button_get_relief(c.c))
+	}
 }
 
 pub fn (c CheckButton) get_label() string {
-	return tos3(C.gtk_button_get_label(c.c))
+	unsafe {
+		return tos3(C.gtk_button_get_label(c.c))
+	}
 }
 
 pub fn (c CheckButton) set_label(label string) {
@@ -97,12 +101,14 @@ pub fn (c CheckButton) get_image() &C.GtkWidget {
 	return C.gtk_button_get_image(c.c)
 }
 
-pub fn (c CheckButton) set_image_position(pos Position) {
+pub fn (c CheckButton) set_image_position(pos int/* Position */) {
 	C.gtk_button_set_image_position(c.c, pos)
 }
 
 pub fn (c CheckButton) get_image_position() Position {
-	return Position(C.gtk_button_get_image_position(c.c))
+	unsafe {
+		return Position(C.gtk_button_get_image_position(c.c))
+	}
 }
 
 pub fn (c CheckButton) set_always_show_image(always_show bool) {
@@ -113,9 +119,9 @@ pub fn (c CheckButton) get_always_show_image() bool {
 	return C.gtk_button_get_always_show_image(c.c)
 }
 
-pub fn (c CheckButton) get_event_window() gdk.Window {
-	return gdk.Window{C.gtk_button_get_event_window(c.c)}
-}
+// pub fn (c CheckButton) get_event_window() gdk.Window {
+// 	return gdk.Window{C.gtk_button_get_event_window(c.c)}
+// }
 
 pub fn (c &CheckButton) on(event_name string, handler fn (CheckButton, voidptr), data voidptr) int {
 	return int(C.g_signal_connect(c.c, event_name.str, handler, data))

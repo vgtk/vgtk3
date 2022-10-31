@@ -7,7 +7,7 @@ pub enum ResizeMode {
 }
 
 pub struct Container {
-	c &C.GtkContainer
+	c  &C.GtkWidget /* &C.GtkContainer */
 }
 
 pub fn (c &Container) add(widget IWidget) {

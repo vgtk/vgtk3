@@ -1,6 +1,6 @@
 module gtk
 
-pub type AccelMapForeach = fn (voidptr, charptr, u32, C.GdkModifierType, bool)
+pub type AccelMapForeach = fn (voidptr, charptr, u32, int /* C.GdkModifierType */, bool)
 
 pub struct AccelMap {
 	c &C.GtkAccelMap
