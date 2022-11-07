@@ -30,7 +30,7 @@ pub fn (l Label) set_pattern(pattern string) {
 }
 
 pub fn (l Label) set_justify(jtype Justification) {
-	C.gtk_label_set_justify(l.c, jtype)
+	C.gtk_label_set_justify(l.c, int(jtype))
 }
 
 pub fn (l Label) set_xalign(xalign f32) {
@@ -81,7 +81,9 @@ pub fn (l Label) get_selectable() bool {
 }
 
 pub fn (l Label) get_text() string {
-	return tos3(C.gtk_label_get_text(l.c))
+	unsafe {
+		return tos3(C.gtk_label_get_text(l.c))
+	}
 }
 
 pub fn new_label_with_mnemonic(label string) Label {
@@ -106,7 +108,7 @@ pub fn (l Label) set_text_with_mnemonic(str string) {
 }
 
 pub fn (l Label) get_justify() Justification {
-	return Justification(C.gtk_label_get_justify(l.c))
+	return C.gtk_label_get_justify(l.c)
 }
 
 pub fn (l Label) get_xalign() f32 {
@@ -127,7 +129,9 @@ pub fn (l Label) get_max_width_chars() int {
 }
 
 pub fn (l Label) get_label() string {
-	return tos3(C.gtk_label_get_label(l.c))
+	unsafe {
+		return tos3(C.gtk_label_get_label(l.c))
+	}
 }
 
 // TODO: PangoLayout * C.gtk_label_get_layout (GtkLabel *label)
@@ -188,7 +192,9 @@ pub fn (l Label) set_angle(angle f64) {
 }
 
 pub fn (l Label) get_current_uri() string {
-	return tos3(C.gtk_label_get_current_uri(l.c))
+	unsafe {
+		return tos3(C.gtk_label_get_current_uri(l.c))
+	}
 }
 
 pub fn (l Label) set_track_visited_links(setting bool) {

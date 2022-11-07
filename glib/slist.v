@@ -52,7 +52,7 @@ pub fn (s SList) remove_all(data voidptr) SList {
 	return SList{C.g_slist_remove_all(s.c, data)}
 }
 
-pub fn (s SList) free() {
+pub fn (mut s SList) free() {
 	C.g_slist_free(s.c)
 }
 

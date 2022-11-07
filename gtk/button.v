@@ -1,6 +1,6 @@
 module gtk
 
-import gdk
+// import gdk
 
 pub struct Button {
 	c &C.GtkWidget
@@ -31,11 +31,13 @@ pub fn (b Button) set_relief(relief ReliefStyle) {
 }
 
 pub fn (b Button) get_relief() ReliefStyle {
-	return ReliefStyle(C.gtk_button_get_relief(b.c))
+	return C.gtk_button_get_relief(b.c)
 }
 
 pub fn (b Button) get_label() string {
-	return tos3(C.gtk_button_get_label(b.c))
+	unsafe {
+		return tos3(C.gtk_button_get_label(b.c))
+	}
 }
 
 pub fn (b Button) set_label(label string) {
@@ -76,7 +78,7 @@ pub fn (b Button) set_image_position(pos Position) {
 }
 
 pub fn (b Button) get_image_position() Position {
-	return Position(C.gtk_button_get_image_position(b.c))
+	return C.gtk_button_get_image_position(b.c)
 }
 
 pub fn (b Button) set_always_show_image(always_show bool) {
@@ -87,10 +89,10 @@ pub fn (b Button) get_always_show_image() bool {
 	return C.gtk_button_get_always_show_image(b.c)
 }
 
-pub fn (b Button) get_event_window() gdk.Window {
-	cptr := C.gtk_button_get_event_window(b.c)
-	return gdk.Window{cptr}
-}
+// pub fn (b Button) get_event_window() gdk.Window {
+// 	cptr := C.gtk_button_get_event_window(b.c)
+// 	return gdk.Window{cptr}
+// }
 
 // INHERITED FROM WIDGET
 pub fn (b &Button) show() {

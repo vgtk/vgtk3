@@ -47,7 +47,9 @@ pub fn (e Entry) set_text(text string) {
 }
 
 pub fn (e Entry) get_text() string {
-	return tos3(C.gtk_entry_get_text(e.c))
+	unsafe {
+		return tos3(C.gtk_entry_get_text(e.c))
+	}
 }
 
 pub fn (e Entry) get_text_length() u16 {
@@ -80,7 +82,7 @@ pub fn (e Entry) gtk_entry_get_has_frame() bool {
 }
 
 // WARNING: Has been deprecated since version 3.4
-// TODO: const GtkBorder * C.gtk_entry_get_inner_border (GtkEntry *entry) 
+// TODO: const GtkBorder * C.gtk_entry_get_inner_border (GtkEntry *entry)
 pub fn (e Entry) get_width_chars() int {
 	return int(C.gtk_entry_get_width_chars(e.c))
 }
@@ -123,7 +125,9 @@ pub fn (e Entry) set_placeholder_text(text string) {
 }
 
 pub fn (e Entry) get_placeholder_text() string {
-	return tos3(C.gtk_entry_get_placeholder_text(e.c))
+	unsafe {
+		return tos3(C.gtk_entry_get_placeholder_text(e.c))
+	}
 }
 
 pub fn (e Entry) set_overwrite_mode(setting bool) {
@@ -201,12 +205,14 @@ pub fn (e Entry) set_icon_from_icon_name(icon_pos EntryIconPosition, icon_name s
 
 // TODO: void C.gtk_entry_set_icon_from_gicon (GtkEntry *entry, GtkEntryIconPosition icon_pos, GIcon *icon)
 pub fn (e Entry) get_icon_storage_type(icon_pos EntryIconPosition) ImageType {
-	return ImageType(C.gtk_entry_get_icon_storage_type(e.c, icon_pos))
+	return C.gtk_entry_get_icon_storage_type(e.c, icon_pos)
 }
 
 // TODO: GdkPixbuf * C.gtk_entry_get_icon_pixbuf (GtkEntry *entry, GtkEntryIconPosition icon_pos)
 pub fn (e Entry) get_icon_name(icon_pos EntryIconPosition) string {
-	return tos3(C.gtk_entry_get_icon_name(e.c, icon_pos))
+	unsafe {
+		return tos3(C.gtk_entry_get_icon_name(e.c, icon_pos))
+	}
 }
 
 // TODO: GIcon * C.gtk_entry_get_icon_gicon (GtkEntry *entry, GtkEntryIconPosition icon_pos)
@@ -239,7 +245,9 @@ pub fn (e Entry) set_icon_tooltip_text(icon_pos EntryIconPosition, tooltip strin
 
 pub fn (e Entry) get_icon_tooltip_text(icon_pos EntryIconPosition) string {
 	res := C.gtk_entry_get_icon_tooltip_text(e.c, icon_pos)
-	return tos3(res)
+	unsafe {
+		return tos3(res)
+	}
 }
 
 pub fn (e Entry) set_icon_tooltip_markup(icon_pos EntryIconPosition, tooltip string) {
@@ -251,7 +259,9 @@ pub fn (e Entry) set_icon_tooltip_markup(icon_pos EntryIconPosition, tooltip str
 
 pub fn (e Entry) get_icon_tooltip_markup(icon_pos EntryIconPosition) string {
 	res := C.gtk_entry_get_icon_tooltip_markup(e.c, icon_pos)
-	return tos3(res)
+	unsafe {
+		return tos3(res)
+	}
 }
 
 // TODO: void C.gtk_entry_set_icon_drag_source (GtkEntry *entry, GtkEntryIconPosition icon_pos, GtkTargetList *target_list, GdkDragAction actions)
@@ -265,7 +275,7 @@ pub fn (e Entry) set_input_purpose(purpose InputPurpose) {
 }
 
 pub fn (e Entry) get_input_purpose() InputPurpose {
-	return InputPurpose(C.gtk_entry_get_input_purpose(e.c))
+	return C.gtk_entry_get_input_purpose(e.c)
 }
 
 pub fn (e Entry) set_input_hints(hints InputHints) {
@@ -273,7 +283,7 @@ pub fn (e Entry) set_input_hints(hints InputHints) {
 }
 
 pub fn (e Entry) get_input_hints() InputHints {
-	return InputHints(C.gtk_entry_get_input_hints(e.c))
+	return C.gtk_entry_get_input_hints(e.c)
 }
 
 pub fn (e Entry) grab_focus_without_selecting() {

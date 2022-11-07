@@ -82,6 +82,7 @@ pub fn (a Array) sort_with_data(compare_fn CompareDataFunc, user_data voidptr) {
 // pub fn (a Array) binary_search(target voidptr, compare_fn CompareFunc, out_match_index &u32) bool {
 // 	return C.g_array_binary_search(a.c, target, compare_fn, out_match_index)
 // }
+
 pub fn (a Array) set_size(len u32) Array {
 	cptr := C.g_array_set_size(a.c, len)
 	return Array{cptr}
@@ -91,6 +92,6 @@ pub fn (a Array) set_clear_func(clear_fn DestroyNotify) {
 	C.g_array_set_clear_func(a.c, clear_fn)
 }
 
-pub fn (a Array) free(free_segment bool) {
-	C.g_array_free(a.c, free_segment)
+pub fn (mut a Array) free() {
+	C.g_array_free(a.c, true)
 }

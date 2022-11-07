@@ -1,6 +1,7 @@
 module glib
 
 #include <glib/glist.h>
+
 pub type Func = fn (voidptr, voidptr)
 
 pub struct List {
@@ -55,7 +56,7 @@ pub fn (l List) remove_all(data voidptr) List {
 	return List{C.g_list_remove_all(l.c, data)}
 }
 
-pub fn (l List) free() {
+pub fn (mut l List) free() {
 	C.g_list_free(l.c)
 }
 

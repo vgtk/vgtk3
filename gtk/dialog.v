@@ -35,7 +35,7 @@ pub fn new_dialog_from_parent(title string, parent Window, flags DialogFlags) Di
 
 // TODO: GtkWidget * C.gtk_dialog_new_with_buttons (const gchar *title, GtkWindow *parent, GtkDialogFlags flags, const gchar *first_button_text, ...)
 pub fn (d Dialog) run() ResponseType {
-	return ResponseType(C.gtk_dialog_run(d.c))
+	return C.gtk_dialog_run(d.c)
 }
 
 pub fn (d Dialog) response(response_id ResponseType) {
@@ -236,7 +236,7 @@ pub fn (d Dialog) set_direction(direction TextDirection) {
 }
 
 pub fn (d Dialog) get_direction() TextDirection {
-	return TextDirection(C.gtk_widget_get_direction(d.c))
+	return C.gtk_widget_get_direction(d.c)
 }
 
 pub fn (d Dialog) set_default_direction(direction TextDirection) {
@@ -244,7 +244,7 @@ pub fn (d Dialog) set_default_direction(direction TextDirection) {
 }
 
 pub fn (d Dialog) get_default_direction() TextDirection {
-	return TextDirection(C.gtk_widget_get_default_direction())
+	return C.gtk_widget_get_default_direction()
 }
 
 // INHERITED FROM WINDOW
@@ -253,7 +253,9 @@ pub fn (d Dialog) set_default_size(width int, height int) {
 }
 
 pub fn (d Dialog) get_title() string {
-	return tos3(C.gtk_window_get_title(d.c))
+	unsafe {
+		return tos3(C.gtk_window_get_title(d.c))
+	}
 }
 
 // IMPLEMENTING IWidget

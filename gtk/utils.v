@@ -11,7 +11,7 @@ fn carray_string_to_array_string(arr &charptr) []string {
 		if elem == 0 {
 			break
 		}
-		arr_str << tos_clone(elem)
+		unsafe { arr_str << tos_clone(elem) }
 		i++
 	}
 	unsafe { free(arr) }

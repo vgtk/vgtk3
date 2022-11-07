@@ -21,7 +21,7 @@ pub fn (a ApplicationWindow) get_id() u32 {
 }
 
 /*
-// TODO: 
+// TODO:
 pub fn (a ApplicationWindow) set_help_overlay(help_overlay &C.GtkShortcutsWindow) {
 	C.gtk_application_window_set_help_overlay(a.c, help_overlay)
 }

@@ -1,6 +1,6 @@
 module gtk
 
-import gdk
+// import gdk
 
 pub enum License {
 	unknown = C.GTK_LICENSE_UNKNOWN
@@ -27,20 +27,24 @@ pub struct AboutDialog {
 	c &C.GtkWidget
 }
 
-pub fn new_about_dialog() AboutDialog {
-	return AboutDialog{C.gtk_about_dialog_new()}
-}
+// pub fn new_about_dialog() AboutDialog {
+// 	return AboutDialog{C.gtk_about_dialog_new()}
+// }
 
-pub fn (a AboutDialog) get_program_name() string {
-	return tos3(C.gtk_about_dialog_get_program_name(a.c))
-}
+// pub fn (a AboutDialog) get_program_name() string {
+// 	unsafe {
+// 		return tos3(C.gtk_about_dialog_get_program_name(a.c))
+// 	}
+// }
 
-pub fn (a AboutDialog) set_program_name(name string) {
-	C.gtk_about_dialog_set_program_name(a.c, name.str)
-}
+// pub fn (a AboutDialog) set_program_name(name string) {
+// 	C.gtk_about_dialog_set_program_name(a.c, name.str)
+// }
 
 pub fn (a AboutDialog) get_version() string {
-	return tos3(C.gtk_about_dialog_get_version(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_version(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_version(version string) {
@@ -48,7 +52,9 @@ pub fn (a AboutDialog) set_version(version string) {
 }
 
 pub fn (a AboutDialog) get_copyright() string {
-	return tos3(C.gtk_about_dialog_get_copyright(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_copyright(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_copyright(copyright string) {
@@ -56,7 +62,9 @@ pub fn (a AboutDialog) set_copyright(copyright string) {
 }
 
 pub fn (a AboutDialog) get_comments() string {
-	return tos3(C.gtk_about_dialog_get_comments(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_comments(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_comments(comments string) {
@@ -64,7 +72,9 @@ pub fn (a AboutDialog) set_comments(comments string) {
 }
 
 pub fn (a AboutDialog) get_license() string {
-	return tos3(C.gtk_about_dialog_get_license(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_license(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_license(license string) {
@@ -80,7 +90,9 @@ pub fn (a AboutDialog) set_wrap_license(wrap_license bool) {
 }
 
 pub fn (a AboutDialog) get_license_type() License {
-	return License(C.gtk_about_dialog_get_license_type(a.c))
+	unsafe {
+		return License(C.gtk_about_dialog_get_license_type(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_license_type(license_type License) {
@@ -88,7 +100,9 @@ pub fn (a AboutDialog) set_license_type(license_type License) {
 }
 
 pub fn (a AboutDialog) get_website() string {
-	return tos3(C.gtk_about_dialog_get_website(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_website(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_website(website string) {
@@ -96,7 +110,9 @@ pub fn (a AboutDialog) set_website(website string) {
 }
 
 pub fn (a AboutDialog) get_website_label() string {
-	return tos3(C.gtk_about_dialog_get_website_label(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_website_label(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_website_label(website_label string) {
@@ -128,23 +144,27 @@ pub fn (a AboutDialog) set_documenters(documenters []string) {
 }
 
 pub fn (a AboutDialog) get_translator_credits() string {
-	return tos3(C.gtk_about_dialog_get_translator_credits(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_translator_credits(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_translator_credits(translator_credits []string) {
 	C.gtk_about_dialog_set_translator_credits(a.c, translator_credits.data)
 }
 
-pub fn (a AboutDialog) get_logo() gdk.Pixbuf {
-	return gdk.Pixbuf{C.gtk_about_dialog_get_logo(a.c)}
-}
+// pub fn (a AboutDialog) get_logo() gdk.Pixbuf {
+// 	return gdk.Pixbuf{C.gtk_about_dialog_get_logo(a.c)}
+// }
 
-pub fn (a AboutDialog) set_logo(logo gdk.Pixbuf) {
-	C.gtk_about_dialog_set_logo(a.c, logo.get_cptr())
-}
+// pub fn (a AboutDialog) set_logo(logo gdk.Pixbuf) {
+// 	C.gtk_about_dialog_set_logo(a.c, logo.get_cptr())
+// }
 
 pub fn (a AboutDialog) get_logo_icon_name() string {
-	return tos3(C.gtk_about_dialog_get_logo_icon_name(a.c))
+	unsafe {
+		return tos3(C.gtk_about_dialog_get_logo_icon_name(a.c))
+	}
 }
 
 pub fn (a AboutDialog) set_logo_icon_name(icon_name string) {
@@ -161,7 +181,7 @@ pub fn show_about_dialog(parent Window) {
 }
 
 pub fn (a AboutDialog) on_activate_link(handler fn (AboutDialog, charptr, voidptr), user_data voidptr) {
-	C.g_signal_connect(a.c, 'activate-link', handler, user_data)
+	C.g_signal_connect(a.c, 'activate-link'.str, handler, user_data)
 }
 
 // Inherited from Widget
