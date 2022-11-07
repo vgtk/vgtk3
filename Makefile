@@ -9,6 +9,9 @@ all: fmt test examples
 fmt:
 	$(V) run ./fmt.vsh
 
+clean:
+	git clean -xf -- examples
+
 test:
 	$(V) test .
 
@@ -20,4 +23,3 @@ examples:
 	$(V) ./examples/entry.v
 	$(V) ./examples/grid.v
 	$(V) ./examples/label.v
-
