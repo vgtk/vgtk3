@@ -90,9 +90,7 @@ pub fn (a AboutDialog) set_wrap_license(wrap_license bool) {
 }
 
 pub fn (a AboutDialog) get_license_type() License {
-	unsafe {
-		return License(C.gtk_about_dialog_get_license_type(a.c))
-	}
+	return C.gtk_about_dialog_get_license_type(a.c)
 }
 
 pub fn (a AboutDialog) set_license_type(license_type License) {
