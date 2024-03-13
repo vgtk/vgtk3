@@ -23,22 +23,22 @@ pub fn (s String) assign(rval string) String {
 	return String{cptr}
 }
 
-pub fn (s String) vprintf(format string, args VAList) {
-	C.g_string_vprintf(s.c, format.str, args)
-}
+// pub fn (s String) vprintf(format string, args VAList) {
+// 	C.g_string_vprintf(s.c, format.str, args)
+// }
 
-pub fn (s String) append_vprintf(format string, args VAList) {
-	C.g_string_append_vprintf(s.c, format.str, args)
-}
+// pub fn (s String) append_vprintf(format string, args VAList) {
+// 	C.g_string_append_vprintf(s.c, format.str, args)
+// }
 
 // TODO: Fix this after V suppor variadic with multiple types
-pub fn (s String) printf(format string, params voidptr) {
-	C.g_string_printf(s.c, format.str, params)
-}
+// pub fn (s String) printf(format string, params voidptr) {
+// 	C.g_string_printf(s.c, format.str, params)
+// }
 
-pub fn (s String) append_printf(format string, params voidptr) {
-	C.g_string_append_printf(s.c, format.str, params)
-}
+// pub fn (s String) append_printf(format string, params voidptr) {
+// 	C.g_string_append_printf(s.c, format.str, params)
+// }
 
 pub fn (s String) append(val string) String {
 	cptr := C.g_string_append(s.c, val.str)
@@ -131,9 +131,8 @@ pub fn (s String) set_size(len i64) String {
 	return String{cptr}
 }
 
-pub fn (s String) free(free_segment bool) string {
-	cptr := C.g_string_free(s.c, free_segment)
-	return tos3(cptr)
+pub fn (mut s String) free() {
+	C.g_string_free(s.c, false)
 }
 
 pub fn (s String) free_to_bytes() byteptr {
@@ -157,5 +156,7 @@ pub fn (s String) len() i64 {
 }
 
 pub fn (s String) str() string {
-	return tos3(s.c.str)
+	unsafe {
+		return tos3(s.c.str)
+	}
 }

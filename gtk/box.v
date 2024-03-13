@@ -12,7 +12,7 @@ pub struct BoxQuery {
 }
 
 pub fn new_box(orientation Orientation, space int) Box {
-	return Box{C.gtk_box_new(orientation, space)}
+	return Box{C.gtk_box_new(int(orientation), space)}
 }
 
 pub fn new_hbox(space int) Box {
@@ -54,24 +54,24 @@ pub fn (b Box) reorder_child(child IWidget, position int) {
 	C.gtk_box_reorder_child(voidptr(b.c), voidptr(child_), position)
 }
 
-pub fn (b Box) query_child_packing(child IWidget) BoxQuery {
-	child_ := child.get_gtk_widget()
-	expand := false
-	fill := false
-	padding := u32(0)
-	pack_type := PackType(0)
-	C.gtk_box_query_child_packing(voidptr(b.c), voidptr(child_), &expand, &fill, &padding,
-		&pack_type)
-	return BoxQuery{expand, fill, padding, pack_type}
-}
+// pub fn (b Box) query_child_packing(child IWidget) BoxQuery {
+// 	child_ := child.get_gtk_widget()
+// 	expand := false
+// 	fill := false
+// 	padding := u32(0)
+// 	pack_type := PackType(0)
+// 	C.gtk_box_query_child_packing(voidptr(b.c), voidptr(child_), &expand, &fill, &padding,
+// 		&pack_type)
+// 	return BoxQuery{expand, fill, padding, pack_type}
+// }
 
-pub fn (b Box) set_child_packing(child IWidget, expand bool, fill bool, padding u32, pack_type PackType) {
-	child_ := child.get_gtk_widget()
-	C.gtk_box_set_child_packing(b.c, child_, expand, fill, padding, pack_type)
-}
+// pub fn (b Box) set_child_packing(child IWidget, expand bool, fill bool, padding u32, pack_type PackType) {
+// 	child_ := child.get_gtk_widget()
+// 	C.gtk_box_set_child_packing(b.c, child_, expand, fill, padding, pack_type)
+// }
 
 pub fn (b Box) get_baseline_position() BaselinePosition {
-	return BaselinePosition(C.gtk_box_get_baseline_position(b.c))
+	return C.gtk_box_get_baseline_position(b.c)
 }
 
 pub fn (b Box) set_baseline_position(position BaselinePosition) {
@@ -89,7 +89,7 @@ pub fn (b Box) set_center_widget(widget IWidget) {
 
 // Inherited from Widget
 pub fn (b Box) get_halign() Align {
-	return Align(C.gtk_widget_get_halign(b.c))
+	return C.gtk_widget_get_halign(b.c)
 }
 
 pub fn (b Box) set_halign(align Align) {
@@ -97,7 +97,7 @@ pub fn (b Box) set_halign(align Align) {
 }
 
 pub fn (b Box) get_valign() Align {
-	return Align(C.gtk_widget_get_valign(b.c))
+	return C.gtk_widget_get_valign(b.c)
 }
 
 pub fn (b Box) set_valign(align Align) {
@@ -121,10 +121,14 @@ pub fn (b Box) set_orientation(orientation Orientation) {
 }
 
 pub fn (b Box) get_orientation() Orientation {
-	return Orientation(C.gtk_orientable_get_orientation(b.c))
+	return C.gtk_orientable_get_orientation(b.c)
 }
 
 // Implementing IWidget
 pub fn (b &Box) get_gtk_widget() &C.GtkWidget {
 	return b.c
+}
+
+pub fn to_box(widget IWidget) Box {
+	return Box{widget.get_gtk_widget()}
 }

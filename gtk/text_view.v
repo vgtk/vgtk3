@@ -27,7 +27,9 @@ pub fn (tv TextView) get_text() string {
 	C.gtk_text_buffer_get_bounds(b, &start, &end)
 	text := C.gtk_text_buffer_get_text(b, &start, &end, false)
 	if text != 0 {
-		return tos2(text)
+		unsafe {
+			return tos2(text)
+		}
 	}
 	return ''
 }

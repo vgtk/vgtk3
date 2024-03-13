@@ -11,14 +11,14 @@ fn main() {
 	window.add(box)
 
 	button1 := gtk.new_button_with_label('Hello')
-	button1.on('clicked', on_button1_clicked, voidptr(0))
+	button1.on('clicked', on_button1_clicked, unsafe { nil })
 	box.pack_start(button1, true, true, 0)
 
 	button2 := gtk.new_button_with_label('Goodbye')
-	button2.on('clicked', on_button2_clicked, voidptr(0))
+	button2.on('clicked', on_button2_clicked, unsafe { nil })
 	box.pack_start(button2, false, false, 0)
 
-	window.on('destroy', on_window_destroy, voidptr(0))
+	window.on('destroy', on_window_destroy, unsafe { nil })
 	window.show_all()
 	gtk.main()
 }

@@ -1,19 +1,21 @@
 module gtk
 
-pub type AccelMapForeach = fn (voidptr, charptr, u32, C.GdkModifierType, bool)
+import gdk
+
+pub type AccelMapForeach = fn (voidptr, charptr, u32, int, C.GdkModifierType, bool)
 
 pub struct AccelMap {
 	c &C.GtkAccelMap
 }
 
-pub fn accel_map_add_entry(path string, key int, mod_type int) {
+pub fn accel_map_add_entry(path string, key int, mod_type gdk.ModifierType) {
 	C.gtk_accel_map_add_entry(path.str, key, mod_type)
 }
 
 // TODO
 pub fn accel_map_lookup_entry(accel_path string) (bool, &C.GtkAccelKey) {
 	key := &C.GtkAccelKey(0)
-	res := C.gtk_accel_map_lookup_entry(accel_path.str, &key)
+	res := C.gtk_accel_map_lookup_entry(accel_path.str, key)
 	return res, key
 }
 

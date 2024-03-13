@@ -6,7 +6,7 @@ fn main() {
 	window := gtk.new_window()
 	window.set_title('Main window')
 	window.set_default_size(500, 250)
-	window.on('destroy', on_window_destroy, voidptr(0))
+	window.on('destroy', on_window_destroy, unsafe { nil })
 
 	dialog := gtk.new_dialog_from_parent('Dialog', window, .modal)
 	dialog.set_default_size(150, 150)

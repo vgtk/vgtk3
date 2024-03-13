@@ -23,7 +23,7 @@ fn main() {
 	grid.attach(button5, 1, 2, 1, 1)
 	grid.attach_next_to(button6, button5, .right, 1, 1)
 
-	window.on('destroy', on_destroy, voidptr(0))
+	window.on('destroy', on_destroy, unsafe { nil })
 	window.show_all()
 	gtk.main()
 }

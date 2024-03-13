@@ -13,6 +13,6 @@ pub fn (r Requisition) copy() Requisition {
 }
 
 [unsafe]
-pub fn (r Requisition) free() {
+pub fn (mut r Requisition) free() {
 	C.gtk_requisition_free(r.c)
 }

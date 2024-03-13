@@ -18,7 +18,7 @@ fn run_quit(mi gtk.Button, data voidptr) {
 fn run_code(mi gtk.Button, data voidptr) {
 	source := 'runme.v'
 	app := &AppState(data)
- 	input := app.code.get_text()
+	input := app.code.get_text()
 
 	os.rm(source) or {}
 	mut f := os.open_file(source, 'w+') or { panic(err) }
@@ -43,7 +43,7 @@ fn menu_exit(mi gtk.MenuItem, data voidptr) {
 }
 
 fn menu_about(mi gtk.MenuItem, data voidptr) {
-	os.system("ls /")
+	os.system('ls /')
 }
 
 fn alert_clicked(btn gtk.Button, data voidptr) {
@@ -56,11 +56,11 @@ fn win_destroy(win gtk.Window, data voidptr) {
 
 struct AppState {
 mut:
-	window gtk.Window
-	menubar gtk.MenuBar
+	window       gtk.Window
+	menubar      gtk.MenuBar
 	have_menubar bool
-	code gtk.TextView
-	result gtk.TextView
+	code         gtk.TextView
+	result       gtk.TextView
 }
 
 fn new_appstate() AppState {
@@ -73,18 +73,18 @@ fn (mut app AppState) ready() {
 	w := app.window
 	w.set_position(.center)
 	w.set_title('Im made with V')
-	w.on('destroy', win_destroy, voidptr(0))
+	w.on('destroy', win_destroy, unsafe { nil })
 	w.show_all()
 }
 
-fn (mut app AppState)get_bbox() gtk.ButtonBox {
+fn (mut app AppState) get_bbox() gtk.ButtonBox {
 	bbox := gtk.new_hbutton_box()
 	bbox.set_layout(.end)
 
-	gtk.Box(bbox).set_spacing(10)
+	gtk.to_box(bbox).set_spacing(10)
 	app.window.set_border_width(10)
-//	c := &gtk.Container(vbox.c)
-	//c.set_border_width(10)
+	//	c := &gtk.Container(vbox.c)
+	// c.set_border_width(10)
 
 	a := gtk.new_button_with_label('Run')
 	a.on('activate', run_code, app)
@@ -97,7 +97,7 @@ fn (mut app AppState)get_bbox() gtk.ButtonBox {
 	return bbox
 }
 
-fn (mut app AppState)get_paned() gtk.Paned {
+fn (mut app AppState) get_paned() gtk.Paned {
 	p := gtk.new_paned(.horizontal)
 	p.set_position(200)
 	p.set_wide_handle(true)
@@ -122,21 +122,21 @@ fn (mut app AppState)get_paned() gtk.Paned {
 	return p
 }
 
-fn (mut app AppState)get_menubar() gtk.MenuBar {
+fn (mut app AppState) get_menubar() gtk.MenuBar {
 	if app.have_menubar {
 		return app.menubar
 	}
-/*
+	/*
 	if mb := app.menubar {
 		return mb
 	}
-*/
+	*/
 	bar := gtk.new_menu_bar()
 	app.menubar = bar
 
 	menu := gtk.new_menu()
-	file_me := gtk.new_menu_item_with_label("File")
-	quit := gtk.new_menu_item_with_label("Quit")
+	file_me := gtk.new_menu_item_with_label('File')
+	quit := gtk.new_menu_item_with_label('Quit')
 	quit.set_accel_path('GTKTest/File/Quit')
 	quit.set_use_underline(true)
 	quit.on('activate', menu_exit, &app)
@@ -146,7 +146,7 @@ fn (mut app AppState)get_menubar() gtk.MenuBar {
 	edit_me.set_submenu(menu)
 
 	about := gtk.new_menu_item_with_label('About')
-	about.on('activate', menu_about, voidptr(0))
+	about.on('activate', menu_about, unsafe { nil })
 	menu.append(gtk.new_menu_item_with_label('Open'))
 	menu.append(about)
 	// menu.append(gtk.new_separator_menu_item())
@@ -173,7 +173,7 @@ fn main() {
 	btn.set_size(200, 100)
 	btn2.set_size(100, 50)
 	alert.set_size(80, 20)
-/*
+	/*
 	entry.set_text("Good Night!")
 	btn.on("clicked", btn_clicked, &window)
 
@@ -183,11 +183,11 @@ fn main() {
 	quit.on('activate', menu_exit, &window)
 
 	alert.on("clicked", alert_clicked, &window)
-*/
+	*/
 	entry.set_text('Good Night!')
 	btn.on('clicked', btn_clicked, &app.window)
 
-	gtk.accel_map_add_entry('GTK-Test/File/Quit', 65, 0)
+	gtk.accel_map_add_entry('GTK-Test/File/Quit', 65, .shift_mask)
 
 	alert.on('clicked', alert_clicked, &app.window)
 

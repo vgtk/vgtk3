@@ -97,14 +97,14 @@ fn on_entry_text_changed(entry gtk.Entry, data voidptr) {
 
 fn on_btn_icon_clicked(button gtk.CheckButton, data voidptr) {
 	this := &EntryDemo(data)
-	icon_name := if button.get_active() {'system-search-symbolic' } else { '' }
+	icon_name := if button.get_active() { 'system-search-symbolic' } else { '' }
 	this.entry.set_icon_from_icon_name(.primary, icon_name)
 }
 
 fn main() {
 	entry_demo := new_entry_demo()
 	window := &entry_demo.window
-	window.on('destroy', on_window_destroy, voidptr(0))
+	window.on('destroy', on_window_destroy, unsafe { nil })
 	window.show_all()
 	gtk.main()
 }

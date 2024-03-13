@@ -11,10 +11,10 @@ fn main() {
 	hbox := gtk.new_hbox(10)
 	vbox_left := gtk.new_vbox(10)
 	vbox_right := gtk.new_vbox(10)
-	
+
 	hbox.pack_start(vbox_left, true, true, 0)
 	hbox.pack_start(vbox_right, true, true, 0)
-	
+
 	mut label := gtk.new_label('This is a normal label')
 	vbox_left.pack_start(label, true, true, 0)
 
@@ -27,35 +27,29 @@ fn main() {
 	label.set_justify(.right)
 	vbox_left.pack_start(label, true, true, 0)
 
-	label = gtk.new_label("This is an example of a line-wrapped label.  It " +
-                          "should not be taking up the entire             " +
-                          "width allocated to it, but automatically " +
-                          "wraps the words to fit.\n" +
-                          "     It supports multiple paragraphs correctly, " +
-                          "and  correctly   adds " +
-                          "many          extra  spaces. ")
+	label = gtk.new_label('This is an example of a line-wrapped label.  It ' +
+		'should not be taking up the entire             ' +
+		'width allocated to it, but automatically ' + 'wraps the words to fit.\n' +
+		'     It supports multiple paragraphs correctly, ' + 'and  correctly   adds ' +
+		'many          extra  spaces. ')
 	label.set_line_wrap(true)
 	vbox_right.pack_start(label, true, true, 0)
 
-	label = gtk.new_label("This is an example of a line-wrapped, filled label. " +
-                          "It should be taking " +
-                          "up the entire              width allocated to it.  " +
-                          "Here is a sentence to prove " +
-                          "my point.  Here is another sentence. " +
-                          "Here comes the sun, do de do de do.\n" +
-                          "    This is a new paragraph.\n" +
-                          "    This is another newer, longer, better " +
-                          "paragraph.  It is coming to an end, " +
-                          "unfortunately.")
+	label = gtk.new_label('This is an example of a line-wrapped, filled label. ' +
+		'It should be taking ' + 'up the entire              width allocated to it.  ' +
+		'Here is a sentence to prove ' + 'my point.  Here is another sentence. ' +
+		'Here comes the sun, do de do de do.\n' + '    This is a new paragraph.\n' +
+		'    This is another newer, longer, better ' + 'paragraph.  It is coming to an end, ' +
+		'unfortunately.')
 	label.set_line_wrap(true)
 	label.set_justify(.fill)
 	vbox_right.pack_start(label, true, true, 0)
 
 	label = gtk.new_empty_label()
-	label.set_markup(	"Text can be <small>small</small>, <big>big</big>, " +
-						"<b>bold</b>, <i>italic</i> and even point to " +
-                        "somewhere in the <a href='http://www.gtk.org'" + 
-                        "title='Click to find out more'>internets</a>.")
+	label.set_markup('Text can be <small>small</small>, <big>big</big>, ' +
+		'<b>bold</b>, <i>italic</i> and even point to ' +
+		"somewhere in the <a href='http://www.gtk.org'" +
+		"title='Click to find out more'>internets</a>.")
 	label.set_line_wrap(true)
 	vbox_left.pack_start(label, true, true, 0)
 

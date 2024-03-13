@@ -49,7 +49,7 @@ pub fn (m MessageDialog) get_message_area() Widget {
 
 // Inherited from Dialog
 pub fn (m MessageDialog) run() ResponseType {
-	return ResponseType(C.gtk_dialog_run(m.c))
+	return C.gtk_dialog_run(m.c)
 }
 
 pub fn (m MessageDialog) response(response_id ResponseType) {
@@ -102,6 +102,7 @@ pub fn (m MessageDialog) get_header_bar() &Widget {
 
 // Inherited from Window
 // TODO
+
 // Inherited from Widget
 pub fn (m MessageDialog) destroy() {
 	C.gtk_widget_destroy(m.c)
